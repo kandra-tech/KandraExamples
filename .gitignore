@@ -1,0 +1,18 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+**/Generated.Net/
+*.user
+*.suo
+.vs/
+.idea/
+
+# Local data and logs of the runs
+*.db
+*.db-shm
+*.db-wal
+[Ll]ogs/
+*.log
+
+# Node (docs tooling, if any)
+node_modules/
