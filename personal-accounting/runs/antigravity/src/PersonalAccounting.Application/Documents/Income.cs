@@ -6,6 +6,7 @@ using Kandra.Application.Validation;
 using Kandra.Attributes.Application;
 using Kandra.Attributes.Printable;
 using Kandra.Domain.Commons;
+using Kandra.Domain.Exceptions;
 using Kandra.Persistence.Abstractions;
 using Kandra.Persistence.Abstractions.Registers;
 using Kandra.Printing;
@@ -15,6 +16,7 @@ using PersonalAccounting.Domain.Entities.Dictionaries;
 using PersonalAccounting.Domain.Entities.Documents;
 using PersonalAccounting.Domain.Entities.Registers;
 using PersonalAccounting.Domain.Numbering;
+using PersonalAccounting.Enums;
 using PersonalAccounting.Forms.Documents;
 using Riok.Mapperly.Abstractions;
 
@@ -26,6 +28,7 @@ namespace PersonalAccounting.Application.Documents;
 public class IncomeBehavior(
     ISimpleNumberingSystem numbering,
     IEntityRepository<Account> accountRepo,
+    IEntityRepository<CategoryNode> categoryRepo,
     ICurrencyConversionService currencyConversion,
     IStringLocalizer localizer) : IDocumentBehavior<Income>
 {
@@ -39,6 +42,10 @@ public class IncomeBehavior(
 
     public async ValueTask OnSubmitAsync(Income entity, bool isInsert, ISubmitScope registers, CancellationToken cancellationToken)
     {
+        var category = await categoryRepo.GetAsync(entity.CategoryId, false, cancellationToken);
+        if (category is null || category.Kind != CategoryKind.Income)
+            throw new InvalidStateException(localizer["Error_IncomeCategoryKind"]);
+
         var account = await accountRepo.GetAsync(entity.AccountId, false, cancellationToken);
         var currencyId = account?.CurrencyId ?? Guid.Empty;
         var amountInBase = await currencyConversion.ConvertToBaseCurrencyAsync(currencyId, entity.Amount, entity.Date, localizer, cancellationToken);

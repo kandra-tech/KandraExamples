@@ -78,14 +78,15 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
     }
 
     public async Task<IReadOnlyList<BudgetVsActualRow>> GetBudgetVsActualAsync(
-        DateTime month,
+        LocalMonth month,
         CancellationToken cancellationToken)
     {
-        var start = new DateTime(month.Year, month.Month, 1, 0, 0, 0, DateTimeKind.Utc);
-        var end = start.AddMonths(1);
+        var planPeriod = month.PlanPeriod;
+        var start = month.FromUtc;
+        var end = month.ToUtc;
 
         var plans = await db.Reg_BudgetPlan.AsNoTracking().Where(r => r.Active)
-            .Where(b => b.Period == start)
+            .Where(b => b.Period == planPeriod)
             .GroupBy(b => b.Dimensions.CategoryId)
             .Select(g => new { CategoryId = g.Key, Planned = g.Sum(x => x.Details.PlannedAmount) })
             .ToListAsync(cancellationToken);
@@ -399,14 +400,15 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
     }
 
     public async Task<(decimal planned, decimal actual)> GetBudgetSpentAsync(
-        DateTime month,
+        LocalMonth month,
         CancellationToken cancellationToken)
     {
-        var start = new DateTime(month.Year, month.Month, 1, 0, 0, 0, DateTimeKind.Utc);
-        var end = start.AddMonths(1);
+        var planPeriod = month.PlanPeriod;
+        var start = month.FromUtc;
+        var end = month.ToUtc;
 
         var planned = await db.Reg_BudgetPlan.AsNoTracking().Where(r => r.Active)
-            .Where(b => b.Period == start)
+            .Where(b => b.Period == planPeriod)
             .SumAsync(b => (decimal?)b.Details.PlannedAmount, cancellationToken) ?? 0m;
 
         var actual = await (

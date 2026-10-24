@@ -16,21 +16,22 @@ namespace PersonalAccounting.Application.Reports;
 [KandraReportBehavior(typeof(ReportBudgetVsActualDto))]
 public class BudgetVsActualReportBehavior(
     IReportsRepository repository,
-    IAuthorizationChecker authorizationChecker)
+    IAuthorizationChecker authorizationChecker,
+    ICurrentTimeZone timeZone)
     : IReportBehavior<ReportBudgetVsActualDto, BudgetVsActualReportResult>
 {
     public string ObjectName => "BudgetVsActualReport";
 
     public Task OnNewAsync(ReportBudgetVsActualDto filters, CancellationToken cancellationToken)
     {
-        var now = DateTime.UtcNow;
-        filters.Month = new DateTime(now.Year, now.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+        // The first of the user's current month at local midnight; the client shows it as that date.
+        filters.Month = LocalMonth.Of(DateTime.UtcNow, timeZone.TimeZone).FromUtc;
         return Task.CompletedTask;
     }
 
     public async Task<BudgetVsActualReportResult> GetDataAsync(ReportBudgetVsActualDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var rows = await repository.GetBudgetVsActualAsync(filters.Month, cancellationToken);
+        var rows = await repository.GetBudgetVsActualAsync(LocalMonth.Of(filters.Month, timeZone.TimeZone), cancellationToken);
 
         var data = new BudgetVsActualReportDataDto
         {

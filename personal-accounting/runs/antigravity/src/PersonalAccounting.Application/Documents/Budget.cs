@@ -5,6 +5,7 @@ using Kandra.Application.Abstractions.Services;
 using Kandra.Application.Validation;
 using Kandra.Attributes.Application;
 using Kandra.Attributes.Printable;
+using Kandra.Domain.Exceptions;
 using Kandra.Persistence.Abstractions;
 using Kandra.Persistence.Abstractions.Registers;
 using Kandra.Printing;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Localization;
 using PersonalAccounting.Domain.Entities.Dictionaries;
 using PersonalAccounting.Domain.Entities.Documents;
 using PersonalAccounting.Domain.Entities.Registers;
+using PersonalAccounting.Domain.Reporting;
 using PersonalAccounting.Domain.Numbering;
 using PersonalAccounting.Forms.Documents;
 using Riok.Mapperly.Abstractions;
@@ -20,7 +22,11 @@ namespace PersonalAccounting.Application.Documents;
 
 [KandraDocumentBehavior(typeof(BudgetDto))]
 [RegisterTransactions(typeof(BudgetPlanRecord))]
-public class BudgetBehavior(ISimpleNumberingSystem numbering) : IDocumentBehavior<Budget>
+public class BudgetBehavior(
+    ISimpleNumberingSystem numbering,
+    ICurrentTimeZone timeZone,
+    IInfoRegisterReader<BudgetPlanRecord> budgetPlan,
+    IStringLocalizer localizer) : IDocumentBehavior<Budget>
 {
     public async ValueTask OnNewAsync(Budget entity, DateTime? date, Guid? sourceDocumentId, CancellationToken cancellationToken)
     {
@@ -32,7 +38,14 @@ public class BudgetBehavior(ISimpleNumberingSystem numbering) : IDocumentBehavio
 
     public async ValueTask OnSubmitAsync(Budget entity, bool isInsert, ISubmitScope registers, CancellationToken cancellationToken)
     {
-        var monthStart = new DateTime(entity.Date.Year, entity.Date.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+        // The budget's month is the calendar month of its date in the user's time zone.
+        var monthStart = LocalMonth.Of(entity.Date, timeZone.TimeZone).PlanPeriod;
+
+        // One budget per month: another posted budget already holds plan records for it.
+        var taken = await budgetPlan.Records(monthStart, monthStart, q => q.Where(r => r.DocumentId != entity.Id), cancellationToken);
+        if (taken.Count > 0)
+            throw new InvalidStateException(localizer["Error_BudgetMonthTaken", monthStart.ToString("yyyy-MM")]);
+
         var records = entity.Lines.Select(line => new BudgetPlanRecord
         {
             LineId = line.Id,

@@ -10,6 +10,7 @@ using Kandra.Persistence.Abstractions;
 using Microsoft.Extensions.Localization;
 using PersonalAccounting.Application.Constants;
 using PersonalAccounting.Domain.Commons;
+using PersonalAccounting.Domain.Reporting;
 using PersonalAccounting.Forms.Dashboards;
 
 namespace PersonalAccounting.Application.Dashboards;
@@ -65,7 +66,7 @@ public class PersonalAccountingDashboardBehavior(
         var lastMonthExpense = lastMonthTurnover?.ExpenseInBase;
 
         // 4. Budget spent share
-        var (budgetPlanned, budgetActual) = await repository.GetBudgetSpentAsync(months[^1].Start.ToDateTime(TimeOnly.MinValue), cancellationToken);
+        var (budgetPlanned, budgetActual) = await repository.GetBudgetSpentAsync(LocalMonth.Of(now, userTz), cancellationToken);
         decimal? budgetShare = budgetPlanned > 0m ? decimal.Round(budgetActual / budgetPlanned * 100m, 1, MidpointRounding.AwayFromZero) : null;
 
         // 5. 6-months Bar chart

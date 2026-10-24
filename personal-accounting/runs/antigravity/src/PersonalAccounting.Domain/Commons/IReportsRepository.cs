@@ -12,7 +12,7 @@ public interface IReportsRepository
         CancellationToken cancellationToken);
 
     Task<IReadOnlyList<BudgetVsActualRow>> GetBudgetVsActualAsync(
-        DateTime month,
+        LocalMonth month,
         CancellationToken cancellationToken);
 
     Task<IReadOnlyList<SpendingByCategoryRow>> GetSpendingByCategoryAsync(
@@ -49,6 +49,6 @@ public interface IReportsRepository
         CancellationToken cancellationToken);
 
     Task<(decimal planned, decimal actual)> GetBudgetSpentAsync(
-        DateTime month,
+        LocalMonth month,
         CancellationToken cancellationToken);
 }
