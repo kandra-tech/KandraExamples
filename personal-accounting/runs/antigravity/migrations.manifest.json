@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "project": "src/PersonalAccounting.Persistence.Databases/PersonalAccounting.Persistence.Databases.csproj",
+  "startupProject": "src/PersonalAccounting.WebApi/PersonalAccounting.WebApi.csproj",
+  "providersPropertyName": "Providers",
+  "providers": [
+    { "name": "Sqlite", "context": "PersonalAccountingDbContextSqlite", "outputDir": "Migrations/Sqlite" },
+    { "name": "SqlServer", "context": "PersonalAccountingDbContextSqlServer", "outputDir": "Migrations/SqlServer" },
+    { "name": "PostgreSql", "context": "PersonalAccountingDbContextPostgreSql", "outputDir": "Migrations/PostgreSql" }
+  ]
+}

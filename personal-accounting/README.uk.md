@@ -21,7 +21,10 @@
 
 ## Запуски
 
-Опублікованих запусків ще немає. Як додати свій — див. [CONTRIBUTING.md](../CONTRIBUTING.md) (англійською).
-
 | Середовище | Модель | Бриф | Шаблон / Core | Час | Тести |
 |---|---|---|---|---|---|
+| [Google Antigravity](runs/antigravity/) ([результати](runs/antigravity/RESULTS.md), англійською) | не зафіксовано | v4 | 1.3.5 / 0.5.25 | ~65 хв | 18 пройдено |
+
+Як додати свій запуск — див. [CONTRIBUTING.md](../CONTRIBUTING.md) (англійською).
+
+![Головний дашборд запуску Antigravity](runs/antigravity/screenshots/dashboard.uk.jpg)

@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "restore",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["restore", " PersonalAccounting.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build solution",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["build", "PersonalAccounting.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["test", "PersonalAccounting.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "watch PersonalAccounting.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "src/PersonalAccounting.WebApi",
+        "--launch-profile",
+        "PersonalAccounting.WebApi"
+      ],
+      "problemMatcher": "$msCompile",
+      "isBackground": true,
+      "group": "build"
+    },
+    {
+      "label": "build PersonalAccounting.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/PersonalAccounting.WebApi/PersonalAccounting.WebApi.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build PersonalAccounting.Client.MudBlazor",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/PersonalAccounting.Client.MudBlazor/PersonalAccounting.Client.MudBlazor.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build PersonalAccounting",
+      "dependsOn": [
+        "build PersonalAccounting.WebApi",
+        "build PersonalAccounting.Client.MudBlazor"
+      ],
+      "dependsOrder": "parallel",
+      "group": "build"
+    },
+    {
+      "label": "Run Dotnet PersonalAccounting.WebApi",
+      "dependsOn": "build PersonalAccounting.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["run",
+        "--project",
+        "src/PersonalAccounting.WebApi",
+        "--launch-profile",
+        "PersonalAccounting.WebApi"]
+    }
+  ]
+}

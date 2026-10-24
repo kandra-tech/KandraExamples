@@ -1,0 +1,160 @@
+{
+  "$schema": "./personalaccounting.import.schema.json",
+  "format": "kandra-import/1",
+  "package": "personalaccounting-demo",
+  "version": 1,
+  "origin": "demoSeed",
+  "configuration": "PersonalAccounting",
+  "title": "PersonalAccounting demo data",
+  "steps": [
+    {
+      "dictionary": "Currencies",
+      "items": [
+        { "$id": "curr-uah", "code": "UAH", "name": "Ukrainian Hryvnia" },
+        { "$id": "curr-usd", "code": "USD", "name": "US Dollar" },
+        { "$id": "curr-eur", "code": "EUR", "name": "Euro" },
+        { "$id": "curr-pln", "code": "PLN", "name": "Polish Zloty" }
+      ]
+    },
+    {
+      "constant": "BaseCurrency",
+      "$id": "const-base-curr",
+      "effectiveFrom": "2000-01-01",
+      "value": "UAH"
+    },
+    {
+      "dictionary": "Accounts",
+      "items": [
+        { "$id": "acc-cash", "code": "CASH", "name": "Cash", "type": "cash", "currencyId": { "$ref": "curr-uah" } },
+        { "$id": "acc-card", "code": "CARD", "name": "Bank Card", "type": "card", "currencyId": { "$ref": "curr-uah" } },
+        { "$id": "acc-savings", "code": "SAVINGS", "name": "Savings (USD)", "type": "savings", "currencyId": { "$ref": "curr-usd" } }
+      ]
+    },
+    {
+      "dictionary": "Categories",
+      "items": [
+        { "$id": "cat-income-group", "code": "INC", "name": "Income", "kind": "income", "isFolder": true },
+        { "$id": "cat-salary", "code": "SALARY", "name": "Salary", "kind": "income", "isFolder": false, "parentId": { "$ref": "cat-income-group" } },
+        { "$id": "cat-freelance", "code": "FREELANCE", "name": "Freelance", "kind": "income", "isFolder": false, "parentId": { "$ref": "cat-income-group" } },
+        { "$id": "cat-investments", "code": "INVEST", "name": "Investments", "kind": "income", "isFolder": false, "parentId": { "$ref": "cat-income-group" } },
+
+        { "$id": "cat-living", "code": "LIVING", "name": "Living", "kind": "expense", "isFolder": true },
+        { "$id": "cat-rent", "code": "RENT", "name": "Rent", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-living" } },
+        { "$id": "cat-utilities", "code": "UTIL", "name": "Utilities", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-living" } },
+        { "$id": "cat-groceries", "code": "GROC", "name": "Groceries", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-living" } },
+
+        { "$id": "cat-lifestyle", "code": "LIFE", "name": "Lifestyle", "kind": "expense", "isFolder": true },
+        { "$id": "cat-transport", "code": "TRANS", "name": "Transport", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-lifestyle" } },
+        { "$id": "cat-health", "code": "HEALTH", "name": "Health & Pharmacy", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-lifestyle" } },
+        { "$id": "cat-entertainment", "code": "ENTERTAIN", "name": "Entertainment", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-lifestyle" } },
+        { "$id": "cat-restaurants", "code": "CAFE", "name": "Cafes & Restaurants", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-lifestyle" } },
+        { "$id": "cat-clothing", "code": "CLOTH", "name": "Clothing & Footwear", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-lifestyle" } },
+        { "$id": "cat-education", "code": "EDU", "name": "Education & Books", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-lifestyle" } },
+        { "$id": "cat-subscriptions", "code": "SUB", "name": "Subscriptions & Services", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-lifestyle" } },
+        { "$id": "cat-other", "code": "OTHER", "name": "Other Expenses", "kind": "expense", "isFolder": false, "parentId": { "$ref": "cat-lifestyle" } }
+      ]
+    },
+    {
+      "document": "SetExchangeRates",
+      "submit": true,
+      "items": [
+        {
+          "$id": "rates-01",
+          "date": "$today-60d",
+          "description": "Initial exchange rates",
+          "lines": [
+            { "currencyId": { "$ref": "curr-usd" }, "rate": 41.5 },
+            { "currencyId": { "$ref": "curr-eur" }, "rate": 44.8 },
+            { "currencyId": { "$ref": "curr-pln" }, "rate": 10.4 }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "OpeningBalances",
+      "submit": true,
+      "items": [
+        {
+          "$id": "opbal-01",
+          "date": "$today-60d",
+          "description": "Opening balances for personal accounts",
+          "lines": [
+            { "accountId": { "$ref": "acc-cash" }, "amount": 5000.0 },
+            { "accountId": { "$ref": "acc-card" }, "amount": 25000.0 },
+            { "accountId": { "$ref": "acc-savings" }, "amount": 1500.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Budgets",
+      "submit": true,
+      "items": [
+        {
+          "$id": "budget-01",
+          "date": "$today-15d",
+          "description": "Current month budget",
+          "lines": [
+            { "categoryId": { "$ref": "cat-rent" }, "plannedAmount": 15000.0 },
+            { "categoryId": { "$ref": "cat-groceries" }, "plannedAmount": 8000.0 },
+            { "categoryId": { "$ref": "cat-utilities" }, "plannedAmount": 3000.0 },
+            { "categoryId": { "$ref": "cat-transport" }, "plannedAmount": 2000.0 },
+            { "categoryId": { "$ref": "cat-restaurants" }, "plannedAmount": 2500.0 },
+            { "categoryId": { "$ref": "cat-entertainment" }, "plannedAmount": 1500.0 },
+            { "categoryId": { "$ref": "cat-subscriptions" }, "plannedAmount": 600.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Income",
+      "submit": true,
+      "items": [
+        { "$id": "inc-01", "date": "$today-50d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-salary" }, "amount": 45000.0, "comment": "Previous month salary" },
+        { "$id": "inc-02", "date": "$today-42d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-freelance" }, "amount": 12000.0, "comment": "Freelance web design" },
+        { "$id": "inc-03", "date": "$today-35d", "accountId": { "$ref": "acc-cash" }, "categoryId": { "$ref": "cat-investments" }, "amount": 2500.0, "comment": "Dividends payout" },
+        { "$id": "inc-04", "date": "$today-20d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-salary" }, "amount": 47000.0, "comment": "Current month salary" },
+        { "$id": "inc-05", "date": "$today-10d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-freelance" }, "amount": 8500.0, "comment": "Consulting fee" }
+      ]
+    },
+    {
+      "document": "Transfers",
+      "submit": true,
+      "items": [
+        { "$id": "tr-01", "date": "$today-48d", "fromAccountId": { "$ref": "acc-card" }, "toAccountId": { "$ref": "acc-cash" }, "amountOut": 5000.0, "amountIn": 5000.0, "comment": "ATM cash withdrawal" },
+        { "$id": "tr-02", "date": "$today-45d", "fromAccountId": { "$ref": "acc-card" }, "toAccountId": { "$ref": "acc-savings" }, "amountOut": 8300.0, "amountIn": 200.0, "comment": "Buy $200 for savings" },
+        { "$id": "tr-03", "date": "$today-18d", "fromAccountId": { "$ref": "acc-card" }, "toAccountId": { "$ref": "acc-cash" }, "amountOut": 4000.0, "amountIn": 4000.0, "comment": "ATM cash withdrawal" },
+        { "$id": "tr-04", "date": "$today-12d", "fromAccountId": { "$ref": "acc-card" }, "toAccountId": { "$ref": "acc-savings" }, "amountOut": 12450.0, "amountIn": 300.0, "comment": "Buy $300 for savings" }
+      ]
+    },
+    {
+      "document": "Expenses",
+      "submit": true,
+      "items": [
+        { "$id": "exp-01", "date": "$today-52d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-rent" }, "amount": 15000.0, "comment": "Apartment rent" },
+        { "$id": "exp-02", "date": "$today-50d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-utilities" }, "amount": 2850.0, "comment": "Electricity & heating" },
+        { "$id": "exp-03", "date": "$today-48d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-groceries" }, "amount": 1650.0, "comment": "Silpo supermarket" },
+        { "$id": "exp-04", "date": "$today-46d", "accountId": { "$ref": "acc-cash" }, "categoryId": { "$ref": "cat-transport" }, "amount": 350.0, "comment": "Subway and bus card" },
+        { "$id": "exp-05", "date": "$today-44d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-restaurants" }, "amount": 620.0, "comment": "Dinner with friends" },
+        { "$id": "exp-06", "date": "$today-42d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-groceries" }, "amount": 2100.0, "comment": "Weekly groceries" },
+        { "$id": "exp-07", "date": "$today-40d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-health" }, "amount": 890.0, "comment": "Pharmacy purchase" },
+        { "$id": "exp-08", "date": "$today-38d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-subscriptions" }, "amount": 300.0, "comment": "YouTube & Spotify" },
+        { "$id": "exp-09", "date": "$today-35d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-groceries" }, "amount": 1800.0, "comment": "Groceries" },
+        { "$id": "exp-10", "date": "$today-33d", "accountId": { "$ref": "acc-cash" }, "categoryId": { "$ref": "cat-entertainment" }, "amount": 750.0, "comment": "Cinema tickets" },
+
+        { "$id": "exp-11", "date": "$today-25d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-rent" }, "amount": 15000.0, "comment": "Apartment rent" },
+        { "$id": "exp-12", "date": "$today-23d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-utilities" }, "amount": 3100.0, "comment": "Utility bills" },
+        { "$id": "exp-13", "date": "$today-21d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-groceries" }, "amount": 2350.0, "comment": "Groceries" },
+        { "$id": "exp-14", "date": "$today-19d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-transport" }, "amount": 800.0, "comment": "Fuel / taxi" },
+        { "$id": "exp-15", "date": "$today-16d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-restaurants" }, "amount": 950.0, "comment": "Lunch & coffee" },
+        { "$id": "exp-16", "date": "$today-14d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-groceries" }, "amount": 1980.0, "comment": "Supermarket" },
+        { "$id": "exp-17", "date": "$today-11d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-clothing" }, "amount": 3200.0, "comment": "Winter jacket" },
+        { "$id": "exp-18", "date": "$today-9d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-subscriptions" }, "amount": 450.0, "comment": "Cloud storage & music" },
+        { "$id": "exp-19", "date": "$today-7d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-education" }, "amount": 1200.0, "comment": "Programming book" },
+        { "$id": "exp-20", "date": "$today-5d", "accountId": { "$ref": "acc-card" }, "categoryId": { "$ref": "cat-groceries" }, "amount": 1720.0, "comment": "Groceries" },
+        { "$id": "exp-21", "date": "$today-3d", "accountId": { "$ref": "acc-cash" }, "categoryId": { "$ref": "cat-restaurants" }, "amount": 480.0, "comment": "Coffee with pastries" },
+        { "$id": "exp-22", "date": "$today-1d", "accountId": { "$ref": "acc-cash" }, "categoryId": { "$ref": "cat-other" }, "amount": 300.0, "comment": "Stationery" }
+      ]
+    }
+  ]
+}

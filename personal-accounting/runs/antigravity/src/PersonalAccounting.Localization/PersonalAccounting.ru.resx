@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BrandName" xml:space="preserve">
+    <value>PersonalAccounting</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Предприятие</value>
+  </data>
+  <data name="CompanyLogo" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="CompanySettings" xml:space="preserve">
+    <value>Настройки компании</value>
+  </data>
+  <data name="CompanySettings_Identity" xml:space="preserve">
+    <value>Реквизиты</value>
+  </data>
+  <data name="CompanySettings_Printing" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="CompanySettings_EffectiveFrom" xml:space="preserve">
+    <value>Изменения действуют с</value>
+  </data>
+  <data name="CompanySettings_Logo" xml:space="preserve">
+    <value>Логотип (PNG или JPEG, до 1 МБ)</value>
+  </data>
+  <data name="CompanySettings_Outcome" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="CompanySettings_NothingChanged" xml:space="preserve">
+    <value>Ничего не изменено.</value>
+  </data>
+  <data name="CompanySettings_Saved" xml:space="preserve">
+    <value>Сохранено с {0}: {1}.</value>
+  </data>
+  <data name="CompanySettings_LogoNotAnImage" xml:space="preserve">
+    <value>Файл не является изображением PNG или JPEG.</value>
+  </data>
+  <data name="CompanySettings_LogoTooLarge" xml:space="preserve">
+    <value>Логотип больше 1 МБ.</value>
+  </data>
+  <data name="CompanySettings_LogoRejected" xml:space="preserve">
+    <value>Загруженный файл больше нельзя использовать. Загрузите его ещё раз.</value>
+  </data>
+  <data name="CompanySettings_LogoLabel" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="Nav_DataProcessors" xml:space="preserve">
+    <value>Обработки</value>
+  </data>
+</root>

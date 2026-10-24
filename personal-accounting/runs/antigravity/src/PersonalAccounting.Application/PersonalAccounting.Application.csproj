@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalAccounting.Domain\PersonalAccounting.Domain.csproj" />
+    <ProjectReference Include="..\PersonalAccounting.Forms\PersonalAccounting.Forms.csproj" />
+    <ProjectReference Include="..\PersonalAccounting.Localization\PersonalAccounting.Localization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kandra.Application" />
+    <PackageReference Include="Kandra.DataImport" />
+    <PackageReference Include="Kandra.EntityOperations" />
+    <PackageReference Include="Kandra.Generators.Constants" PrivateAssets="all" />
+    <PackageReference Include="Kandra.Generators.DataProcessorRegistry" PrivateAssets="all" />
+    <PackageReference Include="Kandra.Generators.Di.Application" PrivateAssets="all" />
+    <PackageReference Include="Kandra.Generators.EntityOperations" PrivateAssets="all" />
+    <PackageReference Include="Kandra.Generators.Printing" PrivateAssets="all" />
+    <PackageReference Include="Kandra.Generators.RegisterTransactions.Application" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Entity <-> Dto mappers: one hand-written Mapperly [Mapper] partial class per dictionary/document/report
+       (see the create-dictionary/create-document/create-report skills). Build-time only (its attributes are
+       [Conditional]), and needed here directly - PrivateAssets="all" means it never flows in through the
+       Kandra.Application package. -->
+  <ItemGroup>
+    <PackageReference Include="Riok.Mapperly" ExcludeAssets="runtime" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Import packages (the demo data of this configuration, and any others) ship inside the assembly; the
+       registry lists them (AddImportPackages in ConfigureServices). The JSON Schema snapshot is a development
+       aid, not a package. -->
+  <ItemGroup>
+    <EmbeddedResource Include="ImportPackages\*.json" Exclude="ImportPackages\*.schema.json" />
+  </ItemGroup>
+
+</Project>

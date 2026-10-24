@@ -1,0 +1,26 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="DebugLocalNuGet" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Common/">
+    <Project Path="src/PersonalAccounting.Enums/PersonalAccounting.Enums.csproj" />
+    <Project Path="src/PersonalAccounting.Forms/PersonalAccounting.Forms.csproj" />
+    <Project Path="src/PersonalAccounting.Localization/PersonalAccounting.Localization.csproj" />
+  </Folder>
+  <Folder Name="/Backend/">
+    <Project Path="src/PersonalAccounting.Application/PersonalAccounting.Application.csproj" />
+    <Project Path="src/PersonalAccounting.Domain/PersonalAccounting.Domain.csproj" />
+    <Project Path="src/PersonalAccounting.Persistence.Databases/PersonalAccounting.Persistence.Databases.csproj" />
+    <Project Path="src/PersonalAccounting.Persistence/PersonalAccounting.Persistence.csproj" />
+    <Project Path="src/PersonalAccounting.WebApi/PersonalAccounting.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/">
+    <Project Path="src/PersonalAccounting.Client.MudBlazor/PersonalAccounting.Client.MudBlazor.csproj" />
+    <Project Path="src/PersonalAccounting.ClientLib.Common/PersonalAccounting.ClientLib.Common.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="src/PersonalAccounting.Tests/PersonalAccounting.Tests.csproj" />
+  </Folder>
+</Solution>

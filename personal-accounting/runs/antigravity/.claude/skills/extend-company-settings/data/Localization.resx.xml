@@ -1,0 +1,13 @@
+<!-- Add to PersonalAccounting.resx (English) and, when you translate, PersonalAccounting.uk.resx / .ru.resx -->
+  <data name="Company{{Detail}}" xml:space="preserve">
+    <value>{{Caption}}</value>
+  </data>
+  <!-- Only with a new section -->
+  <data name="CompanySettings_Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <!-- Only with a format rule (this wording matches the Ukrainian example in FormField.cs; adapt it) -->
+  <data name="CompanySettings_TaxCodeFormat" xml:space="preserve">
+    <value>The tax code is 8 digits (EDRPOU) or 10 digits (RNOKPP).</value>
+  </data>
+  <!-- Ukrainian: "Податковий код", "Адреса", "Телефон", "Контакти";  Russian: "Налоговый код", "Адрес", "Телефон", "Контакты" -->

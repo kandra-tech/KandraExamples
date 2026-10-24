@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>PersonalAccounting</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#594AE2" />
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="PersonalAccounting.Client.MudBlazor.styles.css" rel="stylesheet" />
+    <style>
+        /* Splash screen shown until Blazor replaces #app. Blazor WASM updates --blazor-load-percentage(-text)
+           on <html> while downloading the runtime; colours follow the system theme. */
+        :root { --splash-bg: #ffffff; --splash-fg: #1f2330; --splash-muted: #6b7280; --splash-track: #e5e7eb; }
+        @media (prefers-color-scheme: dark) {
+            :root { --splash-bg: #121218; --splash-fg: #f3f4f6; --splash-muted: #9ca3af; --splash-track: #2c2f3b; }
+        }
+        html, body { background: var(--splash-bg); color-scheme: light dark; }
+        .kandra-splash { position: absolute; top: 30vh; width: 100%; text-align: center; color: var(--splash-fg); }
+        .kandra-splash img { height: 96px; }
+        .kandra-splash .logo-dark { display: none; }
+        @media (prefers-color-scheme: dark) {
+            .kandra-splash .logo-light { display: none; }
+            .kandra-splash .logo-dark { display: inline; }
+        }
+        .kandra-splash h1 { color: var(--splash-fg); }
+        .kandra-splash-bar { width: 240px; max-width: 70vw; height: 6px; margin: 24px auto 12px; border-radius: 3px;
+            background: var(--splash-track); overflow: hidden; }
+        .kandra-splash-bar > div { height: 100%; width: var(--blazor-load-percentage, 0%); border-radius: 3px;
+            background: linear-gradient(90deg, #594AE2, #8b7bff); transition: width .2s ease; }
+        .kandra-splash-text { color: var(--splash-muted); }
+        .kandra-splash-text::after { content: var(--blazor-load-percentage-text, "Loading..."); }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="kandra-splash">
+            <img class="logo-light" src="images/logo-gradient-black.png" alt="" />
+            <img class="logo-dark" src="images/logo-gradient-white.png" alt="" />
+            <h1>PersonalAccounting</h1>
+            <div class="kandra-splash-bar"><div></div></div>
+            <p class="kandra-splash-text"></p>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <!-- Site.js custom JS file-->
+    <script src="site.js"></script>
+</body>
+</html>

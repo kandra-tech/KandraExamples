@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+**/.vs/
+**/Generated.Net/
+**/*.user
+.git/
+.github/
+# Local databases, uploads, keys and backups of a dev run
+src/PersonalAccounting.WebApi/data/
+src/PersonalAccounting.WebApi/db/*.db*
+src/PersonalAccounting.WebApi/App_Data/
+src/PersonalAccounting.WebApi/blobs/
+src/PersonalAccounting.WebApi/keys/
+src/PersonalAccounting.WebApi/backups/
+**/Migrations/**/*.sql
+compose*.yml
+.env*

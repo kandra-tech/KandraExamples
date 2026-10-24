@@ -1,0 +1,1078 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:kandra:import:1:PersonalAccounting",
+  "title": "Kandra import package (kandra-import/1) for PersonalAccounting",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": "kandra-import/1"
+    },
+    "package": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,199}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "origin": {
+      "enum": [
+        "demoSeed",
+        "import"
+      ]
+    },
+    "configuration": {
+      "const": "PersonalAccounting"
+    },
+    "title": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Budgets"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Budgets"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Expenses"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Expenses"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Income"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Income"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "OpeningBalances"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.OpeningBalances"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "SetExchangeRates"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.SetExchangeRates"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Transfers"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Transfers"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Accounts"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Accounts"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Categories"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Categories"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Currencies"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Currencies"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dataProcessor": {
+                "const": "CompanySettings"
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "run": {
+                "enum": [
+                  "once",
+                  "always"
+                ]
+              },
+              "optional": {
+                "type": "boolean"
+              },
+              "input": {
+                "$ref": "#/$defs/input.CompanySettings"
+              }
+            },
+            "required": [
+              "dataProcessor",
+              "$id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "constant": {
+                "enum": [
+                  "BaseCurrency",
+                  "CompanyLogo",
+                  "CompanyName"
+                ]
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {},
+              "effectiveFrom": {
+                "type": "string",
+                "description": "The date the value applies from (ISO, UTC when it has no offset). Omitted: from the moment of the import."
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "constant",
+              "$id",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "createFrom": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "enum": [
+                      "Budgets",
+                      "Expenses",
+                      "Income",
+                      "OpeningBalances",
+                      "SetExchangeRates",
+                      "Transfers"
+                    ]
+                  }
+                },
+                "required": [
+                  "source",
+                  "target"
+                ],
+                "additionalProperties": false
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "submit": {
+                "type": "boolean"
+              },
+              "set": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "createFrom",
+              "$id"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "format",
+    "package",
+    "version",
+    "origin",
+    "configuration",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "reference": {
+      "description": "A reference to an object defined earlier in this package ($ref) or to an existing row looked up by Code ($code).",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$ref"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$code": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$code"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "guidOrReference": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "$ref": "#/$defs/reference"
+        }
+      ]
+    },
+    "dateTimeValue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "$ref": "#/$defs/dateToken"
+        }
+      ]
+    },
+    "dateValue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "$ref": "#/$defs/dateToken"
+        }
+      ]
+    },
+    "dateToken": {
+      "type": "string",
+      "description": "$now, $today, $today-23d, $today+14d - resolved in the importing user's time zone when the package is applied.",
+      "pattern": "^\\$(now|today([+-]\\d{1,5}d)?)$"
+    },
+    "onChange": {
+      "enum": [
+        "update",
+        "skip",
+        "error"
+      ]
+    },
+    "onUserModified": {
+      "enum": [
+        "skip",
+        "overwrite",
+        "error"
+      ]
+    },
+    "onDeleted": {
+      "enum": [
+        "skip",
+        "restore",
+        "error"
+      ]
+    },
+    "document.Budgets.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "categoryId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The expense category."
+        },
+        "plannedAmount": {
+          "type": "number",
+          "description": "The planned budget amount."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Budgets": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional comment or description."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.Budgets.lines.line"
+          },
+          "description": "Planned budget amounts per category."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Expenses": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accountId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The account from which the expense is paid."
+        },
+        "categoryId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The expense category."
+        },
+        "amount": {
+          "type": "number",
+          "description": "The expense amount in the account's currency."
+        },
+        "comment": {
+          "type": "string",
+          "description": "User comment or note."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Income": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accountId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The account receiving the income."
+        },
+        "categoryId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The income category."
+        },
+        "amount": {
+          "type": "number",
+          "description": "The income amount in the account's currency."
+        },
+        "comment": {
+          "type": "string",
+          "description": "User comment or note."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.OpeningBalances.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "accountId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The account for which the opening balance is set."
+        },
+        "amount": {
+          "type": "number",
+          "description": "The opening balance amount in the account's currency."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.OpeningBalances": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional comment or description."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.OpeningBalances.lines.line"
+          },
+          "description": "Opening balance entries per account."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.SetExchangeRates.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "currencyId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The currency for which the rate is set."
+        },
+        "rate": {
+          "type": "number",
+          "description": "Exchange rate of the currency to base currency."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.SetExchangeRates": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional comment or description."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.SetExchangeRates.lines.line"
+          },
+          "description": "Exchange rate entries per currency."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Transfers": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fromAccountId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The source account from which funds are deducted."
+        },
+        "toAccountId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The target account to which funds are deposited."
+        },
+        "amountOut": {
+          "type": "number",
+          "description": "Amount deducted from the source account."
+        },
+        "amountIn": {
+          "type": "number",
+          "description": "Amount deposited to the target account."
+        },
+        "comment": {
+          "type": "string",
+          "description": "User comment or note."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Accounts": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "description": "The type of account: cash, bank, card, or savings."
+        },
+        "currencyId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The currency in which this account is denominated."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Categories": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "description": "Whether this category is for income or expense."
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The parent folder's id, or null for a root-level row. This dictionary is a folder/leaf tree - see IsFolder."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        },
+        "isFolder": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Currencies": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "input.CompanySettings": {
+      "type": "object",
+      "properties": {
+        "effectiveFrom": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The date the changed values apply from: today, or a later date to schedule a change. A date in the past also corrects documents dated since then (constants are read as of the document's date). Defaulted to today by New."
+        },
+        "name": {
+          "type": "string",
+          "description": "CompanyName constant: the company's name, printed in the letterhead. An empty name prints no letterhead."
+        },
+        "logo": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "CompanyLogo constant: blob reference id of the logo printed in the letterhead. A PNG or JPEG image of at most 1 MB. Earlier logos stay attached, so older documents keep printing theirs. Emptying the field removes the logo from the effective date (deletes none)."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

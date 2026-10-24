@@ -1,0 +1,12 @@
+# Optional overlay: the first start applies the demo import package (src/PersonalAccounting.Application/ImportPackages)
+# and creates the demo users from Seeding/PersonalAccountingDemoUsers.cs. The template ships both empty; fill them in
+# and one command gives an evaluator a populated system. Combine with any mode:
+#   docker compose -f compose.sqlite.yml -f compose.demo.yml up -d --build
+#
+# By starting with ACCEPT_EULA=Y you accept the Kandra licence agreement (the EULA shipped with the template package).
+
+services:
+  app:
+    environment:
+      ACCEPT_EULA: "Y"
+      Kandra__Setup__Mode: Demo

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonalAccounting.Forms\PersonalAccounting.Forms.csproj" />
+    <ProjectReference Include="..\PersonalAccounting.Localization\PersonalAccounting.Localization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kandra.ClientLib.Common" />
+    <PackageReference Include="Kandra.Localization" />
+    <PackageReference Include="Kandra.Generators.ClientLib" PrivateAssets="all" />
+    <PackageReference Include="Kandra.Generators.TypeRegistry" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

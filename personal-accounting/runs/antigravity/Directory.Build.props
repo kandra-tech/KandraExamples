@@ -1,0 +1,56 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>Generated.Net</CompilerGeneratedFilesOutputPath>
+    <!-- DefaultItemExcludes (not a <Compile Remove> ItemGroup) - the SDK's default Compile glob is built
+         from this property, so appending here is honored regardless of MSBuild import ordering. A plain
+         <Compile Remove> here would only work on a from-scratch build, before any files physically exist
+         on disk under Generated.Net/. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(CompilerGeneratedFilesOutputPath)/**/*.cs</DefaultItemExcludes>
+
+    <!-- Read by Kandra.Generators.Di.Application/.Di.Persistence/.ClientLib (via ConfigurationNameProvider
+         in Kandra.Generators.Shared) to name their generated DI extension classes/methods after this
+         configuration. The literal value here is this template's own sourceName token - dotnet new's
+         "-n <Name>" substitution rewrites it to the real scaffolded configuration's name automatically,
+         same as every other file in this template. -->
+    <KandraConfigurationName>PersonalAccounting</KandraConfigurationName>
+
+    <!-- Manually-maintained exact pin to a published kandra-tech/KandraCore NuGet build (KandraCore ships
+         every package in lockstep, one version for all) - bump by hand after validating a newer engine
+         release, same posture as KandraWms's own Release pin. -->
+    <KandraCoreVersion>0.5.25</KandraCoreVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Custom MSBuild properties aren't visible to source generators via AnalyzerConfigOptions unless
+         explicitly flowed through - RootNamespace is a well-known property the SDK flows automatically,
+         KandraConfigurationName is not. -->
+    <CompilerVisibleProperty Include="KandraConfigurationName" />
+  </ItemGroup>
+
+  <!-- Every configuration here is PackageReference-only for Kandra.* - there is no ProjectReference-to-
+       engine-source mode (unlike KandraWms's Debug configuration). DebugLocalNuGet changes only which NuGet
+       *feed* is used, for fast local dev/testing of this template against the monorepo's own
+       local-nuget-feed/ folder - irrelevant to an external adopter of the published template, who never
+       sets this configuration. -->
+  <PropertyGroup>
+    <Configurations>Debug;DebugLocalNuGet;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='DebugLocalNuGet'">
+    <!-- nuget.config can't read $(Configuration), so the config file itself is swapped here. Not
+         RestoreSources: that property bypasses nuget.config entirely, including its packageSourceMapping,
+         and with the float below anyone publishing Kandra.Domain 0.2.99999 on nuget.org would win the
+         restore. nuget.local.config maps Kandra.* to the local feed only (path is relative to that file,
+         same sibling-checkout assumption as before: this repo sits under the same src/ root as the
+         monorepo's local-nuget-feed/). -->
+    <RestoreConfigFile>$(MSBuildThisFileDirectory)nuget.local.config</RestoreConfigFile>
+    <!-- Floats to the newest local pack (incl. 0.2.N-g<sha> prereleases from a non-main KandraCore
+         branch) instead of the exact pin above - same as KandraWms's DebugLocalNuGet. -->
+    <KandraCoreVersion>0.5.*-*</KandraCoreVersion>
+  </PropertyGroup>
+</Project>

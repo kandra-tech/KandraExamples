@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BrandName" xml:space="preserve">
+    <value>PersonalAccounting</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Підприємство</value>
+  </data>
+  <data name="CompanyLogo" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="CompanySettings" xml:space="preserve">
+    <value>Налаштування компанії</value>
+  </data>
+  <data name="CompanySettings_Identity" xml:space="preserve">
+    <value>Реквізити</value>
+  </data>
+  <data name="CompanySettings_Printing" xml:space="preserve">
+    <value>Друк</value>
+  </data>
+  <data name="CompanySettings_EffectiveFrom" xml:space="preserve">
+    <value>Зміни діють з</value>
+  </data>
+  <data name="CompanySettings_Logo" xml:space="preserve">
+    <value>Логотип (PNG або JPEG, до 1 МБ)</value>
+  </data>
+  <data name="CompanySettings_Outcome" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="CompanySettings_NothingChanged" xml:space="preserve">
+    <value>Нічого не змінено.</value>
+  </data>
+  <data name="CompanySettings_Saved" xml:space="preserve">
+    <value>Збережено з {0}: {1}.</value>
+  </data>
+  <data name="CompanySettings_LogoNotAnImage" xml:space="preserve">
+    <value>Файл не є зображенням PNG або JPEG.</value>
+  </data>
+  <data name="CompanySettings_LogoTooLarge" xml:space="preserve">
+    <value>Логотип більший за 1 МБ.</value>
+  </data>
+  <data name="CompanySettings_LogoRejected" xml:space="preserve">
+    <value>Завантажений файл більше не можна використати. Завантажте його ще раз.</value>
+  </data>
+  <data name="CompanySettings_LogoLabel" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="Nav_DataProcessors" xml:space="preserve">
+    <value>Обробки</value>
+  </data>
+<data name="Account" xml:space="preserve"><value>Рахунок</value></data><data name="Accounts" xml:space="preserve"><value>Рахунки</value></data><data name="AddAccount" xml:space="preserve"><value>Додати рахунок</value></data><data name="CreateAccount" xml:space="preserve"><value>Створити рахунок</value></data><data name="EditAccount" xml:space="preserve"><value>Редагувати рахунок</value></data><data name="ViewAccount" xml:space="preserve"><value>Перегляд рахунку</value></data><data name="AccountAddedSuccessfully" xml:space="preserve"><value>Рахунок успішно створено.</value></data><data name="AccountUpdatedSuccessfully" xml:space="preserve"><value>Рахунок успішно оновлено.</value></data><data name="Account_CurrencyId" xml:space="preserve"><value>Валюта</value></data><data name="Account_Type" xml:space="preserve"><value>Тип</value></data><data name="Nav_Accounts" xml:space="preserve"><value>Рахунки</value></data><data name="Budget" xml:space="preserve"><value>Бюджет</value></data><data name="Budgets" xml:space="preserve"><value>Бюджети</value></data><data name="AddBudget" xml:space="preserve"><value>Додати бюджет</value></data><data name="CreateBudget" xml:space="preserve"><value>Створити бюджет</value></data><data name="EditBudget" xml:space="preserve"><value>Редагувати бюджет</value></data><data name="ViewBudget" xml:space="preserve"><value>Перегляд бюджету</value></data><data name="BudgetAddedSuccessfully" xml:space="preserve"><value>Бюджет успішно створено.</value></data><data name="BudgetUpdatedSuccessfully" xml:space="preserve"><value>Бюджет успішно оновлено.</value></data><data name="Budget_Category" xml:space="preserve"><value>Категорія</value></data><data name="Budget_CategoryId" xml:space="preserve"><value>Категорія</value></data><data name="Budget_PlannedAmount" xml:space="preserve"><value>Запланована сума</value></data><data name="Nav_Budgets" xml:space="preserve"><value>Бюджети</value></data><data name="Category" xml:space="preserve"><value>Категорія</value></data><data name="Categories" xml:space="preserve"><value>Категорії</value></data><data name="AddCategory" xml:space="preserve"><value>Додати категорію</value></data><data name="CreateCategory" xml:space="preserve"><value>Створити категорію</value></data><data name="EditCategory" xml:space="preserve"><value>Редагувати категорію</value></data><data name="ViewCategory" xml:space="preserve"><value>Перегляд категорії</value></data><data name="CategoryAddedSuccessfully" xml:space="preserve"><value>Категорію успішно створено.</value></data><data name="CategoryUpdatedSuccessfully" xml:space="preserve"><value>Категорію успішно оновлено.</value></data><data name="AddCategoryFolder" xml:space="preserve"><value>Додати групу</value></data><data name="CreateCategoryFolder" xml:space="preserve"><value>Створити групу</value></data><data name="EditCategoryFolder" xml:space="preserve"><value>Редагувати групу</value></data><data name="ViewCategoryFolder" xml:space="preserve"><value>Перегляд групи</value></data><data name="CategoryFolderAddedSuccessfully" xml:space="preserve"><value>Групу категорій успішно створено.</value></data><data name="Category_Kind" xml:space="preserve"><value>Вид</value></data><data name="Nav_Categories" xml:space="preserve"><value>Категорії</value></data><data name="Currency" xml:space="preserve"><value>Валюта</value></data><data name="Currencies" xml:space="preserve"><value>Валюти</value></data><data name="AddCurrency" xml:space="preserve"><value>Додати валюту</value></data><data name="CreateCurrency" xml:space="preserve"><value>Створити валюту</value></data><data name="EditCurrency" xml:space="preserve"><value>Редагувати валюту</value></data><data name="ViewCurrency" xml:space="preserve"><value>Перегляд валюти</value></data><data name="CurrencyAddedSuccessfully" xml:space="preserve"><value>Валюту успішно створено.</value></data><data name="CurrencyUpdatedSuccessfully" xml:space="preserve"><value>Валюту успішно оновлено.</value></data><data name="CurrencyCode" xml:space="preserve"><value>Код валюти</value></data><data name="CurrencyName" xml:space="preserve"><value>Назва валюти</value></data><data name="Nav_Currencies" xml:space="preserve"><value>Валюти</value></data><data name="Expense" xml:space="preserve"><value>Витрата</value></data><data name="Expenses" xml:space="preserve"><value>Витрати</value></data><data name="AddExpense" xml:space="preserve"><value>Додати витрату</value></data><data name="CreateExpense" xml:space="preserve"><value>Створити витрату</value></data><data name="EditExpense" xml:space="preserve"><value>Редагувати витрату</value></data><data name="ViewExpense" xml:space="preserve"><value>Перегляд витрати</value></data><data name="ExpenseAddedSuccessfully" xml:space="preserve"><value>Витрату успішно збережено.</value></data><data name="ExpenseUpdatedSuccessfully" xml:space="preserve"><value>Витрату успішно оновлено.</value></data><data name="Expense_Account" xml:space="preserve"><value>Рахунок</value></data><data name="Expense_AccountId" xml:space="preserve"><value>Рахунок</value></data><data name="Expense_Amount" xml:space="preserve"><value>Сума</value></data><data name="Expense_Category" xml:space="preserve"><value>Категорія</value></data><data name="Expense_CategoryId" xml:space="preserve"><value>Категорія</value></data><data name="Expense_Comment" xml:space="preserve"><value>Коментар</value></data><data name="Nav_Expenses" xml:space="preserve"><value>Витрати</value></data><data name="Income" xml:space="preserve"><value>Дохід</value></data><data name="Incomes" xml:space="preserve"><value>Доходи</value></data><data name="AddIncome" xml:space="preserve"><value>Додати дохід</value></data><data name="CreateIncome" xml:space="preserve"><value>Створити дохід</value></data><data name="EditIncome" xml:space="preserve"><value>Редагувати дохід</value></data><data name="ViewIncome" xml:space="preserve"><value>Перегляд доходу</value></data><data name="IncomeAddedSuccessfully" xml:space="preserve"><value>Дохід успішно збережено.</value></data><data name="IncomeUpdatedSuccessfully" xml:space="preserve"><value>Дохід успішно оновлено.</value></data><data name="Income_Account" xml:space="preserve"><value>Рахунок</value></data><data name="Income_AccountId" xml:space="preserve"><value>Рахунок</value></data><data name="Income_Amount" xml:space="preserve"><value>Сума</value></data><data name="Income_Category" xml:space="preserve"><value>Категорія</value></data><data name="Income_CategoryId" xml:space="preserve"><value>Категорія</value></data><data name="Income_Comment" xml:space="preserve"><value>Коментар</value></data><data name="Nav_Income" xml:space="preserve"><value>Доходи</value></data><data name="OpeningBalances" xml:space="preserve"><value>Початкові залишки</value></data><data name="AddOpeningBalances" xml:space="preserve"><value>Додати початкові залишки</value></data><data name="CreateOpeningBalances" xml:space="preserve"><value>Створити початкові залишки</value></data><data name="EditOpeningBalances" xml:space="preserve"><value>Редагувати початкові залишки</value></data><data name="ViewOpeningBalances" xml:space="preserve"><value>Перегляд початкових залишків</value></data><data name="OpeningBalancesAddedSuccessfully" xml:space="preserve"><value>Початкові залишки успішно збережено.</value></data><data name="OpeningBalancesUpdatedSuccessfully" xml:space="preserve"><value>Початкові залишки успішно оновлено.</value></data><data name="OpeningBalances_Account" xml:space="preserve"><value>Рахунок</value></data><data name="OpeningBalances_AccountId" xml:space="preserve"><value>Рахунок</value></data><data name="OpeningBalances_Amount" xml:space="preserve"><value>Сума</value></data><data name="Nav_OpeningBalances" xml:space="preserve"><value>Початкові залишки</value></data><data name="SetExchangeRates" xml:space="preserve"><value>Встановлення курсів валют</value></data><data name="AddSetExchangeRates" xml:space="preserve"><value>Додати курси валют</value></data><data name="CreateSetExchangeRates" xml:space="preserve"><value>Створити встановлення курсів валют</value></data><data name="EditSetExchangeRates" xml:space="preserve"><value>Редагувати встановлення курсів валют</value></data><data name="ViewSetExchangeRates" xml:space="preserve"><value>Перегляд встановлення курсів валют</value></data><data name="SetExchangeRatesAddedSuccessfully" xml:space="preserve"><value>Курси валют успішно збережено.</value></data><data name="SetExchangeRatesUpdatedSuccessfully" xml:space="preserve"><value>Курси валют успішно оновлено.</value></data><data name="SetExchangeRates_Currency" xml:space="preserve"><value>Валюта</value></data><data name="SetExchangeRates_CurrencyId" xml:space="preserve"><value>Валюта</value></data><data name="SetExchangeRates_Rate" xml:space="preserve"><value>Курс</value></data><data name="Nav_SetExchangeRates" xml:space="preserve"><value>Встановлення курсів валют</value></data><data name="Transfer" xml:space="preserve"><value>Переказ</value></data><data name="Transfers" xml:space="preserve"><value>Перекази</value></data><data name="AddTransfer" xml:space="preserve"><value>Додати переказ</value></data><data name="CreateTransfer" xml:space="preserve"><value>Створити переказ</value></data><data name="EditTransfer" xml:space="preserve"><value>Редагувати переказ</value></data><data name="ViewTransfer" xml:space="preserve"><value>Перегляд переказу</value></data><data name="TransferAddedSuccessfully" xml:space="preserve"><value>Переказ успішно збережено.</value></data><data name="TransferUpdatedSuccessfully" xml:space="preserve"><value>Переказ успішно оновлено.</value></data><data name="Transfer_AmountIn" xml:space="preserve"><value>Сума зарахування</value></data><data name="Transfer_AmountOut" xml:space="preserve"><value>Сума списання</value></data><data name="Transfer_Comment" xml:space="preserve"><value>Коментар</value></data><data name="Transfer_FromAccount" xml:space="preserve"><value>З рахунку</value></data><data name="Transfer_FromAccountId" xml:space="preserve"><value>З рахунку</value></data><data name="Transfer_ToAccount" xml:space="preserve"><value>На рахунок</value></data><data name="Transfer_ToAccountId" xml:space="preserve"><value>На рахунок</value></data><data name="Nav_Transfers" xml:space="preserve"><value>Перекази</value></data><data name="Nav_QuickAdd" xml:space="preserve"><value>Швидке додавання</value></data><data name="Nav_AddIncome" xml:space="preserve"><value>+ Дохід</value></data><data name="Nav_AddExpense" xml:space="preserve"><value>+ Витрата</value></data><data name="Nav_AddTransfer" xml:space="preserve"><value>+ Переказ</value></data><data name="Nav_Documents" xml:space="preserve"><value>Документи</value></data><data name="Nav_Catalogs" xml:space="preserve"><value>Довідники</value></data><data name="Nav_Reports" xml:space="preserve"><value>Звіти</value></data><data name="Nav_Settings" xml:space="preserve"><value>Налаштування</value></data><data name="Enum_AccountType_Cash" xml:space="preserve"><value>Готівка</value></data><data name="Enum_AccountType_Bank" xml:space="preserve"><value>Банківський рахунок</value></data><data name="Enum_AccountType_Card" xml:space="preserve"><value>Платіжна картка</value></data><data name="Enum_AccountType_Savings" xml:space="preserve"><value>Заощадження</value></data><data name="Enum_CategoryKind_Income" xml:space="preserve"><value>Дохід</value></data><data name="Enum_CategoryKind_Expense" xml:space="preserve"><value>Витрата</value></data><data name="Validation_AccountRequired" xml:space="preserve"><value>Необхідно вказати рахунок.</value></data><data name="Validation_AccountsMustDiffer" xml:space="preserve"><value>Рахунки списання та зарахування мають відрізнятися.</value></data><data name="Validation_AmountMustBePositive" xml:space="preserve"><value>Сума має бути більшою за нуль.</value></data><data name="Validation_CategoryRequired" xml:space="preserve"><value>Необхідно вказати категорію.</value></data><data name="Validation_CurrencyRequired" xml:space="preserve"><value>Необхідно вказати валюту.</value></data><data name="Validation_FromAccountRequired" xml:space="preserve"><value>Необхідно вказати рахунок списання.</value></data><data name="Validation_LinesRequired" xml:space="preserve"><value>Необхідно вказати хоча б один рядок.</value></data><data name="Validation_PlannedAmountMustBePositive" xml:space="preserve"><value>Запланована сума має бути більшою за нуль.</value></data><data name="Validation_RateMustBePositive" xml:space="preserve"><value>Курс валюти має бути більшим за нуль.</value></data><data name="Validation_ToAccountRequired" xml:space="preserve"><value>Необхідно вказати рахунок зарахування.</value></data><data name="Error_MissingExchangeRate" xml:space="preserve"><value>Відсутній курс для валюти {0} на дату {1}.</value></data><data name="TransactionJournalReport" xml:space="preserve"><value>Журнал операцій</value></data><data name="BudgetVsActualReport" xml:space="preserve"><value>Бюджет та факт</value></data><data name="SpendingByCategoryReport" xml:space="preserve"><value>Витрати за категоріями</value></data><data name="AccountStatementReport" xml:space="preserve"><value>Виписка по рахунку</value></data><data name="ExchangeRatesReport" xml:space="preserve"><value>Курси валют</value></data><data name="Comment" xml:space="preserve"><value>Коментар</value></data><data name="Inflow" xml:space="preserve"><value>Надходження</value></data><data name="Outflow" xml:space="preserve"><value>Витрата</value></data><data name="RunningBalance" xml:space="preserve"><value>Залишок</value></data><data name="Report_OpeningBalance" xml:space="preserve"><value>Початковий залишок</value></data><data name="Report_ClosingBalance" xml:space="preserve"><value>Кінцевий залишок</value></data><data name="DocumentCode" xml:space="preserve"><value>Номер документа</value></data><data name="DocumentType" xml:space="preserve"><value>Вид документа</value></data><data name="DateRange" xml:space="preserve"><value>Період</value></data><data name="DateAsOf" xml:space="preserve"><value>Дата станом на</value></data><data name="ValidFrom" xml:space="preserve"><value>Діє з</value></data><data name="Rate" xml:space="preserve"><value>Курс</value></data><data name="Month" xml:space="preserve"><value>Місяць</value></data><data name="PlannedAmount" xml:space="preserve"><value>План</value></data><data name="ActualAmount" xml:space="preserve"><value>Факт</value></data><data name="RemainingAmount" xml:space="preserve"><value>Залишок</value></data><data name="PercentUsed" xml:space="preserve"><value>% виконання</value></data><data name="IsOverspent" xml:space="preserve"><value>Перевитрата</value></data><data name="AmountInBase" xml:space="preserve"><value>Сума в базовій валюті</value></data><data name="PersonalAccountingDashboard" xml:space="preserve"><value>Панель показників</value></data><data name="Dashboard_TotalBalance" xml:space="preserve"><value>Загальний баланс</value></data><data name="Dashboard_ThisMonthIncome" xml:space="preserve"><value>Доходи цього місяця</value></data><data name="Dashboard_ThisMonthExpense" xml:space="preserve"><value>Витрати цього місяця</value></data><data name="Dashboard_BudgetSpentShare" xml:space="preserve"><value>Витрачено з бюджету</value></data><data name="Dashboard_IncomeExpense6Months" xml:space="preserve"><value>Доходи та витрати (останні 6 місяців)</value></data><data name="Dashboard_ExpensesByCategory" xml:space="preserve"><value>Витрати за категоріями (поточний місяць)</value></data><data name="Dashboard_AccountBalances" xml:space="preserve"><value>Залишки на рахунках</value></data><data name="Dashboard_Income" xml:space="preserve"><value>Дохід</value></data><data name="Dashboard_Expense" xml:space="preserve"><value>Витрата</value></data><data name="Dashboard_Other" xml:space="preserve"><value>Інше</value></data><data name="Balance" xml:space="preserve"><value>Залишок</value></data><data name="BalanceInBase" xml:space="preserve"><value>Залишок у базовій валюті</value></data><data name="Type" xml:space="preserve"><value>Тип</value></data><data name="Reg_AccountBalances" xml:space="preserve"><value>Залишки на рахунках</value></data><data name="Reg_CategoryTurnover" xml:space="preserve"><value>Обороти категорій</value></data><data name="Reg_ExchangeRates" xml:space="preserve"><value>Курси валют</value></data><data name="Reg_BudgetPlan" xml:space="preserve"><value>Бюджетний план</value></data><data name="Dimension_Account" xml:space="preserve"><value>Рахунок</value></data><data name="Dimension_Category" xml:space="preserve"><value>Категорія</value></data><data name="Dimension_Currency" xml:space="preserve"><value>Валюта</value></data><data name="Resource_Amount" xml:space="preserve"><value>Сума</value></data><data name="Resource_AmountInAccountCurrency" xml:space="preserve"><value>Сума у валюті рахунку</value></data><data name="Resource_AmountInBaseCurrency" xml:space="preserve"><value>Сума в базовій валюті</value></data><data name="Detail_Rate" xml:space="preserve"><value>Курс</value></data><data name="Detail_PlannedAmount" xml:space="preserve"><value>Запланована сума</value></data><data name="Detail_Category" xml:space="preserve"><value>Категорія</value></data><data name="Detail_CounterAccount" xml:space="preserve"><value>Кореспондуючий рахунок</value></data><data name="Detail_Comment" xml:space="preserve"><value>Коментар</value></data></root>
