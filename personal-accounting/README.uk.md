@@ -23,7 +23,7 @@
 
 | Середовище | Модель | Бриф | Шаблон / Core | Час | Тести |
 |---|---|---|---|---|---|
-| [Google Antigravity](runs/antigravity/) ([результати](runs/antigravity/RESULTS.md), англійською) | не зафіксовано | v4 | 1.3.5 / 0.5.25 | ~65 хв | 18 пройдено |
+| [Google Antigravity](runs/antigravity/) ([результати](runs/antigravity/RESULTS.md), англійською) | Gemini 3.8 Flash (medium) | v4 | 1.3.5 / 0.5.25 | ~65 хв | 18 пройдено |
 
 Як додати свій запуск — див. [CONTRIBUTING.md](../CONTRIBUTING.md) (англійською).
 

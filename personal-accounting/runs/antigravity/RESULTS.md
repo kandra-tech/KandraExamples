@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Harness / model | Google Antigravity / model not recorded |
+| Harness / model | Google Antigravity / Gemini 3.8 Flash (medium) |
 | Brief | [PROMPT.md](../../prompt/PROMPT.md) v4 |
 | Template / Kandra Core | 1.3.5 / 0.5.25 |
 | Date | 2026-10-24 |

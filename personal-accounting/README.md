@@ -20,7 +20,7 @@ A single-user application to record personal money movements across accounts in 
 
 | Harness | Model | Brief | Template / Core | Time | Tests |
 |---|---|---|---|---|---|
-| [Google Antigravity](runs/antigravity/) ([results](runs/antigravity/RESULTS.md)) | not recorded | v4 | 1.3.5 / 0.5.25 | ~65 min | 18 passed |
+| [Google Antigravity](runs/antigravity/) ([results](runs/antigravity/RESULTS.md)) | Gemini 3.8 Flash (medium) | v4 | 1.3.5 / 0.5.25 | ~65 min | 18 passed |
 
 To add a run, see [CONTRIBUTING.md](../CONTRIBUTING.md).
 
