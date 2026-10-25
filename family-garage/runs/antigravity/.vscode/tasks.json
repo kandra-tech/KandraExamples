@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "restore",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["restore", " FamilyGarage.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build solution",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["build", "FamilyGarage.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["test", "FamilyGarage.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "watch FamilyGarage.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "src/FamilyGarage.WebApi",
+        "--launch-profile",
+        "FamilyGarage.WebApi"
+      ],
+      "problemMatcher": "$msCompile",
+      "isBackground": true,
+      "group": "build"
+    },
+    {
+      "label": "build FamilyGarage.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/FamilyGarage.WebApi/FamilyGarage.WebApi.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build FamilyGarage.Client.MudBlazor",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/FamilyGarage.Client.MudBlazor/FamilyGarage.Client.MudBlazor.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build FamilyGarage",
+      "dependsOn": [
+        "build FamilyGarage.WebApi",
+        "build FamilyGarage.Client.MudBlazor"
+      ],
+      "dependsOrder": "parallel",
+      "group": "build"
+    },
+    {
+      "label": "Run Dotnet FamilyGarage.WebApi",
+      "dependsOn": "build FamilyGarage.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["run",
+        "--project",
+        "src/FamilyGarage.WebApi",
+        "--launch-profile",
+        "FamilyGarage.WebApi"]
+    }
+  ]
+}

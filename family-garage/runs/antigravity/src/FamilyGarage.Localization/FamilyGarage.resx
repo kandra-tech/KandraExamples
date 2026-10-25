@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BrandName" xml:space="preserve">
+    <value>FamilyGarage</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="CompanyLogo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="CompanySettings" xml:space="preserve">
+    <value>Company settings</value>
+  </data>
+  <data name="CompanySettings_Identity" xml:space="preserve">
+    <value>Identity</value>
+  </data>
+  <data name="CompanySettings_Printing" xml:space="preserve">
+    <value>Printing</value>
+  </data>
+  <data name="CompanySettings_EffectiveFrom" xml:space="preserve">
+    <value>Changes apply from</value>
+  </data>
+  <data name="CompanySettings_Logo" xml:space="preserve">
+    <value>Logo (PNG or JPEG, up to 1 MB)</value>
+  </data>
+  <data name="CompanySettings_Outcome" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="CompanySettings_NothingChanged" xml:space="preserve">
+    <value>Nothing changed.</value>
+  </data>
+  <data name="CompanySettings_Saved" xml:space="preserve">
+    <value>Saved from {0}: {1}.</value>
+  </data>
+  <data name="CompanySettings_LogoNotAnImage" xml:space="preserve">
+    <value>The file is not a PNG or JPEG image.</value>
+  </data>
+  <data name="CompanySettings_LogoTooLarge" xml:space="preserve">
+    <value>The logo is larger than 1 MB.</value>
+  </data>
+  <data name="CompanySettings_LogoRejected" xml:space="preserve">
+    <value>The uploaded file can no longer be used. Upload it again.</value>
+  </data>
+  <data name="CompanySettings_LogoLabel" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="Nav_DataProcessors" xml:space="preserve">
+    <value>Data Processors</value>
+  </data>
+  <data name="Accidents" xml:space="preserve"><value>Accidents</value></data>
+  <data name="AccidentAddedSuccessfully" xml:space="preserve"><value>Accident recorded successfully</value></data>
+  <data name="AccidentUpdatedSuccessfully" xml:space="preserve"><value>Accident updated successfully</value></data>
+  <data name="AddAccident" xml:space="preserve"><value>Add accident</value></data>
+  <data name="AddFinanceContract" xml:space="preserve"><value>Add finance contract</value></data>
+  <data name="AddFinancePayment" xml:space="preserve"><value>Add finance payment</value></data>
+  <data name="AddItem" xml:space="preserve"><value>Add item</value></data>
+  <data name="AddItemFolder" xml:space="preserve"><value>Add folder</value></data>
+  <data name="AddPolicy" xml:space="preserve"><value>Add policy</value></data>
+  <data name="AddProvider" xml:space="preserve"><value>Add provider</value></data>
+  <data name="AddRefuel" xml:space="preserve"><value>Add refuel</value></data>
+  <data name="AddService" xml:space="preserve"><value>Add service</value></data>
+  <data name="AddVehicle" xml:space="preserve"><value>Add vehicle</value></data>
+  <data name="AddVehiclePurchase" xml:space="preserve"><value>Add vehicle purchase</value></data>
+  <data name="AddVehicleSale" xml:space="preserve"><value>Add vehicle sale</value></data>
+  <data name="Amount" xml:space="preserve"><value>Amount</value></data>
+  <data name="AmountPositive" xml:space="preserve"><value>Amount must be greater than zero.</value></data>
+  <data name="AnnualInterestRatePercent" xml:space="preserve"><value>Annual interest rate (%)</value></data>
+  <data name="AverageFuelConsumption" xml:space="preserve"><value>Avg fuel consumption (3 mo)</value></data>
+  <data name="Buyer" xml:space="preserve"><value>Buyer</value></data>
+  <data name="BuyerRequired" xml:space="preserve"><value>Buyer name is required.</value></data>
+  <data name="Comment" xml:space="preserve"><value>Comment</value></data>
+  <data name="ContractNumber" xml:space="preserve"><value>Contract number</value></data>
+  <data name="CostCategory" xml:space="preserve"><value>Cost category</value></data>
+  <data name="CostCategory_Fuel" xml:space="preserve"><value>Fuel</value></data>
+  <data name="CostCategory_Insurance" xml:space="preserve"><value>Insurance</value></data>
+  <data name="CostCategory_InterestAndFees" xml:space="preserve"><value>Interest and fees</value></data>
+  <data name="CostCategory_Maintenance" xml:space="preserve"><value>Maintenance</value></data>
+  <data name="CostCategory_Other" xml:space="preserve"><value>Other</value></data>
+  <data name="CostCategory_Purchase" xml:space="preserve"><value>Purchase</value></data>
+  <data name="CostCategory_Repair" xml:space="preserve"><value>Repair</value></data>
+  <data name="CostCategory_Tax" xml:space="preserve"><value>Tax</value></data>
+  <data name="CostPerKm" xml:space="preserve"><value>Cost per km</value></data>
+  <data name="CostPerMonth" xml:space="preserve"><value>Cost per month</value></data>
+  <data name="CostsByMonth" xml:space="preserve"><value>Costs by month</value></data>
+  <data name="CostsPivotReport" xml:space="preserve"><value>Costs pivot</value></data>
+  <data name="CreateAccident" xml:space="preserve"><value>New accident</value></data>
+  <data name="CreateFinanceContract" xml:space="preserve"><value>New finance contract</value></data>
+  <data name="CreateFinancePayment" xml:space="preserve"><value>New finance payment</value></data>
+  <data name="CreateItem" xml:space="preserve"><value>New item</value></data>
+  <data name="CreateItemFolder" xml:space="preserve"><value>New folder</value></data>
+  <data name="CreatePolicy" xml:space="preserve"><value>New policy</value></data>
+  <data name="CreateProvider" xml:space="preserve"><value>New provider</value></data>
+  <data name="CreateRefuel" xml:space="preserve"><value>New refuel</value></data>
+  <data name="CreateService" xml:space="preserve"><value>New service</value></data>
+  <data name="CreateVehicle" xml:space="preserve"><value>New vehicle</value></data>
+  <data name="CreateVehiclePurchase" xml:space="preserve"><value>New vehicle purchase</value></data>
+  <data name="CreateVehicleSale" xml:space="preserve"><value>New vehicle sale</value></data>
+  <data name="Date" xml:space="preserve"><value>Date</value></data>
+  <data name="DebtOwed" xml:space="preserve"><value>Debt owed</value></data>
+  <data name="DefaultPrice" xml:space="preserve"><value>Default price</value></data>
+  <data name="Description" xml:space="preserve"><value>Description</value></data>
+  <data name="DescriptionRequired" xml:space="preserve"><value>Description is required.</value></data>
+  <data name="Detailed" xml:space="preserve"><value>Detailed</value></data>
+  <data name="Distance" xml:space="preserve"><value>Distance (km)</value></data>
+  <data name="Document" xml:space="preserve"><value>Document</value></data>
+  <data name="DownPayment" xml:space="preserve"><value>Down payment</value></data>
+  <data name="DownPaymentMustBeLessThanPrice" xml:space="preserve"><value>Down payment must be less than price.</value></data>
+  <data name="DownPaymentRequired" xml:space="preserve"><value>Down payment is required for non-cash payment.</value></data>
+  <data name="DueDate" xml:space="preserve"><value>Due date</value></data>
+  <data name="DueKm" xml:space="preserve"><value>Due km</value></data>
+  <data name="EditAccident" xml:space="preserve"><value>Edit accident</value></data>
+  <data name="EditFinanceContract" xml:space="preserve"><value>Edit finance contract</value></data>
+  <data name="EditFinancePayment" xml:space="preserve"><value>Edit finance payment</value></data>
+  <data name="EditItem" xml:space="preserve"><value>Edit item</value></data>
+  <data name="EditItemFolder" xml:space="preserve"><value>Edit folder</value></data>
+  <data name="EditPolicy" xml:space="preserve"><value>Edit policy</value></data>
+  <data name="EditProvider" xml:space="preserve"><value>Edit provider</value></data>
+  <data name="EditRefuel" xml:space="preserve"><value>Edit refuel</value></data>
+  <data name="EditService" xml:space="preserve"><value>Edit service</value></data>
+  <data name="EditVehicle" xml:space="preserve"><value>Edit vehicle</value></data>
+  <data name="EditVehiclePurchase" xml:space="preserve"><value>Edit vehicle purchase</value></data>
+  <data name="EditVehicleSale" xml:space="preserve"><value>Edit vehicle sale</value></data>
+  <data name="EstimatedDamage" xml:space="preserve"><value>Estimated damage</value></data>
+  <data name="Fees" xml:space="preserve"><value>Fees</value></data>
+  <data name="FinanceContract" xml:space="preserve"><value>Finance contract</value></data>
+  <data name="FinanceContractAddedSuccessfully" xml:space="preserve"><value>Finance contract added successfully</value></data>
+  <data name="FinanceContractKind" xml:space="preserve"><value>Finance contract kind</value></data>
+  <data name="FinanceContractKind_BankLoan" xml:space="preserve"><value>Bank loan</value></data>
+  <data name="FinanceContractKind_Leasing" xml:space="preserve"><value>Leasing</value></data>
+  <data name="FinanceContractRequired" xml:space="preserve"><value>Finance contract is required for non-cash payment.</value></data>
+  <data name="FinanceContractUpdatedSuccessfully" xml:space="preserve"><value>Finance contract updated successfully</value></data>
+  <data name="FinanceContracts" xml:space="preserve"><value>Finance contracts</value></data>
+  <data name="FinanceDebt" xml:space="preserve"><value>Finance debt</value></data>
+  <data name="FinancePaymentAddedSuccessfully" xml:space="preserve"><value>Finance payment recorded successfully</value></data>
+  <data name="FinancePaymentUpdatedSuccessfully" xml:space="preserve"><value>Finance payment updated successfully</value></data>
+  <data name="FinancePayment_PrincipalExceedsDebt" xml:space="preserve"><value>Principal payment ({0}) cannot exceed remaining debt ({1}).</value></data>
+  <data name="FinancePayments" xml:space="preserve"><value>Finance payments</value></data>
+  <data name="FinancedAmount" xml:space="preserve"><value>Financed amount</value></data>
+  <data name="FinancingReport" xml:space="preserve"><value>Financing</value></data>
+  <data name="Fuel" xml:space="preserve"><value>Fuel</value></data>
+  <data name="FuelConsumption" xml:space="preserve"><value>Fuel consumption (L/100 km)</value></data>
+  <data name="FuelConsumptionReport" xml:space="preserve"><value>Fuel consumption</value></data>
+  <data name="FuelStation" xml:space="preserve"><value>Fuel station</value></data>
+  <data name="FuelStationRequired" xml:space="preserve"><value>Fuel station is required.</value></data>
+  <data name="FuelType" xml:space="preserve"><value>Fuel type</value></data>
+  <data name="FuelType_Diesel" xml:space="preserve"><value>Diesel</value></data>
+  <data name="FuelType_Electric" xml:space="preserve"><value>Electric</value></data>
+  <data name="FuelType_Hybrid" xml:space="preserve"><value>Hybrid</value></data>
+  <data name="FuelType_Lpg" xml:space="preserve"><value>LPG</value></data>
+  <data name="FuelType_Petrol" xml:space="preserve"><value>Petrol</value></data>
+  <data name="FullTank" xml:space="preserve"><value>Full tank</value></data>
+  <data name="Insurance" xml:space="preserve"><value>Insurance</value></data>
+  <data name="Interest" xml:space="preserve"><value>Interest</value></data>
+  <data name="InterestAndFees" xml:space="preserve"><value>Interest and fees</value></data>
+  <data name="InterestAndFeesPaid" xml:space="preserve"><value>Interest and fees paid</value></data>
+  <data name="IsOverdue" xml:space="preserve"><value>Overdue</value></data>
+  <data name="Item" xml:space="preserve"><value>Item</value></data>
+  <data name="ItemAddedSuccessfully" xml:space="preserve"><value>Item added successfully</value></data>
+  <data name="ItemFolderAddedSuccessfully" xml:space="preserve"><value>Folder added successfully</value></data>
+  <data name="ItemFolderUpdatedSuccessfully" xml:space="preserve"><value>Folder updated successfully</value></data>
+  <data name="ItemKind_Consumable" xml:space="preserve"><value>Consumable</value></data>
+  <data name="ItemKind_Part" xml:space="preserve"><value>Part</value></data>
+  <data name="ItemKind_Work" xml:space="preserve"><value>Work</value></data>
+  <data name="ItemRequired" xml:space="preserve"><value>Item is required.</value></data>
+  <data name="ItemUpdatedSuccessfully" xml:space="preserve"><value>Item updated successfully</value></data>
+  <data name="Items" xml:space="preserve"><value>Items</value></data>
+  <data name="KmDriven" xml:space="preserve"><value>Km driven</value></data>
+  <data name="LastDone" xml:space="preserve"><value>Last done</value></data>
+  <data name="Lender" xml:space="preserve"><value>Lender</value></data>
+  <data name="LenderRequired" xml:space="preserve"><value>Lender is required.</value></data>
+  <data name="Lines" xml:space="preserve"><value>Lines</value></data>
+  <data name="LinesRequiredForDetailedService" xml:space="preserve"><value>At least one item line is required for a detailed service.</value></data>
+  <data name="Litres" xml:space="preserve"><value>Litres</value></data>
+  <data name="LitresPositive" xml:space="preserve"><value>Litres must be greater than zero.</value></data>
+  <data name="LookAheadDays" xml:space="preserve"><value>Look-ahead days</value></data>
+  <data name="LookAheadKm" xml:space="preserve"><value>Look-ahead km</value></data>
+  <data name="Maintenance" xml:space="preserve"><value>Maintenance</value></data>
+  <data name="Make" xml:space="preserve"><value>Make</value></data>
+  <data name="MakeRequired" xml:space="preserve"><value>Make is required.</value></data>
+  <data name="Model" xml:space="preserve"><value>Model</value></data>
+  <data name="ModelRequired" xml:space="preserve"><value>Model is required.</value></data>
+  <data name="Month" xml:space="preserve"><value>Month</value></data>
+  <data name="MonthlyPayment" xml:space="preserve"><value>Monthly payment</value></data>
+  <data name="MonthsLeft" xml:space="preserve"><value>Months left</value></data>
+  <data name="Nav_Accidents" xml:space="preserve"><value>Accidents</value></data>
+  <data name="Nav_Dictionaries" xml:space="preserve"><value>Reference Data</value></data>
+  <data name="Nav_Documents" xml:space="preserve"><value>Documents</value></data>
+  <data name="Nav_FinanceContracts" xml:space="preserve"><value>Finance contracts</value></data>
+  <data name="Nav_FinancePayments" xml:space="preserve"><value>Finance payments</value></data>
+  <data name="Nav_Items" xml:space="preserve"><value>Items</value></data>
+  <data name="Nav_Policies" xml:space="preserve"><value>Policies</value></data>
+  <data name="Nav_Providers" xml:space="preserve"><value>Providers</value></data>
+  <data name="Nav_QuickAdd" xml:space="preserve"><value>Quick Add</value></data>
+  <data name="Nav_QuickAdd_FinancePayment" xml:space="preserve"><value>Finance payment</value></data>
+  <data name="Nav_QuickAdd_Refuel" xml:space="preserve"><value>Refuel</value></data>
+  <data name="Nav_QuickAdd_Service" xml:space="preserve"><value>Service</value></data>
+  <data name="Nav_Refuels" xml:space="preserve"><value>Refuels</value></data>
+  <data name="Nav_Reports" xml:space="preserve"><value>Reports</value></data>
+  <data name="Nav_Services" xml:space="preserve"><value>Services</value></data>
+  <data name="Nav_UpcomingReminders" xml:space="preserve"><value>Upcoming reminders</value></data>
+  <data name="Nav_VehiclePurchases" xml:space="preserve"><value>Vehicle purchases</value></data>
+  <data name="Nav_VehicleSales" xml:space="preserve"><value>Vehicle sales</value></data>
+  <data name="Nav_Vehicles" xml:space="preserve"><value>Vehicles</value></data>
+  <data name="NetCost" xml:space="preserve"><value>Net cost</value></data>
+  <data name="NextDueEvent" xml:space="preserve"><value>Next due event</value></data>
+  <data name="NextDueEvents" xml:space="preserve"><value>Next due events</value></data>
+  <data name="NotificationsSent" xml:space="preserve"><value>Notifications sent</value></data>
+  <data name="Odometer" xml:space="preserve"><value>Odometer</value></data>
+  <data name="OdometerPositive" xml:space="preserve"><value>Odometer reading must be non-negative.</value></data>
+  <data name="Odometer_LowerThanPrevious" xml:space="preserve"><value>Odometer reading ({0} km) cannot be lower than the previous reading before this date ({1} km).</value></data>
+  <data name="Other" xml:space="preserve"><value>Other</value></data>
+  <data name="OverdueEvents" xml:space="preserve"><value>Overdue events</value></data>
+  <data name="Payment" xml:space="preserve"><value>Payment</value></data>
+  <data name="PaymentDayOfMonth" xml:space="preserve"><value>Payment day of month</value></data>
+  <data name="PaymentTotalMustBePositive" xml:space="preserve"><value>Payment total must be greater than zero.</value></data>
+  <data name="PaymentsMade" xml:space="preserve"><value>Payments made</value></data>
+  <data name="PeriodAverageConsumption" xml:space="preserve"><value>Period average consumption</value></data>
+  <data name="Phone" xml:space="preserve"><value>Phone</value></data>
+  <data name="Photo" xml:space="preserve"><value>Photo</value></data>
+  <data name="Place" xml:space="preserve"><value>Place</value></data>
+  <data name="PlaceRequired" xml:space="preserve"><value>Place is required.</value></data>
+  <data name="PlateNumber" xml:space="preserve"><value>Plate number</value></data>
+  <data name="Policies" xml:space="preserve"><value>Policies</value></data>
+  <data name="PolicyKind" xml:space="preserve"><value>Policy kind</value></data>
+  <data name="PolicyKind_CompulsoryInsurance" xml:space="preserve"><value>Compulsory insurance</value></data>
+  <data name="PolicyKind_ComprehensiveInsurance" xml:space="preserve"><value>Comprehensive insurance</value></data>
+  <data name="PolicyKind_Tax" xml:space="preserve"><value>Tax</value></data>
+  <data name="PolicyKind_Other" xml:space="preserve"><value>Other</value></data>
+  <data name="PolicyValidity" xml:space="preserve"><value>Policy validity</value></data>
+  <data name="Price" xml:space="preserve"><value>Price</value></data>
+  <data name="PricePositive" xml:space="preserve"><value>Price must be greater than zero.</value></data>
+  <data name="Principal" xml:space="preserve"><value>Principal</value></data>
+  <data name="PrincipalPaid" xml:space="preserve"><value>Principal paid</value></data>
+  <data name="PrincipalPositive" xml:space="preserve"><value>Principal must be greater than or equal to zero.</value></data>
+  <data name="Provider" xml:space="preserve"><value>Provider</value></data>
+  <data name="ProviderKind" xml:space="preserve"><value>Provider kind</value></data>
+  <data name="ProviderKind_Bank" xml:space="preserve"><value>Bank</value></data>
+  <data name="ProviderKind_Dealer" xml:space="preserve"><value>Dealer</value></data>
+  <data name="ProviderKind_FuelStation" xml:space="preserve"><value>Fuel station</value></data>
+  <data name="ProviderKind_Insurer" xml:space="preserve"><value>Insurer</value></data>
+  <data name="ProviderKind_LeasingCompany" xml:space="preserve"><value>Leasing company</value></data>
+  <data name="ProviderKind_Other" xml:space="preserve"><value>Other</value></data>
+  <data name="ProviderKind_ServiceStation" xml:space="preserve"><value>Service station</value></data>
+  <data name="ProviderRequired" xml:space="preserve"><value>Provider is required.</value></data>
+  <data name="Providers" xml:space="preserve"><value>Providers</value></data>
+  <data name="PurchasePrice" xml:space="preserve"><value>Purchase price</value></data>
+  <data name="Quantity" xml:space="preserve"><value>Quantity</value></data>
+  <data name="Refuels" xml:space="preserve"><value>Refuels</value></data>
+  <data name="RemainingDays" xml:space="preserve"><value>Remaining days</value></data>
+  <data name="RemainingKm" xml:space="preserve"><value>Remaining km</value></data>
+  <data name="Repair" xml:space="preserve"><value>Repair</value></data>
+  <data name="SalePrice" xml:space="preserve"><value>Sale price</value></data>
+  <data name="ScannedDocument" xml:space="preserve"><value>Scanned document</value></data>
+  <data name="Seller" xml:space="preserve"><value>Seller</value></data>
+  <data name="SellerRequired" xml:space="preserve"><value>Seller is required.</value></data>
+  <data name="ServiceIntervalKm" xml:space="preserve"><value>Interval (km)</value></data>
+  <data name="ServiceIntervalMonths" xml:space="preserve"><value>Interval (months)</value></data>
+  <data name="ServiceKind" xml:space="preserve"><value>Service kind</value></data>
+  <data name="ServiceKind_Maintenance" xml:space="preserve"><value>Maintenance</value></data>
+  <data name="ServiceKind_Repair" xml:space="preserve"><value>Repair</value></data>
+  <data name="ServiceLines" xml:space="preserve"><value>Service lines</value></data>
+  <data name="ServiceStation" xml:space="preserve"><value>Service station</value></data>
+  <data name="ServiceStationRequired" xml:space="preserve"><value>Service station is required.</value></data>
+  <data name="Services" xml:space="preserve"><value>Services</value></data>
+  <data name="SignedOn" xml:space="preserve"><value>Signed on</value></data>
+  <data name="Tax" xml:space="preserve"><value>Tax</value></data>
+  <data name="TermMonths" xml:space="preserve"><value>Term (months)</value></data>
+  <data name="ThisMonthCosts" xml:space="preserve"><value>This month costs</value></data>
+  <data name="TotalCostOfOwnership" xml:space="preserve"><value>Total cost of ownership</value></data>
+  <data name="TotalCostOfOwnershipReport" xml:space="preserve"><value>Total cost of ownership</value></data>
+  <data name="TotalDebt" xml:space="preserve"><value>Total debt</value></data>
+  <data name="TotalEventsFound" xml:space="preserve"><value>Total events found</value></data>
+  <data name="Unit" xml:space="preserve"><value>Unit</value></data>
+  <data name="UpcomingReminders" xml:space="preserve"><value>Upcoming reminders</value></data>
+  <data name="UpcomingReport" xml:space="preserve"><value>Upcoming</value></data>
+  <data name="ValidFrom" xml:space="preserve"><value>Valid from</value></data>
+  <data name="ValidFromRequired" xml:space="preserve"><value>Valid from date is required.</value></data>
+  <data name="ValidTo" xml:space="preserve"><value>Valid to</value></data>
+  <data name="ValidToMustBeAfterValidFrom" xml:space="preserve"><value>Valid to date must be after valid from date.</value></data>
+  <data name="ValidToRequired" xml:space="preserve"><value>Valid to date is required.</value></data>
+  <data name="Vehicle" xml:space="preserve"><value>Vehicle</value></data>
+  <data name="VehicleCosts" xml:space="preserve"><value>Vehicle costs</value></data>
+  <data name="VehicleHistoryReport" xml:space="preserve"><value>Vehicle history</value></data>
+  <data name="VehiclePurchaseAddedSuccessfully" xml:space="preserve"><value>Vehicle purchase recorded successfully</value></data>
+  <data name="VehiclePurchasePaymentKind_BankLoan" xml:space="preserve"><value>Bank loan</value></data>
+  <data name="VehiclePurchasePaymentKind_Cash" xml:space="preserve"><value>Cash</value></data>
+  <data name="VehiclePurchasePaymentKind_Leasing" xml:space="preserve"><value>Leasing</value></data>
+  <data name="VehiclePurchaseUpdatedSuccessfully" xml:space="preserve"><value>Vehicle purchase updated successfully</value></data>
+  <data name="VehiclePurchase_CannotUnpostWithPayments" xml:space="preserve"><value>Cannot un-post purchase of vehicle {0}: payments already posted against contract {1}.</value></data>
+  <data name="VehiclePurchases" xml:space="preserve"><value>Vehicle purchases</value></data>
+  <data name="VehicleRequired" xml:space="preserve"><value>Vehicle is required.</value></data>
+  <data name="VehicleSaleAddedSuccessfully" xml:space="preserve"><value>Vehicle sale recorded successfully</value></data>
+  <data name="VehicleSaleUpdatedSuccessfully" xml:space="preserve"><value>Vehicle sale updated successfully</value></data>
+  <data name="VehicleSales" xml:space="preserve"><value>Vehicle sales</value></data>
+  <data name="Vehicles" xml:space="preserve"><value>Vehicles</value></data>
+  <data name="VehiclesStatus" xml:space="preserve"><value>Vehicles status</value></data>
+  <data name="ViewAccident" xml:space="preserve"><value>View accident</value></data>
+  <data name="ViewFinanceContract" xml:space="preserve"><value>View finance contract</value></data>
+  <data name="ViewFinancePayment" xml:space="preserve"><value>View finance payment</value></data>
+  <data name="ViewItem" xml:space="preserve"><value>View item</value></data>
+  <data name="ViewPolicy" xml:space="preserve"><value>View policy</value></data>
+  <data name="ViewProvider" xml:space="preserve"><value>View provider</value></data>
+  <data name="ViewRefuel" xml:space="preserve"><value>View refuel</value></data>
+  <data name="ViewService" xml:space="preserve"><value>View service</value></data>
+  <data name="ViewVehicle" xml:space="preserve"><value>View vehicle</value></data>
+  <data name="ViewVehiclePurchase" xml:space="preserve"><value>View vehicle purchase</value></data>
+  <data name="ViewVehicleSale" xml:space="preserve"><value>View vehicle sale</value></data>
+  <data name="Vin" xml:space="preserve"><value>VIN</value></data>
+  <data name="Year" xml:space="preserve"><value>Year</value></data>
+  <data name="AvgFuelConsumption_Hint" xml:space="preserve"><value>Average fuel consumption across all vehicles for the last 3 months.</value></data>
+  <data name="CostsPerMonthByCategory_Hint" xml:space="preserve"><value>Monthly vehicle expenses grouped by category over the last 12 months.</value></data>
+  <data name="NextDueEvents_Hint" xml:space="preserve"><value>The next five upcoming maintenance or payment events.</value></data>
+  <data name="OverdueEvents_Hint" xml:space="preserve"><value>Number of maintenance, policy or payment events currently overdue.</value></data>
+  <data name="ProviderAddedSuccessfully" xml:space="preserve"><value>Provider added successfully</value></data>
+  <data name="ProviderUpdatedSuccessfully" xml:space="preserve"><value>Provider updated successfully</value></data>
+  <data name="ThisMonthCosts_Hint" xml:space="preserve"><value>Total vehicle costs for the current month compared to last month.</value></data>
+  <data name="TotalDebt_Hint" xml:space="preserve"><value>Total remaining principal debt owed across all active finance contracts.</value></data>
+  <data name="VehicleAddedSuccessfully" xml:space="preserve"><value>Vehicle added successfully</value></data>
+  <data name="VehicleUpdatedSuccessfully" xml:space="preserve"><value>Vehicle updated successfully</value></data>
+  <data name="VehiclesStatus_Hint" xml:space="preserve"><value>Summary of all household vehicles: current odometer, total cost of ownership, remaining debt, and next event.</value></data>
+  <data name="ViewItemFolder" xml:space="preserve"><value>View folder</value></data>
+  <data name="Accident" xml:space="preserve"><value>Accident</value></data>
+  <data name="AmountRequired" xml:space="preserve"><value>Amount is required.</value></data>
+  <data name="AsOf" xml:space="preserve"><value>As of</value></data>
+  <data name="AvgFuelConsumption" xml:space="preserve"><value>Avg Fuel Consumption</value></data>
+  <data name="Category" xml:space="preserve"><value>Category</value></data>
+  <data name="Consumption" xml:space="preserve"><value>Consumption (L/100 km)</value></data>
+  <data name="CostsPerMonthByCategory" xml:space="preserve"><value>Costs per Month by Category</value></data>
+  <data name="DownPaymentPositive" xml:space="preserve"><value>Down payment must be greater than or equal to zero.</value></data>
+  <data name="Enum_CostCategory_Fuel" xml:space="preserve"><value>Fuel</value></data>
+  <data name="Enum_CostCategory_Insurance" xml:space="preserve"><value>Insurance</value></data>
+  <data name="Enum_CostCategory_InterestAndFees" xml:space="preserve"><value>Interest and fees</value></data>
+  <data name="Enum_CostCategory_Maintenance" xml:space="preserve"><value>Maintenance</value></data>
+  <data name="Enum_CostCategory_Other" xml:space="preserve"><value>Other</value></data>
+  <data name="Enum_CostCategory_Purchase" xml:space="preserve"><value>Purchase</value></data>
+  <data name="Enum_CostCategory_Repair" xml:space="preserve"><value>Repair</value></data>
+  <data name="Enum_CostCategory_Tax" xml:space="preserve"><value>Tax</value></data>
+  <data name="Enum_FinanceContractKind_BankLoan" xml:space="preserve"><value>Bank loan</value></data>
+  <data name="Enum_FinanceContractKind_Leasing" xml:space="preserve"><value>Leasing</value></data>
+  <data name="Enum_FuelType_Diesel" xml:space="preserve"><value>Diesel</value></data>
+  <data name="Enum_FuelType_Electric" xml:space="preserve"><value>Electric</value></data>
+  <data name="Enum_FuelType_Hybrid" xml:space="preserve"><value>Hybrid</value></data>
+  <data name="Enum_FuelType_LPG" xml:space="preserve"><value>LPG</value></data>
+  <data name="Enum_FuelType_Petrol" xml:space="preserve"><value>Petrol</value></data>
+  <data name="Enum_ItemKind_Consumable" xml:space="preserve"><value>Consumable</value></data>
+  <data name="Enum_ItemKind_Part" xml:space="preserve"><value>Part</value></data>
+  <data name="Enum_ItemKind_Work" xml:space="preserve"><value>Work</value></data>
+  <data name="Enum_PolicyKind_ComprehensiveInsurance" xml:space="preserve"><value>Comprehensive insurance</value></data>
+  <data name="Enum_PolicyKind_CompulsoryInsurance" xml:space="preserve"><value>Compulsory insurance</value></data>
+  <data name="Enum_PolicyKind_Other" xml:space="preserve"><value>Other</value></data>
+  <data name="Enum_PolicyKind_Tax" xml:space="preserve"><value>Tax</value></data>
+  <data name="Enum_ProviderKind_Bank" xml:space="preserve"><value>Bank</value></data>
+  <data name="Enum_ProviderKind_Dealer" xml:space="preserve"><value>Dealer</value></data>
+  <data name="Enum_ProviderKind_FuelStation" xml:space="preserve"><value>Fuel station</value></data>
+  <data name="Enum_ProviderKind_Insurer" xml:space="preserve"><value>Insurer</value></data>
+  <data name="Enum_ProviderKind_LeasingCompany" xml:space="preserve"><value>Leasing company</value></data>
+  <data name="Enum_ProviderKind_Other" xml:space="preserve"><value>Other</value></data>
+  <data name="Enum_ProviderKind_ServiceStation" xml:space="preserve"><value>Service station</value></data>
+  <data name="Enum_ServiceKind_Maintenance" xml:space="preserve"><value>Maintenance</value></data>
+  <data name="Enum_ServiceKind_Repair" xml:space="preserve"><value>Repair</value></data>
+  <data name="Enum_VehiclePurchasePaymentKind_BankLoan" xml:space="preserve"><value>Bank loan</value></data>
+  <data name="Enum_VehiclePurchasePaymentKind_Cash" xml:space="preserve"><value>Cash</value></data>
+  <data name="Enum_VehiclePurchasePaymentKind_Leasing" xml:space="preserve"><value>Leasing</value></data>
+  <data name="EstimatedDamagePositive" xml:space="preserve"><value>Estimated damage must be greater than or equal to zero.</value></data>
+  <data name="FeesPositive" xml:space="preserve"><value>Fees must be greater than or equal to zero.</value></data>
+  <data name="FieldIsRequired" xml:space="preserve"><value>Field is required.</value></data>
+  <data name="InterestPositive" xml:space="preserve"><value>Interest must be greater than or equal to zero.</value></data>
+  <data name="InvalidDayOfMonth" xml:space="preserve"><value>Day of month must be between 1 and 31.</value></data>
+  <data name="InvalidYear" xml:space="preserve"><value>Year must be between 1900 and 2100.</value></data>
+  <data name="IsSale" xml:space="preserve"><value>Is sale</value></data>
+  <data name="Kilometres" xml:space="preserve"><value>Kilometres</value></data>
+  <data name="Kind" xml:space="preserve"><value>Kind</value></data>
+  <data name="MustBeNonNegative" xml:space="preserve"><value>Value must be greater than or equal to zero.</value></data>
+  <data name="MustBePositive" xml:space="preserve"><value>Value must be greater than zero.</value></data>
+  <data name="GarageDashboard" xml:space="preserve"><value>Garage Dashboard</value></data>
+  <data name="PolicyAddedSuccessfully" xml:space="preserve"><value>Policy added successfully</value></data>
+  <data name="PolicyUpdatedSuccessfully" xml:space="preserve"><value>Policy updated successfully</value></data>
+  <data name="RefuelAddedSuccessfully" xml:space="preserve"><value>Refuel recorded successfully</value></data>
+  <data name="RefuelUpdatedSuccessfully" xml:space="preserve"><value>Refuel updated successfully</value></data>
+  <data name="ServiceAddedSuccessfully" xml:space="preserve"><value>Service recorded successfully</value></data>
+  <data name="ServiceUpdatedSuccessfully" xml:space="preserve"><value>Service updated successfully</value></data>
+  <data name="Enum_UpcomingEventKind_Maintenance" xml:space="preserve"><value>Service</value></data>
+  <data name="Enum_UpcomingEventKind_Policy" xml:space="preserve"><value>Policy</value></data>
+  <data name="Enum_UpcomingEventKind_Payment" xml:space="preserve"><value>Payment</value></data>
+  <data name="Upcoming_NextDue_Overdue" xml:space="preserve"><value>{0}, overdue</value></data>
+  <data name="Upcoming_NextDue_Days" xml:space="preserve"><value>{0}, in {1} days</value></data>
+  <data name="Upcoming_NextDue_Km" xml:space="preserve"><value>{0}, in {1} km</value></data>
+  <data name="Upcoming_NextDue_DaysKm" xml:space="preserve"><value>{0}, in {1} days or {2} km</value></data>
+  <data name="Unit_LitresPer100Km" xml:space="preserve"><value>L/100 km</value></data>
+  <data name="UpcomingReminder_Work_Title" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="UpcomingReminder_Payment_Title" xml:space="preserve"><value>{0}: payment on contract {1}</value></data>
+  <data name="UpcomingReminder_Policy_CompulsoryInsurance_Title" xml:space="preserve"><value>{0}: compulsory insurance ends</value></data>
+  <data name="UpcomingReminder_Policy_ComprehensiveInsurance_Title" xml:space="preserve"><value>{0}: comprehensive insurance ends</value></data>
+  <data name="UpcomingReminder_Policy_Tax_Title" xml:space="preserve"><value>{0}: tax is due</value></data>
+  <data name="UpcomingReminder_Policy_Other_Title" xml:space="preserve"><value>{0}: a policy ends</value></data>
+  <data name="UpcomingReminder_Due_Date" xml:space="preserve"><value>Due on {2}.</value></data>
+  <data name="UpcomingReminder_Due_Km" xml:space="preserve"><value>Due at {3} km.</value></data>
+  <data name="UpcomingReminder_Due_DateKm" xml:space="preserve"><value>Due on {2} or at {3} km, whichever comes first.</value></data>
+  <data name="UpcomingReminder_Overdue_Date" xml:space="preserve"><value>Overdue: it was due on {2}.</value></data>
+  <data name="UpcomingReminder_Overdue_Km" xml:space="preserve"><value>Overdue: it was due at {3} km.</value></data>
+  <data name="UpcomingReminder_Overdue_DateKm" xml:space="preserve"><value>Overdue: it was due on {2} or at {3} km.</value></data>
+  <data name="VehiclePurchase_ContractMismatch" xml:space="preserve"><value>The finance contract must be of the same vehicle and of the same kind as the payment (bank loan or leasing).</value></data>
+  <data name="VehiclePurchase_HasPayments" xml:space="preserve"><value>Payments of {0} have been posted on this contract: un-post them before un-posting or changing the financed purchase.</value></data>
+  <data name="DownPaymentBelowPrice" xml:space="preserve"><value>The down payment must be less than the price.</value></data>
+
+</root>

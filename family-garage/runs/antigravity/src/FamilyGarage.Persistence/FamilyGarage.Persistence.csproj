@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\FamilyGarage.Domain\FamilyGarage.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kandra.Persistence" />
+    <PackageReference Include="Kandra.Generators.EfConfig" PrivateAssets="all" />
+    <PackageReference Include="Kandra.Generators.Di.Persistence" PrivateAssets="all" />
+    <PackageReference Include="Kandra.Generators.RegisterTransactions.Persistence" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "project": "src/FamilyGarage.Persistence.Databases/FamilyGarage.Persistence.Databases.csproj",
+  "startupProject": "src/FamilyGarage.WebApi/FamilyGarage.WebApi.csproj",
+  "providersPropertyName": "Providers",
+  "providers": [
+    { "name": "Sqlite", "context": "FamilyGarageDbContextSqlite", "outputDir": "Migrations/Sqlite" },
+    { "name": "SqlServer", "context": "FamilyGarageDbContextSqlServer", "outputDir": "Migrations/SqlServer" },
+    { "name": "PostgreSql", "context": "FamilyGarageDbContextPostgreSql", "outputDir": "Migrations/PostgreSql" }
+  ]
+}

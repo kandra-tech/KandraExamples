@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Providers default, when not already set explicitly (-p:Providers=X, or set earlier via
+         Directory.Build.props/environment): computed from which provider Context .cs files actually exist
+         on disk under Contexts/, the same files FamilyGarage's own dotnet-new scaffolding
+         includes/excludes per the IncludeSqlite/IncludeSqlServer/IncludePostgres parameters (see
+         template.json's sources.modifiers). Not a separately hand-typed symbol list that could silently
+         drift from the real file set - see kandra-migrate's own README for a real example of exactly that
+         kind of drift (a hand-typed composite value that doesn't actually contain the provider name it is
+         meant to enable). Resolves to a concatenation of the included provider names (order and separator
+         don't matter, each Contains() check below only needs its own name to appear verbatim). Still
+         accepts "All" (or any other explicit value) as an override. -->
+    <_ProvidersExplicit>$(Providers)</_ProvidersExplicit>
+    <Providers Condition="'$(_ProvidersExplicit)' == '' And Exists('Contexts\FamilyGarageDbContextSqlite.cs')">$(Providers)Sqlite</Providers>
+    <Providers Condition="'$(_ProvidersExplicit)' == '' And Exists('Contexts\FamilyGarageDbContextSqlServer.cs')">$(Providers)SqlServer</Providers>
+    <Providers Condition="'$(_ProvidersExplicit)' == '' And Exists('Contexts\FamilyGarageDbContextPostgreSql.cs')">$(Providers)PostgreSql</Providers>
+    <DefineConstants Condition="'$(Providers)' == 'All' Or $(Providers.Contains('SqlServer'))">$(DefineConstants);USE_SQLSERVER</DefineConstants>
+    <DefineConstants Condition="'$(Providers)' == 'All' Or $(Providers.Contains('Sqlite'))">$(DefineConstants);USE_SQLITE</DefineConstants>
+    <DefineConstants Condition="'$(Providers)' == 'All' Or $(Providers.Contains('PostgreSql'))">$(DefineConstants);USE_POSTGRES</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FamilyGarage.Persistence\FamilyGarage.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(DefineConstants.Contains('USE_SQLSERVER'))">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+  </ItemGroup>
+  <ItemGroup Condition="$(DefineConstants.Contains('USE_SQLITE'))">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <!-- Direct reference forces resolution of the transitively-pulled SQLitePCLRaw.lib.e_sqlite3
+         to the patched version pinned in Directory.Packages.props (GHSA-2m69-gcr7-jv3q). -->
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" />
+  </ItemGroup>
+  <ItemGroup Condition="$(DefineConstants.Contains('USE_POSTGRES'))">
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+  </ItemGroup>
+
+  <ItemGroup Condition="!$(DefineConstants.Contains('USE_SQLSERVER'))">
+    <Compile Remove="Migrations\SqlServer\**" />
+    <EmbeddedResource Remove="Migrations\SqlServer\**" />
+    <None Remove="Migrations\SqlServer\**" />
+  </ItemGroup>
+  <ItemGroup Condition="!$(DefineConstants.Contains('USE_SQLITE'))">
+    <Compile Remove="Migrations\Sqlite\**" />
+    <EmbeddedResource Remove="Migrations\Sqlite\**" />
+    <None Remove="Migrations\Sqlite\**" />
+  </ItemGroup>
+  <ItemGroup Condition="!$(DefineConstants.Contains('USE_POSTGRES'))">
+    <Compile Remove="Migrations\PostgreSql\**" />
+    <EmbeddedResource Remove="Migrations\PostgreSql\**" />
+    <None Remove="Migrations\PostgreSql\**" />
+  </ItemGroup>
+
+</Project>

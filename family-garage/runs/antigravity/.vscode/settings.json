@@ -1,0 +1,38 @@
+{
+  "dotnet.defaultSolution": "FamilyGarage.slnx",
+
+  // src/<Name> are independent git repos checked out inside this one (see src/CLAUDE.md) and are
+  // listed in .gitignore's "Split out into their own repositories" block - VS Code's own repository
+  // auto-detection doesn't descend into paths the outer repo ignores, so each has to be listed here
+  // explicitly for its Source Control view (and the branch indicator, commit/push, etc.) to show up.
+  "git.scanRepositories": [
+  ],
+
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/.vs": true,
+    "**/.idea": true
+  },
+  "search.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "**/.vs": true,
+    "**/.idea": true
+  },
+  "files.watcherExclude": {
+    "**/bin/**": true,
+    "**/obj/**": true,
+    "**/.vs/**": true,
+    "**/.idea/**": true
+  },
+
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "editor.formatOnSave": true
+  },
+
+  "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+  "dotnet.inlayHints.enableInlayHintsForParameters": true,
+  "csharp.suppressDotnetRestoreNotification": true
+}

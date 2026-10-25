@@ -1,0 +1,15 @@
+<!--
+  Add one <data> entry per [EnumCaption] key to the neutral file (and to the uk/ru files when you translate):
+    {{Config}}.Localization/{{Config}}.resx      (neutral / English)
+    {{Config}}.Localization/{{Config}}.ru.resx
+    {{Config}}.Localization/{{Config}}.uk.resx
+  Paste inside the existing <root> element, before </root>. The key is the [EnumCaption] value; the <value>
+  is the translated label for that file's language. A missing key doesn't fail the build — it renders the raw
+  key at runtime. Not a standalone file: this is a snippet, not something to add to the project.
+-->
+<data name="Enum_{{Name}}_{{MemberA}}" xml:space="preserve">
+  <value>{{MemberA label}}</value>
+</data>
+<data name="Enum_{{Name}}_{{MemberB}}" xml:space="preserve">
+  <value>{{MemberB label}}</value>
+</data>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" />
+    <PackageReference Include="Kandra.Domain" />
+    <PackageReference Include="Kandra.Generators.Equality" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FamilyGarage.Enums\FamilyGarage.Enums.csproj" />
+  </ItemGroup>
+
+</Project>

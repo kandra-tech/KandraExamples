@@ -1,0 +1,40 @@
+@using Kandra.ClientLib.MudBlazor
+@using Kandra.ClientLib.MudBlazor.Services
+@using Kandra.ClientLib.Common
+@using Kandra.ClientLib.MudBlazor.Shared
+@using Kandra.ClientLib.MudBlazor.Shared.Navigation
+@inject NavigationManager NavigationManager
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+<CascadingValue Value="NavMenuContent" Name="NavMenuContent">
+    <CascadingAuthenticationState>
+        <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="new[] { typeof(MainLayout).Assembly }">
+            <Found Context="routeData">
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                    <NotAuthorized>
+                        @if (context.User.Identity?.IsAuthenticated != true)
+                        {
+                            <RedirectToLogin />
+                        }
+                        else
+                        {
+                            <p role="alert">You are not authorized to access this resource.</p>
+                        }
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            </Found>
+            <NotFound>
+                @{
+                    // redirect to homepage if not found
+                    NavigationManager.NavigateTo("/");
+                }
+            </NotFound>
+        </Router>
+    </CascadingAuthenticationState>
+</CascadingValue>
+
+@code {
+    private static readonly RenderFragment NavMenuContent = @<NavMenu />;
+}

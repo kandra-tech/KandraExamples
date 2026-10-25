@@ -1,0 +1,7 @@
+# Analyzer severities for this configuration (not root = true, so an enclosing .editorconfig still applies).
+
+[*.cs]
+# Mapperly: an unmapped member is a build error, not a silently skipped field. Relax per
+# mapping method with [MapperRequiredMapping(RequiredMappingStrategy.Target|Source)], never globally.
+dotnet_diagnostic.RMG012.severity = error   # target member has no source
+dotnet_diagnostic.RMG020.severity = error   # source member not mapped to any target

@@ -1,0 +1,1430 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:kandra:import:1:FamilyGarage",
+  "title": "Kandra import package (kandra-import/1) for FamilyGarage",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": "kandra-import/1"
+    },
+    "package": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,199}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "origin": {
+      "enum": [
+        "demoSeed",
+        "import"
+      ]
+    },
+    "configuration": {
+      "const": "FamilyGarage"
+    },
+    "title": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Accidents"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Accidents"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "FinancePayments"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.FinancePayments"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Policies"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Policies"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Refuels"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Refuels"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Services"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Services"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "VehiclePurchases"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.VehiclePurchases"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "VehicleSales"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.VehicleSales"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "FinanceContracts"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.FinanceContracts"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Items"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Items"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Providers"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Providers"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Vehicles"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Vehicles"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dataProcessor": {
+                "const": "CompanySettings"
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "run": {
+                "enum": [
+                  "once",
+                  "always"
+                ]
+              },
+              "optional": {
+                "type": "boolean"
+              },
+              "input": {
+                "$ref": "#/$defs/input.CompanySettings"
+              }
+            },
+            "required": [
+              "dataProcessor",
+              "$id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dataProcessor": {
+                "const": "UpcomingReminders"
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "run": {
+                "enum": [
+                  "once",
+                  "always"
+                ]
+              },
+              "optional": {
+                "type": "boolean"
+              },
+              "input": {
+                "$ref": "#/$defs/input.UpcomingReminders"
+              }
+            },
+            "required": [
+              "dataProcessor",
+              "$id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "constant": {
+                "enum": [
+                  "CompanyLogo",
+                  "CompanyName",
+                  "CurrencyCode",
+                  "UpcomingDaysAhead",
+                  "UpcomingKmAhead"
+                ]
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {},
+              "effectiveFrom": {
+                "type": "string",
+                "description": "The date the value applies from (ISO, UTC when it has no offset). Omitted: from the moment of the import."
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "constant",
+              "$id",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "createFrom": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "enum": [
+                      "Accidents",
+                      "FinancePayments",
+                      "Policies",
+                      "Refuels",
+                      "Services",
+                      "VehiclePurchases",
+                      "VehicleSales"
+                    ]
+                  }
+                },
+                "required": [
+                  "source",
+                  "target"
+                ],
+                "additionalProperties": false
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "submit": {
+                "type": "boolean"
+              },
+              "set": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "createFrom",
+              "$id"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "format",
+    "package",
+    "version",
+    "origin",
+    "configuration",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "reference": {
+      "description": "A reference to an object defined earlier in this package ($ref) or to an existing row looked up by Code ($code).",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$ref"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$code": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$code"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "guidOrReference": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "$ref": "#/$defs/reference"
+        }
+      ]
+    },
+    "dateTimeValue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "$ref": "#/$defs/dateToken"
+        }
+      ]
+    },
+    "dateValue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "$ref": "#/$defs/dateToken"
+        }
+      ]
+    },
+    "dateToken": {
+      "type": "string",
+      "description": "$now, $today, $today-23d, $today+14d - resolved in the importing user's time zone when the package is applied.",
+      "pattern": "^\\$(now|today([+-]\\d{1,5}d)?)$"
+    },
+    "onChange": {
+      "enum": [
+        "update",
+        "skip",
+        "error"
+      ]
+    },
+    "onUserModified": {
+      "enum": [
+        "skip",
+        "overwrite",
+        "error"
+      ]
+    },
+    "onDeleted": {
+      "enum": [
+        "skip",
+        "restore",
+        "error"
+      ]
+    },
+    "document.Accidents": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vehicleId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The vehicle involved in the accident."
+        },
+        "odometer": {
+          "type": "integer",
+          "description": "Odometer reading at accident."
+        },
+        "place": {
+          "type": "string",
+          "description": "Location of the accident."
+        },
+        "description": {
+          "type": "string",
+          "description": "Details of what occurred."
+        },
+        "estimatedDamage": {
+          "type": "number",
+          "description": "Estimated cost of damage."
+        },
+        "photo": {
+          "type": "string",
+          "description": "Photo of damage or incident scene."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.FinancePayments": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "financeContractId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The finance contract being paid."
+        },
+        "principal": {
+          "type": "number",
+          "description": "Principal portion of payment reducing debt."
+        },
+        "interest": {
+          "type": "number",
+          "description": "Interest portion of payment."
+        },
+        "fees": {
+          "type": "number",
+          "description": "Bank or leasing fees."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional notes about this payment."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Policies": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vehicleId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The insured vehicle."
+        },
+        "kind": {
+          "description": "Policy kind: compulsory insurance, comprehensive insurance, tax, or other."
+        },
+        "providerId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "Insurance or tax provider."
+        },
+        "validFrom": {
+          "$ref": "#/$defs/dateValue",
+          "description": "Start date of policy validity."
+        },
+        "validTo": {
+          "$ref": "#/$defs/dateValue",
+          "description": "End date of policy validity."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Cost of the policy."
+        },
+        "scannedDocument": {
+          "type": "string",
+          "description": "Scanned copy or file attachment."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Refuels": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vehicleId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The vehicle being refueled."
+        },
+        "fuelStationId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The fuel provider station."
+        },
+        "litres": {
+          "type": "number",
+          "description": "Litres of fuel purchased."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Total cost of fuel."
+        },
+        "odometer": {
+          "type": "integer",
+          "description": "Odometer reading at refuel."
+        },
+        "fullTank": {
+          "type": "boolean",
+          "description": "Whether tank was filled completely."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Services.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "itemId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "Part, work, or consumable item."
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity installed or performed."
+        },
+        "price": {
+          "type": "number",
+          "description": "Unit price."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Total amount for this line."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Services": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vehicleId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The vehicle being serviced."
+        },
+        "serviceStationId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The service provider station."
+        },
+        "kind": {
+          "description": "Service kind: maintenance or repair."
+        },
+        "odometer": {
+          "type": "integer",
+          "description": "Odometer reading at service."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional notes about this service."
+        },
+        "detailed": {
+          "type": "boolean",
+          "description": "When detailed, itemized lines are entered."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Total cost when summary service."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.Services.lines.line"
+          },
+          "description": "Itemized parts and works performed."
+        },
+        "accidentId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Associated accident if this service is a repair for an accident."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.VehiclePurchases": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vehicleId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The vehicle being purchased."
+        },
+        "sellerId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The provider/seller of the vehicle."
+        },
+        "price": {
+          "type": "number",
+          "description": "Total purchase price of the vehicle."
+        },
+        "odometer": {
+          "type": "integer",
+          "description": "Odometer reading in kilometres at the time of purchase."
+        },
+        "payment": {
+          "description": "Payment method: cash, bank loan, or leasing."
+        },
+        "downPayment": {
+          "type": "number",
+          "description": "Initial down payment when financed."
+        },
+        "financeContractId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Associated finance contract when payment is not cash."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.VehicleSales": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vehicleId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The vehicle being sold."
+        },
+        "buyer": {
+          "type": "string",
+          "description": "Buyer name or details."
+        },
+        "price": {
+          "type": "number",
+          "description": "Sale price of the vehicle."
+        },
+        "odometer": {
+          "type": "integer",
+          "description": "Odometer reading in kilometres at the time of sale."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.FinanceContracts": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "number": {
+          "type": "string",
+          "description": "Contract reference number."
+        },
+        "vehicleId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "Vehicle financed under this contract."
+        },
+        "kind": {
+          "description": "Kind of financing: bank loan or leasing with buyout."
+        },
+        "lenderId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "Provider acting as lender or leasing company."
+        },
+        "signedOn": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "Date the contract was signed."
+        },
+        "annualInterestRatePercent": {
+          "type": "number",
+          "description": "Annual interest rate in percent."
+        },
+        "termMonths": {
+          "type": "integer",
+          "description": "Term of the contract in months."
+        },
+        "monthlyPayment": {
+          "type": "number",
+          "description": "Contractual monthly payment amount."
+        },
+        "paymentDayOfMonth": {
+          "type": "integer",
+          "description": "Day of the month on which payment is due."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional notes or terms description."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Items": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The parent folder's id, or null for a root-level row. This dictionary is a folder/leaf tree - see IsFolder."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        },
+        "kind": {
+          "description": "Classification of the item: part, work, or consumable."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Measurement unit (e.g. pcs, litres, hours)."
+        },
+        "defaultPrice": {
+          "type": "number",
+          "description": "Default unit price for the item."
+        },
+        "serviceIntervalKm": {
+          "type": "integer",
+          "description": "For work items: optional recurring service interval in kilometres (0 if none)."
+        },
+        "serviceIntervalMonths": {
+          "type": "integer",
+          "description": "For work items: optional recurring service interval in months (0 if none)."
+        },
+        "isFolder": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Providers": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "description": "Kind of provider: service station, insurer, fuel station, dealer, bank, leasing company, other."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact phone number."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional comment or notes."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Vehicles": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "make": {
+          "type": "string",
+          "description": "Manufacturer or brand of the vehicle."
+        },
+        "model": {
+          "type": "string",
+          "description": "Model name of the vehicle."
+        },
+        "year": {
+          "type": "integer",
+          "description": "Manufacture year."
+        },
+        "plateNumber": {
+          "type": "string",
+          "description": "Registration license plate number."
+        },
+        "vin": {
+          "type": "string",
+          "description": "Vehicle Identification Number (VIN)."
+        },
+        "fuelType": {
+          "description": "Fuel or propulsion type of the vehicle."
+        },
+        "photo": {
+          "type": "string",
+          "description": "Optional photo of the vehicle."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "input.CompanySettings": {
+      "type": "object",
+      "properties": {
+        "effectiveFrom": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The date the changed values apply from: today, or a later date to schedule a change. A date in the past also corrects documents dated since then (constants are read as of the document's date). Defaulted to today by New."
+        },
+        "name": {
+          "type": "string",
+          "description": "CompanyName constant: the company's name, printed in the letterhead. An empty name prints no letterhead."
+        },
+        "logo": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "CompanyLogo constant: blob reference id of the logo printed in the letterhead. A PNG or JPEG image of at most 1 MB. Earlier logos stay attached, so older documents keep printing theirs. Emptying the field removes the logo from the effective date (deletes none)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "input.UpcomingReminders": {
+      "type": "object",
+      "properties": {
+        "lookAheadDays": {
+          "type": "integer",
+          "description": "How many days ahead to scan for due events."
+        },
+        "lookAheadKm": {
+          "type": "integer",
+          "description": "How many kilometres ahead to scan for due service items."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="DebugLocalNuGet" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Common/">
+    <Project Path="src/FamilyGarage.Enums/FamilyGarage.Enums.csproj" />
+    <Project Path="src/FamilyGarage.Forms/FamilyGarage.Forms.csproj" />
+    <Project Path="src/FamilyGarage.Localization/FamilyGarage.Localization.csproj" />
+  </Folder>
+  <Folder Name="/Backend/">
+    <Project Path="src/FamilyGarage.Application/FamilyGarage.Application.csproj" />
+    <Project Path="src/FamilyGarage.Domain/FamilyGarage.Domain.csproj" />
+    <Project Path="src/FamilyGarage.Persistence.Databases/FamilyGarage.Persistence.Databases.csproj" />
+    <Project Path="src/FamilyGarage.Persistence/FamilyGarage.Persistence.csproj" />
+    <Project Path="src/FamilyGarage.WebApi/FamilyGarage.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/">
+    <Project Path="src/FamilyGarage.Client.MudBlazor/FamilyGarage.Client.MudBlazor.csproj" />
+    <Project Path="src/FamilyGarage.ClientLib.Common/FamilyGarage.ClientLib.Common.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="src/FamilyGarage.Tests/FamilyGarage.Tests.csproj" />
+  </Folder>
+</Solution>

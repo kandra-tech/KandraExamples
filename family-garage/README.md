@@ -19,7 +19,10 @@ The history and the cost of the family's cars: how each was bought (cash, bank l
 
 ## Runs
 
-No published runs yet. See [CONTRIBUTING.md](../CONTRIBUTING.md) to add one.
-
 | Harness | Model | Brief | Template / Core | Time | Tests |
 |---|---|---|---|---|---|
+| [Google Antigravity](runs/antigravity/) ([results](runs/antigravity/RESULTS.md)) | Gemini 3.8 Flash (medium) | v4 | 1.3.6 / 0.5.25 | ~2 h 50 min | 23 delivered, 36 after review fixes |
+
+To add a run, see [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+![The home dashboard of the Antigravity run](runs/antigravity/screenshots/dashboard.en.jpg)

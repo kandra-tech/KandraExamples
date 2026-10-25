@@ -1,0 +1,1680 @@
+{
+  "$schema": "./familygarage.import.schema.json",
+  "format": "kandra-import/1",
+  "package": "familygarage-demo",
+  "version": 2,
+  "origin": "demoSeed",
+  "configuration": "FamilyGarage",
+  "title": "FamilyGarage demo data",
+  "steps": [
+    {
+      "dictionary": "Vehicles",
+      "items": [
+        {
+          "$id": "veh-1",
+          "code": "VEH-0001",
+          "name": "Toyota RAV4 2023",
+          "make": "Toyota",
+          "model": "RAV4",
+          "year": 2023,
+          "plateNumber": "AA1234BB",
+          "vin": "JTMDHREV123456789",
+          "fuelType": "petrol"
+        },
+        {
+          "$id": "veh-2",
+          "code": "VEH-0002",
+          "name": "Volkswagen Golf 2019",
+          "make": "Volkswagen",
+          "model": "Golf",
+          "year": 2019,
+          "plateNumber": "AA5678CC",
+          "vin": "WVWZZZAUZ12345678",
+          "fuelType": "diesel"
+        }
+      ]
+    },
+    {
+      "dictionary": "Providers",
+      "items": [
+        {
+          "$id": "prov-dealer",
+          "code": "PROV-0001",
+          "name": "Toyota City Kyiv",
+          "kind": "dealer",
+          "phone": "+380441112233"
+        },
+        {
+          "$id": "prov-bank",
+          "code": "PROV-0002",
+          "name": "Oschadbank",
+          "kind": "bank",
+          "phone": "+380800210800"
+        },
+        {
+          "$id": "prov-fuel",
+          "code": "PROV-0003",
+          "name": "OKKO Petrol",
+          "kind": "fuelStation",
+          "phone": "+380800501101"
+        },
+        {
+          "$id": "prov-service",
+          "code": "PROV-0004",
+          "name": "Bosch Car Service",
+          "kind": "serviceStation",
+          "phone": "+380442223344"
+        },
+        {
+          "$id": "prov-insurer",
+          "code": "PROV-0005",
+          "name": "ARX Insurance",
+          "kind": "insurer",
+          "phone": "+380445556677"
+        },
+        {
+          "$id": "prov-leasing",
+          "code": "PROV-0006",
+          "name": "OTP Leasing",
+          "kind": "leasingCompany",
+          "phone": "+380444900500"
+        }
+      ]
+    },
+    {
+      "dictionary": "Items",
+      "items": [
+        {
+          "$id": "grp-engine",
+          "isFolder": true,
+          "code": "GRP-0001",
+          "name": "Engine"
+        },
+        {
+          "$id": "grp-filters",
+          "isFolder": true,
+          "code": "GRP-0002",
+          "name": "Filters"
+        },
+        {
+          "$id": "grp-brakes",
+          "isFolder": true,
+          "code": "GRP-0003",
+          "name": "Brakes"
+        },
+        {
+          "$id": "grp-tyres",
+          "isFolder": true,
+          "code": "GRP-0004",
+          "name": "Tyres"
+        },
+        {
+          "$id": "grp-ignition",
+          "isFolder": true,
+          "code": "GRP-0005",
+          "name": "Ignition"
+        },
+        {
+          "$id": "grp-works",
+          "isFolder": true,
+          "code": "GRP-0006",
+          "name": "Works"
+        },
+        {
+          "$id": "it-oil",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-engine"
+          },
+          "code": "ITEM-0001",
+          "name": "Motor oil 5W-30",
+          "kind": "consumable",
+          "unit": "l",
+          "defaultPrice": 420.0
+        },
+        {
+          "$id": "it-coolant",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-engine"
+          },
+          "code": "ITEM-0002",
+          "name": "Coolant",
+          "kind": "consumable",
+          "unit": "l",
+          "defaultPrice": 180.0
+        },
+        {
+          "$id": "it-timing-kit",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-engine"
+          },
+          "code": "ITEM-0003",
+          "name": "Timing belt kit",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 6800.0
+        },
+        {
+          "$id": "it-oil-filter",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-filters"
+          },
+          "code": "ITEM-0004",
+          "name": "Oil filter",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 350.0
+        },
+        {
+          "$id": "it-air-filter",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-filters"
+          },
+          "code": "ITEM-0005",
+          "name": "Air filter",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 480.0
+        },
+        {
+          "$id": "it-cabin-filter",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-filters"
+          },
+          "code": "ITEM-0006",
+          "name": "Cabin filter",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 520.0
+        },
+        {
+          "$id": "it-fuel-filter",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-filters"
+          },
+          "code": "ITEM-0007",
+          "name": "Fuel filter",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 900.0
+        },
+        {
+          "$id": "it-pads-front",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-brakes"
+          },
+          "code": "ITEM-0008",
+          "name": "Front brake pads",
+          "kind": "part",
+          "unit": "set",
+          "defaultPrice": 1900.0
+        },
+        {
+          "$id": "it-pads-rear",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-brakes"
+          },
+          "code": "ITEM-0009",
+          "name": "Rear brake pads",
+          "kind": "part",
+          "unit": "set",
+          "defaultPrice": 1600.0
+        },
+        {
+          "$id": "it-discs-front",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-brakes"
+          },
+          "code": "ITEM-0010",
+          "name": "Front brake discs",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 2600.0
+        },
+        {
+          "$id": "it-brake-fluid",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-brakes"
+          },
+          "code": "ITEM-0011",
+          "name": "Brake fluid DOT 4",
+          "kind": "consumable",
+          "unit": "l",
+          "defaultPrice": 260.0
+        },
+        {
+          "$id": "it-tyre-summer",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-tyres"
+          },
+          "code": "ITEM-0012",
+          "name": "Summer tyre 225/60 R18",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 4200.0
+        },
+        {
+          "$id": "it-tyre-winter",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-tyres"
+          },
+          "code": "ITEM-0013",
+          "name": "Winter tyre 225/60 R18",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 4800.0
+        },
+        {
+          "$id": "it-spark-plug",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-ignition"
+          },
+          "code": "ITEM-0014",
+          "name": "Spark plug",
+          "kind": "part",
+          "unit": "pcs",
+          "defaultPrice": 450.0
+        },
+        {
+          "$id": "w-oil-change",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0015",
+          "name": "Oil change",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 600.0,
+          "serviceIntervalKm": 10000,
+          "serviceIntervalMonths": 12
+        },
+        {
+          "$id": "w-filters",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0016",
+          "name": "Air and cabin filter replacement",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 400.0,
+          "serviceIntervalKm": 15000,
+          "serviceIntervalMonths": 12
+        },
+        {
+          "$id": "w-pads",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0017",
+          "name": "Brake pads replacement",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 900.0,
+          "serviceIntervalKm": 30000,
+          "serviceIntervalMonths": 24
+        },
+        {
+          "$id": "w-brake-fluid",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0018",
+          "name": "Brake fluid replacement",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 700.0,
+          "serviceIntervalMonths": 24
+        },
+        {
+          "$id": "w-spark-plugs",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0019",
+          "name": "Spark plugs replacement",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 800.0,
+          "serviceIntervalKm": 30000,
+          "serviceIntervalMonths": 36
+        },
+        {
+          "$id": "w-timing",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0020",
+          "name": "Timing belt replacement",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 3500.0,
+          "serviceIntervalKm": 90000,
+          "serviceIntervalMonths": 60
+        },
+        {
+          "$id": "w-tyre-change",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0021",
+          "name": "Seasonal tyre change",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 800.0,
+          "serviceIntervalMonths": 6
+        },
+        {
+          "$id": "w-alignment",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0022",
+          "name": "Wheel alignment",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 900.0
+        },
+        {
+          "$id": "w-body",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "grp-works"
+          },
+          "code": "ITEM-0023",
+          "name": "Bumper repair and painting",
+          "kind": "work",
+          "unit": "job",
+          "defaultPrice": 6000.0
+        }
+      ]
+    },
+    {
+      "dictionary": "FinanceContracts",
+      "items": [
+        {
+          "$id": "fc-lease",
+          "code": "FC-0001",
+          "name": "Leasing LS-2024-017",
+          "number": "LS-2024-017",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "kind": "leasing",
+          "lenderId": {
+            "$ref": "prov-leasing"
+          },
+          "signedOn": "$today-730d",
+          "annualInterestRatePercent": 9.9,
+          "termMonths": 36,
+          "monthlyPayment": 27500.0,
+          "paymentDayOfMonth": 10,
+          "comment": "Bought out at the end of the term for 180 000."
+        },
+        {
+          "$id": "fc-loan",
+          "code": "FC-0002",
+          "name": "Loan LN-2025-042",
+          "number": "LN-2025-042",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "kind": "bankLoan",
+          "lenderId": {
+            "$ref": "prov-bank"
+          },
+          "signedOn": "$today-365d",
+          "annualInterestRatePercent": 14.5,
+          "termMonths": 24,
+          "monthlyPayment": 21500.0,
+          "paymentDayOfMonth": 15
+        }
+      ]
+    },
+    {
+      "document": "VehiclePurchases",
+      "submit": true,
+      "items": [
+        {
+          "$id": "vp-1",
+          "code": "VP-0001",
+          "date": "$today-730d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "sellerId": {
+            "$ref": "prov-dealer"
+          },
+          "price": 1350000.0,
+          "odometer": 15,
+          "payment": "leasing",
+          "downPayment": 450000.0,
+          "financeContractId": {
+            "$ref": "fc-lease"
+          }
+        },
+        {
+          "$id": "vp-2",
+          "code": "VP-0002",
+          "date": "$today-365d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "sellerId": {
+            "$ref": "prov-dealer"
+          },
+          "price": 520000.0,
+          "odometer": 98000,
+          "payment": "bankLoan",
+          "downPayment": 120000.0,
+          "financeContractId": {
+            "$ref": "fc-loan"
+          }
+        }
+      ]
+    },
+    {
+      "document": "FinancePayments",
+      "submit": true,
+      "items": [
+        {
+          "$id": "fp-fc-lease-1",
+          "code": "FP-0001",
+          "date": "$today-674d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 7425.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 1"
+        },
+        {
+          "$id": "fp-fc-lease-2",
+          "code": "FP-0002",
+          "date": "$today-644d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 7260.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 2"
+        },
+        {
+          "$id": "fp-fc-lease-3",
+          "code": "FP-0003",
+          "date": "$today-614d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 7095.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 3"
+        },
+        {
+          "$id": "fp-fc-lease-4",
+          "code": "FP-0004",
+          "date": "$today-584d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 6930.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 4"
+        },
+        {
+          "$id": "fp-fc-lease-5",
+          "code": "FP-0005",
+          "date": "$today-554d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 6765.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 5"
+        },
+        {
+          "$id": "fp-fc-lease-6",
+          "code": "FP-0006",
+          "date": "$today-524d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 6600.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 6"
+        },
+        {
+          "$id": "fp-fc-lease-7",
+          "code": "FP-0007",
+          "date": "$today-494d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 6435.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 7"
+        },
+        {
+          "$id": "fp-fc-lease-8",
+          "code": "FP-0008",
+          "date": "$today-464d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 6270.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 8"
+        },
+        {
+          "$id": "fp-fc-lease-9",
+          "code": "FP-0009",
+          "date": "$today-434d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 6105.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 9"
+        },
+        {
+          "$id": "fp-fc-lease-10",
+          "code": "FP-0010",
+          "date": "$today-404d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 5940.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 10"
+        },
+        {
+          "$id": "fp-fc-lease-11",
+          "code": "FP-0011",
+          "date": "$today-374d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 5775.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 11"
+        },
+        {
+          "$id": "fp-fc-lease-12",
+          "code": "FP-0012",
+          "date": "$today-344d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 5610.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 12"
+        },
+        {
+          "$id": "fp-fc-lease-13",
+          "code": "FP-0013",
+          "date": "$today-314d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 5445.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 13"
+        },
+        {
+          "$id": "fp-fc-lease-14",
+          "code": "FP-0014",
+          "date": "$today-284d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 5280.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 14"
+        },
+        {
+          "$id": "fp-fc-lease-15",
+          "code": "FP-0015",
+          "date": "$today-254d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 5115.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 15"
+        },
+        {
+          "$id": "fp-fc-lease-16",
+          "code": "FP-0016",
+          "date": "$today-224d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 4950.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 16"
+        },
+        {
+          "$id": "fp-fc-lease-17",
+          "code": "FP-0017",
+          "date": "$today-194d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 4785.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 17"
+        },
+        {
+          "$id": "fp-fc-lease-18",
+          "code": "FP-0018",
+          "date": "$today-164d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 4620.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 18"
+        },
+        {
+          "$id": "fp-fc-lease-19",
+          "code": "FP-0019",
+          "date": "$today-134d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 4455.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 19"
+        },
+        {
+          "$id": "fp-fc-lease-20",
+          "code": "FP-0020",
+          "date": "$today-104d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 4290.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 20"
+        },
+        {
+          "$id": "fp-fc-lease-21",
+          "code": "FP-0021",
+          "date": "$today-74d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 4125.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 21"
+        },
+        {
+          "$id": "fp-fc-lease-22",
+          "code": "FP-0022",
+          "date": "$today-44d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 3960.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 22"
+        },
+        {
+          "$id": "fp-fc-lease-23",
+          "code": "FP-0023",
+          "date": "$today-14d",
+          "financeContractId": {
+            "$ref": "fc-lease"
+          },
+          "principal": 20000.0,
+          "interest": 3795.0,
+          "fees": 150.0,
+          "comment": "Leasing payment 23"
+        },
+        {
+          "$id": "fp-fc-loan-1",
+          "code": "FP-0024",
+          "date": "$today-314d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 4833.33,
+          "fees": 0.0,
+          "comment": "Loan payment 1"
+        },
+        {
+          "$id": "fp-fc-loan-2",
+          "code": "FP-0025",
+          "date": "$today-284d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 4631.94,
+          "fees": 0.0,
+          "comment": "Loan payment 2"
+        },
+        {
+          "$id": "fp-fc-loan-3",
+          "code": "FP-0026",
+          "date": "$today-254d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 4430.56,
+          "fees": 0.0,
+          "comment": "Loan payment 3"
+        },
+        {
+          "$id": "fp-fc-loan-4",
+          "code": "FP-0027",
+          "date": "$today-224d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 4229.17,
+          "fees": 0.0,
+          "comment": "Loan payment 4"
+        },
+        {
+          "$id": "fp-fc-loan-5",
+          "code": "FP-0028",
+          "date": "$today-194d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 4027.78,
+          "fees": 0.0,
+          "comment": "Loan payment 5"
+        },
+        {
+          "$id": "fp-fc-loan-6",
+          "code": "FP-0029",
+          "date": "$today-164d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 3826.39,
+          "fees": 0.0,
+          "comment": "Loan payment 6"
+        },
+        {
+          "$id": "fp-fc-loan-7",
+          "code": "FP-0030",
+          "date": "$today-134d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 3625.0,
+          "fees": 0.0,
+          "comment": "Loan payment 7"
+        },
+        {
+          "$id": "fp-fc-loan-8",
+          "code": "FP-0031",
+          "date": "$today-104d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 3423.61,
+          "fees": 0.0,
+          "comment": "Loan payment 8"
+        },
+        {
+          "$id": "fp-fc-loan-9",
+          "code": "FP-0032",
+          "date": "$today-74d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 3222.22,
+          "fees": 0.0,
+          "comment": "Loan payment 9"
+        },
+        {
+          "$id": "fp-fc-loan-10",
+          "code": "FP-0033",
+          "date": "$today-44d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 3020.83,
+          "fees": 0.0,
+          "comment": "Loan payment 10"
+        },
+        {
+          "$id": "fp-fc-loan-11",
+          "code": "FP-0034",
+          "date": "$today-14d",
+          "financeContractId": {
+            "$ref": "fc-loan"
+          },
+          "principal": 16666.67,
+          "interest": 2819.44,
+          "fees": 0.0,
+          "comment": "Loan payment 11"
+        }
+      ]
+    },
+    {
+      "document": "Refuels",
+      "submit": true,
+      "items": [
+        {
+          "$id": "rf-1",
+          "code": "RF-0001",
+          "date": "$today-120d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 31740,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-2",
+          "code": "RF-0002",
+          "date": "$today-110d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 32260,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-3",
+          "code": "RF-0003",
+          "date": "$today-100d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 32780,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-4",
+          "code": "RF-0004",
+          "date": "$today-90d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 33300,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-5",
+          "code": "RF-0005",
+          "date": "$today-80d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 33820,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-6",
+          "code": "RF-0006",
+          "date": "$today-70d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 34340,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-7",
+          "code": "RF-0007",
+          "date": "$today-65d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 22.1,
+          "amount": 1301.69,
+          "odometer": 34600,
+          "fullTank": false
+        },
+        {
+          "$id": "rf-8",
+          "code": "RF-0008",
+          "date": "$today-60d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 22.1,
+          "amount": 1301.69,
+          "odometer": 34860,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-9",
+          "code": "RF-0009",
+          "date": "$today-50d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 35380,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-10",
+          "code": "RF-0010",
+          "date": "$today-40d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 35900,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-11",
+          "code": "RF-0011",
+          "date": "$today-30d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 36420,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-12",
+          "code": "RF-0012",
+          "date": "$today-20d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 36940,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-13",
+          "code": "RF-0013",
+          "date": "$today-10d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 44.2,
+          "amount": 2603.38,
+          "odometer": 37460,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-14",
+          "code": "RF-0014",
+          "date": "$today-115d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 107500,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-15",
+          "code": "RF-0015",
+          "date": "$today-101d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 108032,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-16",
+          "code": "RF-0016",
+          "date": "$today-87d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 108564,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-17",
+          "code": "RF-0017",
+          "date": "$today-73d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 109096,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-18",
+          "code": "RF-0018",
+          "date": "$today-59d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 109628,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-19",
+          "code": "RF-0019",
+          "date": "$today-45d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 110160,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-20",
+          "code": "RF-0020",
+          "date": "$today-31d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 110692,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-21",
+          "code": "RF-0021",
+          "date": "$today-17d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 111224,
+          "fullTank": true
+        },
+        {
+          "$id": "rf-22",
+          "code": "RF-0022",
+          "date": "$today-3d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "fuelStationId": {
+            "$ref": "prov-fuel"
+          },
+          "litres": 31.92,
+          "amount": 1768.37,
+          "odometer": 111756,
+          "fullTank": true
+        }
+      ]
+    },
+    {
+      "document": "Services",
+      "submit": true,
+      "items": [
+        {
+          "$id": "srv-1",
+          "code": "SRV-0001",
+          "date": "$today-330d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "serviceStationId": {
+            "$ref": "prov-service"
+          },
+          "kind": "maintenance",
+          "odometer": 20820,
+          "detailed": true,
+          "lines": [
+            {
+              "itemId": {
+                "$ref": "w-oil-change"
+              },
+              "quantity": 1.0,
+              "price": 600.0,
+              "amount": 600
+            },
+            {
+              "itemId": {
+                "$ref": "it-oil"
+              },
+              "quantity": 5.0,
+              "price": 420.0,
+              "amount": 2100
+            },
+            {
+              "itemId": {
+                "$ref": "it-oil-filter"
+              },
+              "quantity": 1.0,
+              "price": 350.0,
+              "amount": 350
+            },
+            {
+              "itemId": {
+                "$ref": "w-filters"
+              },
+              "quantity": 1.0,
+              "price": 400.0,
+              "amount": 400
+            },
+            {
+              "itemId": {
+                "$ref": "it-air-filter"
+              },
+              "quantity": 1.0,
+              "price": 480.0,
+              "amount": 480
+            },
+            {
+              "itemId": {
+                "$ref": "it-cabin-filter"
+              },
+              "quantity": 1.0,
+              "price": 520.0,
+              "amount": 520
+            },
+            {
+              "itemId": {
+                "$ref": "w-spark-plugs"
+              },
+              "quantity": 1.0,
+              "price": 800.0,
+              "amount": 800
+            },
+            {
+              "itemId": {
+                "$ref": "it-spark-plug"
+              },
+              "quantity": 4.0,
+              "price": 450.0,
+              "amount": 1800
+            },
+            {
+              "itemId": {
+                "$ref": "w-brake-fluid"
+              },
+              "quantity": 1.0,
+              "price": 700.0,
+              "amount": 700
+            },
+            {
+              "itemId": {
+                "$ref": "it-brake-fluid"
+              },
+              "quantity": 1.0,
+              "price": 260.0,
+              "amount": 260
+            },
+            {
+              "itemId": {
+                "$ref": "w-tyre-change"
+              },
+              "quantity": 1.0,
+              "price": 800.0,
+              "amount": 800
+            }
+          ],
+          "amount": 8810
+        },
+        {
+          "$id": "srv-2",
+          "code": "SRV-0002",
+          "date": "$today-300d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "serviceStationId": {
+            "$ref": "prov-service"
+          },
+          "kind": "maintenance",
+          "odometer": 100470,
+          "detailed": false,
+          "amount": 3800.0,
+          "comment": "Annual inspection"
+        },
+        {
+          "$id": "srv-3",
+          "code": "SRV-0003",
+          "date": "$today-170d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "serviceStationId": {
+            "$ref": "prov-service"
+          },
+          "kind": "maintenance",
+          "odometer": 29140,
+          "detailed": true,
+          "lines": [
+            {
+              "itemId": {
+                "$ref": "w-oil-change"
+              },
+              "quantity": 1.0,
+              "price": 600.0,
+              "amount": 600
+            },
+            {
+              "itemId": {
+                "$ref": "it-oil"
+              },
+              "quantity": 5.0,
+              "price": 420.0,
+              "amount": 2100
+            },
+            {
+              "itemId": {
+                "$ref": "it-oil-filter"
+              },
+              "quantity": 1.0,
+              "price": 350.0,
+              "amount": 350
+            },
+            {
+              "itemId": {
+                "$ref": "w-pads"
+              },
+              "quantity": 1.0,
+              "price": 900.0,
+              "amount": 900
+            },
+            {
+              "itemId": {
+                "$ref": "it-pads-front"
+              },
+              "quantity": 1.0,
+              "price": 1900.0,
+              "amount": 1900
+            },
+            {
+              "itemId": {
+                "$ref": "w-tyre-change"
+              },
+              "quantity": 1.0,
+              "price": 800.0,
+              "amount": 800
+            },
+            {
+              "itemId": {
+                "$ref": "w-alignment"
+              },
+              "quantity": 1.0,
+              "price": 900.0,
+              "amount": 900
+            }
+          ],
+          "amount": 7550
+        },
+        {
+          "$id": "srv-4",
+          "code": "SRV-0004",
+          "date": "$today-160d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "serviceStationId": {
+            "$ref": "prov-service"
+          },
+          "kind": "maintenance",
+          "odometer": 105790,
+          "detailed": true,
+          "lines": [
+            {
+              "itemId": {
+                "$ref": "w-oil-change"
+              },
+              "quantity": 1.0,
+              "price": 600.0,
+              "amount": 600
+            },
+            {
+              "itemId": {
+                "$ref": "it-oil"
+              },
+              "quantity": 4.5,
+              "price": 420.0,
+              "amount": 1890.0
+            },
+            {
+              "itemId": {
+                "$ref": "it-oil-filter"
+              },
+              "quantity": 1.0,
+              "price": 350.0,
+              "amount": 350
+            },
+            {
+              "itemId": {
+                "$ref": "w-filters"
+              },
+              "quantity": 1.0,
+              "price": 400.0,
+              "amount": 400
+            },
+            {
+              "itemId": {
+                "$ref": "it-air-filter"
+              },
+              "quantity": 1.0,
+              "price": 480.0,
+              "amount": 480
+            },
+            {
+              "itemId": {
+                "$ref": "it-cabin-filter"
+              },
+              "quantity": 1.0,
+              "price": 520.0,
+              "amount": 520
+            },
+            {
+              "itemId": {
+                "$ref": "w-pads"
+              },
+              "quantity": 1.0,
+              "price": 900.0,
+              "amount": 900
+            },
+            {
+              "itemId": {
+                "$ref": "it-pads-front"
+              },
+              "quantity": 1.0,
+              "price": 1900.0,
+              "amount": 1900
+            },
+            {
+              "itemId": {
+                "$ref": "w-tyre-change"
+              },
+              "quantity": 1.0,
+              "price": 800.0,
+              "amount": 800
+            }
+          ],
+          "amount": 7840.0
+        },
+        {
+          "$id": "srv-5",
+          "code": "SRV-0005",
+          "date": "$today-100d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "serviceStationId": {
+            "$ref": "prov-service"
+          },
+          "kind": "repair",
+          "odometer": 32780,
+          "detailed": false,
+          "amount": 5400.0,
+          "comment": "Air conditioning refilled"
+        }
+      ]
+    },
+    {
+      "document": "Accidents",
+      "submit": true,
+      "items": [
+        {
+          "$id": "acc-1",
+          "code": "ACC-0001",
+          "date": "$today-45d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "odometer": 110160,
+          "place": "Peremohy Ave, Kyiv",
+          "description": "Rear bumper scratched in a parking lot",
+          "estimatedDamage": 7500.0
+        }
+      ]
+    },
+    {
+      "document": "Services",
+      "submit": true,
+      "items": [
+        {
+          "$id": "srv-6",
+          "code": "SRV-0006",
+          "date": "$today-40d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "serviceStationId": {
+            "$ref": "prov-service"
+          },
+          "kind": "repair",
+          "odometer": 110350,
+          "detailed": true,
+          "lines": [
+            {
+              "itemId": {
+                "$ref": "w-body"
+              },
+              "quantity": 1.0,
+              "price": 6000.0,
+              "amount": 6000
+            },
+            {
+              "itemId": {
+                "$ref": "w-alignment"
+              },
+              "quantity": 1.0,
+              "price": 900.0,
+              "amount": 900
+            }
+          ],
+          "amount": 6900,
+          "comment": "Repair after the parking lot accident",
+          "accidentId": {
+            "$ref": "acc-1"
+          }
+        }
+      ]
+    },
+    {
+      "document": "Policies",
+      "submit": true,
+      "items": [
+        {
+          "$id": "pol-1",
+          "code": "POL-0001",
+          "date": "$today-350d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "providerId": {
+            "$ref": "prov-insurer"
+          },
+          "kind": "compulsoryInsurance",
+          "validFrom": "$today-350d",
+          "validTo": "$today+15d",
+          "amount": 2400.0
+        },
+        {
+          "$id": "pol-2",
+          "code": "POL-0002",
+          "date": "$today-350d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "providerId": {
+            "$ref": "prov-insurer"
+          },
+          "kind": "comprehensiveInsurance",
+          "validFrom": "$today-350d",
+          "validTo": "$today+15d",
+          "amount": 31000.0
+        },
+        {
+          "$id": "pol-3",
+          "code": "POL-0003",
+          "date": "$today-300d",
+          "vehicleId": {
+            "$ref": "veh-2"
+          },
+          "providerId": {
+            "$ref": "prov-insurer"
+          },
+          "kind": "compulsoryInsurance",
+          "validFrom": "$today-300d",
+          "validTo": "$today+65d",
+          "amount": 2100.0
+        },
+        {
+          "$id": "pol-4",
+          "code": "POL-0004",
+          "date": "$today-250d",
+          "vehicleId": {
+            "$ref": "veh-1"
+          },
+          "providerId": {
+            "$ref": "prov-dealer"
+          },
+          "kind": "tax",
+          "validFrom": "$today-250d",
+          "validTo": "$today+115d",
+          "amount": 25000.0
+        }
+      ]
+    }
+  ]
+}

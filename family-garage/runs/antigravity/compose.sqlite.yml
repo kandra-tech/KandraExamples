@@ -1,0 +1,28 @@
+# FamilyGarage, SQLite: one container, one volume. Simplest option for evaluation and small installs.
+#   docker compose -f compose.sqlite.yml up -d --build   then open http://localhost:8080
+#   docker compose -f compose.sqlite.yml down            stop; data stays in the volume
+#   docker compose -f compose.sqlite.yml down -v         stop AND delete all data (full reset)
+#
+# Demo mode (populated system with demo users, one command; see compose.demo.yml):
+#   docker compose -f compose.sqlite.yml -f compose.demo.yml up -d --build
+
+services:
+  app:
+    build: .
+    image: ${APP_IMAGE:-kandra-familygarage}:${APP_TAG:-latest}
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    environment:
+      Provider: Sqlite
+      ConnectionStrings__Sqlite: "Data Source=./db/kandra-familygarage.db"   # relative: lives under /data
+      JwtOptions__Audience: ${APP_PUBLIC_URL:-http://localhost:8080}
+      # Optional. Empty: a random per-install key is created in /data/keys.
+      JwtOptions__Secret: ${APP_JWT_SECRET:-}
+      # Optional. Sets the admin password on a fresh install (otherwise the first-run wizard asks).
+      Kandra__AdminPassword: ${APP_ADMIN_PASSWORD:-}
+    volumes:
+      - app-data:/data          # database, uploaded files, signing key, pre-migration backups
+    restart: unless-stopped
+
+volumes:
+  app-data:

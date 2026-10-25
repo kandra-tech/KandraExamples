@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BrandName" xml:space="preserve">
+    <value>FamilyGarage</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Підприємство</value>
+  </data>
+  <data name="CompanyLogo" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="CompanySettings" xml:space="preserve">
+    <value>Налаштування компанії</value>
+  </data>
+  <data name="CompanySettings_Identity" xml:space="preserve">
+    <value>Реквізити</value>
+  </data>
+  <data name="CompanySettings_Printing" xml:space="preserve">
+    <value>Друк</value>
+  </data>
+  <data name="CompanySettings_EffectiveFrom" xml:space="preserve">
+    <value>Зміни діють з</value>
+  </data>
+  <data name="CompanySettings_Logo" xml:space="preserve">
+    <value>Логотип (PNG або JPEG, до 1 МБ)</value>
+  </data>
+  <data name="CompanySettings_Outcome" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="CompanySettings_NothingChanged" xml:space="preserve">
+    <value>Нічого не змінено.</value>
+  </data>
+  <data name="CompanySettings_Saved" xml:space="preserve">
+    <value>Збережено з {0}: {1}.</value>
+  </data>
+  <data name="CompanySettings_LogoNotAnImage" xml:space="preserve">
+    <value>Файл не є зображенням PNG або JPEG.</value>
+  </data>
+  <data name="CompanySettings_LogoTooLarge" xml:space="preserve">
+    <value>Логотип більший за 1 МБ.</value>
+  </data>
+  <data name="CompanySettings_LogoRejected" xml:space="preserve">
+    <value>Завантажений файл більше не можна використати. Завантажте його ще раз.</value>
+  </data>
+  <data name="CompanySettings_LogoLabel" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="Nav_DataProcessors" xml:space="preserve">
+    <value>Обробки</value>
+  </data>
+  <data name="Accidents" xml:space="preserve"><value>ДТП</value></data>
+  <data name="AccidentAddedSuccessfully" xml:space="preserve"><value>ДТП успішно зареєстровано</value></data>
+  <data name="AccidentUpdatedSuccessfully" xml:space="preserve"><value>ДТП успішно оновлено</value></data>
+  <data name="AddAccident" xml:space="preserve"><value>Додати ДТП</value></data>
+  <data name="AddFinanceContract" xml:space="preserve"><value>Додати кредитний договір</value></data>
+  <data name="AddFinancePayment" xml:space="preserve"><value>Додати платіж</value></data>
+  <data name="AddItem" xml:space="preserve"><value>Додати номенклатуру</value></data>
+  <data name="AddItemFolder" xml:space="preserve"><value>Додати групу</value></data>
+  <data name="AddPolicy" xml:space="preserve"><value>Додати поліс</value></data>
+  <data name="AddProvider" xml:space="preserve"><value>Додати контрагента</value></data>
+  <data name="AddRefuel" xml:space="preserve"><value>Додати заправку</value></data>
+  <data name="AddService" xml:space="preserve"><value>Додати обслуговування</value></data>
+  <data name="AddVehicle" xml:space="preserve"><value>Додати авто</value></data>
+  <data name="AddVehiclePurchase" xml:space="preserve"><value>Додати купівлю авто</value></data>
+  <data name="AddVehicleSale" xml:space="preserve"><value>Додати продаж авто</value></data>
+  <data name="Amount" xml:space="preserve"><value>Сума</value></data>
+  <data name="AmountPositive" xml:space="preserve"><value>Сума має бути більшою за нуль.</value></data>
+  <data name="AnnualInterestRatePercent" xml:space="preserve"><value>Річна процентна ставка (%)</value></data>
+  <data name="AverageFuelConsumption" xml:space="preserve"><value>Сер. витрата пального (3 міс)</value></data>
+  <data name="Buyer" xml:space="preserve"><value>Покупець</value></data>
+  <data name="BuyerRequired" xml:space="preserve"><value>Покупець є обов'язковим.</value></data>
+  <data name="Comment" xml:space="preserve"><value>Коментар</value></data>
+  <data name="ContractNumber" xml:space="preserve"><value>Номер договору</value></data>
+  <data name="CostCategory" xml:space="preserve"><value>Категорія витрат</value></data>
+  <data name="CostCategory_Fuel" xml:space="preserve"><value>Пальне</value></data>
+  <data name="CostCategory_Insurance" xml:space="preserve"><value>Страхування</value></data>
+  <data name="CostCategory_InterestAndFees" xml:space="preserve"><value>Відсотки та комісії</value></data>
+  <data name="CostCategory_Maintenance" xml:space="preserve"><value>Техобслуговування</value></data>
+  <data name="CostCategory_Other" xml:space="preserve"><value>Інше</value></data>
+  <data name="CostCategory_Purchase" xml:space="preserve"><value>Купівля</value></data>
+  <data name="CostCategory_Repair" xml:space="preserve"><value>Ремонт</value></data>
+  <data name="CostCategory_Tax" xml:space="preserve"><value>Податок</value></data>
+  <data name="CostPerKm" xml:space="preserve"><value>Вартість за км</value></data>
+  <data name="CostPerMonth" xml:space="preserve"><value>Вартість за місяць</value></data>
+  <data name="CostsByMonth" xml:space="preserve"><value>Витрати за місяцями</value></data>
+  <data name="CostsPivotReport" xml:space="preserve"><value>Аналіз витрат</value></data>
+  <data name="CreateAccident" xml:space="preserve"><value>Нове ДТП</value></data>
+  <data name="CreateFinanceContract" xml:space="preserve"><value>Новий договір фінансування</value></data>
+  <data name="CreateFinancePayment" xml:space="preserve"><value>Новий платіж</value></data>
+  <data name="CreateItem" xml:space="preserve"><value>Нова номенклатура</value></data>
+  <data name="CreateItemFolder" xml:space="preserve"><value>Нова група</value></data>
+  <data name="CreatePolicy" xml:space="preserve"><value>Новий поліс</value></data>
+  <data name="CreateProvider" xml:space="preserve"><value>Новий постачальник</value></data>
+  <data name="CreateRefuel" xml:space="preserve"><value>Нова заправка</value></data>
+  <data name="CreateService" xml:space="preserve"><value>Нове обслуговування</value></data>
+  <data name="CreateVehicle" xml:space="preserve"><value>Новий автомобіль</value></data>
+  <data name="CreateVehiclePurchase" xml:space="preserve"><value>Нова купівля автомобіля</value></data>
+  <data name="CreateVehicleSale" xml:space="preserve"><value>Новий продаж автомобіля</value></data>
+  <data name="Date" xml:space="preserve"><value>Дата</value></data>
+  <data name="DebtOwed" xml:space="preserve"><value>Залишок боргу</value></data>
+  <data name="DefaultPrice" xml:space="preserve"><value>Ціна за замовчуванням</value></data>
+  <data name="Description" xml:space="preserve"><value>Опис</value></data>
+  <data name="DescriptionRequired" xml:space="preserve"><value>Опис є обов'язковим.</value></data>
+  <data name="Detailed" xml:space="preserve"><value>Деталізовано</value></data>
+  <data name="Distance" xml:space="preserve"><value>Відстань (км)</value></data>
+  <data name="Document" xml:space="preserve"><value>Документ</value></data>
+  <data name="DownPayment" xml:space="preserve"><value>Перший внесок</value></data>
+  <data name="DownPaymentMustBeLessThanPrice" xml:space="preserve"><value>Перший внесок має бути меншим за ціну.</value></data>
+  <data name="DownPaymentRequired" xml:space="preserve"><value>Перший внесок обов'язковий при безготівковій оплаті.</value></data>
+  <data name="DueDate" xml:space="preserve"><value>Дата виконання</value></data>
+  <data name="DueKm" xml:space="preserve"><value>Кілометраж виконання</value></data>
+  <data name="EditAccident" xml:space="preserve"><value>Редагувати ДТП</value></data>
+  <data name="EditFinanceContract" xml:space="preserve"><value>Редагувати договір</value></data>
+  <data name="EditFinancePayment" xml:space="preserve"><value>Редагувати платіж</value></data>
+  <data name="EditItem" xml:space="preserve"><value>Редагувати номенклатуру</value></data>
+  <data name="EditItemFolder" xml:space="preserve"><value>Редагувати групу</value></data>
+  <data name="EditPolicy" xml:space="preserve"><value>Редагувати поліс</value></data>
+  <data name="EditProvider" xml:space="preserve"><value>Редагувати контрагента</value></data>
+  <data name="EditRefuel" xml:space="preserve"><value>Редагувати заправку</value></data>
+  <data name="EditService" xml:space="preserve"><value>Редагувати обслуговування</value></data>
+  <data name="EditVehicle" xml:space="preserve"><value>Редагувати автомобіль</value></data>
+  <data name="EditVehiclePurchase" xml:space="preserve"><value>Редагувати купівлю авто</value></data>
+  <data name="EditVehicleSale" xml:space="preserve"><value>Редагувати продаж авто</value></data>
+  <data name="EstimatedDamage" xml:space="preserve"><value>Оцінка збитків</value></data>
+  <data name="Fees" xml:space="preserve"><value>Комісії</value></data>
+  <data name="FinanceContract" xml:space="preserve"><value>Кредитний договір</value></data>
+  <data name="FinanceContractAddedSuccessfully" xml:space="preserve"><value>Договір успішно додано</value></data>
+  <data name="FinanceContractKind" xml:space="preserve"><value>Вид фінансування</value></data>
+  <data name="FinanceContractKind_BankLoan" xml:space="preserve"><value>Банківський кредит</value></data>
+  <data name="FinanceContractKind_Leasing" xml:space="preserve"><value>Лізинг</value></data>
+  <data name="FinanceContractRequired" xml:space="preserve"><value>Кредитний договір є обов'язковим.</value></data>
+  <data name="FinanceContractUpdatedSuccessfully" xml:space="preserve"><value>Договір успішно оновлено</value></data>
+  <data name="FinanceContracts" xml:space="preserve"><value>Договори фінансування</value></data>
+  <data name="FinanceDebt" xml:space="preserve"><value>Заборгованість за договорами</value></data>
+  <data name="FinancePaymentAddedSuccessfully" xml:space="preserve"><value>Платіж успішно проведено</value></data>
+  <data name="FinancePaymentUpdatedSuccessfully" xml:space="preserve"><value>Платіж успішно оновлено</value></data>
+  <data name="FinancePayment_PrincipalExceedsDebt" xml:space="preserve"><value>Сума тіла кредиту ({0}) не може перевищувати залишок боргу ({1}).</value></data>
+  <data name="FinancePayments" xml:space="preserve"><value>Платежі за фінансуванням</value></data>
+  <data name="FinancedAmount" xml:space="preserve"><value>Сума фінансування</value></data>
+  <data name="FinancingReport" xml:space="preserve"><value>Фінансування</value></data>
+  <data name="Fuel" xml:space="preserve"><value>Пальне</value></data>
+  <data name="FuelConsumption" xml:space="preserve"><value>Витрата пального (л/100 км)</value></data>
+  <data name="FuelConsumptionReport" xml:space="preserve"><value>Витрати пального</value></data>
+  <data name="FuelStation" xml:space="preserve"><value>АЗС</value></data>
+  <data name="FuelStationRequired" xml:space="preserve"><value>АЗС є обов'язковою.</value></data>
+  <data name="FuelType" xml:space="preserve"><value>Тип пального</value></data>
+  <data name="FuelType_Diesel" xml:space="preserve"><value>Дизель</value></data>
+  <data name="FuelType_Electric" xml:space="preserve"><value>Електро</value></data>
+  <data name="FuelType_Hybrid" xml:space="preserve"><value>Гібрид</value></data>
+  <data name="FuelType_Lpg" xml:space="preserve"><value>ГБО (газ)</value></data>
+  <data name="FuelType_Petrol" xml:space="preserve"><value>Бензин</value></data>
+  <data name="FullTank" xml:space="preserve"><value>Повний бак</value></data>
+  <data name="Insurance" xml:space="preserve"><value>Страхування</value></data>
+  <data name="Interest" xml:space="preserve"><value>Відсотки</value></data>
+  <data name="InterestAndFees" xml:space="preserve"><value>Відсотки та комісії</value></data>
+  <data name="InterestAndFeesPaid" xml:space="preserve"><value>Сплачені відсотки та комісії</value></data>
+  <data name="IsOverdue" xml:space="preserve"><value>Прострочено</value></data>
+  <data name="Item" xml:space="preserve"><value>Номенклатура</value></data>
+  <data name="ItemAddedSuccessfully" xml:space="preserve"><value>Номенклатуру успішно додано</value></data>
+  <data name="ItemFolderAddedSuccessfully" xml:space="preserve"><value>Групу успішно додано</value></data>
+  <data name="ItemFolderUpdatedSuccessfully" xml:space="preserve"><value>Групу успішно оновлено</value></data>
+  <data name="ItemKind_Consumable" xml:space="preserve"><value>Витратний матеріал</value></data>
+  <data name="ItemKind_Part" xml:space="preserve"><value>Запчастина</value></data>
+  <data name="ItemKind_Work" xml:space="preserve"><value>Робота (послуга)</value></data>
+  <data name="ItemRequired" xml:space="preserve"><value>Номенклатура є обов'язковою.</value></data>
+  <data name="ItemUpdatedSuccessfully" xml:space="preserve"><value>Номенклатуру успішно оновлено</value></data>
+  <data name="Items" xml:space="preserve"><value>Номенклатура</value></data>
+  <data name="KmDriven" xml:space="preserve"><value>Пробіг (км)</value></data>
+  <data name="LastDone" xml:space="preserve"><value>Останнє виконання</value></data>
+  <data name="Lender" xml:space="preserve"><value>Кредитор / Лізингодавець</value></data>
+  <data name="LenderRequired" xml:space="preserve"><value>Кредитор є обов'язковим.</value></data>
+  <data name="Lines" xml:space="preserve"><value>Рядки</value></data>
+  <data name="LinesRequiredForDetailedService" xml:space="preserve"><value>Для деталізованого обслуговування потрібен щонайменше один рядок.</value></data>
+  <data name="Litres" xml:space="preserve"><value>Літри</value></data>
+  <data name="LitresPositive" xml:space="preserve"><value>Кількість літрів має бути більшою за нуль.</value></data>
+  <data name="LookAheadDays" xml:space="preserve"><value>Днів вперед</value></data>
+  <data name="LookAheadKm" xml:space="preserve"><value>Кілометрів вперед</value></data>
+  <data name="Maintenance" xml:space="preserve"><value>Техобслуговування</value></data>
+  <data name="Make" xml:space="preserve"><value>Марка</value></data>
+  <data name="MakeRequired" xml:space="preserve"><value>Марка є обов'язковою.</value></data>
+  <data name="Model" xml:space="preserve"><value>Модель</value></data>
+  <data name="ModelRequired" xml:space="preserve"><value>Модель є обов'язковою.</value></data>
+  <data name="Month" xml:space="preserve"><value>Місяць</value></data>
+  <data name="MonthlyPayment" xml:space="preserve"><value>Щомісячний платіж</value></data>
+  <data name="MonthsLeft" xml:space="preserve"><value>Місяців залишилось</value></data>
+  <data name="Nav_Accidents" xml:space="preserve"><value>ДТП</value></data>
+  <data name="Nav_Dictionaries" xml:space="preserve"><value>Довідники</value></data>
+  <data name="Nav_Documents" xml:space="preserve"><value>Документи</value></data>
+  <data name="Nav_FinanceContracts" xml:space="preserve"><value>Кредитні договори</value></data>
+  <data name="Nav_FinancePayments" xml:space="preserve"><value>Платежі за фінансуванням</value></data>
+  <data name="Nav_Items" xml:space="preserve"><value>Номенклатура</value></data>
+  <data name="Nav_Policies" xml:space="preserve"><value>Поліси та податки</value></data>
+  <data name="Nav_Providers" xml:space="preserve"><value>Контрагенти</value></data>
+  <data name="Nav_QuickAdd" xml:space="preserve"><value>Швидке додавання</value></data>
+  <data name="Nav_QuickAdd_FinancePayment" xml:space="preserve"><value>Платіж за кредитом</value></data>
+  <data name="Nav_QuickAdd_Refuel" xml:space="preserve"><value>Заправка</value></data>
+  <data name="Nav_QuickAdd_Service" xml:space="preserve"><value>Обслуговування</value></data>
+  <data name="Nav_Refuels" xml:space="preserve"><value>Заправки</value></data>
+  <data name="Nav_Reports" xml:space="preserve"><value>Звіти</value></data>
+  <data name="Nav_Services" xml:space="preserve"><value>Обслуговування</value></data>
+  <data name="Nav_UpcomingReminders" xml:space="preserve"><value>Нагадування</value></data>
+  <data name="Nav_VehiclePurchases" xml:space="preserve"><value>Купівлі автомобілів</value></data>
+  <data name="Nav_VehicleSales" xml:space="preserve"><value>Продажі автомобілів</value></data>
+  <data name="Nav_Vehicles" xml:space="preserve"><value>Автомобілі</value></data>
+  <data name="NetCost" xml:space="preserve"><value>Чисті витрати</value></data>
+  <data name="NextDueEvent" xml:space="preserve"><value>Наступна подія</value></data>
+  <data name="NextDueEvents" xml:space="preserve"><value>Найближчі події</value></data>
+  <data name="NotificationsSent" xml:space="preserve"><value>Надіслано сповіщень</value></data>
+  <data name="Odometer" xml:space="preserve"><value>Одометр (пробіг)</value></data>
+  <data name="OdometerPositive" xml:space="preserve"><value>Показник одометра має бути невід'ємним.</value></data>
+  <data name="Odometer_LowerThanPrevious" xml:space="preserve"><value>Показник одометра ({0} км) не може бути меншим за попередній запис ({1} км).</value></data>
+  <data name="Other" xml:space="preserve"><value>Інше</value></data>
+  <data name="OverdueEvents" xml:space="preserve"><value>Прострочені події</value></data>
+  <data name="Payment" xml:space="preserve"><value>Спосіб оплати</value></data>
+  <data name="PaymentDayOfMonth" xml:space="preserve"><value>День платежу</value></data>
+  <data name="PaymentTotalMustBePositive" xml:space="preserve"><value>Загальна сума платежу має бути більшою за нуль.</value></data>
+  <data name="PaymentsMade" xml:space="preserve"><value>Здійснено платежів</value></data>
+  <data name="PeriodAverageConsumption" xml:space="preserve"><value>Середня витрата за період</value></data>
+  <data name="Phone" xml:space="preserve"><value>Телефон</value></data>
+  <data name="Photo" xml:space="preserve"><value>Фото</value></data>
+  <data name="Place" xml:space="preserve"><value>Місце</value></data>
+  <data name="PlaceRequired" xml:space="preserve"><value>Місце є обов'язковим.</value></data>
+  <data name="PlateNumber" xml:space="preserve"><value>Номерний знак</value></data>
+  <data name="Policies" xml:space="preserve"><value>Поліси та податки</value></data>
+  <data name="PolicyKind" xml:space="preserve"><value>Вид поліса</value></data>
+  <data name="PolicyKind_CompulsoryInsurance" xml:space="preserve"><value>ОСЦПВ</value></data>
+  <data name="PolicyKind_ComprehensiveInsurance" xml:space="preserve"><value>КАСКО</value></data>
+  <data name="PolicyKind_Tax" xml:space="preserve"><value>Транспортний податок</value></data>
+  <data name="PolicyKind_Other" xml:space="preserve"><value>Інше</value></data>
+  <data name="PolicyValidity" xml:space="preserve"><value>Дійсність полісів</value></data>
+  <data name="Price" xml:space="preserve"><value>Ціна</value></data>
+  <data name="PricePositive" xml:space="preserve"><value>Ціна має бути більшою за нуль.</value></data>
+  <data name="Principal" xml:space="preserve"><value>Тіло кредиту</value></data>
+  <data name="PrincipalPaid" xml:space="preserve"><value>Сплачене тіло кредиту</value></data>
+  <data name="PrincipalPositive" xml:space="preserve"><value>Тіло кредиту не може бути від'ємним.</value></data>
+  <data name="Provider" xml:space="preserve"><value>Контрагент</value></data>
+  <data name="ProviderKind" xml:space="preserve"><value>Тип контрагента</value></data>
+  <data name="ProviderKind_Bank" xml:space="preserve"><value>Банк</value></data>
+  <data name="ProviderKind_Dealer" xml:space="preserve"><value>Автодилер</value></data>
+  <data name="ProviderKind_FuelStation" xml:space="preserve"><value>АЗС</value></data>
+  <data name="ProviderKind_Insurer" xml:space="preserve"><value>Страхова компанія</value></data>
+  <data name="ProviderKind_LeasingCompany" xml:space="preserve"><value>Лізингова компанія</value></data>
+  <data name="ProviderKind_Other" xml:space="preserve"><value>Інше</value></data>
+  <data name="ProviderKind_ServiceStation" xml:space="preserve"><value>СТО</value></data>
+  <data name="ProviderRequired" xml:space="preserve"><value>Контрагент є обов'язковим.</value></data>
+  <data name="Providers" xml:space="preserve"><value>Контрагенти</value></data>
+  <data name="PurchasePrice" xml:space="preserve"><value>Ціна купівлі</value></data>
+  <data name="Quantity" xml:space="preserve"><value>Кількість</value></data>
+  <data name="Refuels" xml:space="preserve"><value>Заправки</value></data>
+  <data name="RemainingDays" xml:space="preserve"><value>Залишилось днів</value></data>
+  <data name="RemainingKm" xml:space="preserve"><value>Залишилось км</value></data>
+  <data name="Repair" xml:space="preserve"><value>Ремонт</value></data>
+  <data name="SalePrice" xml:space="preserve"><value>Ціна продажу</value></data>
+  <data name="ScannedDocument" xml:space="preserve"><value>Скан документа</value></data>
+  <data name="Seller" xml:space="preserve"><value>Продавець</value></data>
+  <data name="SellerRequired" xml:space="preserve"><value>Продавець є обов'язковим.</value></data>
+  <data name="ServiceIntervalKm" xml:space="preserve"><value>Інтервал (км)</value></data>
+  <data name="ServiceIntervalMonths" xml:space="preserve"><value>Інтервал (місяців)</value></data>
+  <data name="ServiceKind" xml:space="preserve"><value>Вид обслуговування</value></data>
+  <data name="ServiceKind_Maintenance" xml:space="preserve"><value>ТО</value></data>
+  <data name="ServiceKind_Repair" xml:space="preserve"><value>Ремонт</value></data>
+  <data name="ServiceLines" xml:space="preserve"><value>Виконані роботи та матеріали</value></data>
+  <data name="ServiceStation" xml:space="preserve"><value>СТО</value></data>
+  <data name="ServiceStationRequired" xml:space="preserve"><value>СТО є обов'язковою.</value></data>
+  <data name="Services" xml:space="preserve"><value>Обслуговування</value></data>
+  <data name="SignedOn" xml:space="preserve"><value>Дата підписання</value></data>
+  <data name="Tax" xml:space="preserve"><value>Податок</value></data>
+  <data name="TermMonths" xml:space="preserve"><value>Термін (місяців)</value></data>
+  <data name="ThisMonthCosts" xml:space="preserve"><value>Витрати цього місяця</value></data>
+  <data name="TotalCostOfOwnership" xml:space="preserve"><value>Загальна вартість володіння</value></data>
+  <data name="TotalCostOfOwnershipReport" xml:space="preserve"><value>Загальна вартість володіння</value></data>
+  <data name="TotalDebt" xml:space="preserve"><value>Загальний борг</value></data>
+  <data name="TotalEventsFound" xml:space="preserve"><value>Знайдено подій</value></data>
+  <data name="Unit" xml:space="preserve"><value>Одиниця виміру</value></data>
+  <data name="UpcomingReminders" xml:space="preserve"><value>Нагадування про обслуговування</value></data>
+  <data name="UpcomingReport" xml:space="preserve"><value>Найближчі події</value></data>
+  <data name="ValidFrom" xml:space="preserve"><value>Діє з</value></data>
+  <data name="ValidFromRequired" xml:space="preserve"><value>Дата 'Діє з' є обов'язковою.</value></data>
+  <data name="ValidTo" xml:space="preserve"><value>Діє до</value></data>
+  <data name="ValidToMustBeAfterValidFrom" xml:space="preserve"><value>Дата 'Діє до' має бути пізнішою за дату 'Діє з'.</value></data>
+  <data name="ValidToRequired" xml:space="preserve"><value>Дата 'Діє до' є обов'язковою.</value></data>
+  <data name="Vehicle" xml:space="preserve"><value>Автомобіль</value></data>
+  <data name="VehicleCosts" xml:space="preserve"><value>Витрати на автомобілі</value></data>
+  <data name="VehicleHistoryReport" xml:space="preserve"><value>Історія автомобіля</value></data>
+  <data name="VehiclePurchaseAddedSuccessfully" xml:space="preserve"><value>Купівлю авто успішно проведено</value></data>
+  <data name="VehiclePurchasePaymentKind_BankLoan" xml:space="preserve"><value>Кредит</value></data>
+  <data name="VehiclePurchasePaymentKind_Cash" xml:space="preserve"><value>Готівка / Власні кошти</value></data>
+  <data name="VehiclePurchasePaymentKind_Leasing" xml:space="preserve"><value>Лізинг</value></data>
+  <data name="VehiclePurchaseUpdatedSuccessfully" xml:space="preserve"><value>Купівлю авто успішно оновлено</value></data>
+  <data name="VehiclePurchase_CannotUnpostWithPayments" xml:space="preserve"><value>Неможливо розпровести купівлю авто {0}: за договором {1} вже проведено платежі.</value></data>
+  <data name="VehiclePurchases" xml:space="preserve"><value>Купівлі автомобілів</value></data>
+  <data name="VehicleRequired" xml:space="preserve"><value>Автомобіль є обов'язковим.</value></data>
+  <data name="VehicleSaleAddedSuccessfully" xml:space="preserve"><value>Продаж авто успішно проведено</value></data>
+  <data name="VehicleSaleUpdatedSuccessfully" xml:space="preserve"><value>Продаж авто успішно оновлено</value></data>
+  <data name="VehicleSales" xml:space="preserve"><value>Продажі автомобілів</value></data>
+  <data name="Vehicles" xml:space="preserve"><value>Автомобілі</value></data>
+  <data name="VehiclesStatus" xml:space="preserve"><value>Стан автомобілів</value></data>
+  <data name="ViewAccident" xml:space="preserve"><value>Перегляд ДТП</value></data>
+  <data name="ViewFinanceContract" xml:space="preserve"><value>Перегляд договору фінансування</value></data>
+  <data name="ViewFinancePayment" xml:space="preserve"><value>Перегляд платежу</value></data>
+  <data name="ViewItem" xml:space="preserve"><value>Перегляд номенклатури</value></data>
+  <data name="ViewPolicy" xml:space="preserve"><value>Перегляд поліса</value></data>
+  <data name="ViewProvider" xml:space="preserve"><value>Перегляд контрагента</value></data>
+  <data name="ViewRefuel" xml:space="preserve"><value>Перегляд заправки</value></data>
+  <data name="ViewService" xml:space="preserve"><value>Перегляд обслуговування</value></data>
+  <data name="ViewVehicle" xml:space="preserve"><value>Перегляд автомобіля</value></data>
+  <data name="ViewVehiclePurchase" xml:space="preserve"><value>Перегляд купівлі авто</value></data>
+  <data name="ViewVehicleSale" xml:space="preserve"><value>Перегляд продажу авто</value></data>
+  <data name="Vin" xml:space="preserve"><value>VIN-код</value></data>
+  <data name="Year" xml:space="preserve"><value>Рік випуску</value></data>
+  <data name="AvgFuelConsumption_Hint" xml:space="preserve"><value>Середня витрата пального за всіма авто за останні 3 місяці.</value></data>
+  <data name="CostsPerMonthByCategory_Hint" xml:space="preserve"><value>Щомісячні витрати за категоріями за останні 12 місяців.</value></data>
+  <data name="NextDueEvents_Hint" xml:space="preserve"><value>Найближчі 5 подій обслуговування або платежів.</value></data>
+  <data name="OverdueEvents_Hint" xml:space="preserve"><value>Кількість прострочених подій обслуговування, полісів або платежів.</value></data>
+  <data name="ProviderAddedSuccessfully" xml:space="preserve"><value>Контрагента успішно додано</value></data>
+  <data name="ProviderUpdatedSuccessfully" xml:space="preserve"><value>Контрагента успішно оновлено</value></data>
+  <data name="ThisMonthCosts_Hint" xml:space="preserve"><value>Витрати поточного місяця порівняно з минулим місяцем.</value></data>
+  <data name="TotalDebt_Hint" xml:space="preserve"><value>Залишок заборгованості за всіма активними кредитними договорами.</value></data>
+  <data name="VehicleAddedSuccessfully" xml:space="preserve"><value>Автомобіль успішно додано</value></data>
+  <data name="VehicleUpdatedSuccessfully" xml:space="preserve"><value>Автомобіль успішно оновлено</value></data>
+  <data name="VehiclesStatus_Hint" xml:space="preserve"><value>Зведені дані авто: пробіг, повна вартість володіння, борг та наступна подія.</value></data>
+  <data name="ViewItemFolder" xml:space="preserve"><value>Перегляд групи</value></data>
+  <data name="Accident" xml:space="preserve"><value>ДТП</value></data>
+  <data name="AmountRequired" xml:space="preserve"><value>Сума є обов'язковою.</value></data>
+  <data name="AsOf" xml:space="preserve"><value>Станом на</value></data>
+  <data name="AvgFuelConsumption" xml:space="preserve"><value>Сер. витрата пального</value></data>
+  <data name="Category" xml:space="preserve"><value>Категорія</value></data>
+  <data name="Consumption" xml:space="preserve"><value>Витрата (л/100 км)</value></data>
+  <data name="CostsPerMonthByCategory" xml:space="preserve"><value>Витрати за місяцями та категоріями</value></data>
+  <data name="DownPaymentPositive" xml:space="preserve"><value>Перший внесок має бути невід'ємним.</value></data>
+  <data name="Enum_CostCategory_Fuel" xml:space="preserve"><value>Пальне</value></data>
+  <data name="Enum_CostCategory_Insurance" xml:space="preserve"><value>Страхування</value></data>
+  <data name="Enum_CostCategory_InterestAndFees" xml:space="preserve"><value>Відсотки та комісії</value></data>
+  <data name="Enum_CostCategory_Maintenance" xml:space="preserve"><value>Техобслуговування</value></data>
+  <data name="Enum_CostCategory_Other" xml:space="preserve"><value>Інше</value></data>
+  <data name="Enum_CostCategory_Purchase" xml:space="preserve"><value>Купівля</value></data>
+  <data name="Enum_CostCategory_Repair" xml:space="preserve"><value>Ремонт</value></data>
+  <data name="Enum_CostCategory_Tax" xml:space="preserve"><value>Податок</value></data>
+  <data name="Enum_FinanceContractKind_BankLoan" xml:space="preserve"><value>Банківський кредит</value></data>
+  <data name="Enum_FinanceContractKind_Leasing" xml:space="preserve"><value>Лізинг</value></data>
+  <data name="Enum_FuelType_Diesel" xml:space="preserve"><value>Дизель</value></data>
+  <data name="Enum_FuelType_Electric" xml:space="preserve"><value>Електро</value></data>
+  <data name="Enum_FuelType_Hybrid" xml:space="preserve"><value>Гібрид</value></data>
+  <data name="Enum_FuelType_LPG" xml:space="preserve"><value>ГБО</value></data>
+  <data name="Enum_FuelType_Petrol" xml:space="preserve"><value>Бензин</value></data>
+  <data name="Enum_ItemKind_Consumable" xml:space="preserve"><value>Витратний матеріал</value></data>
+  <data name="Enum_ItemKind_Part" xml:space="preserve"><value>Запчастина</value></data>
+  <data name="Enum_ItemKind_Work" xml:space="preserve"><value>Робота (послуга)</value></data>
+  <data name="Enum_PolicyKind_ComprehensiveInsurance" xml:space="preserve"><value>КАСКО</value></data>
+  <data name="Enum_PolicyKind_CompulsoryInsurance" xml:space="preserve"><value>ОСЦПВ</value></data>
+  <data name="Enum_PolicyKind_Other" xml:space="preserve"><value>Інше</value></data>
+  <data name="Enum_PolicyKind_Tax" xml:space="preserve"><value>Податок</value></data>
+  <data name="Enum_ProviderKind_Bank" xml:space="preserve"><value>Банк</value></data>
+  <data name="Enum_ProviderKind_Dealer" xml:space="preserve"><value>Дилер</value></data>
+  <data name="Enum_ProviderKind_FuelStation" xml:space="preserve"><value>АЗС</value></data>
+  <data name="Enum_ProviderKind_Insurer" xml:space="preserve"><value>Страхова компанія</value></data>
+  <data name="Enum_ProviderKind_LeasingCompany" xml:space="preserve"><value>Лізингова компанія</value></data>
+  <data name="Enum_ProviderKind_Other" xml:space="preserve"><value>Інше</value></data>
+  <data name="Enum_ProviderKind_ServiceStation" xml:space="preserve"><value>СТО</value></data>
+  <data name="Enum_ServiceKind_Maintenance" xml:space="preserve"><value>ТО</value></data>
+  <data name="Enum_ServiceKind_Repair" xml:space="preserve"><value>Ремонт</value></data>
+  <data name="Enum_VehiclePurchasePaymentKind_BankLoan" xml:space="preserve"><value>Кредит</value></data>
+  <data name="Enum_VehiclePurchasePaymentKind_Cash" xml:space="preserve"><value>Готівка</value></data>
+  <data name="Enum_VehiclePurchasePaymentKind_Leasing" xml:space="preserve"><value>Лізинг</value></data>
+  <data name="EstimatedDamagePositive" xml:space="preserve"><value>Оцінка збитків має бути невід'ємною.</value></data>
+  <data name="FeesPositive" xml:space="preserve"><value>Комісії мають бути невід'ємними.</value></data>
+  <data name="FieldIsRequired" xml:space="preserve"><value>Поле є обов'язковим.</value></data>
+  <data name="InterestPositive" xml:space="preserve"><value>Відсотки мають бути невід'ємними.</value></data>
+  <data name="InvalidDayOfMonth" xml:space="preserve"><value>День місяця має бути від 1 до 31.</value></data>
+  <data name="InvalidYear" xml:space="preserve"><value>Рік має бути між 1900 та 2100.</value></data>
+  <data name="IsSale" xml:space="preserve"><value>Продаж</value></data>
+  <data name="Kilometres" xml:space="preserve"><value>Кілометри</value></data>
+  <data name="Kind" xml:space="preserve"><value>Вид</value></data>
+  <data name="MustBeNonNegative" xml:space="preserve"><value>Значення має бути невід'ємним.</value></data>
+  <data name="MustBePositive" xml:space="preserve"><value>Значення має бути більшим за нуль.</value></data>
+  <data name="GarageDashboard" xml:space="preserve"><value>Панель керування гаражем</value></data>
+  <data name="PolicyAddedSuccessfully" xml:space="preserve"><value>Поліс успішно додано</value></data>
+  <data name="PolicyUpdatedSuccessfully" xml:space="preserve"><value>Поліс успішно оновлено</value></data>
+  <data name="RefuelAddedSuccessfully" xml:space="preserve"><value>Заправку успішно зареєстровано</value></data>
+  <data name="RefuelUpdatedSuccessfully" xml:space="preserve"><value>Заправку успішно оновлено</value></data>
+  <data name="ServiceAddedSuccessfully" xml:space="preserve"><value>Обслуговування успішно зареєстровано</value></data>
+  <data name="ServiceUpdatedSuccessfully" xml:space="preserve"><value>Обслуговування успішно оновлено</value></data>
+  <data name="Enum_UpcomingEventKind_Maintenance" xml:space="preserve"><value>Обслуговування</value></data>
+  <data name="Enum_UpcomingEventKind_Policy" xml:space="preserve"><value>Поліс</value></data>
+  <data name="Enum_UpcomingEventKind_Payment" xml:space="preserve"><value>Платіж</value></data>
+  <data name="Upcoming_NextDue_Overdue" xml:space="preserve"><value>{0}, прострочено</value></data>
+  <data name="Upcoming_NextDue_Days" xml:space="preserve"><value>{0}, через {1} дн.</value></data>
+  <data name="Upcoming_NextDue_Km" xml:space="preserve"><value>{0}, через {1} км</value></data>
+  <data name="Upcoming_NextDue_DaysKm" xml:space="preserve"><value>{0}, через {1} дн. або {2} км</value></data>
+  <data name="Unit_LitresPer100Km" xml:space="preserve"><value>л/100 км</value></data>
+  <data name="UpcomingReminder_Work_Title" xml:space="preserve"><value>{0}: {1}</value></data>
+  <data name="UpcomingReminder_Payment_Title" xml:space="preserve"><value>{0}: платіж за договором {1}</value></data>
+  <data name="UpcomingReminder_Policy_CompulsoryInsurance_Title" xml:space="preserve"><value>{0}: закінчується ОСЦПВ</value></data>
+  <data name="UpcomingReminder_Policy_ComprehensiveInsurance_Title" xml:space="preserve"><value>{0}: закінчується КАСКО</value></data>
+  <data name="UpcomingReminder_Policy_Tax_Title" xml:space="preserve"><value>{0}: настає строк податку</value></data>
+  <data name="UpcomingReminder_Policy_Other_Title" xml:space="preserve"><value>{0}: закінчується поліс</value></data>
+  <data name="UpcomingReminder_Due_Date" xml:space="preserve"><value>Строк: {2}.</value></data>
+  <data name="UpcomingReminder_Due_Km" xml:space="preserve"><value>Строк: на {3} км.</value></data>
+  <data name="UpcomingReminder_Due_DateKm" xml:space="preserve"><value>Строк: {2} або на {3} км, що настане раніше.</value></data>
+  <data name="UpcomingReminder_Overdue_Date" xml:space="preserve"><value>Прострочено: строк був {2}.</value></data>
+  <data name="UpcomingReminder_Overdue_Km" xml:space="preserve"><value>Прострочено: строк був на {3} км.</value></data>
+  <data name="UpcomingReminder_Overdue_DateKm" xml:space="preserve"><value>Прострочено: строк був {2} або на {3} км.</value></data>
+  <data name="VehiclePurchase_ContractMismatch" xml:space="preserve"><value>Договір фінансування має бути того самого автомобіля і того самого виду, що й оплата (кредит або лізинг).</value></data>
+  <data name="VehiclePurchase_HasPayments" xml:space="preserve"><value>За цим договором проведено платежі на {0}: скасуйте їх проведення, перш ніж скасовувати або змінювати купівлю.</value></data>
+  <data name="DownPaymentBelowPrice" xml:space="preserve"><value>Перший внесок має бути меншим за ціну.</value></data>
+
+</root>

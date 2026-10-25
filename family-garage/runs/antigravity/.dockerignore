@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+**/.vs/
+**/Generated.Net/
+**/*.user
+.git/
+.github/
+# Local databases, uploads, keys and backups of a dev run
+src/FamilyGarage.WebApi/data/
+src/FamilyGarage.WebApi/db/*.db*
+src/FamilyGarage.WebApi/App_Data/
+src/FamilyGarage.WebApi/blobs/
+src/FamilyGarage.WebApi/keys/
+src/FamilyGarage.WebApi/backups/
+**/Migrations/**/*.sql
+compose*.yml
+.env*

@@ -1,0 +1,107 @@
+# Trimmed from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+# down to what's actually relevant to this .NET/C#/EF Core/Blazor solution.
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+
+# Source generator output saved to disk for inspection (EmitCompilerGeneratedFiles)
+**/Generated.Net/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.DotSettings.user
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.dotCover
+*.[Cc]ache
+!?*.[Cc]ache/
+.localhistory/
+
+# Test results (xUnit + coverlet.collector)
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Files built by Visual Studio
+*.ilk
+*.meta
+*.pch
+*.pdb
+*.ipdb
+*.rsp
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.pidb
+*.svclog
+*.binlog
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# Publish
+publish/
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+PublishScripts/
+*.publishsettings
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Others
+node_modules/
+~$*
+*~
+*.pfx
+
+src/FamilyGarage.WebApi/db/*.db
+src/FamilyGarage.WebApi/db/*.db-shm
+src/FamilyGarage.WebApi/db/*.db-wal
+
+# Install-local state under the data folder (Kandra:DataPath; the content root by default)
+src/FamilyGarage.WebApi/keys/
+src/FamilyGarage.WebApi/backups/
+src/FamilyGarage.WebApi/blobs/
+
+# Secrets for the compose files (see .env.example)
+.env

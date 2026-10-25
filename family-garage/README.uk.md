@@ -24,7 +24,10 @@
 
 ## Запуски
 
-Опублікованих запусків ще немає. Як додати свій — див. [CONTRIBUTING.md](../CONTRIBUTING.md) (англійською).
-
 | Середовище | Модель | Бриф | Шаблон / Core | Час | Тести |
 |---|---|---|---|---|---|
+| [Google Antigravity](runs/antigravity/) ([результати](runs/antigravity/RESULTS.md), англійською) | Gemini 3.8 Flash (medium) | v4 | 1.3.6 / 0.5.25 | ~2 год 50 хв | 23 від агента, 36 після виправлень рецензії |
+
+Як додати свій запуск — див. [CONTRIBUTING.md](../CONTRIBUTING.md) (англійською).
+
+![Головний дашборд запуску Antigravity](runs/antigravity/screenshots/dashboard.uk.jpg)
