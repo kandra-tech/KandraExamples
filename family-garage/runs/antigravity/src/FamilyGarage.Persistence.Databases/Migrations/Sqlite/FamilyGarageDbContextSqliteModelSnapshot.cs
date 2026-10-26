@@ -786,7 +786,12 @@ namespace FamilyGarage.Persistence.Databases.Migrations.Sqlite
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("LineId")
+                    b.Property<string>("Leg")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LineId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SourceAccountCode")

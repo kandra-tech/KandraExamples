@@ -46,7 +46,7 @@ public sealed class AcceptanceTests : IDisposable
         await _host.InScopeAsync(async sp =>
         {
             var constants = sp.GetRequiredService<IConstantsManageService>();
-            await constants.SetAsync("BaseCurrency", System.Text.Json.JsonSerializer.Serialize(new { Value = code }), Day(2000, 1, 1), Ct);
+            await constants.SetJsonAsync("BaseCurrency", System.Text.Json.JsonSerializer.Serialize(new { Value = code }), Day(2000, 1, 1), Ct);
         });
     }
 

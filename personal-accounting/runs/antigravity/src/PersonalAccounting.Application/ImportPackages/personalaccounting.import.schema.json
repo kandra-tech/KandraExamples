@@ -544,8 +544,8 @@
     },
     "dateToken": {
       "type": "string",
-      "description": "$now, $today, $today-23d, $today+14d - resolved in the importing user's time zone when the package is applied.",
-      "pattern": "^\\$(now|today([+-]\\d{1,5}d)?)$"
+      "description": "$now, $today, $today-23d, $today+14d, $monthStart (the 1st of this month), $monthStart-1m, $monthStart+4d, $monthStart-1m+9d - resolved in the importing user's time zone when the package is applied.",
+      "pattern": "^\\$(now|today([+-]\\d{1,5}d)?|monthStart([+-]\\d{1,4}m)?([+-]\\d{1,5}d)?)$"
     },
     "onChange": {
       "enum": [

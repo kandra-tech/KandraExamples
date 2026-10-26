@@ -12,8 +12,8 @@ using PersonalAccounting.Persistence.Databases.Contexts;
 namespace PersonalAccounting.Persistence.Databases.Migrations.Sqlite
 {
     [DbContext(typeof(PersonalAccountingDbContextSqlite))]
-    [Migration("20261024131808_Initial")]
-    partial class Initial
+    [Migration("20261026082019_AddPersonalAccountingDomain")]
+    partial class AddPersonalAccountingDomain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,7 +190,12 @@ namespace PersonalAccounting.Persistence.Databases.Migrations.Sqlite
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("LineId")
+                    b.Property<string>("Leg")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LineId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SourceAccountCode")

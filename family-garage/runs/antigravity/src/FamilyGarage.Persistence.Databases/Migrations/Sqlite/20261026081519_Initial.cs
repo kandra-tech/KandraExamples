@@ -388,7 +388,8 @@ namespace FamilyGarage.Persistence.Databases.Migrations.Sqlite
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     BatchId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    LineId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    LineId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    Leg = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
                     DeprecatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: true),

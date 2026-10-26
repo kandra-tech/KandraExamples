@@ -22,7 +22,7 @@
     <!-- Manually-maintained exact pin to a published kandra-tech/KandraCore NuGet build (KandraCore ships
          every package in lockstep, one version for all) - bump by hand after validating a newer engine
          release, same posture as KandraWms's own Release pin. -->
-    <KandraCoreVersion>0.5.25</KandraCoreVersion>
+    <KandraCoreVersion>0.5.27</KandraCoreVersion>
   </PropertyGroup>
 
   <ItemGroup>
