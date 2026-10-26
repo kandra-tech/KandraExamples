@@ -8,8 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FamilyGarage.Tests.ImportPackages;
 
 /// <summary>
-/// The embedded demo package (a valid package with no steps yet) is registered and validates, and the generated JSON
-/// Schema matches the committed snapshot the package's <c>$schema</c> points at. Set UPDATE_IMPORT_SCHEMA=1 to rewrite
+/// The embedded demo package (a valid package with no steps yet) is registered, validates and applies on an empty database
+/// with every record imported and every document posted, and the generated JSON Schema matches the committed snapshot the
+/// package's <c>$schema</c> points at. Set UPDATE_IMPORT_SCHEMA=1 to rewrite
 /// the snapshot after an intentional model change (a new entity or field).
 /// </summary>
 public sealed class DemoPackageTests : IDisposable
@@ -33,6 +34,22 @@ public sealed class DemoPackageTests : IDisposable
         var read = ImportPackageReader.Read(new StreamReader(stream).ReadToEnd());
         Assert.False(read.HasErrors, string.Join("; ", read.Diagnostics.Select(d => d.Message)));
         Assert.Empty(scope.ServiceProvider.GetRequiredService<ImportPackageValidator>().Validate(read.Package!));
+    }
+
+    // Validating checks the shape; only applying it runs the posting rules, so a document the demo data cannot post (a
+    // rule it breaks, a crash with two lines of the same kind) fails here instead of on the first demo installation.
+    [Fact]
+    public async Task DemoPackage_Applies_OnAnEmptyDatabase()
+    {
+        var report = await _host.InScopeAsync(async sp =>
+        {
+            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open(DemoPackage)!;
+            return await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), CancellationToken.None);
+        });
+
+        var failures = report.Diagnostics.Where(d => d.Severity == ImportDiagnosticSeverity.Error).Select(d => $"{d.Path}: {d.Message}")
+            .Concat(report.Items.Where(i => i.Outcome == ImportItemOutcome.Failed).Select(i => $"{i.Key}: {i.Message}"));
+        Assert.False(report.HasErrors, "The demo package does not apply: " + string.Join("; ", failures));
     }
 
     // Demo data written with fixed dates ages: in a month the "overdue" item is no longer overdue, the policy no longer

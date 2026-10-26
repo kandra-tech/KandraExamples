@@ -129,6 +129,13 @@ full contract, including the live example of constructor-injecting register read
 - **Read registers through their readers**, never `db.Reg_X` directly: the tables keep un-posted rows (`Active = false`)
   and the movements of deleted documents, and a reader filters them for you (`create-register` §8a, which also says how
   to read a turnover's `IsExpense` rows signed). The latest value per key is `SliceOfLast`, not a query per key in a loop.
+- **A month or day filter is a calendar date in the user's time zone.** The client sends every `DateTime` as UTC, so a
+  `Month` the user picks as 1 November arrives as 31 October 21:00 or 22:00 UTC from Kyiv. Taking `.Year`/`.Month`/`.Date`
+  of it gives October. Convert it first, with `ICurrentTimeZone` injected into the behavior
+  (`TimeZoneInfo.ConvertTimeFromUtc(filters.Month, timeZone.TimeZone ?? TimeZoneInfo.Utc)`), and pass the repository the
+  local month together with its bounds as UTC instants (local midnight of the 1st and of the next 1st, converted back) to
+  read movements. `OnNewAsync` defaults the filter the same way: local midnight of the user's 1st, as UTC, not
+  `new DateTime(now.Year, now.Month, 1, ..., DateTimeKind.Utc)`. Test it east of UTC (`test-configuration`).
 - **Group by ids, not by names.** A switch over a dictionary row's `Name` (`case "Fuel":`) breaks for a renamed or
   translated row; group by the id and let the line carry the row's own name.
 - What else the configuration needs here (a horizon, a threshold) is a parameter of the method that the behavior fills

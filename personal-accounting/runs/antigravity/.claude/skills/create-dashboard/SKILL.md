@@ -18,12 +18,6 @@ BusinessOverviewDashboardBehavior.cs`, its Refit interface, and `HomeDashboard` 
 the area dashboards, a chart with a header link) and the **stock** dashboard (table row drills, the batch expiry read); the bounded
 reads they share are `IDashboardsRepository`.
 
-> **Engine version.** The dashboard kind needs a KandraCore release that contains it. This configuration consumes KandraCore as
-> NuGet packages and pins `KandraCoreVersion` in its `Directory.Build.props` (0.5.21 when this skill was written, which
-> **predates** dashboards): the templates below compile only after that value is bumped to the first release that has them
-> (and `dotnet restore` has pulled it). Until then do not add a dashboard here.
-> Check that `Kandra.Attributes.Dashboards` exists in the pinned packages before starting; if it does not, stop and say so.
-
 ## The four pieces plus the Refit interface
 
 Same shape as a report, minus the mapper: a dashboard spans **Forms** and **Application** (nothing to persist).
@@ -107,6 +101,15 @@ leaves empty space), and use `Large` for a table or a chart with many categories
   `DashboardPeriods.Last(12, DashboardBucketSize.Month, timeZone.TimeZone, now)` gives buckets with `StartUtc`/`EndUtc`
   (end exclusive, so a repository `to` is `EndUtc.AddTicks(-1)`), `DashboardPeriods.IndexOf(buckets, utc)` finds a row's bucket,
   `DashboardPeriods.Today(...)` the local day. Inject `ICurrentTimeZone`, and `TimeProvider? time = null` so a test can fix "now".
+- **A bucket's `Start` is the calendar date; `StartUtc`/`EndUtc` only bound the movements you read.** Anything keyed by a
+  calendar month or day (a budget plan stored per month, a report's month filter, a method that rebuilds a month from
+  `.Year`/`.Month`) takes the local `Start`. `StartUtc` of a month is the last day of the previous month for every user
+  east of UTC, so a query keyed by month reads the previous month's data and the tile disagrees with the report.
+  Put movements into buckets with `DashboardPeriods.IndexOf`, never with `Period.Month`. The test for such a figure runs
+  east of UTC (`test-configuration`, "Rules about days and months").
+- **A table column never shows an enum or a `bool` as is:** the table prints the member name (English in every
+  language) and `True`/`False`. Type such a column `string` and fill it in the behavior with `value.GetCaption(localizer)`
+  (`Kandra.Localization`, the member's `[EnumCaption]`) or `localizer["Common_Yes"]`/`["Common_No"]`, never `ToString()`.
 - **Read data the way the equivalent report does**, so the two agree: register readers or the report repositories
   (`ITradingReportsRepository`, `IReportsRepository`), `IAccountQueryService` for the ledger. Never `Reg_*`/`Acc_*` tables,
   never raw SQL, no UI text in a repository. Read constants (home currency) in the behavior. Net a turnover register's

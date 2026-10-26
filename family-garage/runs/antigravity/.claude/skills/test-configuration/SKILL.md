@@ -8,7 +8,8 @@ description: Write tests that prove a configuration works end to end - document 
 `src/FamilyGarage.Tests/Support/FamilyGarageTestHost.cs` builds the configuration's real services on a
 SQLite in-memory database with the checked-in **migrations applied**: the engine's CRUD services, behaviors, mappers,
 validators, register writers/readers and report behaviors, exactly as the running app composes them, minus HTTP and
-authentication (every caller is allowed, time zone UTC). That is the right level for nearly every test of a
+authentication (every caller is allowed and runs as one test user, `TestUserId`, which is who `NotifyCallerAsync`
+notifies; time zone UTC unless you pass another one). That is the right level for nearly every test of a
 configuration: it proves the posting rules, the register effects and the report numbers, which is what breaks.
 **Do not write your own provider/DI plumbing** (forty lines of `ServiceCollection` per test class was the first thing
 the first trial wrote); use the host. Add the migrations first (`plan-configuration` stage 7): the host applies them.
@@ -78,6 +79,27 @@ named after the check.
 
 Do not test generated code (controllers, mappers' trivial members, EF configuration) and do not assert on UI.
 
+## Rules about days and months: test east of UTC
+
+In UTC a local date and a UTC date are the same day, so a test host in UTC cannot see a time-zone bug: a dashboard tile
+that reads the month of `StartUtc` (the last day of the previous month for a user east of UTC) disagrees with the report,
+and a test of "the dashboard equals the report" in UTC still passes. For every rule that turns an instant into a calendar day or month (a monthly budget or limit, "this month" on a dashboard,
+a report's month or day filter, a due date in days), add one test with the host in `EastOfUtc`, the dates the client
+would send, and an assertion on the **calendar** month, not only that two figures agree (two readers that shift alike
+agree with each other):
+
+```csharp
+private readonly FamilyGarageTestHost _host = new(timeZone: FamilyGarageTestHost.EastOfUtc);
+
+// 1 November picked in Kyiv arrives as 31 October 22:00 UTC.
+var november = FamilyGarageTestHost.LocalMidnight(FamilyGarageTestHost.EastOfUtc, 2026, 11, 1);
+// ... post a budget and an expense dated `november`, run the report for a day in November and for one in October:
+// both belong to November, nothing to October.
+```
+
+The host sets the zone that `ICurrentTimeZone` reports, which is what behaviors, reports and dashboards read. Import
+package date tokens follow the caller's own zone instead; test those through the running app.
+
 ## Gotchas
 
 - One scope per step (above): **never two mutating calls (insert, submit, update, unsubmit, delete) in the same
@@ -87,7 +109,7 @@ Do not test generated code (controllers, mappers' trivial members, EF configurat
 - Inserting a document with `IsActive = true` posts it immediately; the skeleton inserts a draft and calls `SubmitAsync`,
   which tests the same path the Submit button takes.
 - Dates are UTC: build them with `new DateTime(y, m, d, 0, 0, 0, DateTimeKind.Utc)`. A calendar-day field that is
-  `DateOnly` takes `DateOnly`.
+  `DateOnly` takes `DateOnly`. For a rule about days or months, add a test in another time zone (next section).
 - Numbering and the document `Date` are set by the behavior's `OnNewAsync` when you call `NewAsync`; a test that skips
   `NewAsync` must set `Code` and `Date` itself.
 - A behavior that needs a constant (base currency) reads it as of the document's date: set the constant with a `from`

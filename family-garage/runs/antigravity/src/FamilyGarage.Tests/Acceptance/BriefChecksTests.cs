@@ -24,7 +24,7 @@ namespace FamilyGarage.Tests.Acceptance;
 /// </summary>
 public sealed class BriefChecksTests : IDisposable
 {
-    private static readonly TimeZoneInfo Zone = FamilyGarageTestHost.Kyiv;
+    private static readonly TimeZoneInfo Zone = FamilyGarageTestHost.EastOfUtc;
     private static readonly CancellationToken Ct = CancellationToken.None;
     private readonly FamilyGarageTestHost _host = new(timeZone: Zone);
 

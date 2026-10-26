@@ -6,10 +6,7 @@ description: Wire a document's OnSubmitAsync to post debit/credit ledger transac
 # Posting a document to the chart-of-accounts subsystem
 
 > **Not posting to accounting? Leave the chart empty.** A configuration that only uses registers keeps the scaffold's
-> empty `ChartOfAccountsBuilder` (`new ChartOfAccounts()`). Kandra Core 0.5.21 and later accept it. Older cores throw
-> `ArgumentException: List must not be empty` the first time anything reads the chart (a migration, the demo setup, the
-> chart page); there, and only there, return one placeholder leaf (`new ChartOfAccounts(new AccountLeaf(1, "Account_1",
-> AccountType.Asset))` plus its resx key) and remove it after upgrading.
+> empty `ChartOfAccountsBuilder` (`new ChartOfAccounts()`).
 
 > **Note:** This recipe's worked example(s) use concrete entity names (specific dictionaries, documents, reports, etc.) carried over from a real, previously-built Kandra configuration, kept as-is because they're verified working code — this bare configuration has no entities of its own yet. Treat those names as illustrative only and substitute your own domain's names throughout; only the underlying pattern/mechanism matters.
 
@@ -133,6 +130,37 @@ document behavior's own save pipeline does that. `PostAsync` is **upsert**: re-p
 document (edit + re-submit) merges line-by-line (added/changed/removed) rather than reverse-then-reinsert; the
 caller never needs to know whether this is the first post or a re-post.
 
+### Identity of a posting: `LineId` + `Leg`
+
+A posting is identified within its document by the pair `(LineId, Leg)`, which must be unique in one `PostAsync` call:
+
+- `LineId` is the id of the document line the posting comes from, or `null` for a posting of the document as a whole
+  (an advance, a fee, a lineless document). Never invent a Guid for it (no hashing, no `Guid.NewGuid()`: a new id on
+  every post turns each re-post into a full deprecate-and-reinsert).
+- `Leg` names the posting when one line (or the document) posts more than once: leave the default `""` on the main
+  posting and give each further one a fixed name, kept as a constant in one static class of your Application project
+  (e.g. `Accounting/PostingLegs.cs` with `public const string Vat = "Vat";`, `Cogs`, ...). Use a name, never a running
+  number: a leg that is only sometimes there (VAT for a non-payer, an advance) must not shift the identity of the others.
+  At most 32 characters, stored in the ledger, so never rename a value once documents have posted it.
+
+```csharp
+transactions.Add(new PostingTransaction(
+    LineId: line.Id,
+    Source: postingService.AsOf(70).With<Item>(line.ItemId).Build(),
+    Destination: receivable,
+    Amount: net));
+
+if (vat > 0)
+{
+    transactions.Add(new PostingTransaction(
+        LineId: line.Id,
+        Source: postingService.AsOf(64, 1).With<Counterparty, Waybill>(entity.CounterpartyId, entity.Id).Build(),
+        Destination: receivable,
+        Amount: vat,
+        Leg: PostingLegs.Vat));
+}
+```
+
 ## 5. The `AsOf(...).With(...).Build()` builder — cheat sheet
 
 `AsOf` lives on both `IChartOfAccountsService` and `IPostingService` (the latter just proxies to the former, so
@@ -166,7 +194,7 @@ composite slot with an actual non-null value is rejected by the untyped path.
 `PostingService.Validate` runs entirely before touching the database — throws before the repository/balance
 updater are ever called:
 
-- Batch non-empty; every `LineId` unique within the batch.
+- Batch non-empty; every `(LineId, Leg)` pair unique within the batch; `Leg` at most 32 characters.
 - `Amount > 0`.
 - `CurrencyId`/`CurrencyAmount` both set or both null.
 - `Source.Account`/`Destination.Account` must resolve to a real leaf (not a folder, not unknown).

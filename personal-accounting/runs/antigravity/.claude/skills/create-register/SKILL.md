@@ -72,7 +72,10 @@ row entity + register class together, top to bottom — mirror `Inventory.cs`/`E
 `[KandraRegisterEntity(TableName = "Reg_...")]` is mandatory on every Balance/Movement/Record class;
 `[RegisterCaption("{{Name}}")]` goes on the Movement/DocumentInfoRecord row only (not Balance) — technically
 optional, add it anyway (§7 below, `reference.md` §4/§9 has the exact shapes and the one field you assign
-yourself, `LineId`).
+yourself, `LineId`). The text of `EnsureValidBalance()` reaches the user as it is, in English and with the row's dimension
+ids appended by the engine: for a rule a user can break (un-posting a purchase whose debt has been paid off in part),
+check it in the document behavior first and throw an `InvalidStateException` with a localized message; the guard stays
+as the last line of defence.
 
 ## 5. DI wiring — mostly generated, Turnover is the exception
 

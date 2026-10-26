@@ -116,8 +116,8 @@ to deriving a name from `RootNamespace` instead — a safety net, not a substitu
   ```
   (Only run the command for a provider you actually included at scaffold time — the others won't exist.)
   **Squashing or regenerating the migrations** (`dotnet kandra-migrate add Initial` after deleting the old files and snapshots): each provider's `Initial`
-  must create the 15 subconto composite indexes on the chart-of-accounts tables (`grep -c 'IX_Acc_.*_Entity_'` gives 15). Kandra engine versions after 0.3.57
-  declare them in the model, so the regenerated `Initial` already has them; on 0.3.57 copy the 15 `CreateIndex` blocks over from the old `Initial`.
+  creates the 15 subconto composite indexes on the chart-of-accounts tables (`grep -c 'IX_Acc_.*_Entity_'` gives 15): the engine declares them in
+  the model, so the regenerated `Initial` has them.
   The base `FamilyGarageDbContext.OnModelCreating` (in `FamilyGarage.Persistence`) contains a
   self-healing guard that unmaps the engine's abstract `DocumentBase` entity until you have at least one
   concrete Document type — don't remove it, it stops applying on its own once you add one.
@@ -156,8 +156,12 @@ to deriving a name from `RootNamespace` instead — a safety net, not a substitu
   `InScopeAsync` call per test step (editing a document in the scope that read it fails on the change tracker); see
   [`test-configuration`](.claude/skills/test-configuration/SKILL.md). `Services/ServiceResolutionTests` creates every generated CRUD,
   report and data-processor service, so a dependency missing only at runtime (a `{Name}QueryDtoValidator`) fails a test, not a page.
-  `Localization/CodeTextTests` fails on words in a report repository (`"Unknown"`, `"Work"`, `"... in 3 days"`) and on a
-  notification written with `ForLiteral`; `DemoPackageTests` also fails on fixed dates in the demo package (use `$today-30d`).
+  `Localization/CodeTextTests` fails on words in a report repository (`"Unknown"`, `"Work"`, `"... in 3 days"`), on a
+  notification written with `ForLiteral`, on a register table read directly (`db.Reg_X`, `db.Set<XMovement>()`: use the register's
+  reader) and on a value that falls back to 1 (`rate ?? 1m`); `DemoPackageTests` applies the demo package (every document must
+  post) and fails on fixed dates in it (use `$today-30d`). The test host runs as a test user (`TestUserId`), so a notification
+  to the caller can be tested.
+  `UPDATE_RESX=1 dotnet test --filter LocalizationKeysTests` appends the missing keys to the English resx with guessed text.
 
 ## Adding a new entity — use the skills
 
@@ -171,7 +175,7 @@ to deriving a name from `RootNamespace` instead — a safety net, not a substitu
 - New transactional record that posts and moves registers → [`create-document`](.claude/skills/create-document/SKILL.md)
 - New read-only parameterized query/export → [`create-report`](.claude/skills/create-report/SKILL.md)
 - A document's Print button or a report's PDF/CSV export (parties, table, totals/VAT, signatures, drafts, a report's parameters line and grouping) → [`create-print-form`](.claude/skills/create-print-form/SKILL.md)
-- New page of charts, KPI tiles and small tables computed from existing data, optionally auto-refreshing or as the Interface's home page → [`create-dashboard`](.claude/skills/create-dashboard/SKILL.md) (needs a KandraCore release with dashboards, newer than the pinned 0.5.21)
+- New page of charts, KPI tiles and small tables computed from existing data, optionally auto-refreshing or as the Interface's home page → [`create-dashboard`](.claude/skills/create-dashboard/SKILL.md)
 - New transient batch operation (import, period close, recalculation, ...) → [`create-data-processor`](.claude/skills/create-data-processor/SKILL.md)
 - New single scalar configuration value (VAT rate, home currency, ...) → [`create-constant`](.claude/skills/create-constant/SKILL.md)
 - New closed set of named values (item category, costing method, payment kind, status), plain or as an accounting subconto dimension → [`create-enum`](.claude/skills/create-enum/SKILL.md)

@@ -22,7 +22,13 @@ balances" with a line per account, "budget" with a line per category - never a d
 (see [`plan-configuration`](../plan-configuration/reference.md), sections 2, 3 and 5). **Posting contract:** `OnSubmitAsync`
 must write the document's *complete* record set to each register on every call (the writer diffs it in place), because
 the engine calls it again whenever a posted document is saved; `OnUnsubmitAsync` and `OnDeleteAsync` unpost/delete by the
-document id. That one rule is all "edit = reverse and repost" needs. What a
+document id. That one rule is all "edit = reverse and repost" needs, and it has three consequences that are easy to
+miss. Call every writer the document can use on every post, with an empty list when this version writes nothing to it (a
+purchase changed from a loan to cash still holds its old debt movement otherwise). A check that reads a register before
+posting sees this document's previous movements still in place on a re-post (a payment's own principal already taken off
+the debt), so add them back or leave this document out of the read. And every record of one document needs its own
+`LineId` (the line's `Id`): a document-bound register is unique by document and `LineId`, so a second record without one
+refuses the post. What a
 movement stores in a text detail (`Comment`) is the document's own user-typed text or nothing: never a literal written by
 code ("Opening balance"), because stored text cannot be translated; a report shows the document type instead. Prove it with a test (`test-configuration`, in a
 configuration that ships it) rather than by clicking.
@@ -150,6 +156,12 @@ Three traps in the behavior that compile cleanly and fail only at runtime:
   nowhere). When posting needs a particular entry, pick one: a field on the document the user fills (defaulted in
   `OnNewAsync` or by the UI behavior), a constant that points at the entry (`Constant<Guid?>`, set on a settings form), or,
   when the set is closed and fixed by the domain, an enum instead of a dictionary (`plan-configuration`, red flags).
+- **A document that belongs to a month or a day takes it from its `Date` in the user's time zone.** `Date` is a UTC
+  instant: a budget dated 1 November in Kyiv is 31 October 22:00 UTC, so `entity.Date.Month` is October. Convert first
+  (`ICurrentTimeZone` injected into the behavior, UTC when it is null), then build the register period from the local
+  year and month. When the domain allows one document per month or per day ("one budget per month"), refuse the second
+  one in `OnSubmitAsync` with `InvalidStateException`: read the register for that period (`Records(period, period, ...)`
+  of an info register's reader, excluding the document's own id) rather than querying the documents' table.
 
 ## 5. Nothing else to register by hand
 

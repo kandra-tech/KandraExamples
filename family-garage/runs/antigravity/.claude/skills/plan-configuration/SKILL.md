@@ -36,7 +36,7 @@ Companion file: [`reference.md`](reference.md) - modeling patterns for the shape
    spec is already true, provided `OnSubmitAsync` writes the *complete* record set for the document every time.
 7. **Do not touch the scaffolded plumbing you do not need to change** (`Program.cs`, the host,
    Dockerfile, compose files): the scaffold already runs. That includes the empty chart of accounts: without
-   double-entry accounting it stays empty (Kandra Core 0.5.21+; see `post-to-accounting` for older cores). When something fails, read the real exception
+   double-entry accounting it stays empty. When something fails, read the real exception
    before changing anything; [`troubleshoot-configuration`](../troubleshoot-configuration/SKILL.md) lists the failures agents actually hit, and
    [`look-up-engine-api`](../look-up-engine-api/SKILL.md) says where to find a signature.
 8. **Describe the model for the AI agent that will use it.** The built-in MCP server shows an agent the plain-English

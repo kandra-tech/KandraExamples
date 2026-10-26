@@ -4,10 +4,12 @@ using System.Text.RegularExpressions;
 namespace PersonalAccounting.Tests.Localization;
 
 /// <summary>
-/// <c>LocalizationKeysTests</c> checks keys; an English literal passes it silently. These tests catch the two places where
-/// literal UI text keeps turning up: report repositories (they return data - ids, numbers, dates, kinds - and the report
-/// behavior turns kinds into words through the localizer) and notifications (<c>NotificationText.ForKey</c> is resolved in
-/// the reader's language, <c>ForLiteral</c> is stored verbatim). See the localize-configuration and create-report skills.
+/// Rules the skills state and agents kept breaking, checked on the source. <c>LocalizationKeysTests</c> checks keys; an
+/// English literal passes it silently, so two tests catch where literal UI text keeps turning up: report repositories
+/// (they return data - ids, numbers, dates, kinds - and the report behavior turns kinds into words through the localizer)
+/// and notifications (<c>NotificationText.ForKey</c> is resolved in the reader's language, <c>ForLiteral</c> is stored
+/// verbatim). Two more catch register tables read directly instead of through a reader, and a missing exchange rate
+/// silently counted as 1. See the localize-configuration, create-report and create-register skills.
 /// </summary>
 public sealed class CodeTextTests
 {
@@ -20,6 +22,12 @@ public sealed class CodeTextTests
     private static readonly Regex Interpolation = new("""\{[^{}]*\}""", RegexOptions.Compiled);
 
     private static readonly Regex LiteralNotification = new("""NotificationText\.ForLiteral\(\s*[$@]*\x22""", RegexOptions.Compiled);
+
+    // A register table used as a DbSet: db.Reg_Sales, context.Reg_Stock_Balance, db.Set<SalesMovement>(), Set<RateRecord>().
+    private static readonly Regex RegisterTable = new("""\.\s*Reg_\w+|Set<\s*\w+(Movement|Balance|Record)\s*>""", RegexOptions.Compiled);
+
+    // A fallback of one for a missing value: rate ?? 1m, rate ?? 1.0M.
+    private static readonly Regex FallbackToOne = new("""\?\?\s*1(\.0+)?[mM]\b""", RegexOptions.Compiled);
 
     [Fact]
     public void ReportRepositoriesReturnData_NotText()
@@ -62,6 +70,48 @@ public sealed class CodeTextTests
         Assert.True(found.Count == 0,
             "A notification is written as a literal; use NotificationText.ForKey(\"Key\", args) so each reader sees it in their "
             + "own language:" + Environment.NewLine + string.Join(Environment.NewLine, found));
+    }
+
+    [Fact]
+    public void RegistersAreReadThroughTheirReaders()
+    {
+        var found = Matching(RegisterTable, "PersonalAccounting.Persistence", "PersonalAccounting.Application");
+
+        Assert.True(found.Count == 0,
+            "A register table is read directly. The table keeps the movements of un-posted documents (Active = false) and of "
+            + "deleted ones, so a direct read counts them; read through the register's reader instead (IBalanceReader, "
+            + "ITurnoverReader, IInfoRegisterReader: Balances, Movements, Records, SliceOfLast), see create-register 8a:"
+            + Environment.NewLine + string.Join(Environment.NewLine, found));
+    }
+
+    [Fact]
+    public void AMissingValueIsNotSilentlyOne()
+    {
+        var found = Matching(FallbackToOne, "PersonalAccounting.Persistence", "PersonalAccounting.Application");
+
+        Assert.True(found.Count == 0,
+            "A missing value falls back to 1 (typically an exchange rate: a USD amount then counts as the same number of the base "
+            + "currency). Refuse it with a localized InvalidStateException, or return the gap (a nullable value or a flag the "
+            + "screen shows); see create-report, \"No silent fallbacks\":"
+            + Environment.NewLine + string.Join(Environment.NewLine, found));
+    }
+
+    private static List<string> Matching(Regex pattern, params string[] projects)
+    {
+        var src = SrcDirectory();
+        var found = new List<string>();
+        foreach (var project in projects)
+        {
+            foreach (var (file, number, line) in SourceLines(Path.Combine(src, project)))
+            {
+                if (pattern.IsMatch(line))
+                {
+                    found.Add($"{project}/{file}:{number}: {line.Trim()}");
+                }
+            }
+        }
+
+        return found;
     }
 
     private static IEnumerable<(string File, int Number, string Line)> SourceLines(string root)

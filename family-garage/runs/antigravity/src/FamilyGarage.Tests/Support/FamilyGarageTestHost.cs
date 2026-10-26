@@ -21,24 +21,27 @@ namespace FamilyGarage.Tests.Support;
 /// <see cref="InScopeAsync{T}"/>, one fresh scope per step: the generated CRUD services (<c>IDictionaryCrudService&lt;TDto, TQueryDto&gt;</c>,
 /// <c>IDocumentCrudService&lt;TDto, TQueryDto&gt;</c>, <c>IReportService&lt;TFilters, TResult&gt;</c>), the register readers
 /// (<c>IBalanceReader&lt;,&gt;</c>, <c>ITurnoverReader&lt;&gt;</c>, <c>IInfoRegisterReader&lt;&gt;</c>) and the constants services.
-/// Callers are allowed everything. The caller's time zone is UTC unless the test passes another one: a rule about calendar
-/// days or months needs a test east of UTC (<see cref="Kyiv"/>), where a document dated the 1st at local midnight is still
-/// the previous month in UTC. See the test-configuration skill.
+/// Callers are allowed everything. The caller is a test user (<see cref="TestUserId"/>): <c>INotificationService.NotifyCallerAsync</c>
+/// sends to it. The caller's time zone is UTC unless the test passes another one: a rule about calendar
+/// days or months (a monthly budget, a dashboard's "this month") needs a test in <see cref="EastOfUtc"/>, where a local
+/// day starts on the previous UTC day. See the test-configuration skill.
 /// </summary>
 public sealed class FamilyGarageTestHost : IDisposable
 {
     private readonly SqliteConnection _connection;
 
-    /// <summary>Europe/Kyiv (UTC+2/+3), a zone east of UTC.</summary>
-    public static TimeZoneInfo Kyiv { get; } = TimeZoneInfo.FindSystemTimeZoneById("Europe/Kyiv");
+    /// <summary>The id of the user every call runs as (the caller of a notification).</summary>
+    public static Guid TestUserId { get; } = new("11111111-1111-1111-1111-111111111111");
 
-    /// <summary>The UTC instant of local midnight of a day in <paramref name="zone"/>: what the client sends for a picked date.</summary>
-    public static DateTime LocalMidnight(TimeZoneInfo zone, int year, int month, int day)
-        => TimeZoneInfo.ConvertTimeToUtc(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Unspecified), zone);
+    /// <summary>Kyiv (UTC+2, UTC+3 in summer): local midnight of a date is 21:00 or 22:00 UTC of the day before.</summary>
+    public static TimeZoneInfo EastOfUtc { get; } =
+        TimeZoneInfo.TryFindSystemTimeZoneById("Europe/Kyiv", out var kyiv) ? kyiv : TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
 
+    /// <summary>Builds the host.</summary>
+    /// <param name="configure">Replaces or adds services after the configuration's own registrations.</param>
+    /// <param name="timeZone">The caller's time zone, as <c>ICurrentTimeZone</c> reports it; UTC when omitted.</param>
     public FamilyGarageTestHost(Action<IServiceCollection>? configure = null, TimeZoneInfo? timeZone = null)
     {
-        var zone = timeZone ?? TimeZoneInfo.Utc;
         _connection = new SqliteConnection("DataSource=:memory:");
         _connection.Open();
         var options = new DbContextOptionsBuilder<FamilyGarageDbContextSqlite>().UseSqlite(_connection).Options;
@@ -55,10 +58,11 @@ public sealed class FamilyGarageTestHost : IDisposable
         services.AddScoped<DbContext>(_ => new FamilyGarageDbContextSqlite(options));
         services.AddScoped<FamilyGarageDbContext>(p => (FamilyGarageDbContext)p.GetRequiredService<DbContext>());
         services.AddScoped<IAuthorizationChecker>(_ => new AllowAll());
-        services.AddScoped<ICurrentTimeZone>(_ => new FixedTimeZone(zone));
-        services.AddScoped<ICallerContext>(_ => new TestCallerContext(zone.Id));
-        services.AddSingleton<IReportResultCache, NullReportResultCache>();
+        services.AddScoped<ICurrentTimeZone>(_ => new FixedTimeZone(timeZone ?? TimeZoneInfo.Utc));
+        services.AddScoped<ICallerContext>(_ => new TestCaller((timeZone ?? TimeZoneInfo.Utc).Id));
+        // The notification service resolves users through Identity, which the web host registers and this host does not.
         services.AddIdentityCore<DomainUser>().AddRoles<DomainRole>().AddEntityFrameworkStores<FamilyGarageDbContext>();
+        services.AddSingleton<IReportResultCache, NullReportResultCache>();
         services.AddKandraPersistence<DomainUser, DomainRole>(configuration);
         services.AddFamilyGaragePersistence();
         services.AddKandraApplication<DomainUser, DomainRole>();
@@ -116,12 +120,20 @@ public sealed class FamilyGarageTestHost : IDisposable
         public TimeZoneInfo? TimeZone => zone;
     }
 
-    private sealed class TestCallerContext(string timeZoneId) : ICallerContext
+    private sealed class TestCaller(string timeZoneId) : ICallerContext
     {
-        public static readonly Guid TestUserId = Guid.Parse("11111111-1111-1111-1111-111111111111");
-        public CallerUser? User => new CallerUser(TestUserId, "testuser", []);
+        public CallerUser? User => new(TestUserId, "test", []);
         public string? TimeZoneId => timeZoneId;
     }
+
+    /// <summary>The UTC instant of local midnight of a calendar date in <paramref name="zone"/>: what the client sends for a date picked there.</summary>
+    /// <param name="zone">The user's time zone.</param>
+    /// <param name="year">The year.</param>
+    /// <param name="month">The month.</param>
+    /// <param name="day">The day.</param>
+    /// <returns>The UTC instant.</returns>
+    public static DateTime LocalMidnight(TimeZoneInfo zone, int year, int month, int day) =>
+        TimeZoneInfo.ConvertTimeToUtc(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Unspecified), zone);
 
 #pragma warning disable CS8633, CS8767
     private sealed class NullReportResultCache : IReportResultCache

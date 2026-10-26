@@ -1,4 +1,4 @@
-using Kandra.Application.Abstractions.Services;
+﻿using Kandra.Application.Abstractions.Services;
 using Kandra.DataImport;
 using Kandra.Forms.Querying;
 using FamilyGarage.Forms.Dashboards;
@@ -14,10 +14,11 @@ namespace FamilyGarage.Tests.ImportPackages;
 /// The demo package applies on an empty database with every document posted, and on any day it is applied it shows
 /// what the brief asks for: an overdue job, a policy that ends within the look-ahead and a finance payment due.
 /// </summary>
+[Collection(DemoDataCollection.Name)]
 public sealed class DemoDataTests : IDisposable
 {
     private static readonly CancellationToken Ct = CancellationToken.None;
-    private readonly FamilyGarageTestHost _host = new(timeZone: FamilyGarageTestHost.Kyiv);
+    private readonly FamilyGarageTestHost _host = new(timeZone: FamilyGarageTestHost.EastOfUtc);
 
     public void Dispose() => _host.Dispose();
 
@@ -59,4 +60,15 @@ public sealed class DemoDataTests : IDisposable
             }, Ct));
         Assert.Equal(8.5m, fuel.Data.PeriodAverageConsumption);
     }
+}
+
+/// <summary>
+/// Runs <see cref="DemoDataTests"/> after the parallel tests: it applies the demo package, as the template's
+/// <c>DemoPackageTests</c> does, and the import service allows one import at a time per process.
+/// </summary>
+[CollectionDefinition(Name, DisableParallelization = true)]
+public sealed class DemoDataCollection
+{
+    /// <summary>The collection name.</summary>
+    public const string Name = "Demo data";
 }

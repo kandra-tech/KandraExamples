@@ -54,7 +54,8 @@ written `isLiteral: true` (non-translatable text, e.g. a brand). Plan the list w
   (`InvalidStateException(localizer[key, args].Value)`, `create-document` step 4); a notification (`NotificationText.ForKey`,
   never `ForLiteral` with composed text, `send-notifications`).
 - `LocalizationKeysTests` checks keys, not literals: an English literal passes it silently. `CodeTextTests` (in a configuration
-  that ships it) catches words in report repositories and literal notifications; everywhere else the rule is yours to keep.
+  that ships it) catches words in report repositories, literal notifications, register tables read directly and a missing
+  value counted as 1; everywhere else the rule is yours to keep.
 
 ## 3. Adding keys
 
@@ -90,6 +91,13 @@ it scans every `Loc["..."]` the **generated client UI** asks for (captions, titl
 keys) and every key written in the configuration's **own source** (`[Caption]`, titles, `[FormTab]`, `[EnumCaption]`,
 `localizer["..."]`, nav folders), and fails with the list of keys that no resx defines. Run it after every entity. A key
 built at runtime (string interpolation) is not covered; look at those screens yourself.
+
+**Many keys missing at once** (a new document and its report bring twenty or more): in a configuration made from the
+template, `UPDATE_RESX=1 dotnet test src/{Config}.Tests --filter LocalizationKeysTests` appends each missing key to the
+English resx as a formatted entry, with text guessed from the key (`Validation_AmountMustBePositive` becomes "Amount must
+be positive", `ExpenseDto_CategoryId` becomes "Category"). The run fails once and lists what it wrote: read the guesses,
+fix the wrong ones in the file, add the other languages by hand, and run again. Do not hand-write one long line of
+`<data>` elements instead: the file stays one entry per element so a diff shows what changed.
 
 Typical finds: `Add{Name}` / `{Name}AddedSuccessfully` / `{Name}UpdatedSuccessfully` forgotten; a validator message used
 in two languages but defined once; a renamed field whose old key is still in the Dto.

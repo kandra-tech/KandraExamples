@@ -78,6 +78,10 @@ are hashed unresolved, so a token never counts as a change. Use tokens, not fixe
 inside the list pages' default "recent" filter. An expiry or due date relative to a document date is a token computed from
 today (`$today-5d` for a date 20 days after a document dated `$today-25d`).
 
+Data that belongs to a calendar month (a monthly budget, a plan, "this month's" bill) needs a date in that month on any
+day the package is applied; `$today-15d` is last month for the first two weeks of every month. Date such a document
+`$today`: it is then always in the current month.
+
 ## Per-step policies
 
 Defaults are the safe choice; override only on purpose.
@@ -104,6 +108,11 @@ package name is the stamp's `Source`, so never rename `package` either.
   poll `GET api/v1/Import/runs/{runId}`; run again without `dryRun`. One run at a time per installation (a second start
   is a 409). A multipart `file` upload works for a package that is not embedded.
 - Fix every error diagnostic first. Then run it twice: the second run must report everything `Unchanged`.
+- Validating a package never runs a posting rule; only applying it does. A configuration's `DemoPackageTests` applies the
+  demo package on an empty database, so a document the demo data cannot post fails a test. When the specification promises
+  something of the demo data on any day it is loaded (an overdue job, a policy ending soon, a payment due), add a test that
+  applies the package and checks it in the report that shows it: these depend on dates relative to today, intervals and
+  every earlier document, and are easy to miss by reading the JSON.
 
 ## Free-tier limits
 

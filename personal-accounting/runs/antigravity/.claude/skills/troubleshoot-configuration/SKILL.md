@@ -23,6 +23,8 @@ apply the fix, and only then start digging (with [`look-up-engine-api`](../look-
 | Symptom | Cause | Fix |
 |---|---|---|
 | "The instance of entity type X cannot be tracked because another instance with the same key value is already being tracked" | Two mutating calls in one scope | One `InScopeAsync` per step (`test-configuration`). |
+| `UNIQUE constraint failed: Reg_X.DocumentId, Reg_X.LineId` when a document with several lines is posted | Two records of one document carry the same (empty) `LineId` | Set `LineId = line.Id` on every movement or record built from a line (`create-document`, the posting contract). |
+| "LineId ... with Leg ... appears more than once" when a document is submitted | Two postings of one line (or two document-level postings, `LineId: null`) share a `Leg` | Give each further posting of a line its own `Leg` name (`post-to-accounting`, "Identity of a posting"). |
 | `ServiceResolutionTests`: "Unable to resolve service for type IValidator<{Name}QueryDto>" | The `{Name}QueryDtoValidator` is missing | Add `public class {Name}QueryDtoValidator : PagedQueryDtoValidator<{Name}QueryDto>;` next to the behavior (it is in the skeleton). |
 | `DemoPackageTests` schema mismatch | The model changed after the snapshot was taken | `UPDATE_IMPORT_SCHEMA=1 dotnet test`. |
 | `LocalizationKeysTests` lists keys | A resx entry is missing | Add the keys (`localize-configuration`). The generated-UI part reads the last build: `dotnet build` first. |
@@ -33,7 +35,6 @@ apply the fix, and only then start digging (with [`look-up-engine-api`](../look-
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| `ArgumentException: List must not be empty` from `ChartOfAccounts` | Kandra Core before 0.5.21 refused an empty chart | Upgrade the core pin; on an older core return one placeholder leaf (`post-to-accounting`). |
 | Browser: "Cannot provide a value for property 'validator'" when a form opens | The client container lacks the Forms validators | Keep `services.AddValidatorsFromAssembly(...)` in `Client{Config}ServicesExtensions` (the template has it). |
 | Opening a list fails: "No service for type IValidator<{Name}QueryDto>" | Missing query validator | As above; `ServiceResolutionTests` catches it before the browser does. |
 | Report answers permission denied / 403 for everybody | `ObjectName` differs from `[KandraReportForm(Name = ...)]` | Make them equal (`create-report` §3). |

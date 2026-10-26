@@ -21,13 +21,26 @@ namespace PersonalAccounting.Tests.Support;
 /// <see cref="InScopeAsync{T}"/>, one fresh scope per step: the generated CRUD services (<c>IDictionaryCrudService&lt;TDto, TQueryDto&gt;</c>,
 /// <c>IDocumentCrudService&lt;TDto, TQueryDto&gt;</c>, <c>IReportService&lt;TFilters, TResult&gt;</c>), the register readers
 /// (<c>IBalanceReader&lt;,&gt;</c>, <c>ITurnoverReader&lt;&gt;</c>, <c>IInfoRegisterReader&lt;&gt;</c>) and the constants services.
-/// Callers are allowed everything and the time zone is UTC. See the test-configuration skill.
+/// Callers are allowed everything. The caller is a test user (<see cref="TestUserId"/>): <c>INotificationService.NotifyCallerAsync</c>
+/// sends to it. The caller's time zone is UTC unless the test passes another one: a rule about calendar
+/// days or months (a monthly budget, a dashboard's "this month") needs a test in <see cref="EastOfUtc"/>, where a local
+/// day starts on the previous UTC day. See the test-configuration skill.
 /// </summary>
 public sealed class PersonalAccountingTestHost : IDisposable
 {
     private readonly SqliteConnection _connection;
 
-    public PersonalAccountingTestHost(Action<IServiceCollection>? configure = null)
+    /// <summary>The id of the user every call runs as (the caller of a notification).</summary>
+    public static Guid TestUserId { get; } = new("11111111-1111-1111-1111-111111111111");
+
+    /// <summary>Kyiv (UTC+2, UTC+3 in summer): local midnight of a date is 21:00 or 22:00 UTC of the day before.</summary>
+    public static TimeZoneInfo EastOfUtc { get; } =
+        TimeZoneInfo.TryFindSystemTimeZoneById("Europe/Kyiv", out var kyiv) ? kyiv : TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
+
+    /// <summary>Builds the host.</summary>
+    /// <param name="configure">Replaces or adds services after the configuration's own registrations.</param>
+    /// <param name="timeZone">The caller's time zone, as <c>ICurrentTimeZone</c> reports it; UTC when omitted.</param>
+    public PersonalAccountingTestHost(Action<IServiceCollection>? configure = null, TimeZoneInfo? timeZone = null)
     {
         _connection = new SqliteConnection("DataSource=:memory:");
         _connection.Open();
@@ -45,7 +58,10 @@ public sealed class PersonalAccountingTestHost : IDisposable
         services.AddScoped<DbContext>(_ => new PersonalAccountingDbContextSqlite(options));
         services.AddScoped<PersonalAccountingDbContext>(p => (PersonalAccountingDbContext)p.GetRequiredService<DbContext>());
         services.AddScoped<IAuthorizationChecker>(_ => new AllowAll());
-        services.AddScoped<ICurrentTimeZone>(_ => new UtcTimeZone());
+        services.AddScoped<ICurrentTimeZone>(_ => new FixedTimeZone(timeZone ?? TimeZoneInfo.Utc));
+        services.AddScoped<ICallerContext>(_ => new TestCaller((timeZone ?? TimeZoneInfo.Utc).Id));
+        // The notification service resolves users through Identity, which the web host registers and this host does not.
+        services.AddIdentityCore<DomainUser>().AddRoles<DomainRole>().AddEntityFrameworkStores<PersonalAccountingDbContext>();
         services.AddSingleton<IReportResultCache, NullReportResultCache>();
         services.AddKandraPersistence<DomainUser, DomainRole>(configuration);
         services.AddPersonalAccountingPersistence();
@@ -99,10 +115,25 @@ public sealed class PersonalAccountingTestHost : IDisposable
         public Guid UserId() => Guid.Empty;
     }
 
-    private sealed class UtcTimeZone : ICurrentTimeZone
+    private sealed class FixedTimeZone(TimeZoneInfo zone) : ICurrentTimeZone
     {
-        public TimeZoneInfo? TimeZone => TimeZoneInfo.Utc;
+        public TimeZoneInfo? TimeZone => zone;
     }
+
+    private sealed class TestCaller(string timeZoneId) : ICallerContext
+    {
+        public CallerUser? User => new(TestUserId, "test", []);
+        public string? TimeZoneId => timeZoneId;
+    }
+
+    /// <summary>The UTC instant of local midnight of a calendar date in <paramref name="zone"/>: what the client sends for a date picked there.</summary>
+    /// <param name="zone">The user's time zone.</param>
+    /// <param name="year">The year.</param>
+    /// <param name="month">The month.</param>
+    /// <param name="day">The day.</param>
+    /// <returns>The UTC instant.</returns>
+    public static DateTime LocalMidnight(TimeZoneInfo zone, int year, int month, int day) =>
+        TimeZoneInfo.ConvertTimeToUtc(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Unspecified), zone);
 
 #pragma warning disable CS8633, CS8767
     private sealed class NullReportResultCache : IReportResultCache

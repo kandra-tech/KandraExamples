@@ -63,6 +63,12 @@ the caller's claims.
 culture at read time (add the resx key to every `{Config}.Localization` resx — en/ru/uk, with `{0}` placeholders);
 `ForLiteral(text)` is stored verbatim and shown to everyone in that one language. Prefer `ForKey`.
 
+Two traps of `ForKey`. **The title and the body share one list of arguments, the title's**: the body's own arguments are
+dropped, so give both keys the same arguments and let each use the placeholders it needs (`{0}` and `{1}` in the title,
+`{2}` in the body). **The arguments are stored as data and shown as they are**: an enum member or a caption computed in
+the sender's language reaches every reader in that one form. Choose the key by the kind instead
+(`Reminder_Policy_{kind}_Title`), and pass only names, numbers and dates.
+
 ## 3. Pick the recipient method
 
 | Method | Who | Notes |
@@ -114,7 +120,8 @@ If a producer can run repeatedly over the same facts (a scheduled "documents wit
 row with that key is skipped silently, so re-running the producer doesn't spam. Build the key only from facts that
 identify the event and do not move between runs (the vehicle, the work item, the due date or the reading it became due
 at), never from a value that changes on every run ("1 240 km left"): the key would differ each time and the "once"
-becomes "every run". The key is per recipient, and a
+becomes "every run". Leaving the occurrence out goes wrong the other way: a key of the vehicle and the work item alone
+blocks the reminder for the next time the same job is due, forever. The key is per recipient, and a
 read notification still blocks a repeat (until the 90-day purge removes it). Omit it for one-shot "run finished" messages, which should
 always arrive.
 

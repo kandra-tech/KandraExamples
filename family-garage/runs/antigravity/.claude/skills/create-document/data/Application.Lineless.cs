@@ -37,7 +37,7 @@ public class {{Name}}Behavior(ISimpleNumberingSystem numbering) : IDocumentBehav
     {
         // var postingService = registers.GetPostingService();
         // var transaction = new Kandra.Domain.Accounting.PostingTransaction(
-        //     LineId: entity.Id,
+        //     LineId: null, // a posting of the whole document, no line
         //     Source: postingService.AsOf(entity.SomeAccountCode).With(/* subconto values */).Build(),
         //     Destination: postingService.AsOf(/* ... */).With(/* ... */).Build(),
         //     Amount: /* ... */);
