@@ -89,6 +89,11 @@ the agent's report said all eleven did. All of this was fixed by hand (see below
     disagree with the Upcoming report it opens; a look-ahead of 0 silently became 30.
 12. Smaller: report dates showed a time of day, dashboard tables printed numbers unformatted, three unused-parameter
     warnings.
+13. **In the first days of a month the demo showed no costs for "this month".** The newest demo documents were 3 and 10
+    days old, so on the 1st of a month the dashboard's "This month costs" tile and the chart's current month were empty.
+    The two latest refuels (the last of each car) are now dated today, so the current month always has costs; the
+    reminder dates (policies, services, payments) are unchanged, as are the dashboard's overdue count and next events.
+    Found while recording a video on 1 November; the demo package tests pass.
 
 The tests pass after the fixes: 36 of 36, the agent's 23 and 13 new ones, run as a user in Kyiv (`BriefChecksTests`,
 `DemoDataTests`). The tests for bugs 1 to 8 were run against the delivered code: each fails there and passes with the fix.

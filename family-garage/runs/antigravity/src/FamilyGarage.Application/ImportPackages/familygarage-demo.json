@@ -1095,7 +1095,7 @@
         {
           "$id": "rf-13",
           "code": "RF-0013",
-          "date": "$today-10d",
+          "date": "$today",
           "vehicleId": {
             "$ref": "veh-1"
           },
@@ -1230,7 +1230,7 @@
         {
           "$id": "rf-22",
           "code": "RF-0022",
-          "date": "$today-3d",
+          "date": "$today",
           "vehicleId": {
             "$ref": "veh-2"
           },

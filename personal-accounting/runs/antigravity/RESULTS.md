@@ -65,6 +65,12 @@ register tables directly. That approach is the main thing left to improve.
    both plans together. Posting it is now refused with a localized message until the other one is un-posted.
 7. **An expense could use an income category, and an income an expense category.** Such a document is now refused when
    it is posted (a draft can still be saved). The category selectors still list both kinds.
+8. **In the first days of a month the demo showed an empty month.** Every demo date was "N days before today", written
+   as if the current month were the last 20 days, so on the 1st of a month "this month" on the dashboard (income,
+   expenses, budget spent, expenses by category) was empty. The demo package now dates by the start of the month
+   (`$monthStart` for this month's salary, budget and recent expenses, `$monthStart-1m+Nd` and `$monthStart-2m` for
+   the earlier ones, in the same order); no date falls after today. Found while recording a video on 1 November; the
+   demo package tests pass.
 
 Bugs 1 to 4 came out of the first review, 5 to 7 out of a second one. The tests pass after the fixes: 21 of 21, the
 agent's 18 (one with an added assertion, see bug 1) and three new ones in `Acceptance/MonthAndCategoryRulesTests.cs`,
