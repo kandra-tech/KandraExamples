@@ -16,6 +16,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportSpendingDto))]
 public class SpendingReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IAuthorizationChecker authorizationChecker)
     : IReportBehavior<ReportSpendingDto, SpendingReportResult>
 {
@@ -26,16 +27,20 @@ public class SpendingReportBehavior(
         var from = filters.DateRange?.From;
         var to = filters.DateRange?.To;
 
-        var lines = await repository.GetSpendingAsync(from, to, cancellationToken);
+        var lines = await repository.GetSpendingAsync(from, to, timeZone.TimeZone, cancellationToken);
         var data = new SpendingReportDataDto
         {
-            DateRangeText = filters.DateRange != null ? $"{filters.DateRange.From:d} - {filters.DateRange.To:d}" : null,
+            DateRangeText = filters.DateRange != null ? $"{LocalText(filters.DateRange.From)} - {LocalText(filters.DateRange.To)}" : null,
             Lines = SpendingReportMapper.ToDtos(lines)
         };
         var result = new SpendingReportResult { Filters = filters, Data = data };
         await EnrichPrintHeaderAsync(result, lookup, cancellationToken);
         return result;
     }
+
+    /// <summary>A picked date as the user's calendar date (it arrives as the UTC instant of local midnight).</summary>
+    private string LocalText(DateTime? date) =>
+        date.HasValue ? LocalCalendar.DateOf(date.Value, timeZone.TimeZone).ToString("d") : "";
 
     private async Task EnrichPrintHeaderAsync(SpendingReportResult result, ILookupRepository lookup, CancellationToken cancellationToken)
     {

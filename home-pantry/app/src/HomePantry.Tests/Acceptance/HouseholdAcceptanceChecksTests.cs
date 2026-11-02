@@ -291,19 +291,16 @@ public sealed class HouseholdAcceptanceChecksTests : IDisposable
             var overdueInReport = choresReport.Data.Lines.Count(l => l.IsOverdue);
 
             var repo = sp.GetRequiredService<IReportsRepository>();
-            var constants = sp.GetRequiredService<Kandra.Application.Abstractions.Services.IConstantsService>();
-            var localizer = sp.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer>();
-            var dashboardBehavior = new PantryDashboardBehavior(repo, constants, localizer);
+            var dashboardBehavior = ActivatorUtilities.CreateInstance<PantryDashboardBehavior>(sp);
             var dashboard = await dashboardBehavior.GetDataAsync(new PantryDashboardDto(), null!, Ct);
 
             Assert.Equal(overdueInReport, (int)(dashboard.OverdueChores.Value ?? 0));
 
-            // Equipment report on demo data resolves folder LocationName ("Kitchen") and attached manual blob
+            // Equipment report on demo data resolves folder LocationName ("Kitchen")
             var equipmentReportService = sp.GetRequiredService<IReportService<ReportEquipmentDto, EquipmentReportResult>>();
             var equipmentReport = await equipmentReportService.RunAsync(new ReportEquipmentDto { Days = 30 }, Ct);
             var roborock = Assert.Single(equipmentReport.Data.Lines, e => e.EquipmentCode == "EQ-ROBOT");
             Assert.Equal("Kitchen", roborock.LocationName);
-            Assert.True(roborock.HasManual);
 
             // Today's schedule and WeekPlan / Calendar find planned meals even when today is not Monday
             var weekPlanService = sp.GetRequiredService<IReportService<ReportWeekPlanDto, WeekPlanReportResult>>();
@@ -311,7 +308,7 @@ public sealed class HouseholdAcceptanceChecksTests : IDisposable
             Assert.Equal(3, weekPlan.Data.Lines.Count);
 
             var monday = weekPlan.Data.Lines.Min(l => l.Date);
-            var wednesdaySchedule = await repo.GetTodayScheduleAsync(monday.AddDays(2), Ct);
+            var wednesdaySchedule = await repo.GetTodayScheduleAsync(monday.AddDays(2), null, Ct);
             Assert.Contains(wednesdaySchedule, s => s.IsMeal && s.Servings == 3m);
         });
     }

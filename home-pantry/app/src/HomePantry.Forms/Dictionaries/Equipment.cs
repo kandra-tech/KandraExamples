@@ -32,14 +32,14 @@ public class EquipmentDto : DictionaryDto
     [Caption("BoughtOn")]
     [DateEditor]
     [Format("d")]
-    [ListFormColumn]
+    [ListFormColumn(Filterable = false)]
     [Description("Date the equipment was purchased.")]
     public DateTime? BoughtOn { get; set; }
 
     [Caption("WarrantyUntil")]
     [DateEditor]
     [Format("d")]
-    [ListFormColumn]
+    [ListFormColumn(Filterable = false)]
     [Description("Date until which manufacturer warranty is valid.")]
     public DateTime? WarrantyUntil { get; set; }
 

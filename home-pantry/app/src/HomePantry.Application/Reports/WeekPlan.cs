@@ -17,6 +17,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportWeekPlanDto))]
 public class WeekPlanReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IAuthorizationChecker authorizationChecker)
     : IReportBehavior<ReportWeekPlanDto, WeekPlanReportResult>
 {
@@ -24,7 +25,7 @@ public class WeekPlanReportBehavior(
 
     public async Task<WeekPlanReportResult> GetDataAsync(ReportWeekPlanDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var lines = await repository.GetWeekPlanAsync(filters.Week, cancellationToken);
+        var lines = await repository.GetWeekPlanAsync(filters.Week, timeZone.TimeZone, cancellationToken);
         var data = new WeekPlanReportDataDto
         {
             Week = filters.Week,

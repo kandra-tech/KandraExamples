@@ -17,6 +17,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportEquipmentDto))]
 public class EquipmentReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IAuthorizationChecker authorizationChecker)
     : IReportBehavior<ReportEquipmentDto, EquipmentReportResult>
 {
@@ -24,7 +25,7 @@ public class EquipmentReportBehavior(
 
     public async Task<EquipmentReportResult> GetDataAsync(ReportEquipmentDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var lines = await repository.GetEquipmentWarrantiesAsync(filters.Days, DateTime.UtcNow, cancellationToken);
+        var lines = await repository.GetEquipmentWarrantiesAsync(filters.Days, DateTime.UtcNow, timeZone.TimeZone, cancellationToken);
         var data = new EquipmentReportDataDto
         {
             Days = filters.Days,

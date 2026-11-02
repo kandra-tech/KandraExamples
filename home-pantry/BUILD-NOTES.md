@@ -56,8 +56,7 @@ The review added a migration and three acceptance tests (checks 8 to 10).
 
 ### Known limitations
 
-- Part A is recorded as delivered by its session, without a separate review here; the review of the whole application
-  follows part B.
+- Part A was recorded as delivered by its session; what the review of the whole application found is below.
 
 ## Part B: household
 
@@ -103,6 +102,56 @@ The review by Gemini Argon 4 listed its fixes; in short:
 
 - The agent's own fix report is not published (its content is summarised above).
 
+## Review of the whole application
+
+| | |
+|---|---|
+| Review | Claude Code / Claude Opus, after part B, on both parts together |
+| Date | 2026-11-02 |
+| Tests | 42 (34 before it); the new ones are in `Acceptance/ReviewFixesTests.cs`, each checked to fail on the code before the review |
+
+### Fixed
+
+1. **Days were UTC days.** The application never read the user's time zone, so every rule about a calendar day or
+   month was off for a user east of UTC (Kyiv is UTC+2): a date picked in a form arrives as local midnight, the previous
+   UTC day. It showed as:
+   - a **meal plan for the week of a Monday picked in Kyiv planned the week before**, and the demo meal plan (dated
+     `$today`) landed last week, so Today's schedule, the Week plan and the shopping needs of this week had no meals;
+   - a **best-before date one day early**: the default the form fills, the days left in Expiring and on the dashboard,
+     and two batches for one date when it was entered two ways;
+   - the **Spending report leaving out the last day** of the chosen period, and the dashboard's "this month" and spending
+     chart counting a purchase made just after midnight on the 1st in the previous month;
+   - **chores and batteries due a day early** when done just after midnight.
+
+   Days are now the user's calendar days throughout (`Domain/Commons/LocalCalendar.cs`): a batch's best-before date and a
+   planned meal's day are register keys of the local date, so one day is one batch whoever entered it; dates shown to the
+   user are local midnight; the dashboard's months come from the engine's `DashboardPeriods`.
+2. **The Calendar showed a recurring chore once**, on its next due date, so a daily chore appeared on one day of a
+   two-week calendar. It now appears on every day it falls due in the period (one already overdue on the first day), and
+   so does a battery.
+3. **Reminders reached only whoever ran them** (on a schedule, the job's user); the brief asks for the household. They
+   now go to the administrators and every user allowed to run the reminders, once a day each.
+4. **A made-up manual.** Equipment's save hook uploaded a one-line text file as the "manual" whenever the stored file
+   was missing, to give the demo equipment manuals; any equipment whose file went missing got the fake one too. Removed,
+   with the demo data's placeholder file ids (see the deviation below).
+5. Smaller: a transfer to the location it takes from is refused; the dashboard's Today's schedule says "Due today",
+   "Overdue" or "Planned" instead of field captions; the two equipment list columns that cannot be filtered say so (two
+   build warnings gone).
+
+### Deviations from the brief
+
+- The demo equipment has **no manual files**: an import package cannot carry files, and a made-up file is worse than
+  none. Attach a manual on the Equipment form to see it.
+- Spending (the report and the dashboard) still reads posted purchases rather than a register, as the first version
+  did: no register in the brief carries the store, and a purchase is the spending.
+
 ### Known limitations
 
-- Recorded as delivered by its session; the review of the whole application is next.
+- The reminders' delivery to the household is not covered by a test (the test host has no user accounts); it was
+  checked by reading the code.
+- The application was opened in a browser with the demo data (dashboard, calendar), not every form.
+- The build shows NuGet audit warnings for packages pinned by the configuration template, not by this application.
+
+## Since then
+
+- 2026-11-02: adopted into Kandra Examples (ports 7228/5228), and the review above.

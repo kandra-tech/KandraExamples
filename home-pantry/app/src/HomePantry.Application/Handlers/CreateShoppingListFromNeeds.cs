@@ -12,6 +12,7 @@ namespace HomePantry.Application.Handlers;
 [KandraHandlerBehavior(typeof(CreateShoppingListFromNeedsHandler))]
 public sealed class CreateShoppingListFromNeedsBehavior(
     IReportsRepository reportsRepo,
+    ICurrentTimeZone timeZone,
     IDocumentCrudService<ShoppingListDto, ShoppingListQueryDto> shoppingListCrud,
     ISimpleNumberingSystem numbering)
     : IHandlerBehavior<CreateShoppingListFromNeedsRequestDto, CreateShoppingListFromNeedsResponseDto>
@@ -19,7 +20,7 @@ public sealed class CreateShoppingListFromNeedsBehavior(
     public async Task<CreateShoppingListFromNeedsResponseDto> HandleAsync(CreateShoppingListFromNeedsRequestDto request, CancellationToken cancellationToken)
     {
         var now = DateTime.UtcNow;
-        var needs = await reportsRepo.GetShoppingNeedsAsync(request.RecipeId, request.Servings, now, request.MealPlanWeek, request.MealPlanId, cancellationToken);
+        var needs = await reportsRepo.GetShoppingNeedsAsync(request.RecipeId, request.Servings, now, request.MealPlanWeek, request.MealPlanId, timeZone.TimeZone, cancellationToken);
         var code = await numbering.GetNextAsync(NumberingBuckets.ShoppingList, raw => $"SHP-{raw:D4}", cancellationToken: cancellationToken);
 
         var dto = new ShoppingListDto

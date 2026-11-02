@@ -5,6 +5,7 @@ using Kandra.Application.Abstractions.Services;
 using Kandra.Application.Validation;
 using Kandra.Attributes.Application;
 using Kandra.Persistence.Abstractions.Registers;
+using HomePantry.Domain.Commons;
 using HomePantry.Domain.Entities.Documents;
 using HomePantry.Domain.Entities.Registers;
 using HomePantry.Domain.Numbering;
@@ -16,25 +17,27 @@ namespace HomePantry.Application.Documents;
 
 [KandraDocumentBehavior(typeof(MealPlanDto))]
 [RegisterTransactions(typeof(PlannedMealsRecord))]
-public sealed class MealPlanBehavior(ISimpleNumberingSystem numbering) : IDocumentBehavior<MealPlan>
+public sealed class MealPlanBehavior(ISimpleNumberingSystem numbering, ICurrentTimeZone timeZone) : IDocumentBehavior<MealPlan>
 {
-    private static DateTime ToMonday(DateTime date)
-    {
-        var d = date.Date;
-        var diff = (7 + (int)d.DayOfWeek - (int)DayOfWeek.Monday) % 7;
-        return d.AddDays(-diff);
-    }
+    /// <summary>
+    /// The Monday of the week of a picked date, as the user's calendar date. A date picked in Kyiv arrives as the previous
+    /// UTC day (local midnight), so a Monday taken in UTC would be a Sunday and plan the week before.
+    /// </summary>
+    private DateTime MondayOf(DateTime picked) => LocalCalendar.MondayOf(LocalCalendar.DateOf(picked, timeZone.TimeZone));
+
+    /// <summary>The week start the form shows: local midnight of the Monday.</summary>
+    private DateTime WeekStart(DateTime picked) => LocalCalendar.MidnightUtc(MondayOf(picked), timeZone.TimeZone);
 
     public async ValueTask OnNewAsync(MealPlan entity, DateTime? date, Guid? sourceDocumentId, CancellationToken cancellationToken)
     {
-        entity.WeekStartDate = ToMonday(date ?? DateTime.UtcNow);
+        entity.WeekStartDate = WeekStart(date ?? DateTime.UtcNow);
         entity.Date = date ?? entity.WeekStartDate;
         entity.Code = await numbering.GetNextAsync(NumberingBuckets.MealPlan, raw => $"MPL-{raw:D4}", cancellationToken: cancellationToken);
     }
 
     public ValueTask OnSaveAsync(MealPlan entity, bool isInsert, CancellationToken cancellationToken)
     {
-        entity.WeekStartDate = ToMonday(entity.WeekStartDate == default ? entity.Date : entity.WeekStartDate);
+        entity.WeekStartDate = WeekStart(entity.WeekStartDate == default ? entity.Date : entity.WeekStartDate);
         return ValueTask.CompletedTask;
     }
 
@@ -42,8 +45,8 @@ public sealed class MealPlanBehavior(ISimpleNumberingSystem numbering) : IDocume
     {
         var writer = registers.GetWriter<IDocumentInfoRegisterWriter<PlannedMealsRecord>>();
 
-        var monday = ToMonday(entity.WeekStartDate == default ? entity.Date : entity.WeekStartDate);
-        entity.WeekStartDate = monday;
+        var monday = MondayOf(entity.WeekStartDate == default ? entity.Date : entity.WeekStartDate);
+        entity.WeekStartDate = LocalCalendar.MidnightUtc(monday, timeZone.TimeZone);
         var records = entity.Lines.Select(line =>
         {
             var dayOffset = (int)line.Day - 1;
@@ -53,7 +56,8 @@ public sealed class MealPlanBehavior(ISimpleNumberingSystem numbering) : IDocume
                 LineId = line.Id,
                 Dimensions = new PlannedMealsDimensions
                 {
-                    Date = mealDate,
+                    // The key of the meal's calendar day.
+                    Date = LocalCalendar.Key(mealDate),
                     RecipeId = line.RecipeId
                 },
                 Details = new PlannedMealsDetails
@@ -63,7 +67,7 @@ public sealed class MealPlanBehavior(ISimpleNumberingSystem numbering) : IDocume
             };
         }).ToList();
 
-        await writer.PostAsync(entity.Id, monday, records, cancellationToken);
+        await writer.PostAsync(entity.Id, entity.WeekStartDate, records, cancellationToken);
     }
 
     public async ValueTask OnUnsubmitAsync(MealPlan entity, ISubmitScope registers, CancellationToken cancellationToken)

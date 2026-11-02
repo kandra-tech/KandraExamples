@@ -19,6 +19,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportExpiringDto))]
 public class ExpiringReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IConstantsService constants,
     IAuthorizationChecker authorizationChecker)
     : IReportBehavior<ReportExpiringDto, ExpiringReportResult>
@@ -31,7 +32,7 @@ public class ExpiringReportBehavior(
         var lookAhead = constantVal?.Value ?? 5;
         if (lookAhead <= 0) lookAhead = 5;
 
-        var lines = await repository.GetExpiringAsync(lookAhead, DateTime.UtcNow, cancellationToken);
+        var lines = await repository.GetExpiringAsync(lookAhead, DateTime.UtcNow, timeZone.TimeZone, cancellationToken);
         var data = new ExpiringReportDataDto
         {
             LookAheadDays = lookAhead,

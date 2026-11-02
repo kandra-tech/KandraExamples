@@ -9,6 +9,7 @@ using Kandra.Domain.Registers;
 using Kandra.Persistence.Abstractions;
 using Kandra.Persistence.Abstractions.Registers;
 using Kandra.Printing;
+using HomePantry.Domain.Commons;
 using HomePantry.Domain.Entities.Dictionaries;
 using HomePantry.Domain.Entities.Documents;
 using HomePantry.Domain.Entities.Registers;
@@ -23,7 +24,8 @@ namespace HomePantry.Application.Documents;
 [RegisterTransactions(typeof(StockMovement))]
 public sealed class InventoryCountBehavior(
     ISimpleNumberingSystem numbering,
-    IEntityRepository<ProductNode> productRepo) : IDocumentBehavior<InventoryCount>
+    IEntityRepository<ProductNode> productRepo,
+    ICurrentTimeZone timeZone) : IDocumentBehavior<InventoryCount>
 {
     public async ValueTask OnNewAsync(InventoryCount entity, DateTime? date, Guid? sourceDocumentId, CancellationToken cancellationToken)
     {
@@ -101,10 +103,8 @@ public sealed class InventoryCountBehavior(
             {
                 // Surplus
                 var product = productNodes.GetValueOrDefault(productId) as Product;
-                var shelfLife = product?.DefaultShelfLifeDays ?? 0;
-                var bestBefore = shelfLife > 0
-                    ? entity.Date.Date.AddDays(shelfLife)
-                    : new DateTime(9999, 12, 31);
+                var bestBefore = LocalCalendar.BestBeforeKey(
+                    LocalCalendar.DefaultBestBefore(entity.Date, product?.DefaultShelfLifeDays ?? 0, timeZone.TimeZone), timeZone.TimeZone);
 
                 var lastPrices = await priceReader.SliceOfLast(entity.Date, q => q.Where(p => p.Dimensions.ProductId == productId), cancellationToken);
                 var unitPrice = lastPrices.OrderByDescending(p => p.Period).FirstOrDefault()?.Details.Price

@@ -1159,4 +1159,16 @@
   <data name="Kind" xml:space="preserve">
     <value>Тип</value>
   </data>
+  <data name="Transfer_SameLocation" xml:space="preserve">
+    <value>Рядок не може переміщувати запаси в те саме місце, звідки їх беруть.</value>
+  </data>
+  <data name="Schedule_Planned" xml:space="preserve">
+    <value>Заплановано</value>
+  </data>
+  <data name="Schedule_Overdue" xml:space="preserve">
+    <value>Прострочено</value>
+  </data>
+  <data name="Schedule_DueToday" xml:space="preserve">
+    <value>Сьогодні</value>
+  </data>
 </root>

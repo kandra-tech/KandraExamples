@@ -17,6 +17,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportCalendarDto))]
 public class CalendarReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IAuthorizationChecker authorizationChecker,
     IStringLocalizer localizer)
     : IReportBehavior<ReportCalendarDto, CalendarReportResult>
@@ -25,11 +26,11 @@ public class CalendarReportBehavior(
 
     public async Task<CalendarReportResult> GetDataAsync(ReportCalendarDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var lines = await repository.GetCalendarAsync(filters.From, filters.To, cancellationToken);
+        var lines = await repository.GetCalendarAsync(filters.From, filters.To, timeZone.TimeZone, cancellationToken);
         var dtos = CalendarReportMapper.ToDtos(lines);
         foreach (var dto in dtos)
         {
-            dto.DayOfWeek = dto.Date.DayOfWeek switch
+            dto.DayOfWeek = LocalCalendar.DateOf(dto.Date, timeZone.TimeZone).DayOfWeek switch
             {
                 DayOfWeek.Monday => localizer["Enum_MealPlanDay_Monday"].Value,
                 DayOfWeek.Tuesday => localizer["Enum_MealPlanDay_Tuesday"].Value,

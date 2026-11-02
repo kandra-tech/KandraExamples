@@ -17,6 +17,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportShoppingNeedsDto))]
 public class ShoppingNeedsReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IAuthorizationChecker authorizationChecker)
     : IReportBehavior<ReportShoppingNeedsDto, ShoppingNeedsReportResult>
 {
@@ -24,7 +25,7 @@ public class ShoppingNeedsReportBehavior(
 
     public async Task<ShoppingNeedsReportResult> GetDataAsync(ReportShoppingNeedsDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var lines = await repository.GetShoppingNeedsAsync(filters.RecipeId, filters.Servings, DateTime.UtcNow, filters.MealPlanWeek, filters.MealPlanId, cancellationToken);
+        var lines = await repository.GetShoppingNeedsAsync(filters.RecipeId, filters.Servings, DateTime.UtcNow, filters.MealPlanWeek, filters.MealPlanId, timeZone.TimeZone, cancellationToken);
         var data = new ShoppingNeedsReportDataDto
         {
             Servings = filters.Servings,

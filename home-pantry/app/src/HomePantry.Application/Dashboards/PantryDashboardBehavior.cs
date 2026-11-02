@@ -18,7 +18,9 @@ namespace HomePantry.Application.Dashboards;
 public class PantryDashboardBehavior(
     IReportsRepository repository,
     IConstantsService constants,
-    IStringLocalizer localizer)
+    IStringLocalizer localizer,
+    ICurrentTimeZone timeZone,
+    TimeProvider? time = null)
     : IDashboardBehavior<PantryDashboardDto, PantryDashboardResultDto>
 {
     public string ObjectName => "PantryDashboard";
@@ -30,7 +32,8 @@ public class PantryDashboardBehavior(
 
     public async Task<PantryDashboardResultDto> GetDataAsync(PantryDashboardDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var now = DateTime.UtcNow;
+        var now = (time ?? TimeProvider.System).GetUtcNow().UtcDateTime;
+        var zone = timeZone.TimeZone;
 
         var lookAheadConst = await constants.GetAsync<ExpiringLookAheadDaysConstant>(now, cancellationToken);
         var lookAhead = lookAheadConst?.Value ?? 5;
@@ -38,14 +41,17 @@ public class PantryDashboardBehavior(
 
         var stockValue = await repository.GetTotalStockValueAsync(cancellationToken);
         var belowMinCount = await repository.GetBelowMinimumCountAsync(cancellationToken);
-        var expiringCount = await repository.GetExpiringBatchesCountAsync(lookAhead, now, cancellationToken);
-        var (thisMonthSpending, lastMonthSpending) = await repository.GetMonthlySpendingComparisonAsync(now, cancellationToken);
+        var expiringCount = await repository.GetExpiringBatchesCountAsync(lookAhead, now, zone, cancellationToken);
 
-        var spendingHistory = await repository.GetSpendingHistoryAsync(now, 6, cancellationToken);
+        // The last six months in the user's time zone; the last one is this month, the one before it last month.
+        var months = DashboardPeriods.Last(6, DashboardBucketSize.Month, zone, now);
+        var spendingHistory = await repository.GetSpendingPerPeriodAsync(months.Select(m => (m.StartUtc, m.EndUtc)).ToList(), cancellationToken);
+        var thisMonthSpending = spendingHistory[^1];
+        var lastMonthSpending = spendingHistory[^2];
         var spendingChart = new CategoryChartData
         {
-            Labels = spendingHistory.Select(x => DateTime.ParseExact(x.MonthLabel, "yyyy-MM", CultureInfo.InvariantCulture).ToString("MMM yyyy")).ToList()
-        }.AddSeries(localizer["Spending"], spendingHistory.Select(x => x.Amount).ToList());
+            Labels = months.Select(m => m.Start.ToString("MMM yyyy", CultureInfo.CurrentCulture)).ToList()
+        }.AddSeries(localizer["Spending"], spendingHistory.ToList());
 
         var stockByGroup = await repository.GetStockValueByGroupAsync(cancellationToken);
         var groupChart = new CategoryChartData
@@ -53,7 +59,7 @@ public class PantryDashboardBehavior(
             Labels = stockByGroup.Select(x => string.IsNullOrEmpty(x.GroupName) ? (localizer["Other"].Value ?? "Other") : x.GroupName).ToList()
         }.AddSeries(localizer["Value"], stockByGroup.Select(x => x.Value).ToList());
 
-        var nextExpiring = await repository.GetNextExpiringBatchesAsync(now, 10, cancellationToken);
+        var nextExpiring = await repository.GetNextExpiringBatchesAsync(now, 10, zone, cancellationToken);
         var tableData = new TableData<ExpiringBatchRow>
         {
             Rows = nextExpiring.Select(e => new ExpiringBatchRow
@@ -65,9 +71,9 @@ public class PantryDashboardBehavior(
             }).ToList()
         };
 
-        var overdueChoresCount = await repository.GetOverdueChoresCountAsync(now, cancellationToken);
-        var batteriesDueCount = await repository.GetBatteriesDueCountAsync(now, cancellationToken);
-        var todaySchedule = await repository.GetTodayScheduleAsync(now, cancellationToken);
+        var overdueChoresCount = await repository.GetOverdueChoresCountAsync(now, zone, cancellationToken);
+        var batteriesDueCount = await repository.GetBatteriesDueCountAsync(now, zone, cancellationToken);
+        var todaySchedule = await repository.GetTodayScheduleAsync(now, zone, cancellationToken);
         var scheduleTable = new TableData<TodayScheduleRow>
         {
             Rows = todaySchedule.Select(s => new TodayScheduleRow
@@ -75,7 +81,7 @@ public class PantryDashboardBehavior(
                 Kind = s.IsMeal ? localizer["MealPlan"].Value : localizer["Chore"].Value,
                 Item = s.ItemName,
                 Details = s.IsMeal ? $"{s.Servings:N0}" : (s.DoneByName ?? string.Empty),
-                Status = s.IsMeal ? localizer["PlannedMeals"].Value : (s.IsOverdue ? localizer["IsOverdue"].Value : localizer["NextDueDate"].Value)
+                Status = s.IsMeal ? localizer["Schedule_Planned"].Value : (s.IsOverdue ? localizer["Schedule_Overdue"].Value : localizer["Schedule_DueToday"].Value)
             }).ToList()
         };
 

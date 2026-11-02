@@ -17,6 +17,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportChoresDto))]
 public class ChoresReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IAuthorizationChecker authorizationChecker)
     : IReportBehavior<ReportChoresDto, ChoresReportResult>
 {
@@ -24,7 +25,7 @@ public class ChoresReportBehavior(
 
     public async Task<ChoresReportResult> GetDataAsync(ReportChoresDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var lines = await repository.GetChoresAsync(DateTime.UtcNow, cancellationToken);
+        var lines = await repository.GetChoresAsync(DateTime.UtcNow, timeZone.TimeZone, cancellationToken);
         var data = new ChoresReportDataDto
         {
             Lines = ChoresReportMapper.ToDtos(lines)

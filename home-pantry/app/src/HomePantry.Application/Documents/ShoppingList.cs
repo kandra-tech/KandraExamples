@@ -21,14 +21,15 @@ namespace HomePantry.Application.Documents;
 [KandraDocumentBehavior(typeof(ShoppingListDto))]
 public sealed class ShoppingListBehavior(
     ISimpleNumberingSystem numbering,
-    IReportsRepository reportsRepo) : IDocumentBehavior<ShoppingList>
+    IReportsRepository reportsRepo,
+    ICurrentTimeZone timeZone) : IDocumentBehavior<ShoppingList>
 {
     public async ValueTask OnNewAsync(ShoppingList entity, DateTime? date, Guid? sourceDocumentId, CancellationToken cancellationToken)
     {
         entity.Date = date ?? DateTime.UtcNow;
         entity.Code = await numbering.GetNextAsync(NumberingBuckets.ShoppingList, raw => $"SHP-{raw:D4}", cancellationToken: cancellationToken);
 
-        var needs = await reportsRepo.GetShoppingNeedsAsync(null, null, entity.Date, cancellationToken);
+        var needs = await reportsRepo.GetShoppingNeedsAsync(null, null, entity.Date, timeZone.TimeZone, cancellationToken);
         foreach (var need in needs)
         {
             entity.Lines.Add(new ShoppingListLine

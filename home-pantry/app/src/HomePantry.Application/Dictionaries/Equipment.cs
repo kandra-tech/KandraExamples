@@ -1,4 +1,3 @@
-using System.Text;
 using Kandra.Application.Abstractions;
 using Kandra.Application.Abstractions.Behaviors;
 using Kandra.Application.Abstractions.Files;
@@ -24,23 +23,6 @@ public sealed class EquipmentBehavior(ISimpleNumberingSystem numbering, IBlobSer
 
     public async ValueTask OnSaveAsync(Equipment entity, bool isInsert, CancellationToken cancellationToken)
     {
-        if (entity.Id == Guid.Empty)
-        {
-            entity.Id = Guid.NewGuid();
-        }
-
-        if (entity.ManualFileId is { } manualId && manualId != Guid.Empty)
-        {
-            var meta = await blobService.GetMetadataAsync(manualId, cancellationToken);
-            if (meta is null)
-            {
-                var fileName = $"{(string.IsNullOrWhiteSpace(entity.Code) ? "equipment" : entity.Code)}-manual.txt";
-                await using var ms = new MemoryStream(Encoding.UTF8.GetBytes($"{entity.Name} ({entity.Code}) - User Manual"));
-                var uploaded = await blobService.UploadAsync(ms, fileName, "text/plain", null, null, cancellationToken);
-                entity.ManualFileId = uploaded.ReferenceId;
-            }
-        }
-
         var blobIds = new List<Guid>();
         if (entity.ManualFileId.HasValue && entity.ManualFileId.Value != Guid.Empty)
             blobIds.Add(entity.ManualFileId.Value);

@@ -18,6 +18,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportStockOverviewDto))]
 public class StockOverviewReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IAuthorizationChecker authorizationChecker,
     IStringLocalizer localizer)
     : IReportBehavior<ReportStockOverviewDto, StockOverviewReportResult>
@@ -26,7 +27,7 @@ public class StockOverviewReportBehavior(
 
     public async Task<StockOverviewReportResult> GetDataAsync(ReportStockOverviewDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var lines = await repository.GetStockOverviewAsync(filters.LocationId, filters.ProductGroupId, cancellationToken);
+        var lines = await repository.GetStockOverviewAsync(filters.LocationId, filters.ProductGroupId, timeZone.TimeZone, cancellationToken);
         foreach (var line in lines)
         {
             line.Unit = line.ProductUnit.GetCaption(localizer);

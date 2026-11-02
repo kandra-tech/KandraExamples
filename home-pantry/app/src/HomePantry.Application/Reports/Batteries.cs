@@ -17,6 +17,7 @@ namespace HomePantry.Application.Reports;
 [KandraReportBehavior(typeof(ReportBatteriesDto))]
 public class BatteriesReportBehavior(
     IReportsRepository repository,
+    ICurrentTimeZone timeZone,
     IAuthorizationChecker authorizationChecker)
     : IReportBehavior<ReportBatteriesDto, BatteriesReportResult>
 {
@@ -24,7 +25,7 @@ public class BatteriesReportBehavior(
 
     public async Task<BatteriesReportResult> GetDataAsync(ReportBatteriesDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var lines = await repository.GetBatteriesAsync(DateTime.UtcNow, cancellationToken);
+        var lines = await repository.GetBatteriesAsync(DateTime.UtcNow, timeZone.TimeZone, cancellationToken);
         var data = new BatteriesReportDataDto
         {
             Lines = BatteriesReportMapper.ToDtos(lines)

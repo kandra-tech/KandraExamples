@@ -10,6 +10,7 @@ using Kandra.Domain.Registers;
 using Kandra.Persistence.Abstractions;
 using Kandra.Persistence.Abstractions.Registers;
 using Kandra.Printing;
+using HomePantry.Domain.Commons;
 using HomePantry.Domain.Entities.Dictionaries;
 using HomePantry.Domain.Entities.Documents;
 using HomePantry.Domain.Entities.Registers;
@@ -29,7 +30,8 @@ public sealed class PurchaseBehavior(
     IDocumentLinkService documentLinkService,
     IEntityRepository<ProductNode> productRepo,
     IInfoRegisterReader<LastPriceRecord> priceReader,
-    IStringLocalizer localizer) : IDocumentBehavior<Purchase>
+    IStringLocalizer localizer,
+    ICurrentTimeZone timeZone) : IDocumentBehavior<Purchase>
 {
     public async ValueTask OnNewAsync(Purchase entity, DateTime? date, Guid? sourceDocumentId, CancellationToken cancellationToken)
     {
@@ -55,10 +57,7 @@ public sealed class PurchaseBehavior(
                 {
                     var product = await productRepo.GetAsync(sl.ProductId, false, cancellationToken) as Product;
                     var locId = product?.DefaultLocationId ?? Guid.Empty;
-                    var shelfLife = product?.DefaultShelfLifeDays ?? 0;
-                    var bestBefore = shelfLife > 0
-                        ? entity.Date.Date.AddDays(shelfLife)
-                        : new DateTime(9999, 12, 31);
+                    var bestBefore = LocalCalendar.DefaultBestBefore(entity.Date, product?.DefaultShelfLifeDays ?? 0, timeZone.TimeZone);
 
                     var price = (entity.StoreId != Guid.Empty
                         ? lastPrices.FirstOrDefault(p => p.Dimensions.ProductId == sl.ProductId && p.Dimensions.StoreId == entity.StoreId)?.Details.Price
@@ -112,7 +111,7 @@ public sealed class PurchaseBehavior(
                 .ToDictionary(g => g.Key, g => g.Sum(x => x.Resources.Quantity));
 
             var newByBatch = entity.Lines
-                .GroupBy(l => (l.ProductId, l.LocationId, l.BestBeforeDate))
+                .GroupBy(l => (l.ProductId, l.LocationId, BestBeforeDate: BatchDate(l)))
                 .ToDictionary(g => g.Key, g => g.Sum(x => x.Quantity));
 
             foreach (var (batchKey, priorQty) in priorByBatch)
@@ -143,7 +142,7 @@ public sealed class PurchaseBehavior(
             {
                 ProductId = line.ProductId,
                 LocationId = line.LocationId,
-                BestBeforeDate = line.BestBeforeDate
+                BestBeforeDate = BatchDate(line)
             },
             Resources = new StockResources
             {
@@ -172,13 +171,19 @@ public sealed class PurchaseBehavior(
         await priceWriter.PostAsync(entity.Id, entity.Date, priceRecords, cancellationToken);
     }
 
+    /// <summary>
+    /// The batch of a line: its best-before date as the key of the user's calendar day. A form sends a picked date as local
+    /// midnight (the previous UTC day east of UTC), so the same day is one batch whichever way it was entered.
+    /// </summary>
+    private DateTime BatchDate(PurchaseLine line) => LocalCalendar.BestBeforeKey(line.BestBeforeDate, timeZone.TimeZone);
+
     public async ValueTask OnUnsubmitAsync(Purchase entity, ISubmitScope registers, CancellationToken cancellationToken)
     {
         var stockReader = registers.GetReader<IBalanceReader<StockMovement, StockBalance>>();
         var currentBalances = await stockReader.Balances(q => q.Where(b => b.Resources.Quantity > 0), cancellationToken);
 
         var linesByBatch = entity.Lines
-            .GroupBy(l => (l.ProductId, l.LocationId, l.BestBeforeDate))
+            .GroupBy(l => (l.ProductId, l.LocationId, BestBeforeDate: BatchDate(l)))
             .Select(g => new
             {
                 g.Key.ProductId,

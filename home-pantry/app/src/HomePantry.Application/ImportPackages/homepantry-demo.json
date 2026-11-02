@@ -2043,8 +2043,7 @@
             "$ref": "loc-kitchen"
           },
           "boughtOn": "$today-365d",
-          "warrantyUntil": "$today+365d",
-          "manualFileId": "aaaaaaaa-1111-1111-1111-111111111111"
+          "warrantyUntil": "$today+365d"
         },
         {
           "$id": "eq-robot",
@@ -2054,8 +2053,7 @@
             "$ref": "loc-kitchen"
           },
           "boughtOn": "$today-350d",
-          "warrantyUntil": "$today+15d",
-          "manualFileId": "aaaaaaaa-2222-2222-2222-222222222222"
+          "warrantyUntil": "$today+15d"
         },
         {
           "$id": "eq-washer",
@@ -2065,8 +2063,7 @@
             "$ref": "loc-bathroom"
           },
           "boughtOn": "$today-200d",
-          "warrantyUntil": "$today+530d",
-          "manualFileId": "aaaaaaaa-3333-3333-3333-333333333333"
+          "warrantyUntil": "$today+530d"
         }
       ]
     },

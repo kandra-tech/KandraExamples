@@ -478,10 +478,7 @@ public sealed class AcceptanceChecksTests : IDisposable
             }, Ct);
 
             // Dashboard
-            var repo = sp.GetRequiredService<IReportsRepository>();
-            var constants = sp.GetRequiredService<Kandra.Application.Abstractions.Services.IConstantsService>();
-            var localizer = sp.GetRequiredService<Microsoft.Extensions.Localization.IStringLocalizer>();
-            var dashboardBehavior = new PantryDashboardBehavior(repo, constants, localizer);
+            var dashboardBehavior = ActivatorUtilities.CreateInstance<PantryDashboardBehavior>(sp);
             var dashboard = await dashboardBehavior.GetDataAsync(new PantryDashboardDto(), null!, Ct);
 
             // Compare Below-minimum

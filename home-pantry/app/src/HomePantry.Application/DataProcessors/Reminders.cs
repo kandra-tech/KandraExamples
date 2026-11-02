@@ -3,7 +3,9 @@ using Kandra.Application.Abstractions.Behaviors;
 using Kandra.Application.Abstractions.Constants;
 using Kandra.Application.Abstractions.Services;
 using Kandra.Application.Abstractions.Services.Notifications;
+using Kandra.Attributes;
 using Kandra.Attributes.Application;
+using Kandra.Domain.Enums;
 using Kandra.Domain.Notifications;
 using Kandra.Persistence.Abstractions;
 using HomePantry.Application.Constants;
@@ -20,10 +22,21 @@ public class RemindersBehavior(
     IConstantsService constants,
     INotificationService notifications,
     IUnitOfWork unitOfWork,
-    IStringLocalizer localizer)
+    IStringLocalizer localizer,
+    ICurrentTimeZone timeZone)
     : IDataProcessorBehavior<RemindersDto, RemindersResultDto>
 {
     public string ObjectName => "Reminders";
+
+    /// <summary>The permission to run the reminders, which every household user has.</summary>
+    private static readonly IAuthorizationPoint HouseholdPoint = new RemindersPoint();
+
+    private sealed record RemindersPoint : IAuthorizationPoint
+    {
+        public ApplicationArea Area { get; init; } = ApplicationArea.DataProcessor;
+        public string ObjectName { get; init; } = "Reminders";
+        public ApplicationAction Action { get; init; } = ApplicationAction.Execute;
+    }
 
     public ValueTask OnNewAsync(RemindersDto input, CancellationToken cancellationToken)
     {
@@ -38,24 +51,33 @@ public class RemindersBehavior(
         var lookAhead = lookAheadConst?.Value ?? 5;
         if (lookAhead <= 0) lookAhead = 5;
 
-        var chores = await repository.GetChoresAsync(now, cancellationToken);
-        var dueChores = chores.Where(c => c.NextDueDate.Date <= now.Date).ToList();
+        var zone = timeZone.TimeZone;
+        var today = LocalCalendar.Today(now, zone);
 
-        var batteries = await repository.GetBatteriesAsync(now, cancellationToken);
-        var dueBatteries = batteries.Where(b => b.NextDueDate.Date <= now.Date).ToList();
+        // Due today or earlier, in the user's calendar days (NextDueDate is local midnight).
+        var chores = await repository.GetChoresAsync(now, zone, cancellationToken);
+        var dueChores = chores.Where(c => LocalCalendar.DateOf(c.NextDueDate, zone) <= today).ToList();
 
-        var expiring = await repository.GetExpiringAsync(lookAhead, now, cancellationToken);
+        var batteries = await repository.GetBatteriesAsync(now, zone, cancellationToken);
+        var dueBatteries = batteries.Where(b => LocalCalendar.DateOf(b.NextDueDate, zone) <= today).ToList();
+
+        var expiring = await repository.GetExpiringAsync(lookAhead, now, zone, cancellationToken);
 
         if (dueChores.Count > 0 || dueBatteries.Count > 0 || expiring.Count > 0)
         {
             var isWarning = dueChores.Any(c => c.IsOverdue) || expiring.Any(e => e.IsExpired);
 
-            await notifications.NotifyCallerAsync(new NotificationMessage(
+            var reminder = new NotificationMessage(
                 Title: NotificationText.ForKey("Reminders_NotificationTitle", dueChores.Count, dueBatteries.Count, expiring.Count),
                 Severity: isWarning ? NotificationSeverity.Warning : NotificationSeverity.Info,
-                DeduplicationKey: $"reminders-{now:yyyyMMdd}"
-            ), cancellationToken);
+                DeduplicationKey: $"reminders-{today:yyyyMMdd}");
 
+            // The household, not only whoever runs the job: the administrators, then every user who may run the
+            // reminders. Saving in between lets the de-duplication key skip an administrator who is both.
+            var audience = new AudienceOptions { IncludeSender = true };
+            await notifications.NotifyAdminsAsync(reminder, audience, cancellationToken);
+            await unitOfWork.SaveAsync(cancellationToken);
+            await notifications.NotifyWithPermissionAsync(HouseholdPoint, reminder, audience, cancellationToken);
             await unitOfWork.SaveAsync(cancellationToken);
         }
 

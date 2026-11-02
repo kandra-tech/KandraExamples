@@ -107,6 +107,8 @@ public class TransferValidator : DocumentValidator<TransferDto>
             line.RuleFor(l => l.FromLocationId).NotEmpty();
             line.RuleFor(l => l.ToLocationId).NotEmpty();
             line.RuleFor(l => l.Quantity).GreaterThan(0);
+            line.RuleFor(l => l.ToLocationId).NotEqual(l => l.FromLocationId)
+                .WithMessage(localizer["Transfer_SameLocation"].Value);
         });
     }
 }

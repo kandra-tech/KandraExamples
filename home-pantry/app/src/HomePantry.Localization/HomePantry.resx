@@ -1159,4 +1159,16 @@
   <data name="MealPlanUpdatedSuccessfully" xml:space="preserve">
     <value>Meal plan updated successfully</value>
   </data>
+  <data name="Transfer_SameLocation" xml:space="preserve">
+    <value>A line cannot move stock to the location it is taken from.</value>
+  </data>
+  <data name="Schedule_Planned" xml:space="preserve">
+    <value>Planned</value>
+  </data>
+  <data name="Schedule_Overdue" xml:space="preserve">
+    <value>Overdue</value>
+  </data>
+  <data name="Schedule_DueToday" xml:space="preserve">
+    <value>Due today</value>
+  </data>
 </root>
