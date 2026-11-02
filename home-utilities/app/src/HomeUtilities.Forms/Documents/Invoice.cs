@@ -119,7 +119,8 @@ public class InvoiceLineDto
     [Caption("Invoice_Amount")]
     [GridColumn]
     [Format("N2")]
-    [Description("Calculated line total in UAH.")]
+    [OnChange(nameof(InvoiceUiBehavior.OnLineAmountChanged))]
+    [Description("Line total: quantity times price, or the amount on the provider's invoice when the user types it.")]
     public decimal Amount { get; set; }
 }
 
@@ -181,6 +182,11 @@ public sealed class InvoiceUiBehavior(
         Record.TotalAmount = Record.Lines.Sum(l => l.Amount);
     }
 
+    public void OnLineAmountChanged(InvoiceLineDto line)
+    {
+        Record.TotalAmount = Record.Lines.Sum(l => l.Amount);
+    }
+
     public void OnLineRemoved(InvoiceLineDto line)
     {
         Record.TotalAmount = Record.Lines.Sum(l => l.Amount);
@@ -225,7 +231,7 @@ public sealed class InvoicePrintForm : DocumentPrintForm
     public decimal Total { get; set; }
 
     [PrintRole(PrintRole.Currency)]
-    public string CurrencyCode { get; set; } = "UAH";
+    public string CurrencyCode { get; set; } = string.Empty;
 }
 
 public sealed class InvoicePrintLine

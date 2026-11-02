@@ -104,5 +104,5 @@ public sealed class PaymentPrintForm : DocumentPrintForm
     public decimal Total { get; set; }
 
     [PrintRole(PrintRole.Currency)]
-    public string CurrencyCode { get; set; } = "UAH";
+    public string CurrencyCode { get; set; } = string.Empty;
 }

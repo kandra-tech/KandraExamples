@@ -1,4 +1,5 @@
 using HomeUtilities.Domain.Entities.Dictionaries;
+using Microsoft.Extensions.Localization;
 
 namespace HomeUtilities.Application.Services;
 
@@ -9,6 +10,7 @@ public static class PaymentDescriptionFormatter
         Provider? provider,
         Property? property,
         DateTime month,
+        IStringLocalizer localizer,
         string? invoiceNumber = null,
         string? meterReadingsSummary = null)
     {
@@ -25,18 +27,19 @@ public static class PaymentDescriptionFormatter
 
         if (string.IsNullOrWhiteSpace(template))
         {
+            // No template on the provider: the purpose is built from the resources, in the user's language.
             var parts = new List<string>
             {
-                $"Комунальні послуги за {monthStr}.{yearStr}"
+                localizer["PaymentPurpose_Services", monthStr, yearStr].Value
             };
             if (!string.IsNullOrWhiteSpace(account))
-                parts.Add($"о/р {account}");
+                parts.Add(localizer["PaymentPurpose_Account", account].Value);
             if (!string.IsNullOrWhiteSpace(owner))
                 parts.Add(owner);
             if (!string.IsNullOrWhiteSpace(propAddr))
                 parts.Add(propAddr);
             if (!string.IsNullOrWhiteSpace(meters))
-                parts.Add($"показники: {meters}");
+                parts.Add(localizer["PaymentPurpose_Readings", meters].Value);
 
             return string.Join("; ", parts);
         }

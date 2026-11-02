@@ -904,4 +904,22 @@
   <data name="HomeDashboard_MeterAlerts_Hint" xml:space="preserve">
     <value>Лічильники без показів за поточний місяць або з наближенням дати повірки.</value>
   </data>
+  <data name="PaymentPurpose_Services" xml:space="preserve">
+    <value>Комунальні послуги за {0}.{1}</value>
+  </data>
+  <data name="PaymentPurpose_Account" xml:space="preserve">
+    <value>о/р {0}</value>
+  </data>
+  <data name="PaymentPurpose_Readings" xml:space="preserve">
+    <value>показники: {0}</value>
+  </data>
+  <data name="Payment_ForInvoice" xml:space="preserve">
+    <value>Оплата за рахунком {0}</value>
+  </data>
+  <data name="Error_MissingTariff" xml:space="preserve">
+    <value>Немає тарифу, чинного на {0}, для: {1}. Спочатку проведіть документ «Встановлення тарифів».</value>
+  </data>
+  <data name="ReadingHigherThanNext" xml:space="preserve">
+    <value>Показ лічильника ({0}) не може бути більшим за наступний показ цього лічильника ({1})</value>
+  </data>
 </root>

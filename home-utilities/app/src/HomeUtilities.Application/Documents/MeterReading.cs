@@ -53,6 +53,18 @@ public class MeterReadingBehavior(
             {
                 throw new InvalidStateException(localizer["ReadingLowerThanPrevious", line.Reading, prevSlice[0].Details.Reading].Value);
             }
+
+            // A backdated reading must not exceed the next one either, or that later reading becomes a drop.
+            var next = await readingsReader.Records(entity.Date.AddTicks(1), DateTime.MaxValue,
+                q => q.Where(r => r.DocumentId != entity.Id && r.Dimensions.MeterId == line.MeterId && r.Dimensions.Zone == line.Zone)
+                      .OrderBy(r => r.Period)
+                      .Take(1),
+                cancellationToken);
+
+            if (next.Count > 0 && line.Reading > next[0].Details.Reading)
+            {
+                throw new InvalidStateException(localizer["ReadingHigherThanNext", line.Reading, next[0].Details.Reading].Value);
+            }
         }
 
         var records = entity.Lines.Select(line => new MeterReadingRecord

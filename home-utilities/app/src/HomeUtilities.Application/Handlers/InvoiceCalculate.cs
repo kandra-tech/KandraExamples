@@ -10,6 +10,8 @@ using HomeUtilities.Domain.Entities.Dictionaries;
 using HomeUtilities.Domain.Entities.Registers;
 using HomeUtilities.Enums;
 using HomeUtilities.Forms.Handlers;
+using Kandra.Domain.Exceptions;
+using Microsoft.Extensions.Localization;
 
 namespace HomeUtilities.Application.Handlers;
 
@@ -21,6 +23,7 @@ public sealed class InvoiceCalculateBehavior(
     IEntityRepository<Provider> providersRepository,
     IInfoRegisterReader<MeterReadingRecord> readingsReader,
     IInfoRegisterReader<TariffRecord> tariffsReader,
+    IStringLocalizer localizer,
     IAuthorizationChecker? authorizationChecker = null,
     ICurrentTimeZone? currentTimeZone = null)
     : IHandlerBehavior<InvoiceCalculateRequestDto, InvoiceCalculateResponseDto>
@@ -55,6 +58,17 @@ public sealed class InvoiceCalculateBehavior(
         }
 
         var lines = new List<InvoiceCalculateLineDto>();
+        var missingTariffs = new List<string>();
+
+        decimal PriceOf(List<TariffRecord> slice, Service service, TariffZone zone)
+        {
+            if (slice.Count > 0)
+                return slice[0].Details.Price;
+            missingTariffs.Add(zone == TariffZone.Single
+                ? service.Name
+                : $"{service.Name} ({localizer[$"Enum_TariffZone_{zone}"].Value})");
+            return 0m;
+        }
 
         foreach (var service in services)
         {
@@ -70,7 +84,7 @@ public sealed class InvoiceCalculateBehavior(
                         var tariffSlice = await tariffsReader.SliceOfLast(monthEnd,
                             q => q.Where(r => r.Dimensions.ServiceId == service.Id && r.Dimensions.Zone == TariffZone.Single),
                             cancellationToken);
-                        var price = tariffSlice.Count > 0 ? tariffSlice[0].Details.Price : 0m;
+                        var price = PriceOf(tariffSlice, service, TariffZone.Single);
                         var amt = Math.Round(qty * price, 2);
 
                         lines.Add(new InvoiceCalculateLineDto
@@ -91,7 +105,7 @@ public sealed class InvoiceCalculateBehavior(
                         var tariffSliceDay = await tariffsReader.SliceOfLast(monthEnd,
                             q => q.Where(r => r.Dimensions.ServiceId == service.Id && r.Dimensions.Zone == TariffZone.Day),
                             cancellationToken);
-                        var priceDay = tariffSliceDay.Count > 0 ? tariffSliceDay[0].Details.Price : 0m;
+                        var priceDay = PriceOf(tariffSliceDay, service, TariffZone.Day);
                         var amtDay = Math.Round(qtyDay * priceDay, 2);
 
                         lines.Add(new InvoiceCalculateLineDto
@@ -110,7 +124,7 @@ public sealed class InvoiceCalculateBehavior(
                         var tariffSliceNight = await tariffsReader.SliceOfLast(monthEnd,
                             q => q.Where(r => r.Dimensions.ServiceId == service.Id && r.Dimensions.Zone == TariffZone.Night),
                             cancellationToken);
-                        var priceNight = tariffSliceNight.Count > 0 ? tariffSliceNight[0].Details.Price : 0m;
+                        var priceNight = PriceOf(tariffSliceNight, service, TariffZone.Night);
                         var amtNight = Math.Round(qtyNight * priceNight, 2);
 
                         lines.Add(new InvoiceCalculateLineDto
@@ -130,7 +144,7 @@ public sealed class InvoiceCalculateBehavior(
                 var tariffSlice = await tariffsReader.SliceOfLast(monthEnd,
                     q => q.Where(r => r.Dimensions.ServiceId == service.Id && r.Dimensions.Zone == TariffZone.Single),
                     cancellationToken);
-                var price = tariffSlice.Count > 0 ? tariffSlice[0].Details.Price : 0m;
+                var price = PriceOf(tariffSlice, service, TariffZone.Single);
                 var amt = Math.Round(1m * price, 2);
 
                 lines.Add(new InvoiceCalculateLineDto
@@ -148,7 +162,7 @@ public sealed class InvoiceCalculateBehavior(
                 var tariffSlice = await tariffsReader.SliceOfLast(monthEnd,
                     q => q.Where(r => r.Dimensions.ServiceId == service.Id && r.Dimensions.Zone == TariffZone.Single),
                     cancellationToken);
-                var price = tariffSlice.Count > 0 ? tariffSlice[0].Details.Price : 0m;
+                var price = PriceOf(tariffSlice, service, TariffZone.Single);
                 var amt = Math.Round(propertyArea * price, 2);
 
                 lines.Add(new InvoiceCalculateLineDto
@@ -167,7 +181,7 @@ public sealed class InvoiceCalculateBehavior(
                 var tariffSlice = await tariffsReader.SliceOfLast(monthEnd,
                     q => q.Where(r => r.Dimensions.ServiceId == service.Id && r.Dimensions.Zone == TariffZone.Single),
                     cancellationToken);
-                var price = tariffSlice.Count > 0 ? tariffSlice[0].Details.Price : 0m;
+                var price = PriceOf(tariffSlice, service, TariffZone.Single);
                 var amt = Math.Round((decimal)personsCount * price, 2);
 
                 lines.Add(new InvoiceCalculateLineDto
@@ -182,13 +196,20 @@ public sealed class InvoiceCalculateBehavior(
             }
         }
 
+        // A line without a valid tariff would post at price 0: refuse instead, naming what has no tariff.
+        if (missingTariffs.Count > 0)
+        {
+            throw new InvalidStateException(localizer["Error_MissingTariff",
+                TimeZoneHelper.ToLocalDate(monthEnd, currentTimeZone?.TimeZone).ToString("d"),
+                string.Join(", ", missingTariffs.Distinct())].Value);
+        }
+
         var meterSummaries = new List<string>();
         foreach (var l in lines.Where(l => l.MeterId.HasValue))
         {
-            var meter = meters.FirstOrDefault(m => m.Id == l.MeterId!.Value);
-            var mName = meter?.Name ?? "Meter";
-            var zoneStr = l.Zone != TariffZone.Single ? $" ({l.Zone})" : "";
-            meterSummaries.Add($"{mName}{zoneStr}: {l.Quantity:G29}");
+            var meter = meters.First(m => m.Id == l.MeterId!.Value);
+            var zoneStr = l.Zone != TariffZone.Single ? $" ({localizer[$"Enum_TariffZone_{l.Zone}"].Value})" : "";
+            meterSummaries.Add($"{meter.Name}{zoneStr}: {l.Quantity:G29}");
         }
         var meterSummary = string.Join("; ", meterSummaries);
 
@@ -198,6 +219,7 @@ public sealed class InvoiceCalculateBehavior(
             provider,
             property,
             monthStart,
+            localizer,
             meterReadingsSummary: meterSummary);
 
         return new InvoiceCalculateResponseDto

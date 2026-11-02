@@ -590,7 +590,7 @@
         },
         "amount": {
           "type": "number",
-          "description": "Calculated line total in UAH."
+          "description": "Line total: quantity times price, or the amount on the provider's invoice when the user types it."
         }
       },
       "additionalProperties": false

@@ -87,7 +87,7 @@ public sealed class SetTariffsPrintForm : DocumentPrintForm
     public PrintVatMode VatMode { get; set; } = PrintVatMode.NotPayer;
 
     [PrintRole(PrintRole.Currency)]
-    public string CurrencyCode { get; set; } = "UAH";
+    public string CurrencyCode { get; set; } = string.Empty;
 }
 
 public sealed class SetTariffsPrintLine

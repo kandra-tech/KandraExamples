@@ -31,6 +31,7 @@ public class PaymentBehavior(
     IEntityRepository<Provider> providersRepository,
     IEntityRepository<Property> propertiesRepository,
     IConstantsService constants,
+    IStringLocalizer localizer,
     ICurrentTimeZone? currentTimeZone = null,
     IAuthorizationChecker? authorizationChecker = null) : IDocumentBehavior<Payment>
 {
@@ -56,7 +57,7 @@ public class PaymentBehavior(
                 entity.PaymentDescription = invoice.PaymentDescription;
                 entity.Comment = !string.IsNullOrWhiteSpace(invoice.PaymentDescription)
                     ? invoice.PaymentDescription
-                    : $"Payment for Invoice {invoice.Code}";
+                    : localizer["Payment_ForInvoice", invoice.Code].Value;
             }
         }
     }
@@ -71,7 +72,8 @@ public class PaymentBehavior(
                 prov?.PaymentDescriptionTemplate,
                 prov,
                 prop,
-                entity.Date,
+                TimeZoneHelper.ToMonthStartUtc(entity.Date, currentTimeZone?.TimeZone),
+                localizer,
                 entity.Code);
             if (string.IsNullOrWhiteSpace(entity.Comment))
             {
@@ -126,7 +128,7 @@ public class PaymentBehavior(
         var prop = await propertiesRepository.GetAsync(entity.PropertyId, false, cancellationToken);
         var propertyName = prop?.Name ?? entity.PropertyId.ToString();
 
-        var currency = (await constants.GetAsync<CurrencyCodeConstant>(entity.Date, cancellationToken))?.Value ?? "UAH";
+        var currency = (await constants.GetAsync<CurrencyCodeConstant>(entity.Date, cancellationToken)).Value;
 
         var form = new PaymentPrintForm
         {

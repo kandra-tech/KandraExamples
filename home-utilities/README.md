@@ -22,7 +22,8 @@ The household's utility bills: meter readings, tariffs that change over time, mo
 The first version was built from the brief by Google Antigravity (Gemini 3.8 Flash, medium). A few rounds of
 improvements with the same model followed in the same session (Ukrainian payment details and payment purpose templates,
 print forms, per-person billing, demo data in two languages), and the agent wrote them back into the brief. Then it was
-reviewed and fixed by Gemini Argon 4 (high). What each step did: [BUILD-NOTES.md](BUILD-NOTES.md).
+reviewed and fixed by Gemini Argon 4 (high), and reviewed again with Claude Code when it was adopted here (six more
+fixes). What each step did: [BUILD-NOTES.md](BUILD-NOTES.md).
 
 ## Run it
 

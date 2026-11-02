@@ -81,7 +81,7 @@ public class SetTariffsBehavior(
         var services = (await lookup.GetDictionaryAsync<ServiceNode>(serviceIds, cancellationToken))
             .ToDictionary(s => s.Id, s => s.Name);
 
-        var currency = (await constants.GetAsync<CurrencyCodeConstant>(entity.Date, cancellationToken))?.Value ?? "UAH";
+        var currency = (await constants.GetAsync<CurrencyCodeConstant>(entity.Date, cancellationToken)).Value;
 
         var form = new SetTariffsPrintForm
         {

@@ -214,7 +214,10 @@ public class HomeDashboardBehavior(
 
         // 4. Costs per month by service group (last 12 months, stacked bar chart)
         var months = DashboardPeriods.Last(12, DashboardBucketSize.Month, timeZone.TimeZone, now);
-        var costMovements = await costsReader.Movements(months[0].StartUtc, months[^1].EndUtc.AddTicks(-1),
+        // Utility costs are posted on the billing month's key (the 1st, UTC kind), not on an instant: read and bucket
+        // them by that key, so a month never slips into its neighbour for a user east or west of UTC.
+        var firstKey = new DateTime(months[0].Start.Year, months[0].Start.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+        var costMovements = await costsReader.Movements(firstKey, firstKey.AddMonths(12).AddTicks(-1),
             q => q, cancellationToken);
 
         var allServiceNodes = new List<ServiceNode>();
@@ -228,7 +231,7 @@ public class HomeDashboardBehavior(
 
         foreach (var mov in costMovements)
         {
-            var idx = DashboardPeriods.IndexOf(months, mov.Period);
+            var idx = (mov.Period.Year - firstKey.Year) * 12 + mov.Period.Month - firstKey.Month;
             if (idx < 0 || idx >= 12) continue;
 
             var groupName = localizer["ServiceGroup_Other"].Value;

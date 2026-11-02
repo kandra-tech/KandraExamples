@@ -46,14 +46,17 @@ public class InvoiceBehavior(
             raw => $"INV-{yy}-{raw:D4}",
             requestorTag: "Invoice:OnNew",
             cancellationToken: cancellationToken);
-        entity.Month = TimeZoneHelper.ToMonthStartUtc(entity.Date, currentTimeZone?.TimeZone);
+        entity.Month = TimeZoneHelper.LocalMonthBoundsUtc(entity.Date, currentTimeZone?.TimeZone).MonthStartUtc;
     }
 
     public async ValueTask OnSaveAsync(Invoice entity, bool isInsert, CancellationToken cancellationToken)
     {
-        entity.Month = TimeZoneHelper.ToMonthStartUtc(entity.Month, currentTimeZone?.TimeZone);
+        // Month is the instant the billing month starts in the user's time zone: it survives the client's UTC <-> local
+        // conversion and normalising it again is a no-op. The month itself is MonthKey (the 1st, UTC kind).
+        entity.Month = TimeZoneHelper.LocalMonthBoundsUtc(entity.Month, currentTimeZone?.TimeZone).MonthStartUtc;
 
-        foreach (var line in entity.Lines)
+        // The provider's invoice is what counts: an amount the user typed stays; only an empty one is computed.
+        foreach (var line in entity.Lines.Where(l => l.Amount == 0m))
         {
             line.Amount = Math.Round(line.Quantity * line.Price, 2);
         }
@@ -67,22 +70,24 @@ public class InvoiceBehavior(
                 prov?.PaymentDescriptionTemplate,
                 prov,
                 prop,
-                entity.Month,
+                MonthKey(entity.Month),
+                localizer,
                 entity.Code);
         }
     }
 
     public async ValueTask OnSubmitAsync(Invoice entity, bool isInsert, ISubmitScope registers, CancellationToken cancellationToken)
     {
-        var normMonth = TimeZoneHelper.ToMonthStartUtc(entity.Month, currentTimeZone?.TimeZone);
-        entity.Month = normMonth;
-        var duplicateExists = await invoicesRepository.ExistsAsync(q => q.Where(i =>
+        var normMonth = MonthKey(entity.Month);
+        var duplicateExists = false;
+        await foreach (var other in invoicesRepository.GetAllAsync(q => q.Where(i =>
             i.Id != entity.Id &&
             i.IsActive &&
             i.ProviderId == entity.ProviderId &&
-            i.PropertyId == entity.PropertyId &&
-            i.Month.Year == normMonth.Year &&
-            i.Month.Month == normMonth.Month), cancellationToken);
+            i.PropertyId == entity.PropertyId)))
+        {
+            duplicateExists |= MonthKey(other.Month) == normMonth;
+        }
 
         if (duplicateExists)
         {
@@ -171,7 +176,7 @@ public class InvoiceBehavior(
         var meters = (await lookup.GetDictionaryAsync<Meter>(meterIds, cancellationToken))
             .ToDictionary(m => m.Id, m => m.Name);
 
-        var currency = (await constants.GetAsync<CurrencyCodeConstant>(entity.Date, cancellationToken))?.Value ?? "UAH";
+        var currency = (await constants.GetAsync<CurrencyCodeConstant>(entity.Date, cancellationToken)).Value;
 
         var form = new InvoicePrintForm
         {
@@ -188,7 +193,7 @@ public class InvoiceBehavior(
             ProviderBankName = prov?.BankName,
             PropertyName = propertyName,
             PropertyOwner = prop?.Owner,
-            BillingMonth = entity.Month.ToString("MMMM yyyy"),
+            BillingMonth = MonthKey(entity.Month).ToString("MMMM yyyy"),
             PaymentDescription = entity.PaymentDescription,
             Total = entity.TotalAmount,
             CurrencyCode = currency,
@@ -205,6 +210,9 @@ public class InvoiceBehavior(
 
         return await renderer.RenderAsync(form, localizer, timeZone, format, layoutTag ?? "default", cancellationToken);
     }
+
+    /// <summary>The billing month as the register key: the 1st of the month in the user's time zone, UTC kind.</summary>
+    private DateTime MonthKey(DateTime month) => TimeZoneHelper.ToMonthStartUtc(month, currentTimeZone?.TimeZone);
 }
 
 [Mapper]

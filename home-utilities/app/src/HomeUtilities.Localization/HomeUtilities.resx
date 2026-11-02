@@ -904,4 +904,22 @@
   <data name="HomeDashboard_MeterAlerts_Hint" xml:space="preserve">
     <value>Meters missing current-month readings or approaching their verification deadline.</value>
   </data>
+  <data name="PaymentPurpose_Services" xml:space="preserve">
+    <value>Utility services for {0}.{1}</value>
+  </data>
+  <data name="PaymentPurpose_Account" xml:space="preserve">
+    <value>account {0}</value>
+  </data>
+  <data name="PaymentPurpose_Readings" xml:space="preserve">
+    <value>readings: {0}</value>
+  </data>
+  <data name="Payment_ForInvoice" xml:space="preserve">
+    <value>Payment for invoice {0}</value>
+  </data>
+  <data name="Error_MissingTariff" xml:space="preserve">
+    <value>No tariff is valid on {0} for: {1}. Post a Set tariffs document first.</value>
+  </data>
+  <data name="ReadingHigherThanNext" xml:space="preserve">
+    <value>Reading ({0}) cannot be higher than the next reading of this meter ({1})</value>
+  </data>
 </root>
