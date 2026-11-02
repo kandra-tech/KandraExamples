@@ -65,6 +65,20 @@ public class PantryDashboardBehavior(
             }).ToList()
         };
 
+        var overdueChoresCount = await repository.GetOverdueChoresCountAsync(now, cancellationToken);
+        var batteriesDueCount = await repository.GetBatteriesDueCountAsync(now, cancellationToken);
+        var todaySchedule = await repository.GetTodayScheduleAsync(now, cancellationToken);
+        var scheduleTable = new TableData<TodayScheduleRow>
+        {
+            Rows = todaySchedule.Select(s => new TodayScheduleRow
+            {
+                Kind = s.IsMeal ? localizer["MealPlan"].Value : localizer["Chore"].Value,
+                Item = s.ItemName,
+                Details = s.IsMeal ? $"{s.Servings:N0}" : (s.DoneByName ?? string.Empty),
+                Status = s.IsMeal ? localizer["PlannedMeals"].Value : (s.IsOverdue ? localizer["IsOverdue"].Value : localizer["NextDueDate"].Value)
+            }).ToList()
+        };
+
         return new PantryDashboardResultDto
         {
             Filters = filters,
@@ -83,6 +97,16 @@ public class PantryDashboardBehavior(
                 Value = expiringCount,
                 Trend = KpiTrend.LowerIsBetter
             },
+            OverdueChores = new KpiData
+            {
+                Value = overdueChoresCount,
+                Trend = KpiTrend.LowerIsBetter
+            },
+            BatteriesDue = new KpiData
+            {
+                Value = batteriesDueCount,
+                Trend = KpiTrend.LowerIsBetter
+            },
             MonthlySpending = new KpiData
             {
                 Value = thisMonthSpending,
@@ -91,7 +115,8 @@ public class PantryDashboardBehavior(
             },
             SpendingHistory = spendingChart,
             StockByGroup = groupChart,
-            NextExpiringBatches = tableData
+            NextExpiringBatches = tableData,
+            TodaySchedule = scheduleTable
         };
     }
 }

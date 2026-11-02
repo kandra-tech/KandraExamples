@@ -715,4 +715,448 @@
   <data name="Period" xml:space="preserve">
     <value>Период</value>
   </data>
+  <data name="HouseholdMember" xml:space="preserve">
+    <value>Член семьи</value>
+  </data>
+  <data name="HouseholdMembers" xml:space="preserve">
+    <value>Члены семьи</value>
+  </data>
+  <data name="AddHouseholdMember" xml:space="preserve">
+    <value>Добавить члена семьи</value>
+  </data>
+  <data name="CreateHouseholdMember" xml:space="preserve">
+    <value>Создать члена семьи</value>
+  </data>
+  <data name="EditHouseholdMember" xml:space="preserve">
+    <value>Редактировать члена семьи</value>
+  </data>
+  <data name="ViewHouseholdMember" xml:space="preserve">
+    <value>Просмотр члена семьи</value>
+  </data>
+  <data name="HouseholdMemberAddedSuccessfully" xml:space="preserve">
+    <value>Член семьи успешно добавлен</value>
+  </data>
+  <data name="HouseholdMemberUpdatedSuccessfully" xml:space="preserve">
+    <value>Член семьи успешно обновлен</value>
+  </data>
+  <data name="Nav_HouseholdMembers" xml:space="preserve">
+    <value>Члены семьи</value>
+  </data>
+  <data name="Chore" xml:space="preserve">
+    <value>Домашнее дело</value>
+  </data>
+  <data name="Chores" xml:space="preserve">
+    <value>Домашние дела</value>
+  </data>
+  <data name="AddChore" xml:space="preserve">
+    <value>Добавить дело</value>
+  </data>
+  <data name="CreateChore" xml:space="preserve">
+    <value>Создать дело</value>
+  </data>
+  <data name="EditChore" xml:space="preserve">
+    <value>Редактировать дело</value>
+  </data>
+  <data name="ViewChore" xml:space="preserve">
+    <value>Просмотр дела</value>
+  </data>
+  <data name="ChoreAddedSuccessfully" xml:space="preserve">
+    <value>Дело успешно добавлено</value>
+  </data>
+  <data name="ChoreUpdatedSuccessfully" xml:space="preserve">
+    <value>Дело успешно обновлено</value>
+  </data>
+  <data name="Nav_Chores" xml:space="preserve">
+    <value>Домашние дела</value>
+  </data>
+  <data name="AssignedTo" xml:space="preserve">
+    <value>Назначено</value>
+  </data>
+  <data name="Recurrence" xml:space="preserve">
+    <value>Периодичность</value>
+  </data>
+  <data name="EveryNDays" xml:space="preserve">
+    <value>Каждые N дней</value>
+  </data>
+  <data name="Chore_EveryNDaysRequired" xml:space="preserve">
+    <value>Укажите количество дней</value>
+  </data>
+  <data name="ChoreRecurrence" xml:space="preserve">
+    <value>Периодичность дела</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Батарейка</value>
+  </data>
+  <data name="Batteries" xml:space="preserve">
+    <value>Батарейки</value>
+  </data>
+  <data name="AddBattery" xml:space="preserve">
+    <value>Добавить батарейку</value>
+  </data>
+  <data name="CreateBattery" xml:space="preserve">
+    <value>Создать батарейку</value>
+  </data>
+  <data name="EditBattery" xml:space="preserve">
+    <value>Редактировать батарейку</value>
+  </data>
+  <data name="ViewBattery" xml:space="preserve">
+    <value>Просмотр батарейки</value>
+  </data>
+  <data name="BatteryAddedSuccessfully" xml:space="preserve">
+    <value>Батарейка успешно добавлена</value>
+  </data>
+  <data name="BatteryUpdatedSuccessfully" xml:space="preserve">
+    <value>Батарейка успешно обновлена</value>
+  </data>
+  <data name="Nav_Batteries" xml:space="preserve">
+    <value>Батарейки</value>
+  </data>
+  <data name="UsedIn" xml:space="preserve">
+    <value>Используется в</value>
+  </data>
+  <data name="Battery_UsedInRequired" xml:space="preserve">
+    <value>Укажите, где используется</value>
+  </data>
+  <data name="ChargeIntervalDays" xml:space="preserve">
+    <value>Интервал зарядки (дней)</value>
+  </data>
+  <data name="Battery_ChargeIntervalPositive" xml:space="preserve">
+    <value>Интервал должен быть положительным</value>
+  </data>
+  <data name="BatteryKind" xml:space="preserve">
+    <value>Тип батарейки</value>
+  </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Оборудование</value>
+  </data>
+  <data name="AddEquipment" xml:space="preserve">
+    <value>Добавить оборудование</value>
+  </data>
+  <data name="CreateEquipment" xml:space="preserve">
+    <value>Создать оборудование</value>
+  </data>
+  <data name="EditEquipment" xml:space="preserve">
+    <value>Редактировать оборудование</value>
+  </data>
+  <data name="ViewEquipment" xml:space="preserve">
+    <value>Просмотр оборудования</value>
+  </data>
+  <data name="EquipmentAddedSuccessfully" xml:space="preserve">
+    <value>Оборудование успешно добавлено</value>
+  </data>
+  <data name="EquipmentUpdatedSuccessfully" xml:space="preserve">
+    <value>Оборудование успешно обновлено</value>
+  </data>
+  <data name="Nav_Equipment" xml:space="preserve">
+    <value>Оборудование</value>
+  </data>
+  <data name="BoughtOn" xml:space="preserve">
+    <value>Дата покупки</value>
+  </data>
+  <data name="WarrantyUntil" xml:space="preserve">
+    <value>Гарантия до</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Инструкция</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="Equipment_LocationRequired" xml:space="preserve">
+    <value>Укажите местоположение</value>
+  </data>
+  <data name="HasManual" xml:space="preserve">
+    <value>Есть инструкция</value>
+  </data>
+  <data name="HasPhoto" xml:space="preserve">
+    <value>Есть фото</value>
+  </data>
+  <data name="ChoreDone" xml:space="preserve">
+    <value>Выполнение дела</value>
+  </data>
+  <data name="ChoresDone" xml:space="preserve">
+    <value>Выполненные дела</value>
+  </data>
+  <data name="AddChoreDone" xml:space="preserve">
+    <value>Добавить выполнение дела</value>
+  </data>
+  <data name="CreateChoreDone" xml:space="preserve">
+    <value>Зафиксировать выполнение дела</value>
+  </data>
+  <data name="EditChoreDone" xml:space="preserve">
+    <value>Редактировать выполнение дела</value>
+  </data>
+  <data name="ViewChoreDone" xml:space="preserve">
+    <value>Просмотр выполнения дела</value>
+  </data>
+  <data name="ChoreDoneAddedSuccessfully" xml:space="preserve">
+    <value>Выполнение дела зафиксировано</value>
+  </data>
+  <data name="ChoreDoneUpdatedSuccessfully" xml:space="preserve">
+    <value>Выполнение дела обновлено</value>
+  </data>
+  <data name="Nav_ChoresDone" xml:space="preserve">
+    <value>Выполнение дел</value>
+  </data>
+  <data name="Nav_QuickAddChoreDone" xml:space="preserve">
+    <value>Дело выполнено</value>
+  </data>
+  <data name="DoneBy" xml:space="preserve">
+    <value>Выполнил(а)</value>
+  </data>
+  <data name="ChoreDone_ChoreRequired" xml:space="preserve">
+    <value>Выберите дело</value>
+  </data>
+  <data name="ChoreDone_DoneByRequired" xml:space="preserve">
+    <value>Укажите исполнителя</value>
+  </data>
+  <data name="BatteryCharged" xml:space="preserve">
+    <value>Зарядка батарейки</value>
+  </data>
+  <data name="BatteriesCharged" xml:space="preserve">
+    <value>Зарядки батареек</value>
+  </data>
+  <data name="AddBatteryCharged" xml:space="preserve">
+    <value>Добавить зарядку батарейки</value>
+  </data>
+  <data name="CreateBatteryCharged" xml:space="preserve">
+    <value>Зафиксировать зарядку батарейки</value>
+  </data>
+  <data name="EditBatteryCharged" xml:space="preserve">
+    <value>Редактировать зарядку батарейки</value>
+  </data>
+  <data name="ViewBatteryCharged" xml:space="preserve">
+    <value>Просмотр зарядки батарейки</value>
+  </data>
+  <data name="BatteryChargedAddedSuccessfully" xml:space="preserve">
+    <value>Зарядка батарейки зафиксирована</value>
+  </data>
+  <data name="BatteryChargedUpdatedSuccessfully" xml:space="preserve">
+    <value>Зарядка батарейки обновлена</value>
+  </data>
+  <data name="Nav_BatteriesCharged" xml:space="preserve">
+    <value>Зарядка батареек</value>
+  </data>
+  <data name="Replaced" xml:space="preserve">
+    <value>Заменена</value>
+  </data>
+  <data name="BatteryCharged_BatteryRequired" xml:space="preserve">
+    <value>Выберите батарейку</value>
+  </data>
+  <data name="MealPlan" xml:space="preserve">
+    <value>План питания</value>
+  </data>
+  <data name="MealPlans" xml:space="preserve">
+    <value>Планы питания</value>
+  </data>
+  <data name="AddMealPlan" xml:space="preserve">
+    <value>Добавить план питания</value>
+  </data>
+  <data name="CreateMealPlan" xml:space="preserve">
+    <value>Создать план питания</value>
+  </data>
+  <data name="EditMealPlan" xml:space="preserve">
+    <value>Редактировать план питания</value>
+  </data>
+  <data name="ViewMealPlan" xml:space="preserve">
+    <value>Просмотр плана питания</value>
+  </data>
+  <data name="MealPlanAddedSuccessfully" xml:space="preserve">
+    <value>План питания успешно сохранен</value>
+  </data>
+  <data name="MealPlanUpdatedSuccessfully" xml:space="preserve">
+    <value>План питания успешно обновлен</value>
+  </data>
+  <data name="Nav_MealPlans" xml:space="preserve">
+    <value>Планы питания</value>
+  </data>
+  <data name="MealPlanDay" xml:space="preserve">
+    <value>День плана питания</value>
+  </data>
+  <data name="MealPlan_Day" xml:space="preserve">
+    <value>День</value>
+  </data>
+  <data name="MealPlan_Lines" xml:space="preserve">
+    <value>Блюда</value>
+  </data>
+  <data name="MealPlan_LinesRequired" xml:space="preserve">
+    <value>Добавьте хотя бы одно блюдо</value>
+  </data>
+  <data name="MealPlan_RecipeRequired" xml:space="preserve">
+    <value>Выберите рецепт</value>
+  </data>
+  <data name="MealPlan_ServingsPositive" xml:space="preserve">
+    <value>Количество порций должно быть больше 0</value>
+  </data>
+  <data name="MealPlan_WeekStartDate" xml:space="preserve">
+    <value>Понедельник недели</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Неделя</value>
+  </data>
+  <data name="ChoreLog" xml:space="preserve">
+    <value>Журнал дел</value>
+  </data>
+  <data name="ChoreLogRegister" xml:space="preserve">
+    <value>Регистр журнала дел</value>
+  </data>
+  <data name="BatteryLog" xml:space="preserve">
+    <value>Журнал батареек</value>
+  </data>
+  <data name="BatteryLogRegister" xml:space="preserve">
+    <value>Регистр журнала батареек</value>
+  </data>
+  <data name="BatteryCycles" xml:space="preserve">
+    <value>Циклы батареек</value>
+  </data>
+  <data name="BatteryCyclesRegister" xml:space="preserve">
+    <value>Регистр циклов батареек</value>
+  </data>
+  <data name="PlannedMeals" xml:space="preserve">
+    <value>Запланированные блюда</value>
+  </data>
+  <data name="PlannedMealsRegister" xml:space="preserve">
+    <value>Регистр запланированных блюд</value>
+  </data>
+  <data name="Enum_BatteryKind_Disposable" xml:space="preserve">
+    <value>Одноразовая</value>
+  </data>
+  <data name="Enum_BatteryKind_Rechargeable" xml:space="preserve">
+    <value>Аккумулятор</value>
+  </data>
+  <data name="Enum_ChoreRecurrence_Daily" xml:space="preserve">
+    <value>Ежедневно</value>
+  </data>
+  <data name="Enum_ChoreRecurrence_Weekly" xml:space="preserve">
+    <value>Еженедельно</value>
+  </data>
+  <data name="Enum_ChoreRecurrence_Monthly" xml:space="preserve">
+    <value>Ежемесячно</value>
+  </data>
+  <data name="Enum_ChoreRecurrence_EveryNDays" xml:space="preserve">
+    <value>Каждые N дней</value>
+  </data>
+  <data name="Enum_MealPlanDay_Monday" xml:space="preserve">
+    <value>Понедельник</value>
+  </data>
+  <data name="Enum_MealPlanDay_Tuesday" xml:space="preserve">
+    <value>Вторник</value>
+  </data>
+  <data name="Enum_MealPlanDay_Wednesday" xml:space="preserve">
+    <value>Среда</value>
+  </data>
+  <data name="Enum_MealPlanDay_Thursday" xml:space="preserve">
+    <value>Четверг</value>
+  </data>
+  <data name="Enum_MealPlanDay_Friday" xml:space="preserve">
+    <value>Пятница</value>
+  </data>
+  <data name="Enum_MealPlanDay_Saturday" xml:space="preserve">
+    <value>Суббота</value>
+  </data>
+  <data name="Enum_MealPlanDay_Sunday" xml:space="preserve">
+    <value>Воскресенье</value>
+  </data>
+  <data name="ChoresReport" xml:space="preserve">
+    <value>Отчет по делам</value>
+  </data>
+  <data name="BatteriesReport" xml:space="preserve">
+    <value>Отчет по батарейкам</value>
+  </data>
+  <data name="EquipmentReport" xml:space="preserve">
+    <value>Отчет по оборудованию</value>
+  </data>
+  <data name="WeekPlanReport" xml:space="preserve">
+    <value>План на неделю</value>
+  </data>
+  <data name="CalendarReport" xml:space="preserve">
+    <value>Календарь</value>
+  </data>
+  <data name="Calendar_BatteriesDue" xml:space="preserve">
+    <value>Батарейки к зарядке</value>
+  </data>
+  <data name="Calendar_ChoresDue" xml:space="preserve">
+    <value>Дела к выполнению</value>
+  </data>
+  <data name="Calendar_DayOfWeek" xml:space="preserve">
+    <value>День недели</value>
+  </data>
+  <data name="Calendar_PlannedMeals" xml:space="preserve">
+    <value>Запланированные блюда</value>
+  </data>
+  <data name="Dashboard_BatteriesDue" xml:space="preserve">
+    <value>Батареек к зарядке</value>
+  </data>
+  <data name="Dashboard_OverdueChores" xml:space="preserve">
+    <value>Просроченных дел</value>
+  </data>
+  <data name="Dashboard_TodaySchedule" xml:space="preserve">
+    <value>Сегодня: дела и меню</value>
+  </data>
+  <data name="Reminders" xml:space="preserve">
+    <value>Напоминания</value>
+  </data>
+  <data name="Reminders_NotificationTitle" xml:space="preserve">
+    <value>Домашние напоминания</value>
+  </data>
+  <data name="Reminders_SummaryMessage" xml:space="preserve">
+    <value>{0} дел к выполнению, {1} батареек к зарядке, {2} партий истекают</value>
+  </data>
+  <data name="Reminders_DueChoresCount" xml:space="preserve">
+    <value>Количество дел к выполнению</value>
+  </data>
+  <data name="Reminders_DueBatteriesCount" xml:space="preserve">
+    <value>Количество батареек к зарядке</value>
+  </data>
+  <data name="Reminders_ExpiringBatchesCount" xml:space="preserve">
+    <value>Количество истекающих партий</value>
+  </data>
+  <data name="Reminders_Message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="ShoppingNeeds_MealPlan" xml:space="preserve">
+    <value>План питания</value>
+  </data>
+  <data name="ShoppingNeeds_MealPlanWeek" xml:space="preserve">
+    <value>Неделя плана</value>
+  </data>
+  <data name="LastDoneDate" xml:space="preserve">
+    <value>Последнее выполнение</value>
+  </data>
+  <data name="LastChargeDate" xml:space="preserve">
+    <value>Последняя зарядка</value>
+  </data>
+  <data name="NextDueDate" xml:space="preserve">
+    <value>Следующая дата</value>
+  </data>
+  <data name="IsOverdue" xml:space="preserve">
+    <value>Просрочено</value>
+  </data>
+  <data name="TotalCycles" xml:space="preserve">
+    <value>Всего циклов</value>
+  </data>
+  <data name="Cycles" xml:space="preserve">
+    <value>Циклы</value>
+  </data>
+  <data name="Replacements" xml:space="preserve">
+    <value>Замены</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Дней</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>С даты</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>По дату</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Элемент</value>
+  </data>
+  <data name="Kind" xml:space="preserve">
+    <value>Тип</value>
+  </data>
 </root>

@@ -11,6 +11,7 @@ using Kandra.DtoCommon.Printing;
 using Kandra.Forms.Printable;
 using Kandra.Forms.Reports;
 using HomePantry.Forms.Dictionaries;
+using HomePantry.Forms.Documents;
 
 namespace HomePantry.Forms.Reports;
 
@@ -98,6 +99,16 @@ public sealed class ReportShoppingNeedsDto : IReportFiltersDto
     [Caption("Servings")]
     [Description("Servings to cook if a recipe is selected.")]
     public decimal Servings { get; set; } = 1m;
+
+    [Caption("ShoppingNeeds_MealPlanWeek")]
+    [DateEditor]
+    [Description("Optionally choose a week date to include its meal plan ingredients in needs.")]
+    public DateTime? MealPlanWeek { get; set; }
+
+    [Caption("ShoppingNeeds_MealPlan")]
+    [Search(typeof(MealPlanDto))]
+    [Description("Optionally choose a meal plan document to include its planned ingredients in needs.")]
+    public Guid? MealPlanId { get; set; }
 }
 
 [PrintForm]
@@ -113,6 +124,11 @@ public sealed class ShoppingNeedsReportDataDto : ReportPrintForm
     [Caption("Servings")]
     [Format("N1")]
     public decimal Servings { get; set; } = 1m;
+
+    [PrintRole(PrintRole.Parameter)]
+    [Caption("ShoppingNeeds_MealPlanWeek")]
+    [Format("d")]
+    public DateTime? MealPlanWeek { get; set; }
 
     [Required]
     [PrintTable(LineNumbers = true)]

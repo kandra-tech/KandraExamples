@@ -112,6 +112,18 @@ public sealed class LocalizationKeysTests
             var priceReader = sp.GetRequiredService<Kandra.Persistence.Abstractions.Registers.IRegisterTransactionsReader<HomePantry.Domain.Entities.Registers.LastPriceRecord>>();
             CollectRegisterShapeKeys(priceReader.Shape, keys);
 
+            var choreLogReader = sp.GetRequiredService<Kandra.Persistence.Abstractions.Registers.IRegisterTransactionsReader<HomePantry.Domain.Entities.Registers.ChoreLogRecord>>();
+            CollectRegisterShapeKeys(choreLogReader.Shape, keys);
+
+            var batteryLogReader = sp.GetRequiredService<Kandra.Persistence.Abstractions.Registers.IRegisterTransactionsReader<HomePantry.Domain.Entities.Registers.BatteryLogRecord>>();
+            CollectRegisterShapeKeys(batteryLogReader.Shape, keys);
+
+            var batteryCyclesReader = sp.GetRequiredService<Kandra.Persistence.Abstractions.Registers.IRegisterTransactionsReader<HomePantry.Domain.Entities.Registers.BatteryCyclesMovement>>();
+            CollectRegisterShapeKeys(batteryCyclesReader.Shape, keys);
+
+            var plannedMealsReader = sp.GetRequiredService<Kandra.Persistence.Abstractions.Registers.IRegisterTransactionsReader<HomePantry.Domain.Entities.Registers.PlannedMealsRecord>>();
+            CollectRegisterShapeKeys(plannedMealsReader.Shape, keys);
+
             return Task.CompletedTask;
         });
 

@@ -24,10 +24,11 @@ public class ShoppingNeedsReportBehavior(
 
     public async Task<ShoppingNeedsReportResult> GetDataAsync(ReportShoppingNeedsDto filters, ILookupRepository lookup, CancellationToken cancellationToken)
     {
-        var lines = await repository.GetShoppingNeedsAsync(filters.RecipeId, filters.Servings, DateTime.UtcNow, cancellationToken);
+        var lines = await repository.GetShoppingNeedsAsync(filters.RecipeId, filters.Servings, DateTime.UtcNow, filters.MealPlanWeek, filters.MealPlanId, cancellationToken);
         var data = new ShoppingNeedsReportDataDto
         {
             Servings = filters.Servings,
+            MealPlanWeek = filters.MealPlanWeek,
             Lines = ShoppingNeedsReportMapper.ToDtos(lines)
         };
         var result = new ShoppingNeedsReportResult { Filters = filters, Data = data };

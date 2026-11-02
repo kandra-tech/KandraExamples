@@ -20,6 +20,219 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                 .HasAnnotation("CustomIndex:RenderingVersion", 2)
                 .HasAnnotation("ProductVersion", "10.0.14");
 
+            modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.Battery", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("BatteryKind")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ChargeIntervalDays")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CreatorUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ModifierUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UsedIn")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.ToTable("Dict_Batteries", (string)null);
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.Chore", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("AssignedToId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CreatorUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EveryNDays")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ModifierUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Recurrence")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssignedToId");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.ToTable("Dict_Chores", (string)null);
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.Equipment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("BoughtOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CreatorUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("LocationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ManualFileId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ModifierUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("PhotoFileId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("WarrantyUntil")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Dict_Equipment", (string)null);
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.HouseholdMember", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CreatorUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ModifierUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.ToTable("Dict_HouseholdMembers", (string)null);
+                });
+
             modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.LocationNode", b =>
                 {
                     b.Property<Guid>("Id")
@@ -347,6 +560,34 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.ToTable("Doc_InventoryCountLines", (string)null);
                 });
 
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.MealPlanLine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Day")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("MealPlanId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("RecipeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Servings")
+                        .HasPrecision(14, 2)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MealPlanId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("Doc_MealPlanLines", (string)null);
+                });
+
             modelBuilder.Entity("HomePantry.Domain.Entities.Documents.PurchaseLine", b =>
                 {
                     b.Property<Guid>("Id")
@@ -451,6 +692,92 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.ToTable("Doc_TransferLines", (string)null);
                 });
 
+            modelBuilder.Entity("HomePantry.Domain.Entities.Registers.BatteryCyclesMovement", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("DocumentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsExpense")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("LineId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Period")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Period");
+
+                    b.HasIndex("DocumentId", "LineId", "IsExpense");
+
+                    b.ToTable("Reg_BatteryCycles", (string)null);
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Registers.BatteryLogRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("DocumentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("LineId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Period")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Period");
+
+                    b.HasIndex("DocumentId", "LineId")
+                        .IsUnique();
+
+                    b.ToTable("Reg_BatteryLog", (string)null);
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Registers.ChoreLogRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("DocumentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("LineId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Period")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Period");
+
+                    b.HasIndex("DocumentId", "LineId")
+                        .IsUnique();
+
+                    b.ToTable("Reg_ChoreLog", (string)null);
+                });
+
             modelBuilder.Entity("HomePantry.Domain.Entities.Registers.LastPriceRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -477,6 +804,34 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                         .IsUnique();
 
                     b.ToTable("Reg_LastPrice", (string)null);
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Registers.PlannedMealsRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("DocumentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("LineId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Period")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Period");
+
+                    b.HasIndex("DocumentId", "LineId")
+                        .IsUnique();
+
+                    b.ToTable("Reg_PlannedMeals", (string)null);
                 });
 
             modelBuilder.Entity("HomePantry.Domain.Entities.Registers.StockBalance", b =>
@@ -1893,6 +2248,41 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.HasDiscriminator().HasValue(1);
                 });
 
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.BatteryCharged", b =>
+                {
+                    b.HasBaseType("Kandra.Domain.Entities.Documents.DocumentBase");
+
+                    b.Property<Guid>("BatteryId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Replaced")
+                        .HasColumnType("INTEGER");
+
+                    b.HasIndex("BatteryId");
+
+                    b.ToTable("Doc_BatteriesCharged", (string)null);
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.ChoreDone", b =>
+                {
+                    b.HasBaseType("Kandra.Domain.Entities.Documents.DocumentBase");
+
+                    b.Property<Guid>("ChoreId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("DoneById")
+                        .HasColumnType("TEXT");
+
+                    b.HasIndex("ChoreId");
+
+                    b.HasIndex("DoneById");
+
+                    b.ToTable("Doc_ChoresDone", (string)null);
+                });
+
             modelBuilder.Entity("HomePantry.Domain.Entities.Documents.Consume", b =>
                 {
                     b.HasBaseType("Kandra.Domain.Entities.Documents.DocumentBase");
@@ -1936,6 +2326,16 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.ToTable("Doc_InventoryCounts", (string)null);
                 });
 
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.MealPlan", b =>
+                {
+                    b.HasBaseType("Kandra.Domain.Entities.Documents.DocumentBase");
+
+                    b.Property<DateTime>("WeekStartDate")
+                        .HasColumnType("TEXT");
+
+                    b.ToTable("Doc_MealPlans", (string)null);
+                });
+
             modelBuilder.Entity("HomePantry.Domain.Entities.Documents.Purchase", b =>
                 {
                     b.HasBaseType("Kandra.Domain.Entities.Documents.DocumentBase");
@@ -1974,6 +2374,209 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.HasBaseType("Kandra.Domain.Entities.Documents.DocumentBase");
 
                     b.ToTable("Doc_Transfers", (string)null);
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.Battery", b =>
+                {
+                    b.OwnsOne("Kandra.Domain.Entities.ImportStamp", "Import", b1 =>
+                        {
+                            b1.Property<Guid>("BatteryId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<DateTime>("ImportedAt")
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_ImportedAt");
+
+                            b1.Property<string>("Key")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_Key");
+
+                            b1.Property<int>("Origin")
+                                .HasColumnType("INTEGER")
+                                .HasColumnName("Import_Origin");
+
+                            b1.Property<string>("Source")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_Source");
+
+                            b1.Property<string>("SourceHash")
+                                .IsRequired()
+                                .HasMaxLength(64)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_SourceHash");
+
+                            b1.HasKey("BatteryId");
+
+                            b1.HasIndex("Source", "Key")
+                                .IsUnique();
+
+                            b1.ToTable("Dict_Batteries");
+
+                            b1.WithOwner()
+                                .HasForeignKey("BatteryId");
+                        });
+
+                    b.Navigation("Import");
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.Chore", b =>
+                {
+                    b.HasOne("HomePantry.Domain.Entities.Dictionaries.HouseholdMember", "AssignedTo")
+                        .WithMany()
+                        .HasForeignKey("AssignedToId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.OwnsOne("Kandra.Domain.Entities.ImportStamp", "Import", b1 =>
+                        {
+                            b1.Property<Guid>("ChoreId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<DateTime>("ImportedAt")
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_ImportedAt");
+
+                            b1.Property<string>("Key")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_Key");
+
+                            b1.Property<int>("Origin")
+                                .HasColumnType("INTEGER")
+                                .HasColumnName("Import_Origin");
+
+                            b1.Property<string>("Source")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_Source");
+
+                            b1.Property<string>("SourceHash")
+                                .IsRequired()
+                                .HasMaxLength(64)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_SourceHash");
+
+                            b1.HasKey("ChoreId");
+
+                            b1.HasIndex("Source", "Key")
+                                .IsUnique();
+
+                            b1.ToTable("Dict_Chores");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ChoreId");
+                        });
+
+                    b.Navigation("AssignedTo");
+
+                    b.Navigation("Import");
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.Equipment", b =>
+                {
+                    b.HasOne("HomePantry.Domain.Entities.Dictionaries.LocationNode", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("Kandra.Domain.Entities.ImportStamp", "Import", b1 =>
+                        {
+                            b1.Property<Guid>("EquipmentId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<DateTime>("ImportedAt")
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_ImportedAt");
+
+                            b1.Property<string>("Key")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_Key");
+
+                            b1.Property<int>("Origin")
+                                .HasColumnType("INTEGER")
+                                .HasColumnName("Import_Origin");
+
+                            b1.Property<string>("Source")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_Source");
+
+                            b1.Property<string>("SourceHash")
+                                .IsRequired()
+                                .HasMaxLength(64)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_SourceHash");
+
+                            b1.HasKey("EquipmentId");
+
+                            b1.HasIndex("Source", "Key")
+                                .IsUnique();
+
+                            b1.ToTable("Dict_Equipment");
+
+                            b1.WithOwner()
+                                .HasForeignKey("EquipmentId");
+                        });
+
+                    b.Navigation("Import");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.HouseholdMember", b =>
+                {
+                    b.OwnsOne("Kandra.Domain.Entities.ImportStamp", "Import", b1 =>
+                        {
+                            b1.Property<Guid>("HouseholdMemberId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<DateTime>("ImportedAt")
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_ImportedAt");
+
+                            b1.Property<string>("Key")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_Key");
+
+                            b1.Property<int>("Origin")
+                                .HasColumnType("INTEGER")
+                                .HasColumnName("Import_Origin");
+
+                            b1.Property<string>("Source")
+                                .IsRequired()
+                                .HasMaxLength(200)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_Source");
+
+                            b1.Property<string>("SourceHash")
+                                .IsRequired()
+                                .HasMaxLength(64)
+                                .HasColumnType("TEXT")
+                                .HasColumnName("Import_SourceHash");
+
+                            b1.HasKey("HouseholdMemberId");
+
+                            b1.HasIndex("Source", "Key")
+                                .IsUnique();
+
+                            b1.ToTable("Dict_HouseholdMembers");
+
+                            b1.WithOwner()
+                                .HasForeignKey("HouseholdMemberId");
+                        });
+
+                    b.Navigation("Import");
                 });
 
             modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.LocationNode", b =>
@@ -2258,6 +2861,25 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.MealPlanLine", b =>
+                {
+                    b.HasOne("HomePantry.Domain.Entities.Documents.MealPlan", "MealPlan")
+                        .WithMany("Lines")
+                        .HasForeignKey("MealPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HomePantry.Domain.Entities.Dictionaries.Recipe", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("MealPlan");
+
+                    b.Navigation("Recipe");
+                });
+
             modelBuilder.Entity("HomePantry.Domain.Entities.Documents.PurchaseLine", b =>
                 {
                     b.HasOne("HomePantry.Domain.Entities.Dictionaries.LocationNode", "Location")
@@ -2339,6 +2961,188 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.Navigation("Transfer");
                 });
 
+            modelBuilder.Entity("HomePantry.Domain.Entities.Registers.BatteryCyclesMovement", b =>
+                {
+                    b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("HomePantry.Domain.Entities.Registers.BatteryCyclesDimensions", "Dimensions", b1 =>
+                        {
+                            b1.Property<Guid>("BatteryCyclesMovementId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<Guid>("BatteryId")
+                                .HasColumnType("TEXT");
+
+                            b1.HasKey("BatteryCyclesMovementId");
+
+                            b1.HasIndex("BatteryId");
+
+                            b1.ToTable("Reg_BatteryCycles");
+
+                            b1.WithOwner()
+                                .HasForeignKey("BatteryCyclesMovementId");
+
+                            b1.HasOne("HomePantry.Domain.Entities.Dictionaries.Battery", "Battery")
+                                .WithMany()
+                                .HasForeignKey("BatteryId")
+                                .OnDelete(DeleteBehavior.Restrict)
+                                .IsRequired();
+
+                            b1.Navigation("Battery");
+                        });
+
+                    b.OwnsOne("HomePantry.Domain.Entities.Registers.BatteryCyclesResources", "Resources", b1 =>
+                        {
+                            b1.Property<Guid>("BatteryCyclesMovementId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<decimal>("Cycles")
+                                .HasPrecision(14, 2)
+                                .HasColumnType("TEXT");
+
+                            b1.Property<decimal>("Replacements")
+                                .HasPrecision(14, 2)
+                                .HasColumnType("TEXT");
+
+                            b1.HasKey("BatteryCyclesMovementId");
+
+                            b1.ToTable("Reg_BatteryCycles");
+
+                            b1.WithOwner()
+                                .HasForeignKey("BatteryCyclesMovementId");
+                        });
+
+                    b.Navigation("Dimensions")
+                        .IsRequired();
+
+                    b.Navigation("Document");
+
+                    b.Navigation("Resources")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Registers.BatteryLogRecord", b =>
+                {
+                    b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("HomePantry.Domain.Entities.Registers.BatteryLogDetails", "Details", b1 =>
+                        {
+                            b1.Property<Guid>("BatteryLogRecordId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<bool>("Replaced")
+                                .HasColumnType("INTEGER");
+
+                            b1.HasKey("BatteryLogRecordId");
+
+                            b1.ToTable("Reg_BatteryLog");
+
+                            b1.WithOwner()
+                                .HasForeignKey("BatteryLogRecordId");
+                        });
+
+                    b.OwnsOne("HomePantry.Domain.Entities.Registers.BatteryLogDimensions", "Dimensions", b1 =>
+                        {
+                            b1.Property<Guid>("BatteryLogRecordId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<Guid>("BatteryId")
+                                .HasColumnType("TEXT");
+
+                            b1.HasKey("BatteryLogRecordId");
+
+                            b1.HasIndex("BatteryId");
+
+                            b1.ToTable("Reg_BatteryLog");
+
+                            b1.HasOne("HomePantry.Domain.Entities.Dictionaries.Battery", "Battery")
+                                .WithMany()
+                                .HasForeignKey("BatteryId")
+                                .OnDelete(DeleteBehavior.Restrict)
+                                .IsRequired();
+
+                            b1.WithOwner()
+                                .HasForeignKey("BatteryLogRecordId");
+
+                            b1.Navigation("Battery");
+                        });
+
+                    b.Navigation("Details")
+                        .IsRequired();
+
+                    b.Navigation("Dimensions")
+                        .IsRequired();
+
+                    b.Navigation("Document");
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Registers.ChoreLogRecord", b =>
+                {
+                    b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("HomePantry.Domain.Entities.Registers.ChoreLogDetails", "Details", b1 =>
+                        {
+                            b1.Property<Guid>("ChoreLogRecordId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<Guid>("DoneById")
+                                .HasColumnType("TEXT");
+
+                            b1.HasKey("ChoreLogRecordId");
+
+                            b1.ToTable("Reg_ChoreLog");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ChoreLogRecordId");
+                        });
+
+                    b.OwnsOne("HomePantry.Domain.Entities.Registers.ChoreLogDimensions", "Dimensions", b1 =>
+                        {
+                            b1.Property<Guid>("ChoreLogRecordId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<Guid>("ChoreId")
+                                .HasColumnType("TEXT");
+
+                            b1.HasKey("ChoreLogRecordId");
+
+                            b1.HasIndex("ChoreId");
+
+                            b1.ToTable("Reg_ChoreLog");
+
+                            b1.HasOne("HomePantry.Domain.Entities.Dictionaries.Chore", "Chore")
+                                .WithMany()
+                                .HasForeignKey("ChoreId")
+                                .OnDelete(DeleteBehavior.Restrict)
+                                .IsRequired();
+
+                            b1.WithOwner()
+                                .HasForeignKey("ChoreLogRecordId");
+
+                            b1.Navigation("Chore");
+                        });
+
+                    b.Navigation("Details")
+                        .IsRequired();
+
+                    b.Navigation("Dimensions")
+                        .IsRequired();
+
+                    b.Navigation("Document");
+                });
+
             modelBuilder.Entity("HomePantry.Domain.Entities.Registers.LastPriceRecord", b =>
                 {
                     b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", "Document")
@@ -2401,6 +3205,69 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                             b1.Navigation("Product");
 
                             b1.Navigation("Store");
+                        });
+
+                    b.Navigation("Details")
+                        .IsRequired();
+
+                    b.Navigation("Dimensions")
+                        .IsRequired();
+
+                    b.Navigation("Document");
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Registers.PlannedMealsRecord", b =>
+                {
+                    b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("HomePantry.Domain.Entities.Registers.PlannedMealsDetails", "Details", b1 =>
+                        {
+                            b1.Property<Guid>("PlannedMealsRecordId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<decimal>("Servings")
+                                .HasPrecision(14, 2)
+                                .HasColumnType("TEXT");
+
+                            b1.HasKey("PlannedMealsRecordId");
+
+                            b1.ToTable("Reg_PlannedMeals");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PlannedMealsRecordId");
+                        });
+
+                    b.OwnsOne("HomePantry.Domain.Entities.Registers.PlannedMealsDimensions", "Dimensions", b1 =>
+                        {
+                            b1.Property<Guid>("PlannedMealsRecordId")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<DateTime>("Date")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<Guid>("RecipeId")
+                                .HasColumnType("TEXT");
+
+                            b1.HasKey("PlannedMealsRecordId");
+
+                            b1.HasIndex("RecipeId");
+
+                            b1.ToTable("Reg_PlannedMeals");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PlannedMealsRecordId");
+
+                            b1.HasOne("HomePantry.Domain.Entities.Dictionaries.Recipe", "Recipe")
+                                .WithMany()
+                                .HasForeignKey("RecipeId")
+                                .OnDelete(DeleteBehavior.Restrict)
+                                .IsRequired();
+
+                            b1.Navigation("Recipe");
                         });
 
                     b.Navigation("Details")
@@ -2865,6 +3732,48 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.Navigation("DefaultLocation");
                 });
 
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.BatteryCharged", b =>
+                {
+                    b.HasOne("HomePantry.Domain.Entities.Dictionaries.Battery", "Battery")
+                        .WithMany()
+                        .HasForeignKey("BatteryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", null)
+                        .WithOne()
+                        .HasForeignKey("HomePantry.Domain.Entities.Documents.BatteryCharged", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Battery");
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.ChoreDone", b =>
+                {
+                    b.HasOne("HomePantry.Domain.Entities.Dictionaries.Chore", "Chore")
+                        .WithMany()
+                        .HasForeignKey("ChoreId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("HomePantry.Domain.Entities.Dictionaries.HouseholdMember", "DoneBy")
+                        .WithMany()
+                        .HasForeignKey("DoneById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", null)
+                        .WithOne()
+                        .HasForeignKey("HomePantry.Domain.Entities.Documents.ChoreDone", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chore");
+
+                    b.Navigation("DoneBy");
+                });
+
             modelBuilder.Entity("HomePantry.Domain.Entities.Documents.Consume", b =>
                 {
                     b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", null)
@@ -2914,6 +3823,15 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                         .IsRequired();
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.MealPlan", b =>
+                {
+                    b.HasOne("Kandra.Domain.Entities.Documents.DocumentBase", null)
+                        .WithOne()
+                        .HasForeignKey("HomePantry.Domain.Entities.Documents.MealPlan", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("HomePantry.Domain.Entities.Documents.Purchase", b =>
@@ -3009,6 +3927,11 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                 });
 
             modelBuilder.Entity("HomePantry.Domain.Entities.Documents.InventoryCount", b =>
+                {
+                    b.Navigation("Lines");
+                });
+
+            modelBuilder.Entity("HomePantry.Domain.Entities.Documents.MealPlan", b =>
                 {
                     b.Navigation("Lines");
                 });

@@ -9,6 +9,8 @@ public sealed class CreateShoppingListFromNeedsRequestDto
     public Guid? RecipeId { get; set; }
     public decimal? Servings { get; set; }
     public Guid? StoreId { get; set; }
+    public DateTime? MealPlanWeek { get; set; }
+    public Guid? MealPlanId { get; set; }
 }
 
 public sealed class CreateShoppingListFromNeedsResponseDto

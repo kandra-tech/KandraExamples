@@ -22,11 +22,10 @@ What food and household supplies are at home, where, when they spoil, what can b
 
 ## How it was built
 
-Part A was built by Google Antigravity (Gemini 3.8 Flash, medium) from its brief, then reviewed and fixed by Gemini
-Argon 4 (high) in the same session. Part B, on the same configuration, is not built yet; the application is reviewed
-again once it is. What each step did is in [BUILD-NOTES.md](BUILD-NOTES.md).
+Each part was built by Google Antigravity (Gemini 3.8 Flash, medium) from its brief, part B on the configuration part A
+had built, and then reviewed and fixed by Gemini Argon 4 (high). A review of the whole application follows. What each step did is in [BUILD-NOTES.md](BUILD-NOTES.md).
 
 ## Run it
 
-The application (part A so far) is in [app/](app/); its [README](app/README.md) says how to build, start it with the
+The application (parts A and B) is in [app/](app/); its [README](app/README.md) says how to build, start it with the
 demo data and sign in.

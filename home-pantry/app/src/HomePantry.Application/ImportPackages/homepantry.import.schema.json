@@ -38,6 +38,80 @@
             "type": "object",
             "properties": {
               "document": {
+                "const": "BatteriesCharged"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.BatteriesCharged"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "ChoresDone"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.ChoresDone"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
                 "const": "Consumes"
               },
               "items": {
@@ -118,6 +192,43 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/$defs/document.InventoryCounts"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "MealPlans"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.MealPlans"
                 }
               },
               "match": {
@@ -252,6 +363,142 @@
             },
             "required": [
               "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Batteries"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Batteries"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Chores"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Chores"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Equipment"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Equipment"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "HouseholdMembers"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.HouseholdMembers"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
               "items"
             ],
             "additionalProperties": false
@@ -424,6 +671,35 @@
           {
             "type": "object",
             "properties": {
+              "dataProcessor": {
+                "const": "Reminders"
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "run": {
+                "enum": [
+                  "once",
+                  "always"
+                ]
+              },
+              "optional": {
+                "type": "boolean"
+              },
+              "input": {
+                "$ref": "#/$defs/input.Reminders"
+              }
+            },
+            "required": [
+              "dataProcessor",
+              "$id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
               "constant": {
                 "enum": [
                   "CompanyLogo",
@@ -469,9 +745,12 @@
                   },
                   "target": {
                     "enum": [
+                      "BatteriesCharged",
+                      "ChoresDone",
                       "Consumes",
                       "CookRecipes",
                       "InventoryCounts",
+                      "MealPlans",
                       "Purchases",
                       "ShoppingLists",
                       "Transfers"
@@ -602,6 +881,100 @@
         "restore",
         "error"
       ]
+    },
+    "document.BatteriesCharged": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "batteryId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The battery that was charged or replaced."
+        },
+        "replaced": {
+          "type": "boolean",
+          "description": "Whether the battery was replaced rather than recharged. Disposable batteries are always replaced."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.ChoresDone": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "choreId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The chore that was completed."
+        },
+        "doneById": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The household member who completed the chore."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional notes or comments about the chore completion."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
     },
     "document.Consumes.lines.line": {
       "type": "object",
@@ -771,6 +1144,74 @@
             "$ref": "#/$defs/document.InventoryCounts.lines.line"
           },
           "description": "Products counted with their actual physically verified quantities."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.MealPlans.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "day": {
+          "description": "Day of the week."
+        },
+        "recipeId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The recipe planned for this day."
+        },
+        "servings": {
+          "type": "number",
+          "description": "Planned number of servings."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.MealPlans": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "weekStartDate": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "Monday date of the meal plan week."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.MealPlans.lines.line"
+          },
+          "description": "Planned meals by day and recipe."
         },
         "id": {
           "$ref": "#/$defs/guidOrReference",
@@ -1030,6 +1471,219 @@
       },
       "additionalProperties": false
     },
+    "dictionary.Batteries": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "usedIn": {
+          "type": "string",
+          "description": "Device, appliance or gadget where this battery is used."
+        },
+        "chargeIntervalDays": {
+          "type": "integer",
+          "description": "Recommended interval between charges or replacements in days."
+        },
+        "batteryKind": {
+          "description": "Whether the battery is rechargeable or disposable."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Chores": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recurrence": {
+          "description": "How frequently this chore recurs."
+        },
+        "everyNDays": {
+          "type": "integer",
+          "description": "Number of days between recurrences when recurrence is EveryNDays."
+        },
+        "assignedToId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Household member assigned to perform this chore."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed instructions or description of the chore."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Equipment": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locationId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "Location where this equipment is kept."
+        },
+        "boughtOn": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/dateTimeValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date the equipment was purchased."
+        },
+        "warrantyUntil": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/dateTimeValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Date until which manufacturer warranty is valid."
+        },
+        "manualFileId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "User manual or documentation file."
+        },
+        "photoFileId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Photo of the equipment."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.HouseholdMembers": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
     "dictionary.Locations": {
       "type": "object",
       "properties": {
@@ -1273,6 +1927,11 @@
           "description": "CompanyLogo constant: blob reference id of the logo printed in the letterhead. A PNG or JPEG image of at most 1 MB. Earlier logos stay attached, so older documents keep printing theirs. Emptying the field removes the logo from the effective date (deletes none)."
         }
       },
+      "additionalProperties": false
+    },
+    "input.Reminders": {
+      "type": "object",
+      "properties": {},
       "additionalProperties": false
     }
   }

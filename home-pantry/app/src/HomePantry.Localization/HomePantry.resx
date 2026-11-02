@@ -715,4 +715,448 @@
   <data name="Period" xml:space="preserve">
     <value>Period</value>
   </data>
+  <data name="BatteriesReport" xml:space="preserve">
+    <value>Batteries report</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Battery</value>
+  </data>
+  <data name="BatteryKind" xml:space="preserve">
+    <value>Battery kind</value>
+  </data>
+  <data name="BoughtOn" xml:space="preserve">
+    <value>Bought on</value>
+  </data>
+  <data name="CalendarReport" xml:space="preserve">
+    <value>Calendar report</value>
+  </data>
+  <data name="Calendar_BatteriesDue" xml:space="preserve">
+    <value>Batteries due</value>
+  </data>
+  <data name="Calendar_ChoresDue" xml:space="preserve">
+    <value>Chores due</value>
+  </data>
+  <data name="Calendar_DayOfWeek" xml:space="preserve">
+    <value>Day of week</value>
+  </data>
+  <data name="Calendar_PlannedMeals" xml:space="preserve">
+    <value>Planned meals</value>
+  </data>
+  <data name="ChargeIntervalDays" xml:space="preserve">
+    <value>Charge interval days</value>
+  </data>
+  <data name="Chore" xml:space="preserve">
+    <value>Chore</value>
+  </data>
+  <data name="ChoresReport" xml:space="preserve">
+    <value>Chores report</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="DoneBy" xml:space="preserve">
+    <value>Done by</value>
+  </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="EquipmentReport" xml:space="preserve">
+    <value>Equipment report</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From date</value>
+  </data>
+  <data name="HasManual" xml:space="preserve">
+    <value>Has manual</value>
+  </data>
+  <data name="HasPhoto" xml:space="preserve">
+    <value>Has photo</value>
+  </data>
+  <data name="IsOverdue" xml:space="preserve">
+    <value>Is overdue</value>
+  </data>
+  <data name="LastChargeDate" xml:space="preserve">
+    <value>Last charge date</value>
+  </data>
+  <data name="LastDoneDate" xml:space="preserve">
+    <value>Last done date</value>
+  </data>
+  <data name="MealPlan_Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="NextDueDate" xml:space="preserve">
+    <value>Next due date</value>
+  </data>
+  <data name="Recurrence" xml:space="preserve">
+    <value>Recurrence</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To date</value>
+  </data>
+  <data name="TotalCycles" xml:space="preserve">
+    <value>Total cycles</value>
+  </data>
+  <data name="UsedIn" xml:space="preserve">
+    <value>Used in</value>
+  </data>
+  <data name="WarrantyUntil" xml:space="preserve">
+    <value>Warranty until</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="WeekPlanReport" xml:space="preserve">
+    <value>Week plan report</value>
+  </data>
+  <data name="AssignedTo" xml:space="preserve">
+    <value>Assigned to</value>
+  </data>
+  <data name="Batteries" xml:space="preserve">
+    <value>Batteries</value>
+  </data>
+  <data name="BatteriesCharged" xml:space="preserve">
+    <value>Batteries charged</value>
+  </data>
+  <data name="BatteryCharged_BatteryRequired" xml:space="preserve">
+    <value>Battery required</value>
+  </data>
+  <data name="BatteryCycles" xml:space="preserve">
+    <value>Battery cycles</value>
+  </data>
+  <data name="BatteryLog" xml:space="preserve">
+    <value>Battery log</value>
+  </data>
+  <data name="Battery_ChargeIntervalPositive" xml:space="preserve">
+    <value>Charge interval positive</value>
+  </data>
+  <data name="Battery_UsedInRequired" xml:space="preserve">
+    <value>Used in required</value>
+  </data>
+  <data name="ChoreDone_ChoreRequired" xml:space="preserve">
+    <value>Chore required</value>
+  </data>
+  <data name="ChoreDone_DoneByRequired" xml:space="preserve">
+    <value>Done by required</value>
+  </data>
+  <data name="ChoreLog" xml:space="preserve">
+    <value>Chore log</value>
+  </data>
+  <data name="Chore_EveryNDaysRequired" xml:space="preserve">
+    <value>Every n days required</value>
+  </data>
+  <data name="Chores" xml:space="preserve">
+    <value>Chores</value>
+  </data>
+  <data name="ChoresDone" xml:space="preserve">
+    <value>Chores done</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="CreateBattery" xml:space="preserve">
+    <value>Create battery</value>
+  </data>
+  <data name="CreateBatteryCharged" xml:space="preserve">
+    <value>Create battery charged</value>
+  </data>
+  <data name="CreateChore" xml:space="preserve">
+    <value>Create chore</value>
+  </data>
+  <data name="CreateChoreDone" xml:space="preserve">
+    <value>Create chore done</value>
+  </data>
+  <data name="CreateEquipment" xml:space="preserve">
+    <value>Create equipment</value>
+  </data>
+  <data name="CreateHouseholdMember" xml:space="preserve">
+    <value>Create household member</value>
+  </data>
+  <data name="CreateMealPlan" xml:space="preserve">
+    <value>Create meal plan</value>
+  </data>
+  <data name="Cycles" xml:space="preserve">
+    <value>Cycles</value>
+  </data>
+  <data name="Dashboard_BatteriesDue" xml:space="preserve">
+    <value>Batteries due</value>
+  </data>
+  <data name="Dashboard_OverdueChores" xml:space="preserve">
+    <value>Overdue chores</value>
+  </data>
+  <data name="Dashboard_TodaySchedule" xml:space="preserve">
+    <value>Today schedule</value>
+  </data>
+  <data name="EditBattery" xml:space="preserve">
+    <value>Edit battery</value>
+  </data>
+  <data name="EditBatteryCharged" xml:space="preserve">
+    <value>Edit battery charged</value>
+  </data>
+  <data name="EditChore" xml:space="preserve">
+    <value>Edit chore</value>
+  </data>
+  <data name="EditChoreDone" xml:space="preserve">
+    <value>Edit chore done</value>
+  </data>
+  <data name="EditEquipment" xml:space="preserve">
+    <value>Edit equipment</value>
+  </data>
+  <data name="EditHouseholdMember" xml:space="preserve">
+    <value>Edit household member</value>
+  </data>
+  <data name="EditMealPlan" xml:space="preserve">
+    <value>Edit meal plan</value>
+  </data>
+  <data name="Enum_BatteryKind_Disposable" xml:space="preserve">
+    <value>Disposable</value>
+  </data>
+  <data name="Enum_BatteryKind_Rechargeable" xml:space="preserve">
+    <value>Rechargeable</value>
+  </data>
+  <data name="Enum_ChoreRecurrence_Daily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="Enum_ChoreRecurrence_EveryNDays" xml:space="preserve">
+    <value>Every n days</value>
+  </data>
+  <data name="Enum_ChoreRecurrence_Monthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="Enum_ChoreRecurrence_Weekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="Enum_MealPlanDay_Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="Enum_MealPlanDay_Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Enum_MealPlanDay_Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="Enum_MealPlanDay_Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Enum_MealPlanDay_Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Enum_MealPlanDay_Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="Enum_MealPlanDay_Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="Equipment_LocationRequired" xml:space="preserve">
+    <value>Location required</value>
+  </data>
+  <data name="EveryNDays" xml:space="preserve">
+    <value>Every n days</value>
+  </data>
+  <data name="HouseholdMembers" xml:space="preserve">
+    <value>Household members</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="Kind" xml:space="preserve">
+    <value>Kind</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="MealPlan_Lines" xml:space="preserve">
+    <value>Lines</value>
+  </data>
+  <data name="MealPlan_LinesRequired" xml:space="preserve">
+    <value>Lines required</value>
+  </data>
+  <data name="MealPlan_RecipeRequired" xml:space="preserve">
+    <value>Recipe required</value>
+  </data>
+  <data name="MealPlan_ServingsPositive" xml:space="preserve">
+    <value>Servings positive</value>
+  </data>
+  <data name="MealPlan_WeekStartDate" xml:space="preserve">
+    <value>Week start date</value>
+  </data>
+  <data name="MealPlans" xml:space="preserve">
+    <value>Meal plans</value>
+  </data>
+  <data name="Nav_Batteries" xml:space="preserve">
+    <value>Batteries</value>
+  </data>
+  <data name="Nav_BatteriesCharged" xml:space="preserve">
+    <value>Batteries charged</value>
+  </data>
+  <data name="Nav_Chores" xml:space="preserve">
+    <value>Chores</value>
+  </data>
+  <data name="Nav_ChoresDone" xml:space="preserve">
+    <value>Chores done</value>
+  </data>
+  <data name="Nav_Equipment" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="Nav_HouseholdMembers" xml:space="preserve">
+    <value>Household members</value>
+  </data>
+  <data name="Nav_MealPlans" xml:space="preserve">
+    <value>Meal plans</value>
+  </data>
+  <data name="Nav_QuickAddChoreDone" xml:space="preserve">
+    <value>Quick add chore done</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="PlannedMeals" xml:space="preserve">
+    <value>Planned meals</value>
+  </data>
+  <data name="Reminders" xml:space="preserve">
+    <value>Reminders</value>
+  </data>
+  <data name="Reminders_DueBatteriesCount" xml:space="preserve">
+    <value>Due batteries count</value>
+  </data>
+  <data name="Reminders_DueChoresCount" xml:space="preserve">
+    <value>Due chores count</value>
+  </data>
+  <data name="Reminders_ExpiringBatchesCount" xml:space="preserve">
+    <value>Expiring batches count</value>
+  </data>
+  <data name="Reminders_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Reminders_NotificationTitle" xml:space="preserve">
+    <value>Household Reminders</value>
+  </data>
+  <data name="Reminders_SummaryMessage" xml:space="preserve">
+    <value>{0} chores due, {1} batteries due, {2} batches expiring soon</value>
+  </data>
+  <data name="Replaced" xml:space="preserve">
+    <value>Replaced</value>
+  </data>
+  <data name="Replacements" xml:space="preserve">
+    <value>Replacements</value>
+  </data>
+  <data name="ShoppingNeeds_MealPlan" xml:space="preserve">
+    <value>Meal plan</value>
+  </data>
+  <data name="ShoppingNeeds_MealPlanWeek" xml:space="preserve">
+    <value>Meal plan week</value>
+  </data>
+  <data name="ViewBattery" xml:space="preserve">
+    <value>View battery</value>
+  </data>
+  <data name="ViewBatteryCharged" xml:space="preserve">
+    <value>View battery charged</value>
+  </data>
+  <data name="ViewChore" xml:space="preserve">
+    <value>View chore</value>
+  </data>
+  <data name="ViewChoreDone" xml:space="preserve">
+    <value>View chore done</value>
+  </data>
+  <data name="ViewEquipment" xml:space="preserve">
+    <value>View equipment</value>
+  </data>
+  <data name="ViewHouseholdMember" xml:space="preserve">
+    <value>View household member</value>
+  </data>
+  <data name="ViewMealPlan" xml:space="preserve">
+    <value>View meal plan</value>
+  </data>
+  <data name="BatteryCharged" xml:space="preserve">
+    <value>Battery charged</value>
+  </data>
+  <data name="BatteryCyclesRegister" xml:space="preserve">
+    <value>Battery cycles register</value>
+  </data>
+  <data name="BatteryLogRegister" xml:space="preserve">
+    <value>Battery log register</value>
+  </data>
+  <data name="ChoreDone" xml:space="preserve">
+    <value>Chore done</value>
+  </data>
+  <data name="ChoreLogRegister" xml:space="preserve">
+    <value>Chore log register</value>
+  </data>
+  <data name="ChoreRecurrence" xml:space="preserve">
+    <value>Chore recurrence</value>
+  </data>
+  <data name="HouseholdMember" xml:space="preserve">
+    <value>Household member</value>
+  </data>
+  <data name="MealPlan" xml:space="preserve">
+    <value>Meal plan</value>
+  </data>
+  <data name="MealPlanDay" xml:space="preserve">
+    <value>Meal plan day</value>
+  </data>
+  <data name="PlannedMealsRegister" xml:space="preserve">
+    <value>Planned meals register</value>
+  </data>
+  <data name="AddBattery" xml:space="preserve">
+    <value>Add battery</value>
+  </data>
+  <data name="AddBatteryCharged" xml:space="preserve">
+    <value>Add battery charged</value>
+  </data>
+  <data name="AddChore" xml:space="preserve">
+    <value>Add chore</value>
+  </data>
+  <data name="AddChoreDone" xml:space="preserve">
+    <value>Add chore done</value>
+  </data>
+  <data name="AddEquipment" xml:space="preserve">
+    <value>Add equipment</value>
+  </data>
+  <data name="AddHouseholdMember" xml:space="preserve">
+    <value>Add household member</value>
+  </data>
+  <data name="AddMealPlan" xml:space="preserve">
+    <value>Add meal plan</value>
+  </data>
+  <data name="BatteryAddedSuccessfully" xml:space="preserve">
+    <value>Battery added successfully</value>
+  </data>
+  <data name="BatteryChargedAddedSuccessfully" xml:space="preserve">
+    <value>Battery charged added successfully</value>
+  </data>
+  <data name="BatteryChargedUpdatedSuccessfully" xml:space="preserve">
+    <value>Battery charged updated successfully</value>
+  </data>
+  <data name="BatteryUpdatedSuccessfully" xml:space="preserve">
+    <value>Battery updated successfully</value>
+  </data>
+  <data name="ChoreAddedSuccessfully" xml:space="preserve">
+    <value>Chore added successfully</value>
+  </data>
+  <data name="ChoreDoneAddedSuccessfully" xml:space="preserve">
+    <value>Chore done added successfully</value>
+  </data>
+  <data name="ChoreDoneUpdatedSuccessfully" xml:space="preserve">
+    <value>Chore done updated successfully</value>
+  </data>
+  <data name="ChoreUpdatedSuccessfully" xml:space="preserve">
+    <value>Chore updated successfully</value>
+  </data>
+  <data name="EquipmentAddedSuccessfully" xml:space="preserve">
+    <value>Equipment added successfully</value>
+  </data>
+  <data name="EquipmentUpdatedSuccessfully" xml:space="preserve">
+    <value>Equipment updated successfully</value>
+  </data>
+  <data name="HouseholdMemberAddedSuccessfully" xml:space="preserve">
+    <value>Household member added successfully</value>
+  </data>
+  <data name="HouseholdMemberUpdatedSuccessfully" xml:space="preserve">
+    <value>Household member updated successfully</value>
+  </data>
+  <data name="MealPlanAddedSuccessfully" xml:space="preserve">
+    <value>Meal plan added successfully</value>
+  </data>
+  <data name="MealPlanUpdatedSuccessfully" xml:space="preserve">
+    <value>Meal plan updated successfully</value>
+  </data>
 </root>

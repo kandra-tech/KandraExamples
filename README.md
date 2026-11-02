@@ -22,7 +22,7 @@ Use them to:
 |---|---|---|
 | [Personal Accounting & Budgets](personal-accounting/) | balance register, turnover register in two currencies, exchange rates as a periodic register, a budget register bound to its document, statements, home dashboard | [app](personal-accounting/app/) |
 | [Family Garage](family-garage/) | service history with intervals by km or months, detailed or summary service invoices, purchase on a loan or leasing, total cost of ownership, reminders, home dashboard | [app](family-garage/app/) |
-| [Home Pantry](home-pantry/) (Grocy-inspired) | stock in batches with best-before dates, first-expired-first-out consumption, recipes scaled into a document, shopping lists; part B extends an existing configuration with chores, batteries and a meal plan | [app](home-pantry/app/) (part A) |
+| [Home Pantry](home-pantry/) (Grocy-inspired) | stock in batches with best-before dates, first-expired-first-out consumption, recipes scaled into a document, shopping lists; part B extends an existing configuration with chores, batteries and a meal plan | [app](home-pantry/app/) |
 | [Home Utilities & Meters](home-utilities/) | meter readings and tariffs valid from a date, invoices calculated from them, debt and prepayment per provider, year-over-year consumption, home dashboard | [app](home-utilities/app/) |
 
 More ideas, not built yet: [IDEAS.md](IDEAS.md).

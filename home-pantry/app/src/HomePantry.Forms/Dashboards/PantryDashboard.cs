@@ -35,6 +35,21 @@ public sealed class ExpiringBatchRow
     public int DaysLeft { get; set; }
 }
 
+public sealed class TodayScheduleRow
+{
+    [Caption("Kind")]
+    public string Kind { get; set; } = "";
+
+    [Caption("Item")]
+    public string Item { get; set; } = "";
+
+    [Caption("Details")]
+    public string Details { get; set; } = "";
+
+    [Caption("Status")]
+    public string Status { get; set; } = "";
+}
+
 public sealed class PantryDashboardResultDto : DashboardResult<PantryDashboardDto>
 {
     [KpiTile, Widget(Order = 10, Width = 3, Height = WidgetHeight.Small)]
@@ -54,6 +69,18 @@ public sealed class PantryDashboardResultDto : DashboardResult<PantryDashboardDt
     [Format("N0")]
     [DrillDown(typeof(ReportExpiringDto))]
     public KpiData ExpiringBatches { get; set; } = new();
+
+    [KpiTile, Widget(Order = 32, Width = 3, Height = WidgetHeight.Small)]
+    [Caption("Dashboard_OverdueChores")]
+    [Format("N0")]
+    [DrillDown(typeof(ReportChoresDto))]
+    public KpiData OverdueChores { get; set; } = new();
+
+    [KpiTile, Widget(Order = 34, Width = 3, Height = WidgetHeight.Small)]
+    [Caption("Dashboard_BatteriesDue")]
+    [Format("N0")]
+    [DrillDown(typeof(ReportBatteriesDto))]
+    public KpiData BatteriesDue { get; set; } = new();
 
     [KpiTile, Widget(Order = 40, Width = 3, Height = WidgetHeight.Small)]
     [Caption("Dashboard_MonthlySpending")]
@@ -77,6 +104,11 @@ public sealed class PantryDashboardResultDto : DashboardResult<PantryDashboardDt
     [Caption("Dashboard_NextExpiringBatches")]
     [DrillDown(typeof(ReportExpiringDto))]
     public TableData<ExpiringBatchRow> NextExpiringBatches { get; set; } = new();
+
+    [TableWidget, Widget(Order = 75, Width = 12, Height = WidgetHeight.Medium)]
+    [Caption("Dashboard_TodaySchedule")]
+    [DrillDown(typeof(ReportCalendarDto))]
+    public TableData<TodayScheduleRow> TodaySchedule { get; set; } = new();
 }
 
 public class PantryDashboardDtoValidator : AbstractValidator<PantryDashboardDto>

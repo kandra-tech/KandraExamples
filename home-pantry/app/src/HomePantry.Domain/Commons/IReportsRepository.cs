@@ -7,8 +7,14 @@ public interface IReportsRepository
     Task<IReadOnlyList<StockOverviewLine>> GetStockOverviewAsync(Guid? locationId, Guid? productGroupId, CancellationToken cancellationToken);
     Task<IReadOnlyList<ExpiringLine>> GetExpiringAsync(int lookAheadDays, DateTime asOf, CancellationToken cancellationToken);
     Task<IReadOnlyList<ShoppingNeedsLine>> GetShoppingNeedsAsync(Guid? recipeId, decimal? servings, DateTime asOf, CancellationToken cancellationToken);
+    Task<IReadOnlyList<ShoppingNeedsLine>> GetShoppingNeedsAsync(Guid? recipeId, decimal? servings, DateTime asOf, DateTime? mealPlanWeek, Guid? mealPlanId, CancellationToken cancellationToken);
     Task<IReadOnlyList<CanICookItLine>> GetCanICookItAsync(CancellationToken cancellationToken);
     Task<IReadOnlyList<SpendingLine>> GetSpendingAsync(DateTime? from, DateTime? to, CancellationToken cancellationToken);
+    Task<IReadOnlyList<ChoresReportLine>> GetChoresAsync(DateTime asOf, CancellationToken cancellationToken);
+    Task<IReadOnlyList<BatteriesReportLine>> GetBatteriesAsync(DateTime asOf, CancellationToken cancellationToken);
+    Task<IReadOnlyList<EquipmentReportLine>> GetEquipmentWarrantiesAsync(int withinDays, DateTime asOf, CancellationToken cancellationToken);
+    Task<IReadOnlyList<WeekPlanReportLine>> GetWeekPlanAsync(DateTime weekStart, CancellationToken cancellationToken);
+    Task<IReadOnlyList<CalendarReportLine>> GetCalendarAsync(DateTime from, DateTime to, CancellationToken cancellationToken);
 
     // Dashboard queries
     Task<decimal> GetTotalStockValueAsync(CancellationToken cancellationToken);
@@ -18,4 +24,7 @@ public interface IReportsRepository
     Task<IReadOnlyList<(string MonthKey, string MonthLabel, decimal Amount)>> GetSpendingHistoryAsync(DateTime asOf, int months, CancellationToken cancellationToken);
     Task<IReadOnlyList<(string GroupName, decimal Value)>> GetStockValueByGroupAsync(CancellationToken cancellationToken);
     Task<IReadOnlyList<ExpiringLine>> GetNextExpiringBatchesAsync(DateTime asOf, int count, CancellationToken cancellationToken);
+    Task<int> GetOverdueChoresCountAsync(DateTime asOf, CancellationToken cancellationToken);
+    Task<int> GetBatteriesDueCountAsync(DateTime asOf, CancellationToken cancellationToken);
+    Task<IReadOnlyList<TodayScheduleItem>> GetTodayScheduleAsync(DateTime today, CancellationToken cancellationToken);
 }

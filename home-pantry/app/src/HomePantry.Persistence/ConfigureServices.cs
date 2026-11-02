@@ -1,6 +1,9 @@
 using Kandra.Domain.Commons;
+using Kandra.Domain.Registers;
 using Kandra.Persistence.Abstractions;
+using Kandra.Persistence.Registers;
 using HomePantry.Domain.Commons;
+using HomePantry.Domain.Entities.Registers;
 using HomePantry.Persistence.Documents;
 using HomePantry.Persistence.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +17,9 @@ public static class ConfigureServices
         // Entity repositories + registers: generated from the Kandra*Entity attributes by
         // Kandra.Generators.Di.Persistence - a no-op today since this configuration has none yet.
         services.AddGeneratedHomePantryPersistenceEntities();
+
+        // Turnover registers are not wired by the generator; register by hand
+        services.AddTurnoverRegister<BatteryCyclesMovement, BatteryCyclesDimensions, BatteryCyclesResources, NoDetails>();
 
         // Document Links / IDocumentReaderService's Guid->Type resolution - the one configuration-specific
         // piece those engine services depend on, same posture as HomePantryChartOfAccountsBuilder.

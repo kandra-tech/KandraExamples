@@ -1,8 +1,8 @@
 # Home Pantry - build notes
 
 The application in [app/](app/) is built in two steps, as the brief is: part A (stock, recipes, shopping) first, then
-part B (household), which extends the same configuration. This file records each step as it was done, so you can tell
-what came from each brief and what from the reviews.
+part B (household), which extends the same configuration. Both were built in one Google Antigravity session. This
+file records each step as it was done, so you can tell what came from each brief and what from the reviews.
 
 ## Part A: stock, recipes, shopping
 
@@ -61,4 +61,48 @@ The review added a migration and three acceptance tests (checks 8 to 10).
 
 ## Part B: household
 
-Not built yet.
+| | |
+|---|---|
+| First version | Google Antigravity / Gemini 3.8 Flash (medium), from [PROMPT-B-household.md](prompt/PROMPT-B-household.md) v1, on the part A configuration |
+| Review and fixes | Google Antigravity / Gemini Argon 4 (high) |
+| Brief | [PROMPT-B-household.md](prompt/PROMPT-B-household.md) v1 |
+| Template / Kandra Core | unchanged from part A (0.5.35) |
+| Date | 2026-11-02 |
+| Session | about 1 h 05 min from the first part B file to the review's final report, both steps together |
+| Tests | 34, all passing after the review (28 from part A) |
+
+### The first version
+
+Part B extended the part A configuration, as the brief asks: Household member, Chore, Battery and Equipment catalogs
+(equipment with a manual file and a photo); Chore done, Battery charged and Meal plan documents; a chore log and a
+battery log as periodic information registers, battery cycles as a turnover register and planned meals as a register
+bound to the meal plan; the Chores, Batteries, Equipment, Week plan and Calendar reports; the meal plan feeding part A's
+Shopping needs; two KPI tiles and a Today's schedule table on part A's dashboard; and a Reminders data processor for
+chores, batteries and expiring stock, which can be scheduled as a daily job.
+
+### Fixed in review
+
+The review by Gemini Argon 4 listed its fixes; in short:
+
+1. **Planned meals by the meal's date**: the reports read planned meals by the meal plan's own date instead of each
+   meal's day, so Today's schedule was empty from Tuesday on and the calendar, week plan and shopping needs missed
+   meals; the week start is now always snapped to Monday, on save and post too (the demo data starts on any day).
+2. **Equipment in a room folder**: equipment placed in a location folder (the kitchen) lost its location; a folder can
+   now be picked, and the migration was regenerated.
+3. **Behavior hooks that never ran**: the save and delete hooks of Equipment and Battery charged had the wrong
+   signatures, so they were never called; the manual file's references were passed in the wrong order; the demo
+   manuals pointed to files that did not exist. A disposable battery is now always recorded as replaced.
+4. **Reports**: a date without a time now includes the rest of that day, battery cycles are bounded by the date and
+   count only cycles, deleted members and recipes are left out, and a recipe's lines of the same product are summed
+   before comparing with stock.
+5. **Calendar text**: English words and day names in the calendar are gone; day names come from the resources.
+6. **Forms and tests**: list columns on the new catalogs, the meal plan week on the shopping needs printout and in
+   "create a shopping list", a drill-down from Today's schedule, and more acceptance and localization checks.
+
+### Deviations from the brief
+
+- The agent's own fix report is not published (its content is summarised above).
+
+### Known limitations
+
+- Recorded as delivered by its session; the review of the whole application is next.

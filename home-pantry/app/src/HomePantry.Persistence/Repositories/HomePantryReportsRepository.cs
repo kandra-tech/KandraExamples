@@ -1,7 +1,9 @@
 using HomePantry.Domain.Commons;
 using HomePantry.Domain.Entities.Dictionaries;
+using HomePantry.Domain.Entities.Documents;
 using HomePantry.Domain.Entities.ReportingModels;
 using HomePantry.Domain.Entities.Registers;
+using HomePantry.Enums;
 using HomePantry.Persistence.Contexts;
 using Kandra.Persistence.Abstractions.Registers;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +13,11 @@ namespace HomePantry.Persistence.Repositories;
 internal class HomePantryReportsRepository(
     HomePantryDbContext dbContext,
     IBalanceReader<StockMovement, StockBalance> stockReader,
-    IInfoRegisterReader<LastPriceRecord> priceReader) : IReportsRepository
+    IInfoRegisterReader<LastPriceRecord> priceReader,
+    IInfoRegisterReader<ChoreLogRecord> choreLogReader,
+    IInfoRegisterReader<BatteryLogRecord> batteryLogReader,
+    ITurnoverReader<BatteryCyclesMovement> batteryCyclesReader,
+    IInfoRegisterReader<PlannedMealsRecord> plannedMealsReader) : IReportsRepository
 {
     public async Task<IReadOnlyList<StockOverviewLine>> GetStockOverviewAsync(Guid? locationId, Guid? productGroupId, CancellationToken cancellationToken)
     {
@@ -124,7 +130,10 @@ internal class HomePantryReportsRepository(
         return result.OrderBy(r => r.BestBeforeDate).ToList();
     }
 
-    public async Task<IReadOnlyList<ShoppingNeedsLine>> GetShoppingNeedsAsync(Guid? recipeId, decimal? servings, DateTime asOf, CancellationToken cancellationToken)
+    public Task<IReadOnlyList<ShoppingNeedsLine>> GetShoppingNeedsAsync(Guid? recipeId, decimal? servings, DateTime asOf, CancellationToken cancellationToken)
+        => GetShoppingNeedsAsync(recipeId, servings, asOf, null, null, cancellationToken);
+
+    public async Task<IReadOnlyList<ShoppingNeedsLine>> GetShoppingNeedsAsync(Guid? recipeId, decimal? servings, DateTime asOf, DateTime? mealPlanWeek, Guid? mealPlanId, CancellationToken cancellationToken)
     {
         var products = await dbContext.Dict_Products.OfType<Product>().AsNoTracking().Where(p => !p.IsDeleted).ToListAsync(cancellationToken);
         var balances = await stockReader.Balances(q => q.Where(b => b.Resources.Quantity > 0), cancellationToken);
@@ -149,6 +158,49 @@ internal class HomePantryReportsRepository(
         var recipeLinesByProduct = recipe?.Lines.GroupBy(l => l.ProductId).ToDictionary(g => g.Key, g => g.Sum(x => x.Quantity * recipeScale))
             ?? new Dictionary<Guid, decimal>();
 
+        if (mealPlanId.HasValue && mealPlanId.Value != Guid.Empty)
+        {
+            var planDoc = await dbContext.Set<MealPlan>().AsNoTracking().FirstOrDefaultAsync(m => !m.IsDeleted && m.Id == mealPlanId.Value, cancellationToken);
+            if (planDoc != null)
+            {
+                mealPlanWeek = planDoc.WeekStartDate;
+            }
+        }
+
+        var mealPlanLinesByProduct = new Dictionary<Guid, decimal>();
+        if (mealPlanWeek.HasValue)
+        {
+            var d = mealPlanWeek.Value.Date;
+            var diff = (7 + (int)d.DayOfWeek - (int)DayOfWeek.Monday) % 7;
+            var monday = d.AddDays(-diff);
+            var sunday = monday.AddDays(7).AddTicks(-1);
+
+            var plannedMeals = await plannedMealsReader.Records(
+                DateTime.MinValue,
+                DateTime.MaxValue,
+                q => q.Where(m => m.Dimensions.Date >= monday && m.Dimensions.Date <= sunday),
+                cancellationToken);
+            var planRecipeIds = plannedMeals.Select(p => p.Dimensions.RecipeId).Distinct().ToList();
+            var planRecipes = await dbContext.Dict_Recipes
+                .Include(r => r.Lines)
+                .AsNoTracking()
+                .Where(r => !r.IsDeleted && planRecipeIds.Contains(r.Id))
+                .ToDictionaryAsync(r => r.Id, cancellationToken);
+
+            foreach (var pm in plannedMeals)
+            {
+                if (planRecipes.TryGetValue(pm.Dimensions.RecipeId, out var planRecipe))
+                {
+                    var basePlanServings = planRecipe.Servings > 0 ? planRecipe.Servings : 1m;
+                    var planScale = pm.Details.Servings / basePlanServings;
+                    foreach (var pl in planRecipe.Lines)
+                    {
+                        mealPlanLinesByProduct[pl.ProductId] = mealPlanLinesByProduct.GetValueOrDefault(pl.ProductId, 0m) + (pl.Quantity * planScale);
+                    }
+                }
+            }
+        }
+
         var lastPrices = await priceReader.SliceOfLast(asOf, q => q, cancellationToken);
         var priceByProduct = lastPrices
             .GroupBy(p => p.Dimensions.ProductId)
@@ -162,10 +214,13 @@ internal class HomePantryReportsRepository(
             var minShortfall = Math.Max(0m, product.MinimumStock - onHand);
 
             var recipeNeeded = recipeLinesByProduct.GetValueOrDefault(product.Id, 0m);
-            var freeOnHand = Math.Max(0m, onHand - product.MinimumStock);
-            var recipeShortfall = Math.Max(0m, recipeNeeded - freeOnHand);
+            var mealPlanNeeded = mealPlanLinesByProduct.GetValueOrDefault(product.Id, 0m);
+            var totalAdditionalNeeded = recipeNeeded + mealPlanNeeded;
 
-            var totalNeeded = minShortfall + recipeShortfall;
+            var freeOnHand = Math.Max(0m, onHand - product.MinimumStock);
+            var additionalShortfall = Math.Max(0m, totalAdditionalNeeded - freeOnHand);
+
+            var totalNeeded = minShortfall + additionalShortfall;
 
             if (totalNeeded > 0)
             {
@@ -178,8 +233,8 @@ internal class HomePantryReportsRepository(
                     OnHandQuantity = onHand,
                     MinimumStock = product.MinimumStock,
                     ShortfallQuantity = minShortfall,
-                    RecipeNeededQuantity = recipeNeeded,
-                    RecipeAdditionalShortfall = recipeShortfall,
+                    RecipeNeededQuantity = recipeNeeded + mealPlanNeeded,
+                    RecipeAdditionalShortfall = additionalShortfall,
                     TotalNeededQuantity = totalNeeded,
                     LastPrice = price,
                     EstimatedCost = Math.Round(totalNeeded * price, 2)
@@ -204,14 +259,15 @@ internal class HomePantryReportsRepository(
             var missingList = new List<MissingIngredientItem>();
             var canCook = true;
 
-            foreach (var line in r.Lines)
+            foreach (var group in r.Lines.GroupBy(l => l.ProductId))
             {
-                var onHand = balancesByProduct.GetValueOrDefault(line.ProductId, 0m);
-                if (onHand < line.Quantity)
+                var needed = group.Sum(l => l.Quantity);
+                var onHand = balancesByProduct.GetValueOrDefault(group.Key, 0m);
+                if (onHand < needed)
                 {
                     canCook = false;
-                    var pName = products.GetValueOrDefault(line.ProductId)?.Name ?? "";
-                    missingList.Add(new MissingIngredientItem(pName, line.Quantity, onHand));
+                    var pName = products.GetValueOrDefault(group.Key)?.Name ?? "";
+                    missingList.Add(new MissingIngredientItem(pName, needed, onHand));
                 }
             }
 
@@ -424,6 +480,268 @@ internal class HomePantryReportsRepository(
             currentId = nextId;
         }
         return currentId;
+    }
+
+    public async Task<IReadOnlyList<ChoresReportLine>> GetChoresAsync(DateTime asOf, CancellationToken cancellationToken)
+    {
+        var sliceAt = asOf.TimeOfDay == TimeSpan.Zero ? asOf.Date.AddDays(1).AddTicks(-1) : asOf;
+        var chores = await dbContext.Set<Chore>().Include(c => c.AssignedTo).AsNoTracking().Where(c => !c.IsDeleted).ToListAsync(cancellationToken);
+        var members = await dbContext.Set<HouseholdMember>().AsNoTracking().Where(m => !m.IsDeleted).ToDictionaryAsync(m => m.Id, cancellationToken);
+        var lastLogs = await choreLogReader.SliceOfLast(sliceAt, q => q, cancellationToken);
+        var lastLogByChore = lastLogs.GroupBy(l => l.Dimensions.ChoreId).ToDictionary(g => g.Key, g => g.OrderByDescending(x => x.Period).First());
+
+        var result = new List<ChoresReportLine>();
+        foreach (var chore in chores)
+        {
+            lastLogByChore.TryGetValue(chore.Id, out var lastLog);
+            DateTime? lastDoneDate = lastLog?.Period;
+            string? doneByName = null;
+            if (lastLog != null && members.TryGetValue(lastLog.Details.DoneById, out var doneBy))
+            {
+                doneByName = doneBy.Name;
+            }
+
+            DateTime nextDueDate;
+            if (lastDoneDate.HasValue)
+            {
+                nextDueDate = chore.Recurrence switch
+                {
+                    ChoreRecurrence.Daily => lastDoneDate.Value.Date.AddDays(1),
+                    ChoreRecurrence.Weekly => lastDoneDate.Value.Date.AddDays(7),
+                    ChoreRecurrence.Monthly => lastDoneDate.Value.Date.AddMonths(1),
+                    ChoreRecurrence.EveryNDays => lastDoneDate.Value.Date.AddDays(chore.EveryNDays > 0 ? chore.EveryNDays : 1),
+                    _ => lastDoneDate.Value.Date.AddDays(1)
+                };
+            }
+            else
+            {
+                var createdDate = chore.Created == default ? asOf.Date : chore.Created.Date;
+                nextDueDate = createdDate;
+            }
+
+            var isOverdue = nextDueDate < asOf.Date;
+
+            result.Add(new ChoresReportLine
+            {
+                ChoreId = chore.Id,
+                ChoreCode = chore.Code ?? "",
+                ChoreName = chore.Name ?? "",
+                Recurrence = chore.Recurrence,
+                LastDoneDate = lastDoneDate,
+                DoneByName = doneByName,
+                NextDueDate = nextDueDate,
+                IsOverdue = isOverdue
+            });
+        }
+        return result.OrderBy(x => x.NextDueDate).ToList();
+    }
+
+    public async Task<IReadOnlyList<BatteriesReportLine>> GetBatteriesAsync(DateTime asOf, CancellationToken cancellationToken)
+    {
+        var sliceAt = asOf.TimeOfDay == TimeSpan.Zero ? asOf.Date.AddDays(1).AddTicks(-1) : asOf;
+        var batteries = await dbContext.Set<Battery>().AsNoTracking().Where(b => !b.IsDeleted).ToListAsync(cancellationToken);
+        var lastLogs = await batteryLogReader.SliceOfLast(sliceAt, q => q, cancellationToken);
+        var lastLogByBattery = lastLogs.GroupBy(l => l.Dimensions.BatteryId).ToDictionary(g => g.Key, g => g.OrderByDescending(x => x.Period).First());
+
+        var movements = await batteryCyclesReader.Movements(DateTime.MinValue, sliceAt, q => q, cancellationToken);
+        var cyclesByBattery = movements
+            .GroupBy(m => m.Dimensions.BatteryId)
+            .ToDictionary(g => g.Key, g => g.Sum(x => x.IsExpense ? -x.Resources.Cycles : x.Resources.Cycles));
+
+        var result = new List<BatteriesReportLine>();
+        foreach (var b in batteries)
+        {
+            lastLogByBattery.TryGetValue(b.Id, out var lastLog);
+            DateTime? lastCharge = lastLog?.Period;
+            DateTime nextDue = lastCharge.HasValue
+                ? lastCharge.Value.Date.AddDays(b.ChargeIntervalDays)
+                : (b.Created == default ? asOf.Date : b.Created.Date).AddDays(b.ChargeIntervalDays);
+
+            var isOverdue = nextDue < asOf.Date;
+            var totalCycles = cyclesByBattery.GetValueOrDefault(b.Id, 0m);
+
+            result.Add(new BatteriesReportLine
+            {
+                BatteryId = b.Id,
+                BatteryCode = b.Code ?? "",
+                BatteryName = b.Name ?? "",
+                UsedIn = b.UsedIn,
+                BatteryKind = b.BatteryKind,
+                ChargeIntervalDays = b.ChargeIntervalDays,
+                LastChargeDate = lastCharge,
+                NextDueDate = nextDue,
+                IsOverdue = isOverdue,
+                TotalCycles = totalCycles
+            });
+        }
+        return result.OrderBy(x => x.NextDueDate).ToList();
+    }
+
+    public async Task<IReadOnlyList<EquipmentReportLine>> GetEquipmentWarrantiesAsync(int withinDays, DateTime asOf, CancellationToken cancellationToken)
+    {
+        var threshold = asOf.Date.AddDays(withinDays);
+        var equipments = await dbContext.Set<Equipment>().Include(e => e.Location).AsNoTracking().Where(e => !e.IsDeleted).ToListAsync(cancellationToken);
+        var filtered = equipments.Where(e => e.WarrantyUntil.HasValue && e.WarrantyUntil.Value.Date <= threshold).ToList();
+
+        var result = new List<EquipmentReportLine>();
+        foreach (var e in filtered)
+        {
+            var daysLeft = (int)(e.WarrantyUntil!.Value.Date - asOf.Date).TotalDays;
+            result.Add(new EquipmentReportLine
+            {
+                EquipmentId = e.Id,
+                EquipmentCode = e.Code ?? "",
+                EquipmentName = e.Name ?? "",
+                LocationId = e.LocationId,
+                LocationName = e.Location?.Name ?? "",
+                BoughtOn = e.BoughtOn,
+                WarrantyUntil = e.WarrantyUntil,
+                DaysLeft = daysLeft,
+                HasManual = e.ManualFileId.HasValue && e.ManualFileId.Value != Guid.Empty,
+                HasPhoto = e.PhotoFileId.HasValue && e.PhotoFileId.Value != Guid.Empty
+            });
+        }
+        return result.OrderBy(x => x.WarrantyUntil).ToList();
+    }
+
+    public async Task<IReadOnlyList<WeekPlanReportLine>> GetWeekPlanAsync(DateTime weekStart, CancellationToken cancellationToken)
+    {
+        var d = weekStart.Date;
+        var diff = (7 + (int)d.DayOfWeek - (int)DayOfWeek.Monday) % 7;
+        var monday = d.AddDays(-diff);
+        var sunday = monday.AddDays(7).AddTicks(-1);
+
+        var plannedMeals = await plannedMealsReader.Records(
+            DateTime.MinValue,
+            DateTime.MaxValue,
+            q => q.Where(m => m.Dimensions.Date >= monday && m.Dimensions.Date <= sunday),
+            cancellationToken);
+        var recipeIds = plannedMeals.Select(p => p.Dimensions.RecipeId).Distinct().ToList();
+        var recipes = await dbContext.Dict_Recipes.Include(r => r.Lines).AsNoTracking().Where(r => !r.IsDeleted && recipeIds.Contains(r.Id)).ToDictionaryAsync(r => r.Id, cancellationToken);
+
+        var balances = await stockReader.Balances(q => q.Where(b => b.Resources.Quantity > 0), cancellationToken);
+        var balancesByProduct = balances.GroupBy(b => b.Dimensions.ProductId).ToDictionary(g => g.Key, g => g.Sum(x => x.Resources.Quantity));
+
+        var result = new List<WeekPlanReportLine>();
+        foreach (var meal in plannedMeals.OrderBy(m => m.Dimensions.Date))
+        {
+            recipes.TryGetValue(meal.Dimensions.RecipeId, out var recipe);
+            var canCook = true;
+            if (recipe != null)
+            {
+                var baseServings = recipe.Servings > 0 ? recipe.Servings : 1m;
+                var scale = meal.Details.Servings / baseServings;
+                foreach (var group in recipe.Lines.GroupBy(l => l.ProductId))
+                {
+                    var needed = group.Sum(l => l.Quantity * scale);
+                    var onHand = balancesByProduct.GetValueOrDefault(group.Key, 0m);
+                    if (onHand < needed)
+                    {
+                        canCook = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                canCook = false;
+            }
+
+            var mealDate = meal.Dimensions.Date;
+            var dayEnum = (MealPlanDay)(((int)mealDate.DayOfWeek == 0 ? 7 : (int)mealDate.DayOfWeek));
+
+            result.Add(new WeekPlanReportLine
+            {
+                Date = mealDate,
+                Day = dayEnum,
+                RecipeId = meal.Dimensions.RecipeId,
+                RecipeCode = recipe?.Code ?? "",
+                RecipeName = recipe?.Name ?? "",
+                Servings = meal.Details.Servings,
+                CanCook = canCook
+            });
+        }
+        return result;
+    }
+
+    public async Task<IReadOnlyList<CalendarReportLine>> GetCalendarAsync(DateTime from, DateTime to, CancellationToken cancellationToken)
+    {
+        var fromDate = from.Date;
+        var toUpper = to.Date.AddDays(1).AddTicks(-1);
+        var chores = await GetChoresAsync(toUpper, cancellationToken);
+        var batteries = await GetBatteriesAsync(toUpper, cancellationToken);
+        var plannedMeals = await plannedMealsReader.Records(
+            DateTime.MinValue,
+            DateTime.MaxValue,
+            q => q.Where(m => m.Dimensions.Date >= fromDate && m.Dimensions.Date <= toUpper),
+            cancellationToken);
+        var recipeIds = plannedMeals.Select(p => p.Dimensions.RecipeId).Distinct().ToList();
+        var recipes = await dbContext.Dict_Recipes.AsNoTracking().Where(r => !r.IsDeleted && recipeIds.Contains(r.Id)).ToDictionaryAsync(r => r.Id, cancellationToken);
+
+        var result = new List<CalendarReportLine>();
+        for (var day = fromDate; day <= to.Date; day = day.AddDays(1))
+        {
+            var dayChores = chores.Where(c => c.NextDueDate.Date == day).Select(c => c.ChoreName).ToList();
+            var dayBatteries = batteries.Where(b => b.NextDueDate.Date == day).Select(b => b.BatteryName).ToList();
+            var dayMeals = plannedMeals.Where(m => m.Dimensions.Date.Date == day)
+                .Select(m =>
+                {
+                    var name = recipes.GetValueOrDefault(m.Dimensions.RecipeId)?.Name ?? "";
+                    return $"{name} (×{m.Details.Servings:0.##})";
+                }).ToList();
+
+            result.Add(new CalendarReportLine
+            {
+                Date = day,
+                DayOfWeek = day.DayOfWeek.ToString(),
+                ChoresDue = string.Join(", ", dayChores),
+                BatteriesDue = string.Join(", ", dayBatteries),
+                PlannedMeals = string.Join(", ", dayMeals)
+            });
+        }
+        return result;
+    }
+
+    public async Task<int> GetOverdueChoresCountAsync(DateTime asOf, CancellationToken cancellationToken)
+    {
+        var chores = await GetChoresAsync(asOf, cancellationToken);
+        return chores.Count(c => c.IsOverdue);
+    }
+
+    public async Task<int> GetBatteriesDueCountAsync(DateTime asOf, CancellationToken cancellationToken)
+    {
+        var batteries = await GetBatteriesAsync(asOf, cancellationToken);
+        return batteries.Count(b => b.NextDueDate.Date <= asOf.Date);
+    }
+
+    public async Task<IReadOnlyList<TodayScheduleItem>> GetTodayScheduleAsync(DateTime today, CancellationToken cancellationToken)
+    {
+        var todayStart = today.Date;
+        var todayEnd = today.Date.AddDays(1).AddTicks(-1);
+        var chores = await GetChoresAsync(today, cancellationToken);
+        var todayChores = chores.Where(c => c.NextDueDate.Date <= today.Date).Select(c => new TodayScheduleItem
+        {
+            IsMeal = false,
+            ItemName = c.ChoreName,
+            DoneByName = c.DoneByName,
+            IsOverdue = c.IsOverdue
+        });
+
+        var plannedMeals = await plannedMealsReader.Records(
+            DateTime.MinValue,
+            DateTime.MaxValue,
+            q => q.Where(m => m.Dimensions.Date >= todayStart && m.Dimensions.Date <= todayEnd),
+            cancellationToken);
+        var recipeIds = plannedMeals.Select(p => p.Dimensions.RecipeId).Distinct().ToList();
+        var recipes = await dbContext.Dict_Recipes.AsNoTracking().Where(r => !r.IsDeleted && recipeIds.Contains(r.Id)).ToDictionaryAsync(r => r.Id, cancellationToken);
+        var todayMeals = plannedMeals.Select(m => new TodayScheduleItem
+        {
+            IsMeal = true,
+            ItemName = recipes.GetValueOrDefault(m.Dimensions.RecipeId)?.Name ?? string.Empty,
+            Servings = m.Details.Servings
+        });
+
+        return todayChores.Concat(todayMeals).ToList();
     }
 
     private async Task<List<Guid>> GetDescendantGroupIdsAsync(Guid parentId, CancellationToken cancellationToken)

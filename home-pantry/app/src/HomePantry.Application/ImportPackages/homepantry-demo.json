@@ -2,7 +2,7 @@
   "$schema": "./homepantry.import.schema.json",
   "format": "kandra-import/1",
   "package": "homepantry-demo",
-  "version": 1,
+  "version": 2,
   "origin": "demoSeed",
   "configuration": "HomePantry",
   "title": "HomePantry demo data",
@@ -1877,6 +1877,373 @@
               },
               "quantity": 2,
               "bought": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dictionary": "HouseholdMembers",
+      "items": [
+        {
+          "$id": "member-alex",
+          "code": "M-ALEX",
+          "name": "Alex Smith"
+        },
+        {
+          "$id": "member-maria",
+          "code": "M-MARIA",
+          "name": "Maria Smith"
+        },
+        {
+          "$id": "member-leo",
+          "code": "M-LEO",
+          "name": "Leo Smith"
+        }
+      ]
+    },
+    {
+      "dictionary": "Batteries",
+      "items": [
+        {
+          "$id": "bat-smoke",
+          "code": "B-SMOKE",
+          "name": "Smoke detector AA",
+          "usedIn": "Kitchen smoke detector",
+          "chargeIntervalDays": 180,
+          "batteryKind": "disposable"
+        },
+        {
+          "$id": "bat-mouse",
+          "code": "B-MOUSE",
+          "name": "Office mouse AA",
+          "usedIn": "Wireless mouse",
+          "chargeIntervalDays": 30,
+          "batteryKind": "rechargeable"
+        },
+        {
+          "$id": "bat-remote",
+          "code": "B-REMOTE",
+          "name": "TV remote AAA",
+          "usedIn": "Living room TV remote",
+          "chargeIntervalDays": 90,
+          "batteryKind": "rechargeable"
+        },
+        {
+          "$id": "bat-light",
+          "code": "B-LIGHT",
+          "name": "Emergency flashlight 18650",
+          "usedIn": "Hallway flashlight",
+          "chargeIntervalDays": 60,
+          "batteryKind": "rechargeable"
+        }
+      ]
+    },
+    {
+      "dictionary": "Chores",
+      "items": [
+        {
+          "$id": "chore-dishes",
+          "code": "C-DISH",
+          "name": "Empty dishwasher",
+          "recurrence": "daily",
+          "everyNDays": 1,
+          "assignedToId": {
+            "$ref": "member-leo"
+          },
+          "description": "Unload clean dishes"
+        },
+        {
+          "$id": "chore-trash",
+          "code": "C-TRASH",
+          "name": "Take out trash",
+          "recurrence": "daily",
+          "everyNDays": 1,
+          "assignedToId": {
+            "$ref": "member-alex"
+          },
+          "description": "Kitchen trash and recycling"
+        },
+        {
+          "$id": "chore-vacuum",
+          "code": "C-VAC",
+          "name": "Vacuum living room",
+          "recurrence": "everyNDays",
+          "everyNDays": 3,
+          "assignedToId": {
+            "$ref": "member-alex"
+          },
+          "description": "Vacuum living room rugs and hallway"
+        },
+        {
+          "$id": "chore-mop",
+          "code": "C-MOP",
+          "name": "Mop kitchen floor",
+          "recurrence": "weekly",
+          "everyNDays": 7,
+          "assignedToId": {
+            "$ref": "member-maria"
+          },
+          "description": "Wash kitchen floor with tile cleaner"
+        },
+        {
+          "$id": "chore-bedding",
+          "code": "C-BED",
+          "name": "Change bed sheets",
+          "recurrence": "weekly",
+          "everyNDays": 7,
+          "assignedToId": {
+            "$ref": "member-maria"
+          },
+          "description": "Change sheets and pillowcases"
+        },
+        {
+          "$id": "chore-fridge",
+          "code": "C-FRIDGE",
+          "name": "Clean refrigerator",
+          "recurrence": "monthly",
+          "everyNDays": 30,
+          "assignedToId": {
+            "$ref": "member-maria"
+          },
+          "description": "Wipe down shelves and toss expired food"
+        },
+        {
+          "$id": "chore-filters",
+          "code": "C-FILTERS",
+          "name": "Clean AC & hood filters",
+          "recurrence": "monthly",
+          "everyNDays": 30,
+          "assignedToId": {
+            "$ref": "member-alex"
+          },
+          "description": "Wash grease and dust filters"
+        },
+        {
+          "$id": "chore-plants",
+          "code": "C-PLANTS",
+          "name": "Water balcony plants",
+          "recurrence": "everyNDays",
+          "everyNDays": 4,
+          "assignedToId": {
+            "$ref": "member-leo"
+          },
+          "description": "Water potted herbs and flowers"
+        }
+      ]
+    },
+    {
+      "dictionary": "Equipment",
+      "items": [
+        {
+          "$id": "eq-fridge",
+          "code": "EQ-FRIDGE",
+          "name": "Bosch Refrigerator",
+          "locationId": {
+            "$ref": "loc-kitchen"
+          },
+          "boughtOn": "$today-365d",
+          "warrantyUntil": "$today+365d",
+          "manualFileId": "aaaaaaaa-1111-1111-1111-111111111111"
+        },
+        {
+          "$id": "eq-robot",
+          "code": "EQ-ROBOT",
+          "name": "Roborock Vacuum",
+          "locationId": {
+            "$ref": "loc-kitchen"
+          },
+          "boughtOn": "$today-350d",
+          "warrantyUntil": "$today+15d",
+          "manualFileId": "aaaaaaaa-2222-2222-2222-222222222222"
+        },
+        {
+          "$id": "eq-washer",
+          "code": "EQ-WASHER",
+          "name": "LG Washing Machine",
+          "locationId": {
+            "$ref": "loc-bathroom"
+          },
+          "boughtOn": "$today-200d",
+          "warrantyUntil": "$today+530d",
+          "manualFileId": "aaaaaaaa-3333-3333-3333-333333333333"
+        }
+      ]
+    },
+    {
+      "document": "ChoresDone",
+      "submit": true,
+      "items": [
+        {
+          "$id": "cd-filters",
+          "code": "CD-0001",
+          "date": "$today-20d",
+          "choreId": {
+            "$ref": "chore-filters"
+          },
+          "doneById": {
+            "$ref": "member-alex"
+          },
+          "comment": "Filters rinsed"
+        },
+        {
+          "$id": "cd-fridge",
+          "code": "CD-0002",
+          "date": "$today-15d",
+          "choreId": {
+            "$ref": "chore-fridge"
+          },
+          "doneById": {
+            "$ref": "member-maria"
+          },
+          "comment": "Deep clean shelves"
+        },
+        {
+          "$id": "cd-plants",
+          "code": "CD-0003",
+          "date": "$today-10d",
+          "choreId": {
+            "$ref": "chore-plants"
+          },
+          "doneById": {
+            "$ref": "member-leo"
+          },
+          "comment": "Watered plants"
+        },
+        {
+          "$id": "cd-bedding",
+          "code": "CD-0004",
+          "date": "$today-6d",
+          "choreId": {
+            "$ref": "chore-bedding"
+          },
+          "doneById": {
+            "$ref": "member-maria"
+          },
+          "comment": "Fresh linens"
+        },
+        {
+          "$id": "cd-mop",
+          "code": "CD-0005",
+          "date": "$today-5d",
+          "choreId": {
+            "$ref": "chore-mop"
+          },
+          "doneById": {
+            "$ref": "member-maria"
+          },
+          "comment": "Tiles washed"
+        },
+        {
+          "$id": "cd-vacuum",
+          "code": "CD-0006",
+          "date": "$today-2d",
+          "choreId": {
+            "$ref": "chore-vacuum"
+          },
+          "doneById": {
+            "$ref": "member-alex"
+          },
+          "comment": "Cleaned living room"
+        },
+        {
+          "$id": "cd-trash",
+          "code": "CD-0007",
+          "date": "$today-1d",
+          "choreId": {
+            "$ref": "chore-trash"
+          },
+          "doneById": {
+            "$ref": "member-alex"
+          },
+          "comment": "Bins emptied"
+        },
+        {
+          "$id": "cd-dishes",
+          "code": "CD-0008",
+          "date": "$today",
+          "choreId": {
+            "$ref": "chore-dishes"
+          },
+          "doneById": {
+            "$ref": "member-leo"
+          },
+          "comment": "Done this morning"
+        }
+      ]
+    },
+    {
+      "document": "BatteriesCharged",
+      "submit": true,
+      "items": [
+        {
+          "$id": "bc-smoke",
+          "code": "BC-0001",
+          "date": "$today-28d",
+          "batteryId": {
+            "$ref": "bat-smoke"
+          },
+          "replaced": true
+        },
+        {
+          "$id": "bc-remote",
+          "code": "BC-0002",
+          "date": "$today-25d",
+          "batteryId": {
+            "$ref": "bat-remote"
+          },
+          "replaced": false
+        },
+        {
+          "$id": "bc-light",
+          "code": "BC-0003",
+          "date": "$today-12d",
+          "batteryId": {
+            "$ref": "bat-light"
+          },
+          "replaced": false
+        },
+        {
+          "$id": "bc-mouse",
+          "code": "BC-0004",
+          "date": "$today-5d",
+          "batteryId": {
+            "$ref": "bat-mouse"
+          },
+          "replaced": false
+        }
+      ]
+    },
+    {
+      "document": "MealPlans",
+      "submit": true,
+      "items": [
+        {
+          "$id": "mp-week",
+          "code": "MP-0001",
+          "date": "$today",
+          "weekStartDate": "$today",
+          "lines": [
+            {
+              "day": "monday",
+              "recipeId": {
+                "$ref": "rec-pancakes"
+              },
+              "servings": 4
+            },
+            {
+              "day": "wednesday",
+              "recipeId": {
+                "$ref": "rec-pasta"
+              },
+              "servings": 3
+            },
+            {
+              "day": "friday",
+              "recipeId": {
+                "$ref": "rec-salad"
+              },
+              "servings": 2
             }
           ]
         }
