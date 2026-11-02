@@ -20,6 +20,13 @@ What food and household supplies are at home, where, when they spoil, what can b
 
 [prompt/PROMPT-A-stock.md](prompt/PROMPT-A-stock.md) (v1), then [prompt/PROMPT-B-household.md](prompt/PROMPT-B-household.md) (v1) on the same project.
 
-## Status
+## How it was built
 
-Not built yet: only the brief is published. See [CONTRIBUTING.md](../CONTRIBUTING.md) for how an example is built.
+Part A was built by Google Antigravity (Gemini 3.8 Flash, medium) from its brief, then reviewed and fixed by Gemini
+Argon 4 (high) in the same session. Part B, on the same configuration, is not built yet; the application is reviewed
+again once it is. What each step did is in [BUILD-NOTES.md](BUILD-NOTES.md).
+
+## Run it
+
+The application (part A so far) is in [app/](app/); its [README](app/README.md) says how to build, start it with the
+demo data and sign in.

@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+**/.vs/
+**/Generated.Net/
+**/*.user
+.git/
+.github/
+# Local databases, uploads, keys and backups of a dev run
+src/HomePantry.WebApi/data/
+src/HomePantry.WebApi/db/*.db*
+src/HomePantry.WebApi/App_Data/
+src/HomePantry.WebApi/blobs/
+src/HomePantry.WebApi/keys/
+src/HomePantry.WebApi/backups/
+**/Migrations/**/*.sql
+compose*.yml
+.env*

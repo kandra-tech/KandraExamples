@@ -1,0 +1,1886 @@
+{
+  "$schema": "./homepantry.import.schema.json",
+  "format": "kandra-import/1",
+  "package": "homepantry-demo",
+  "version": 1,
+  "origin": "demoSeed",
+  "configuration": "HomePantry",
+  "title": "HomePantry demo data",
+  "steps": [
+    {
+      "constant": "Currency",
+      "$id": "const-curr",
+      "value": "UAH",
+      "effectiveFrom": "2020-01-01"
+    },
+    {
+      "constant": "ExpiringLookAheadDays",
+      "$id": "const-lookahead",
+      "value": 5,
+      "effectiveFrom": "2020-01-01"
+    },
+    {
+      "dictionary": "Stores",
+      "items": [
+        {
+          "$id": "store-silpo",
+          "code": "SILPO",
+          "name": "Сільпо"
+        },
+        {
+          "$id": "store-atb",
+          "code": "ATB",
+          "name": "АТБ"
+        },
+        {
+          "$id": "store-novus",
+          "code": "NOVUS",
+          "name": "Novus"
+        }
+      ]
+    },
+    {
+      "dictionary": "Locations",
+      "items": [
+        {
+          "$id": "loc-kitchen",
+          "code": "KITCHEN",
+          "name": "Kitchen",
+          "isFolder": true,
+          "isFreezer": false
+        },
+        {
+          "$id": "loc-fridge",
+          "code": "FRIDGE",
+          "name": "Fridge",
+          "parentId": {
+            "$ref": "loc-kitchen"
+          },
+          "isFolder": false,
+          "isFreezer": false
+        },
+        {
+          "$id": "loc-freezer",
+          "code": "FREEZER",
+          "name": "Freezer",
+          "parentId": {
+            "$ref": "loc-kitchen"
+          },
+          "isFolder": false,
+          "isFreezer": true
+        },
+        {
+          "$id": "loc-shelf",
+          "code": "SHELF",
+          "name": "Shelf",
+          "parentId": {
+            "$ref": "loc-kitchen"
+          },
+          "isFolder": false,
+          "isFreezer": false
+        },
+        {
+          "$id": "loc-bathroom",
+          "code": "BATHROOM",
+          "name": "Bathroom",
+          "isFolder": false,
+          "isFreezer": false
+        },
+        {
+          "$id": "loc-storage",
+          "code": "STORAGE",
+          "name": "Storage room",
+          "isFolder": false,
+          "isFreezer": false
+        }
+      ]
+    },
+    {
+      "dictionary": "Products",
+      "items": [
+        {
+          "$id": "grp-dairy",
+          "code": "G-DAIRY",
+          "name": "Dairy",
+          "isFolder": true
+        },
+        {
+          "$id": "grp-produce",
+          "code": "G-PRODUCE",
+          "name": "Vegetables & Fruits",
+          "isFolder": true
+        },
+        {
+          "$id": "grp-meat",
+          "code": "G-MEAT",
+          "name": "Meat & Fish",
+          "isFolder": true
+        },
+        {
+          "$id": "grp-bakery",
+          "code": "G-BAKERY",
+          "name": "Bakery & Grains",
+          "isFolder": true
+        },
+        {
+          "$id": "grp-pantry",
+          "code": "G-PANTRY",
+          "name": "Pantry & Beverages",
+          "isFolder": true
+        },
+        {
+          "$id": "grp-cleaning",
+          "code": "G-CLEAN",
+          "name": "Cleaning & Household",
+          "isFolder": true
+        },
+        {
+          "$id": "prod-milk",
+          "code": "P-MILK",
+          "parentId": {
+            "$ref": "grp-dairy"
+          },
+          "name": "Whole Milk 2.5%",
+          "unit": "l",
+          "barcode": "482000000001",
+          "minimumStock": 2,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 14,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-butter",
+          "code": "P-BUTTER",
+          "parentId": {
+            "$ref": "grp-dairy"
+          },
+          "name": "Butter 82%",
+          "unit": "g",
+          "barcode": "482000000002",
+          "minimumStock": 200,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 35,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-cheese",
+          "code": "P-CHEESE",
+          "parentId": {
+            "$ref": "grp-dairy"
+          },
+          "name": "Hard Cheese",
+          "unit": "g",
+          "barcode": "482000000003",
+          "minimumStock": 300,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 60,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-yogurt",
+          "code": "P-YOGURT",
+          "parentId": {
+            "$ref": "grp-dairy"
+          },
+          "name": "Greek Yogurt",
+          "unit": "pcs",
+          "barcode": "482000000004",
+          "minimumStock": 4,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 14,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-sourcream",
+          "code": "P-SOURCREAM",
+          "parentId": {
+            "$ref": "grp-dairy"
+          },
+          "name": "Sour Cream 20%",
+          "unit": "g",
+          "barcode": "482000000005",
+          "minimumStock": 350,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 21,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-cottagecheese",
+          "code": "P-COTTAGEC",
+          "parentId": {
+            "$ref": "grp-dairy"
+          },
+          "name": "Cottage Cheese",
+          "unit": "g",
+          "barcode": "482000000006",
+          "minimumStock": 400,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 10,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-eggs",
+          "code": "P-EGGS",
+          "parentId": {
+            "$ref": "grp-dairy"
+          },
+          "name": "Eggs",
+          "unit": "pcs",
+          "barcode": "482000000007",
+          "minimumStock": 10,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 25,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-potatoes",
+          "code": "P-POTATOES",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Potatoes",
+          "unit": "kg",
+          "barcode": "482000000008",
+          "minimumStock": 3,
+          "defaultLocationId": {
+            "$ref": "loc-storage"
+          },
+          "defaultShelfLifeDays": 60,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-carrots",
+          "code": "P-CARROTS",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Carrots",
+          "unit": "kg",
+          "barcode": "482000000009",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 30,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-onions",
+          "code": "P-ONIONS",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Yellow Onions",
+          "unit": "kg",
+          "barcode": "482000000010",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-storage"
+          },
+          "defaultShelfLifeDays": 45,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-garlic",
+          "code": "P-GARLIC",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Garlic",
+          "unit": "pcs",
+          "barcode": "482000000011",
+          "minimumStock": 3,
+          "defaultLocationId": {
+            "$ref": "loc-storage"
+          },
+          "defaultShelfLifeDays": 90,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-cabbage",
+          "code": "P-CABBAGE",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "White Cabbage",
+          "unit": "kg",
+          "barcode": "482000000012",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 30,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-beets",
+          "code": "P-BEETS",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Red Beets",
+          "unit": "kg",
+          "barcode": "482000000013",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-storage"
+          },
+          "defaultShelfLifeDays": 45,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-tomatoes",
+          "code": "P-TOMATOES",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Tomatoes",
+          "unit": "kg",
+          "barcode": "482000000014",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 10,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-cucumbers",
+          "code": "P-CUCUMBERS",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Cucumbers",
+          "unit": "kg",
+          "barcode": "482000000015",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 10,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-apples",
+          "code": "P-APPLES",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Apples",
+          "unit": "kg",
+          "barcode": "482000000016",
+          "minimumStock": 2,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 20,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-bananas",
+          "code": "P-BANANAS",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Bananas",
+          "unit": "kg",
+          "barcode": "482000000017",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 7,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-lemons",
+          "code": "P-LEMONS",
+          "parentId": {
+            "$ref": "grp-produce"
+          },
+          "name": "Lemons",
+          "unit": "pcs",
+          "barcode": "482000000018",
+          "minimumStock": 2,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 30,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-chicken",
+          "code": "P-CHICKEN",
+          "parentId": {
+            "$ref": "grp-meat"
+          },
+          "name": "Chicken Fillet",
+          "unit": "kg",
+          "barcode": "482000000019",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 5,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-mince",
+          "code": "P-MINCE",
+          "parentId": {
+            "$ref": "grp-meat"
+          },
+          "name": "Minced Meat",
+          "unit": "kg",
+          "barcode": "482000000020",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 4,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-beef",
+          "code": "P-BEEF",
+          "parentId": {
+            "$ref": "grp-meat"
+          },
+          "name": "Beef Chuck",
+          "unit": "kg",
+          "barcode": "482000000021",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-freezer"
+          },
+          "defaultShelfLifeDays": 90,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-salmon",
+          "code": "P-SALMON",
+          "parentId": {
+            "$ref": "grp-meat"
+          },
+          "name": "Salmon Fillet",
+          "unit": "kg",
+          "barcode": "482000000022",
+          "minimumStock": 0.5,
+          "defaultLocationId": {
+            "$ref": "loc-freezer"
+          },
+          "defaultShelfLifeDays": 60,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-sausages",
+          "code": "P-SAUSAGES",
+          "parentId": {
+            "$ref": "grp-meat"
+          },
+          "name": "Pork Sausages",
+          "unit": "kg",
+          "barcode": "482000000023",
+          "minimumStock": 0.5,
+          "defaultLocationId": {
+            "$ref": "loc-fridge"
+          },
+          "defaultShelfLifeDays": 15,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-bread",
+          "code": "P-BREAD",
+          "parentId": {
+            "$ref": "grp-bakery"
+          },
+          "name": "White Bread",
+          "unit": "pcs",
+          "barcode": "482000000024",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 4,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-flour",
+          "code": "P-FLOUR",
+          "parentId": {
+            "$ref": "grp-bakery"
+          },
+          "name": "Wheat Flour",
+          "unit": "kg",
+          "barcode": "482000000025",
+          "minimumStock": 2,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 180,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-pasta",
+          "code": "P-PASTA",
+          "parentId": {
+            "$ref": "grp-bakery"
+          },
+          "name": "Spaghetti Pasta",
+          "unit": "g",
+          "barcode": "482000000026",
+          "minimumStock": 500,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 365,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-rice",
+          "code": "P-RICE",
+          "parentId": {
+            "$ref": "grp-bakery"
+          },
+          "name": "White Rice",
+          "unit": "kg",
+          "barcode": "482000000027",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 365,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-buckwheat",
+          "code": "P-BUCKWHEAT",
+          "parentId": {
+            "$ref": "grp-bakery"
+          },
+          "name": "Buckwheat",
+          "unit": "kg",
+          "barcode": "482000000028",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 365,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-oats",
+          "code": "P-OATS",
+          "parentId": {
+            "$ref": "grp-bakery"
+          },
+          "name": "Rolled Oats",
+          "unit": "g",
+          "barcode": "482000000029",
+          "minimumStock": 500,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 180,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-oil",
+          "code": "P-OIL",
+          "parentId": {
+            "$ref": "grp-pantry"
+          },
+          "name": "Sunflower Oil",
+          "unit": "l",
+          "barcode": "482000000030",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 365,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-oliveoil",
+          "code": "P-OLIVEOIL",
+          "parentId": {
+            "$ref": "grp-pantry"
+          },
+          "name": "Olive Oil",
+          "unit": "ml",
+          "barcode": "482000000031",
+          "minimumStock": 500,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 365,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-sugar",
+          "code": "P-SUGAR",
+          "parentId": {
+            "$ref": "grp-pantry"
+          },
+          "name": "White Sugar",
+          "unit": "kg",
+          "barcode": "482000000032",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "prod-salt",
+          "code": "P-SALT",
+          "parentId": {
+            "$ref": "grp-pantry"
+          },
+          "name": "Table Salt",
+          "unit": "kg",
+          "barcode": "482000000033",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "prod-pepper",
+          "code": "P-PEPPER",
+          "parentId": {
+            "$ref": "grp-pantry"
+          },
+          "name": "Black Pepper",
+          "unit": "g",
+          "barcode": "482000000034",
+          "minimumStock": 50,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "prod-tea",
+          "code": "P-TEA",
+          "parentId": {
+            "$ref": "grp-pantry"
+          },
+          "name": "Black Tea",
+          "unit": "pack",
+          "barcode": "482000000035",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 365,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-coffee",
+          "code": "P-COFFEE",
+          "parentId": {
+            "$ref": "grp-pantry"
+          },
+          "name": "Coffee Beans",
+          "unit": "kg",
+          "barcode": "482000000036",
+          "minimumStock": 1,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 180,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-tomatopaste",
+          "code": "P-TOMATOPASTE",
+          "parentId": {
+            "$ref": "grp-pantry"
+          },
+          "name": "Tomato Paste",
+          "unit": "g",
+          "barcode": "482000000037",
+          "minimumStock": 200,
+          "defaultLocationId": {
+            "$ref": "loc-shelf"
+          },
+          "defaultShelfLifeDays": 180,
+          "isFolder": false
+        },
+        {
+          "$id": "prod-dishsoap",
+          "code": "P-DISHSOAP",
+          "parentId": {
+            "$ref": "grp-cleaning"
+          },
+          "name": "Dish Soap",
+          "unit": "ml",
+          "barcode": "482000000038",
+          "minimumStock": 500,
+          "defaultLocationId": {
+            "$ref": "loc-bathroom"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "prod-detergent",
+          "code": "P-DETERGENT",
+          "parentId": {
+            "$ref": "grp-cleaning"
+          },
+          "name": "Laundry Detergent",
+          "unit": "kg",
+          "barcode": "482000000039",
+          "minimumStock": 2,
+          "defaultLocationId": {
+            "$ref": "loc-bathroom"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "prod-papertowels",
+          "code": "P-PAPERTOWELS",
+          "parentId": {
+            "$ref": "grp-cleaning"
+          },
+          "name": "Paper Towels",
+          "unit": "pack",
+          "barcode": "482000000040",
+          "minimumStock": 2,
+          "defaultLocationId": {
+            "$ref": "loc-storage"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "prod-trashbags",
+          "code": "P-TRASHBAGS",
+          "parentId": {
+            "$ref": "grp-cleaning"
+          },
+          "name": "Trash Bags",
+          "unit": "pack",
+          "barcode": "482000000041",
+          "minimumStock": 2,
+          "defaultLocationId": {
+            "$ref": "loc-storage"
+          },
+          "isFolder": false
+        }
+      ]
+    },
+    {
+      "dictionary": "Recipes",
+      "items": [
+        {
+          "$id": "rec-eggs",
+          "code": "R-EGGS",
+          "name": "Scrambled Eggs",
+          "servings": 2,
+          "instructions": "Beat eggs with milk and salt. Melt butter in pan and cook gently.",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-eggs"
+              },
+              "quantity": 4
+            },
+            {
+              "productId": {
+                "$ref": "prod-milk"
+              },
+              "quantity": 0.1
+            },
+            {
+              "productId": {
+                "$ref": "prod-butter"
+              },
+              "quantity": 20
+            },
+            {
+              "productId": {
+                "$ref": "prod-salt"
+              },
+              "quantity": 0.005
+            }
+          ]
+        },
+        {
+          "$id": "rec-pasta",
+          "code": "R-PASTA",
+          "name": "Spaghetti with Cheese",
+          "servings": 2,
+          "instructions": "Boil spaghetti in salted water until al dente. Drain and toss with butter and grated cheese.",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-pasta"
+              },
+              "quantity": 250
+            },
+            {
+              "productId": {
+                "$ref": "prod-cheese"
+              },
+              "quantity": 150
+            },
+            {
+              "productId": {
+                "$ref": "prod-butter"
+              },
+              "quantity": 30
+            }
+          ]
+        },
+        {
+          "$id": "rec-pancakes",
+          "code": "R-PANCAKES",
+          "name": "Pancakes",
+          "servings": 4,
+          "instructions": "Mix flour, milk, eggs, sugar and salt. Fry thin pancakes on a hot oiled pan.",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-flour"
+              },
+              "quantity": 0.3
+            },
+            {
+              "productId": {
+                "$ref": "prod-milk"
+              },
+              "quantity": 0.5
+            },
+            {
+              "productId": {
+                "$ref": "prod-eggs"
+              },
+              "quantity": 2
+            },
+            {
+              "productId": {
+                "$ref": "prod-sugar"
+              },
+              "quantity": 0.05
+            },
+            {
+              "productId": {
+                "$ref": "prod-oil"
+              },
+              "quantity": 0.03
+            }
+          ]
+        },
+        {
+          "$id": "rec-salad",
+          "code": "R-SALAD",
+          "name": "Fresh Salad",
+          "servings": 2,
+          "instructions": "Chop tomatoes and cucumbers, season with olive oil and salt.",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-tomatoes"
+              },
+              "quantity": 0.3
+            },
+            {
+              "productId": {
+                "$ref": "prod-cucumbers"
+              },
+              "quantity": 0.2
+            },
+            {
+              "productId": {
+                "$ref": "prod-oliveoil"
+              },
+              "quantity": 20
+            },
+            {
+              "productId": {
+                "$ref": "prod-salt"
+              },
+              "quantity": 0.005
+            }
+          ]
+        },
+        {
+          "$id": "rec-borscht",
+          "code": "R-BORSCHT",
+          "name": "Ukrainian Borscht",
+          "servings": 4,
+          "instructions": "Simmer beef broth. Add potatoes and cabbage. Sauté beets, carrots, onions with tomato paste and combine.",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-beef"
+              },
+              "quantity": 0.5
+            },
+            {
+              "productId": {
+                "$ref": "prod-potatoes"
+              },
+              "quantity": 0.4
+            },
+            {
+              "productId": {
+                "$ref": "prod-cabbage"
+              },
+              "quantity": 0.3
+            },
+            {
+              "productId": {
+                "$ref": "prod-beets"
+              },
+              "quantity": 0.3
+            },
+            {
+              "productId": {
+                "$ref": "prod-carrots"
+              },
+              "quantity": 0.15
+            },
+            {
+              "productId": {
+                "$ref": "prod-onions"
+              },
+              "quantity": 0.1
+            },
+            {
+              "productId": {
+                "$ref": "prod-tomatopaste"
+              },
+              "quantity": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Purchases",
+      "submit": true,
+      "items": [
+        {
+          "$id": "purch-1",
+          "date": "$today-28d",
+          "storeId": {
+            "$ref": "store-silpo"
+          },
+          "total": 434,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-milk"
+              },
+              "quantity": 3,
+              "price": 38,
+              "amount": 114,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today-14d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-eggs"
+              },
+              "quantity": 20,
+              "price": 6,
+              "amount": 120,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today-3d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-butter"
+              },
+              "quantity": 400,
+              "price": 0.25,
+              "amount": 100,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+7d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-potatoes"
+              },
+              "quantity": 5,
+              "price": 20,
+              "amount": 100,
+              "locationId": {
+                "$ref": "loc-storage"
+              },
+              "bestBeforeDate": "$today+32d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-2",
+          "date": "$today-25d",
+          "storeId": {
+            "$ref": "store-atb"
+          },
+          "total": 315,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-bread"
+              },
+              "quantity": 3,
+              "price": 25,
+              "amount": 75,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today-21d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-bananas"
+              },
+              "quantity": 2,
+              "price": 55,
+              "amount": 110,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today-18d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-flour"
+              },
+              "quantity": 3,
+              "price": 22,
+              "amount": 66,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+155d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-sugar"
+              },
+              "quantity": 2,
+              "price": 32,
+              "amount": 64,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+365d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-3",
+          "date": "$today-21d",
+          "storeId": {
+            "$ref": "store-novus"
+          },
+          "total": 930,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-chicken"
+              },
+              "quantity": 3,
+              "price": 160,
+              "amount": 480,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today-16d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-cheese"
+              },
+              "quantity": 600,
+              "price": 0.4,
+              "amount": 240,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+39d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-pasta"
+              },
+              "quantity": 1000,
+              "price": 0.08,
+              "amount": 80,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+344d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-oil"
+              },
+              "quantity": 2,
+              "price": 65,
+              "amount": 130,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+344d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-4",
+          "date": "$today-18d",
+          "storeId": {
+            "$ref": "store-silpo"
+          },
+          "total": 1058,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-beef"
+              },
+              "quantity": 2,
+              "price": 220,
+              "amount": 440,
+              "locationId": {
+                "$ref": "loc-freezer"
+              },
+              "bestBeforeDate": "$today+72d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-salmon"
+              },
+              "quantity": 1,
+              "price": 550,
+              "amount": 550,
+              "locationId": {
+                "$ref": "loc-freezer"
+              },
+              "bestBeforeDate": "$today+42d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-cabbage"
+              },
+              "quantity": 2,
+              "price": 18,
+              "amount": 36,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+12d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-beets"
+              },
+              "quantity": 2,
+              "price": 16,
+              "amount": 32,
+              "locationId": {
+                "$ref": "loc-storage"
+              },
+              "bestBeforeDate": "$today+27d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-5",
+          "date": "$today-15d",
+          "storeId": {
+            "$ref": "store-atb"
+          },
+          "total": 400,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-milk"
+              },
+              "quantity": 4,
+              "price": 39,
+              "amount": 156,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today-1d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-yogurt"
+              },
+              "quantity": 6,
+              "price": 28,
+              "amount": 168,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today-1d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-carrots"
+              },
+              "quantity": 2,
+              "price": 20,
+              "amount": 40,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+15d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-onions"
+              },
+              "quantity": 2,
+              "price": 18,
+              "amount": 36,
+              "locationId": {
+                "$ref": "loc-storage"
+              },
+              "bestBeforeDate": "$today+30d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-6",
+          "date": "$today-12d",
+          "storeId": {
+            "$ref": "store-novus"
+          },
+          "total": 890,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-tomatoes"
+              },
+              "quantity": 2,
+              "price": 85,
+              "amount": 170,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today-2d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-cucumbers"
+              },
+              "quantity": 2,
+              "price": 75,
+              "amount": 150,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today-2d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-oliveoil"
+              },
+              "quantity": 1000,
+              "price": 0.45,
+              "amount": 450,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+353d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-dishsoap"
+              },
+              "quantity": 1000,
+              "price": 0.12,
+              "amount": 120,
+              "locationId": {
+                "$ref": "loc-bathroom"
+              },
+              "bestBeforeDate": "$today+365d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-7",
+          "date": "$today-9d",
+          "storeId": {
+            "$ref": "store-silpo"
+          },
+          "total": 517,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-eggs"
+              },
+              "quantity": 20,
+              "price": 6.2,
+              "amount": 124,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+16d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-sourcream"
+              },
+              "quantity": 700,
+              "price": 0.15,
+              "amount": 105,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+12d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-cottagecheese"
+              },
+              "quantity": 800,
+              "price": 0.18,
+              "amount": 144,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+1d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-apples"
+              },
+              "quantity": 3,
+              "price": 35,
+              "amount": 105,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+11d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-8",
+          "date": "$today-6d",
+          "storeId": {
+            "$ref": "store-atb"
+          },
+          "total": 710,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-chicken"
+              },
+              "quantity": 2,
+              "price": 165,
+              "amount": 330,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today-1d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-sausages"
+              },
+              "quantity": 1,
+              "price": 190,
+              "amount": 190,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+9d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-rice"
+              },
+              "quantity": 2,
+              "price": 50,
+              "amount": 100,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+359d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-buckwheat"
+              },
+              "quantity": 2,
+              "price": 45,
+              "amount": 90,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+359d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-9",
+          "date": "$today-3d",
+          "storeId": {
+            "$ref": "store-novus"
+          },
+          "total": 622,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-milk"
+              },
+              "quantity": 3,
+              "price": 40,
+              "amount": 120,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+11d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-bread"
+              },
+              "quantity": 2,
+              "price": 26,
+              "amount": 52,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+1d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-tomatoes"
+              },
+              "quantity": 2,
+              "price": 90,
+              "amount": 180,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+7d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-cucumbers"
+              },
+              "quantity": 1.5,
+              "price": 80,
+              "amount": 120,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+7d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-yogurt"
+              },
+              "quantity": 5,
+              "price": 30,
+              "amount": 150,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+4d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-10",
+          "date": "$today-1d",
+          "storeId": {
+            "$ref": "store-silpo"
+          },
+          "total": 820,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-butter"
+              },
+              "quantity": 400,
+              "price": 0.26,
+              "amount": 104,
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "bestBeforeDate": "$today+34d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-bananas"
+              },
+              "quantity": 2,
+              "price": 58,
+              "amount": 116,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+6d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-coffee"
+              },
+              "quantity": 1,
+              "price": 450,
+              "amount": 450,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+179d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-tea"
+              },
+              "quantity": 2,
+              "price": 75,
+              "amount": 150,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+364d"
+            }
+          ]
+        },
+        {
+          "$id": "purch-11",
+          "date": "$today",
+          "storeId": {
+            "$ref": "store-silpo"
+          },
+          "total": 300,
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-salt"
+              },
+              "quantity": 2,
+              "price": 20,
+              "amount": 40,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+3650d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-pepper"
+              },
+              "quantity": 100,
+              "price": 0.6,
+              "amount": 60,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+3650d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-tomatopaste"
+              },
+              "quantity": 500,
+              "price": 0.16,
+              "amount": 80,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+180d"
+            },
+            {
+              "productId": {
+                "$ref": "prod-oats"
+              },
+              "quantity": 1000,
+              "price": 0.12,
+              "amount": 120,
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "bestBeforeDate": "$today+180d"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Consumes",
+      "submit": true,
+      "items": [
+        {
+          "$id": "cons-1",
+          "date": "$today-23d",
+          "reason": "eaten",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-bread"
+              },
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "quantity": 2
+            },
+            {
+              "productId": {
+                "$ref": "prod-bananas"
+              },
+              "locationId": {
+                "$ref": "loc-shelf"
+              },
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "$id": "cons-2",
+          "date": "$today-16d",
+          "reason": "eaten",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-chicken"
+              },
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "quantity": 1
+            },
+            {
+              "productId": {
+                "$ref": "prod-potatoes"
+              },
+              "locationId": {
+                "$ref": "loc-storage"
+              },
+              "quantity": 2
+            },
+            {
+              "productId": {
+                "$ref": "prod-eggs"
+              },
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "quantity": 6
+            }
+          ]
+        },
+        {
+          "$id": "cons-3",
+          "date": "$today-10d",
+          "reason": "spoiled",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-milk"
+              },
+              "locationId": {
+                "$ref": "loc-fridge"
+              },
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "$id": "cons-4",
+          "date": "$today-4d",
+          "reason": "usedUp",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-dishsoap"
+              },
+              "locationId": {
+                "$ref": "loc-bathroom"
+              },
+              "quantity": 600
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Transfers",
+      "submit": true,
+      "items": [
+        {
+          "$id": "trans-1",
+          "date": "$today-14d",
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-chicken"
+              },
+              "fromLocationId": {
+                "$ref": "loc-fridge"
+              },
+              "toLocationId": {
+                "$ref": "loc-freezer"
+              },
+              "quantity": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "CookRecipes",
+      "submit": true,
+      "items": [
+        {
+          "$id": "cook-1",
+          "date": "$today-11d",
+          "recipeId": {
+            "$ref": "rec-eggs"
+          },
+          "servings": 2,
+          "locationId": {
+            "$ref": "loc-fridge"
+          },
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-eggs"
+              },
+              "quantity": 4
+            },
+            {
+              "productId": {
+                "$ref": "prod-milk"
+              },
+              "quantity": 0.1
+            },
+            {
+              "productId": {
+                "$ref": "prod-butter"
+              },
+              "quantity": 20
+            }
+          ]
+        },
+        {
+          "$id": "cook-2",
+          "date": "$today-2d",
+          "recipeId": {
+            "$ref": "rec-salad"
+          },
+          "servings": 2,
+          "locationId": {
+            "$ref": "loc-fridge"
+          },
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-tomatoes"
+              },
+              "quantity": 0.3
+            },
+            {
+              "productId": {
+                "$ref": "prod-cucumbers"
+              },
+              "quantity": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "InventoryCounts",
+      "submit": true,
+      "items": [
+        {
+          "$id": "inv-1",
+          "date": "$today-5d",
+          "locationId": {
+            "$ref": "loc-shelf"
+          },
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-flour"
+              },
+              "countedQuantity": 2.5
+            },
+            {
+              "productId": {
+                "$ref": "prod-rice"
+              },
+              "countedQuantity": 2.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "ShoppingLists",
+      "submit": false,
+      "items": [
+        {
+          "$id": "shop-1",
+          "date": "$today",
+          "storeId": {
+            "$ref": "store-silpo"
+          },
+          "lines": [
+            {
+              "productId": {
+                "$ref": "prod-milk"
+              },
+              "quantity": 2,
+              "bought": false
+            },
+            {
+              "productId": {
+                "$ref": "prod-eggs"
+              },
+              "quantity": 10,
+              "bought": false
+            },
+            {
+              "productId": {
+                "$ref": "prod-bread"
+              },
+              "quantity": 1,
+              "bought": true
+            },
+            {
+              "productId": {
+                "$ref": "prod-apples"
+              },
+              "quantity": 2,
+              "bought": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

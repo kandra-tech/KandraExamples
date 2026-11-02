@@ -1,0 +1,26 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="DebugLocalNuGet" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Common/">
+    <Project Path="src/HomePantry.Enums/HomePantry.Enums.csproj" />
+    <Project Path="src/HomePantry.Forms/HomePantry.Forms.csproj" />
+    <Project Path="src/HomePantry.Localization/HomePantry.Localization.csproj" />
+  </Folder>
+  <Folder Name="/Backend/">
+    <Project Path="src/HomePantry.Application/HomePantry.Application.csproj" />
+    <Project Path="src/HomePantry.Domain/HomePantry.Domain.csproj" />
+    <Project Path="src/HomePantry.Persistence.Databases/HomePantry.Persistence.Databases.csproj" />
+    <Project Path="src/HomePantry.Persistence/HomePantry.Persistence.csproj" />
+    <Project Path="src/HomePantry.WebApi/HomePantry.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/">
+    <Project Path="src/HomePantry.Client.MudBlazor/HomePantry.Client.MudBlazor.csproj" />
+    <Project Path="src/HomePantry.ClientLib.Common/HomePantry.ClientLib.Common.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="src/HomePantry.Tests/HomePantry.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "project": "src/HomePantry.Persistence.Databases/HomePantry.Persistence.Databases.csproj",
+  "startupProject": "src/HomePantry.WebApi/HomePantry.WebApi.csproj",
+  "providersPropertyName": "Providers",
+  "providers": [
+    { "name": "Sqlite", "context": "HomePantryDbContextSqlite", "outputDir": "Migrations/Sqlite" },
+    { "name": "SqlServer", "context": "HomePantryDbContextSqlServer", "outputDir": "Migrations/SqlServer" },
+    { "name": "PostgreSql", "context": "HomePantryDbContextPostgreSql", "outputDir": "Migrations/PostgreSql" }
+  ]
+}

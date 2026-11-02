@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BrandName" xml:space="preserve">
+    <value>HomePantry</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Домохозяйство</value>
+  </data>
+  <data name="CompanyLogo" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="CompanySettings" xml:space="preserve">
+    <value>Настройки домохозяйства</value>
+  </data>
+  <data name="CompanySettings_Identity" xml:space="preserve">
+    <value>Реквизиты</value>
+  </data>
+  <data name="CompanySettings_Printing" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="CompanySettings_EffectiveFrom" xml:space="preserve">
+    <value>Изменения действуют с</value>
+  </data>
+  <data name="CompanySettings_Logo" xml:space="preserve">
+    <value>Логотип (PNG или JPEG, до 1 МБ)</value>
+  </data>
+  <data name="CompanySettings_Outcome" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="CompanySettings_NothingChanged" xml:space="preserve">
+    <value>Ничего не изменено.</value>
+  </data>
+  <data name="CompanySettings_Saved" xml:space="preserve">
+    <value>Сохранено с {0}: {1}.</value>
+  </data>
+  <data name="CompanySettings_LogoNotAnImage" xml:space="preserve">
+    <value>Файл не является изображением PNG или JPEG.</value>
+  </data>
+  <data name="CompanySettings_LogoTooLarge" xml:space="preserve">
+    <value>Логотип больше 1 МБ.</value>
+  </data>
+  <data name="CompanySettings_LogoRejected" xml:space="preserve">
+    <value>Загруженный файл больше нельзя использовать. Загрузите его ещё раз.</value>
+  </data>
+  <data name="CompanySettings_LogoLabel" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="Nav_DataProcessors" xml:space="preserve">
+    <value>Обработки</value>
+  </data>
+  <data name="BelowMinimum" xml:space="preserve">
+    <value>Ниже минимума</value>
+  </data>
+  <data name="BestBeforeDate" xml:space="preserve">
+    <value>Годен до</value>
+  </data>
+  <data name="Bought" xml:space="preserve">
+    <value>Куплено</value>
+  </data>
+  <data name="CanCook" xml:space="preserve">
+    <value>Можно приготовить</value>
+  </data>
+  <data name="CanICookItReport" xml:space="preserve">
+    <value>Что можно приготовить?</value>
+  </data>
+  <data name="Consume_Lines" xml:space="preserve">
+    <value>Строки</value>
+  </data>
+  <data name="Consume_Reason" xml:space="preserve">
+    <value>Причина</value>
+  </data>
+  <data name="Consumes" xml:space="preserve">
+    <value>Списания</value>
+  </data>
+  <data name="CookRecipe_Lines" xml:space="preserve">
+    <value>Ингредиенты</value>
+  </data>
+  <data name="CookRecipes" xml:space="preserve">
+    <value>Приготовление блюд</value>
+  </data>
+  <data name="CountedQuantity" xml:space="preserve">
+    <value>Фактическое количество</value>
+  </data>
+  <data name="CreateConsume" xml:space="preserve">
+    <value>Создать списание</value>
+  </data>
+  <data name="CreateCookRecipe" xml:space="preserve">
+    <value>Создать приготовление блюда</value>
+  </data>
+  <data name="CreateInventoryCount" xml:space="preserve">
+    <value>Создать инвентаризацию</value>
+  </data>
+  <data name="CreateLocation" xml:space="preserve">
+    <value>Создать место хранения</value>
+  </data>
+  <data name="CreateProduct" xml:space="preserve">
+    <value>Создать продукт</value>
+  </data>
+  <data name="CreatePurchase" xml:space="preserve">
+    <value>Создать покупку</value>
+  </data>
+  <data name="CreateRecipe" xml:space="preserve">
+    <value>Создать рецепт</value>
+  </data>
+  <data name="CreateShoppingList" xml:space="preserve">
+    <value>Создать список покупок</value>
+  </data>
+  <data name="CreateStore" xml:space="preserve">
+    <value>Создать магазин</value>
+  </data>
+  <data name="CreateTransfer" xml:space="preserve">
+    <value>Создать перемещение</value>
+  </data>
+  <data name="Dashboard_BelowMinimum" xml:space="preserve">
+    <value>Ниже минимума</value>
+  </data>
+  <data name="Dashboard_Expiring" xml:space="preserve">
+    <value>Истекает срок</value>
+  </data>
+  <data name="Dashboard_MonthlySpending" xml:space="preserve">
+    <value>Расходы за месяц</value>
+  </data>
+  <data name="Dashboard_NextExpiringBatches" xml:space="preserve">
+    <value>Ближайшие сроки годности</value>
+  </data>
+  <data name="Dashboard_SpendingHistory" xml:space="preserve">
+    <value>История расходов</value>
+  </data>
+  <data name="Dashboard_StockByGroup" xml:space="preserve">
+    <value>Запасы по категориям</value>
+  </data>
+  <data name="Dashboard_StockValue" xml:space="preserve">
+    <value>Стоимость запасов</value>
+  </data>
+  <data name="DaysLeft" xml:space="preserve">
+    <value>Осталось дней</value>
+  </data>
+  <data name="EditConsume" xml:space="preserve">
+    <value>Редактировать списание</value>
+  </data>
+  <data name="EditCookRecipe" xml:space="preserve">
+    <value>Редактировать приготовление блюда</value>
+  </data>
+  <data name="EditInventoryCount" xml:space="preserve">
+    <value>Редактировать инвентаризацию</value>
+  </data>
+  <data name="EditLocation" xml:space="preserve">
+    <value>Редактировать место хранения</value>
+  </data>
+  <data name="EditProduct" xml:space="preserve">
+    <value>Редактировать продукт</value>
+  </data>
+  <data name="EditPurchase" xml:space="preserve">
+    <value>Редактировать покупку</value>
+  </data>
+  <data name="EditRecipe" xml:space="preserve">
+    <value>Редактировать рецепт</value>
+  </data>
+  <data name="EditShoppingList" xml:space="preserve">
+    <value>Редактировать список покупок</value>
+  </data>
+  <data name="EditStore" xml:space="preserve">
+    <value>Редактировать магазин</value>
+  </data>
+  <data name="EditTransfer" xml:space="preserve">
+    <value>Редактировать перемещение</value>
+  </data>
+  <data name="Enum_ConsumeReason_Eaten" xml:space="preserve">
+    <value>Съедено</value>
+  </data>
+  <data name="Enum_ConsumeReason_Other" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="Enum_ConsumeReason_Spoiled" xml:space="preserve">
+    <value>Испорчено</value>
+  </data>
+  <data name="Enum_ConsumeReason_UsedUp" xml:space="preserve">
+    <value>Использовано</value>
+  </data>
+  <data name="Enum_ProductUnit_G" xml:space="preserve">
+    <value>г</value>
+  </data>
+  <data name="Enum_ProductUnit_Kg" xml:space="preserve">
+    <value>кг</value>
+  </data>
+  <data name="Enum_ProductUnit_L" xml:space="preserve">
+    <value>л</value>
+  </data>
+  <data name="Enum_ProductUnit_Ml" xml:space="preserve">
+    <value>мл</value>
+  </data>
+  <data name="Enum_ProductUnit_Pack" xml:space="preserve">
+    <value>уп</value>
+  </data>
+  <data name="Enum_ProductUnit_Pcs" xml:space="preserve">
+    <value>шт</value>
+  </data>
+  <data name="EstimatedCost" xml:space="preserve">
+    <value>Ориентировочная стоимость</value>
+  </data>
+  <data name="ExpiringReport" xml:space="preserve">
+    <value>Сроки годности</value>
+  </data>
+  <data name="FromLocation" xml:space="preserve">
+    <value>Из места</value>
+  </data>
+  <data name="InventoryCount_Lines" xml:space="preserve">
+    <value>Строки</value>
+  </data>
+  <data name="InventoryCounts" xml:space="preserve">
+    <value>Инвентаризации</value>
+  </data>
+  <data name="IsExpired" xml:space="preserve">
+    <value>Просрочено</value>
+  </data>
+  <data name="LastPrice" xml:space="preserve">
+    <value>Последняя цена</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Место хранения</value>
+  </data>
+  <data name="Location_IsFreezer" xml:space="preserve">
+    <value>Морозильник</value>
+  </data>
+  <data name="Locations" xml:space="preserve">
+    <value>Места хранения</value>
+  </data>
+  <data name="LookAheadDays" xml:space="preserve">
+    <value>Дней вперёд</value>
+  </data>
+  <data name="MinimumStock" xml:space="preserve">
+    <value>Минимальный остаток</value>
+  </data>
+  <data name="MissingIngredients" xml:space="preserve">
+    <value>Отсутствующие ингредиенты</value>
+  </data>
+  <data name="Nav_Catalogs" xml:space="preserve">
+    <value>Справочники</value>
+  </data>
+  <data name="Nav_Consumes" xml:space="preserve">
+    <value>Списания</value>
+  </data>
+  <data name="Nav_CookRecipes" xml:space="preserve">
+    <value>Приготовление блюд</value>
+  </data>
+  <data name="Nav_InventoryCounts" xml:space="preserve">
+    <value>Инвентаризации</value>
+  </data>
+  <data name="Nav_Locations" xml:space="preserve">
+    <value>Места хранения</value>
+  </data>
+  <data name="Nav_Products" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
+  <data name="Nav_Purchases" xml:space="preserve">
+    <value>Покупки</value>
+  </data>
+  <data name="Nav_QuickAdd" xml:space="preserve">
+    <value>Быстрое добавление</value>
+  </data>
+  <data name="Nav_Recipes" xml:space="preserve">
+    <value>Рецепты</value>
+  </data>
+  <data name="Nav_Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Nav_ShoppingLists" xml:space="preserve">
+    <value>Списки покупок</value>
+  </data>
+  <data name="Nav_Stores" xml:space="preserve">
+    <value>Магазины</value>
+  </data>
+  <data name="Nav_Transfers" xml:space="preserve">
+    <value>Перемещения</value>
+  </data>
+  <data name="NearestBestBeforeDate" xml:space="preserve">
+    <value>Ближайший срок годности</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="OnHandQuantity" xml:space="preserve">
+    <value>В наличии</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Продукт</value>
+  </data>
+  <data name="ProductGroup" xml:space="preserve">
+    <value>Группа продуктов</value>
+  </data>
+  <data name="Product_Barcode" xml:space="preserve">
+    <value>Штрихкод</value>
+  </data>
+  <data name="Product_DefaultLocation" xml:space="preserve">
+    <value>Место по умолчанию</value>
+  </data>
+  <data name="Product_DefaultShelfLifeDays" xml:space="preserve">
+    <value>Срок годности (дней)</value>
+  </data>
+  <data name="Product_MinimumStock" xml:space="preserve">
+    <value>Минимальный остаток</value>
+  </data>
+  <data name="Product_Unit" xml:space="preserve">
+    <value>Единица</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
+  <data name="PurchaseLine_BestBeforeDate" xml:space="preserve">
+    <value>Годен до</value>
+  </data>
+  <data name="Purchase_CannotUnpostConsumed" xml:space="preserve">
+    <value>Невозможно отменить проведение или удалить покупку, так как часть товаров уже списана.</value>
+  </data>
+  <data name="Purchase_Lines" xml:space="preserve">
+    <value>Строки</value>
+  </data>
+  <data name="PurchasedAmount" xml:space="preserve">
+    <value>Сумма покупки</value>
+  </data>
+  <data name="Purchases" xml:space="preserve">
+    <value>Покупки</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>Рецепт</value>
+  </data>
+  <data name="RecipeAdditionalShortfall" xml:space="preserve">
+    <value>Нехватка для рецепта</value>
+  </data>
+  <data name="RecipeNeededQuantity" xml:space="preserve">
+    <value>Нужно по рецепту</value>
+  </data>
+  <data name="Recipe_Instructions" xml:space="preserve">
+    <value>Инструкция</value>
+  </data>
+  <data name="Recipe_Lines" xml:space="preserve">
+    <value>Ингредиенты</value>
+  </data>
+  <data name="Recipe_Servings" xml:space="preserve">
+    <value>Порции</value>
+  </data>
+  <data name="Recipes" xml:space="preserve">
+    <value>Рецепты</value>
+  </data>
+  <data name="Servings" xml:space="preserve">
+    <value>Порции</value>
+  </data>
+  <data name="ShoppingList_Lines" xml:space="preserve">
+    <value>Строки</value>
+  </data>
+  <data name="ShoppingLists" xml:space="preserve">
+    <value>Списки покупок</value>
+  </data>
+  <data name="ShoppingNeedsReport" xml:space="preserve">
+    <value>Потребности в закупке</value>
+  </data>
+  <data name="ShortfallQuantity" xml:space="preserve">
+    <value>Нехватка</value>
+  </data>
+  <data name="Spending" xml:space="preserve">
+    <value>Расходы</value>
+  </data>
+  <data name="SpendingReport" xml:space="preserve">
+    <value>Расходы</value>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>Остатки</value>
+  </data>
+  <data name="StockOverviewReport" xml:space="preserve">
+    <value>Обзор запасов</value>
+  </data>
+  <data name="Stock_BestBeforeDate" xml:space="preserve">
+    <value>Годен до</value>
+  </data>
+  <data name="Stock_InsufficientBalance" xml:space="preserve">
+    <value>Недостаточно остатка на складе.</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>Магазин</value>
+  </data>
+  <data name="Stores" xml:space="preserve">
+    <value>Магазины</value>
+  </data>
+  <data name="ToLocation" xml:space="preserve">
+    <value>В место</value>
+  </data>
+  <data name="TotalLines" xml:space="preserve">
+    <value>Всего строк</value>
+  </data>
+  <data name="TotalNeededQuantity" xml:space="preserve">
+    <value>Всего нужно</value>
+  </data>
+  <data name="Transfer_Lines" xml:space="preserve">
+    <value>Строки</value>
+  </data>
+  <data name="Transfers" xml:space="preserve">
+    <value>Перемещения</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Единица</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="ViewConsume" xml:space="preserve">
+    <value>Просмотр списания</value>
+  </data>
+  <data name="ViewCookRecipe" xml:space="preserve">
+    <value>Просмотр приготовления блюда</value>
+  </data>
+  <data name="ViewInventoryCount" xml:space="preserve">
+    <value>Просмотр инвентаризации</value>
+  </data>
+  <data name="ViewLocation" xml:space="preserve">
+    <value>Просмотр места хранения</value>
+  </data>
+  <data name="ViewProduct" xml:space="preserve">
+    <value>Просмотр продукта</value>
+  </data>
+  <data name="ViewPurchase" xml:space="preserve">
+    <value>Просмотр покупки</value>
+  </data>
+  <data name="ViewRecipe" xml:space="preserve">
+    <value>Просмотр рецепта</value>
+  </data>
+  <data name="ViewShoppingList" xml:space="preserve">
+    <value>Просмотр списка покупок</value>
+  </data>
+  <data name="ViewStore" xml:space="preserve">
+    <value>Просмотр магазина</value>
+  </data>
+  <data name="ViewTransfer" xml:space="preserve">
+    <value>Просмотр перемещения</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="AddConsume" xml:space="preserve">
+    <value>Добавить списание</value>
+  </data>
+  <data name="AddCookRecipe" xml:space="preserve">
+    <value>Добавить приготовление блюда</value>
+  </data>
+  <data name="AddInventoryCount" xml:space="preserve">
+    <value>Добавить инвентаризацию</value>
+  </data>
+  <data name="AddLocation" xml:space="preserve">
+    <value>Добавить место хранения</value>
+  </data>
+  <data name="AddLocationFolder" xml:space="preserve">
+    <value>Добавить группу мест</value>
+  </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Добавить продукт</value>
+  </data>
+  <data name="AddProductFolder" xml:space="preserve">
+    <value>Добавить группу продуктов</value>
+  </data>
+  <data name="AddPurchase" xml:space="preserve">
+    <value>Добавить покупку</value>
+  </data>
+  <data name="AddRecipe" xml:space="preserve">
+    <value>Добавить рецепт</value>
+  </data>
+  <data name="AddShoppingList" xml:space="preserve">
+    <value>Добавить список покупок</value>
+  </data>
+  <data name="AddStore" xml:space="preserve">
+    <value>Добавить магазин</value>
+  </data>
+  <data name="AddTransfer" xml:space="preserve">
+    <value>Добавить перемещение</value>
+  </data>
+  <data name="ConsumeAddedSuccessfully" xml:space="preserve">
+    <value>Списание успешно добавлено</value>
+  </data>
+  <data name="ConsumeUpdatedSuccessfully" xml:space="preserve">
+    <value>Списание успешно обновлено</value>
+  </data>
+  <data name="CookRecipeAddedSuccessfully" xml:space="preserve">
+    <value>Приготовление блюда успешно добавлено</value>
+  </data>
+  <data name="CookRecipeUpdatedSuccessfully" xml:space="preserve">
+    <value>Приготовление блюда успешно обновлено</value>
+  </data>
+  <data name="CreateLocationFolder" xml:space="preserve">
+    <value>Создать группу мест</value>
+  </data>
+  <data name="CreateProductFolder" xml:space="preserve">
+    <value>Создать группу продуктов</value>
+  </data>
+  <data name="EditLocationFolder" xml:space="preserve">
+    <value>Редактировать группу мест</value>
+  </data>
+  <data name="EditProductFolder" xml:space="preserve">
+    <value>Редактировать группу продуктов</value>
+  </data>
+  <data name="InventoryCountAddedSuccessfully" xml:space="preserve">
+    <value>Инвентаризация успешно добавлена</value>
+  </data>
+  <data name="InventoryCountUpdatedSuccessfully" xml:space="preserve">
+    <value>Инвентаризация успешно обновлена</value>
+  </data>
+  <data name="LocationAddedSuccessfully" xml:space="preserve">
+    <value>Место хранения успешно добавлено</value>
+  </data>
+  <data name="LocationFolderAddedSuccessfully" xml:space="preserve">
+    <value>Группа мест успешно добавлена</value>
+  </data>
+  <data name="LocationUpdatedSuccessfully" xml:space="preserve">
+    <value>Место хранения успешно обновлено</value>
+  </data>
+  <data name="PantryDashboard" xml:space="preserve">
+    <value>Панель кладовой</value>
+  </data>
+  <data name="ProductAddedSuccessfully" xml:space="preserve">
+    <value>Продукт успешно добавлен</value>
+  </data>
+  <data name="ProductFolderAddedSuccessfully" xml:space="preserve">
+    <value>Группа продуктов успешно добавлена</value>
+  </data>
+  <data name="ProductUpdatedSuccessfully" xml:space="preserve">
+    <value>Продукт успешно обновлён</value>
+  </data>
+  <data name="PurchaseAddedSuccessfully" xml:space="preserve">
+    <value>Покупка успешно добавлена</value>
+  </data>
+  <data name="PurchaseUpdatedSuccessfully" xml:space="preserve">
+    <value>Покупка успешно обновлена</value>
+  </data>
+  <data name="RecipeAddedSuccessfully" xml:space="preserve">
+    <value>Рецепт успешно добавлен</value>
+  </data>
+  <data name="RecipeUpdatedSuccessfully" xml:space="preserve">
+    <value>Рецепт успешно обновлён</value>
+  </data>
+  <data name="ShoppingListAddedSuccessfully" xml:space="preserve">
+    <value>Список покупок успешно добавлен</value>
+  </data>
+  <data name="ShoppingListUpdatedSuccessfully" xml:space="preserve">
+    <value>Список покупок успешно обновлён</value>
+  </data>
+  <data name="StoreAddedSuccessfully" xml:space="preserve">
+    <value>Магазин успешно добавлен</value>
+  </data>
+  <data name="StoreUpdatedSuccessfully" xml:space="preserve">
+    <value>Магазин успешно обновлён</value>
+  </data>
+  <data name="TransferAddedSuccessfully" xml:space="preserve">
+    <value>Перемещение успешно добавлено</value>
+  </data>
+  <data name="TransferUpdatedSuccessfully" xml:space="preserve">
+    <value>Перемещение успешно обновлено</value>
+  </data>
+  <data name="ViewLocationFolder" xml:space="preserve">
+    <value>Просмотр группы мест</value>
+  </data>
+  <data name="ViewProductFolder" xml:space="preserve">
+    <value>Просмотр группы продуктов</value>
+  </data>
+  <data name="CanICookIt_MissingIngredientFormat" xml:space="preserve">
+    <value>{0}: {1:G29} / {2:G29}</value>
+  </data>
+  <data name="InventoryCount_DuplicateProduct" xml:space="preserve">
+    <value>Каждый продукт может встречаться в инвентаризации не более одного раза.</value>
+  </data>
+  <data name="ShoppingList" xml:space="preserve">
+    <value>Список покупок</value>
+  </data>
+  <data name="PurchasePrintTitle" xml:space="preserve">
+    <value>Покупка</value>
+  </data>
+  <data name="TransferPrintTitle" xml:space="preserve">
+    <value>Перемещение запасов</value>
+  </data>
+  <data name="InventoryCountPrintTitle" xml:space="preserve">
+    <value>Ведомость инвентаризации</value>
+  </data>
+  <data name="CookRecipePrintTitle" xml:space="preserve">
+    <value>Акт приготовления блюда</value>
+  </data>
+  <data name="ShoppingListPrintTitle" xml:space="preserve">
+    <value>Список покупок</value>
+  </data>
+  <data name="Nav_DefaultInterface" xml:space="preserve">
+    <value>Домашняя кладовая</value>
+  </data>
+  <data name="Nav_Dashboard" xml:space="preserve">
+    <value>Панель управления</value>
+  </data>
+  <data name="Nav_QuickAddPurchase" xml:space="preserve">
+    <value>Быстрая покупка</value>
+  </data>
+  <data name="Nav_QuickAddConsume" xml:space="preserve">
+    <value>Быстрое списание</value>
+  </data>
+  <data name="Nav_Documents" xml:space="preserve">
+    <value>Документы</value>
+  </data>
+  <data name="Nav_Dictionaries" xml:space="preserve">
+    <value>Справочники</value>
+  </data>
+  <data name="Nav_Reports" xml:space="preserve">
+    <value>Отчёты</value>
+  </data>
+  <data name="Purchase" xml:space="preserve">
+    <value>Покупка</value>
+  </data>
+  <data name="Consume" xml:space="preserve">
+    <value>Списание</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Перемещение</value>
+  </data>
+  <data name="InventoryCount" xml:space="preserve">
+    <value>Инвентаризация</value>
+  </data>
+  <data name="CookRecipe" xml:space="preserve">
+    <value>Приготовление блюда</value>
+  </data>
+  <data name="ProductNode" xml:space="preserve">
+    <value>Продукт</value>
+  </data>
+  <data name="ProductFolder" xml:space="preserve">
+    <value>Группа продуктов</value>
+  </data>
+  <data name="LocationNode" xml:space="preserve">
+    <value>Место хранения</value>
+  </data>
+  <data name="LocationFolder" xml:space="preserve">
+    <value>Группа мест</value>
+  </data>
+  <data name="ProductUnit" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
+  <data name="ConsumeReason" xml:space="preserve">
+    <value>Причина списания</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="ExpiringLookAheadDays" xml:space="preserve">
+    <value>Горизонт проверки сроков (дней)</value>
+  </data>
+  <data name="StockRegister" xml:space="preserve">
+    <value>Регистр запасов</value>
+  </data>
+  <data name="LastPriceRegister" xml:space="preserve">
+    <value>Регистр последних цен</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Период</value>
+  </data>
+</root>

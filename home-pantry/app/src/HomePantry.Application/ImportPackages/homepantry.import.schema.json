@@ -1,0 +1,1279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:kandra:import:1:HomePantry",
+  "title": "Kandra import package (kandra-import/1) for HomePantry",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": "kandra-import/1"
+    },
+    "package": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,199}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "origin": {
+      "enum": [
+        "demoSeed",
+        "import"
+      ]
+    },
+    "configuration": {
+      "const": "HomePantry"
+    },
+    "title": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Consumes"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Consumes"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "CookRecipes"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.CookRecipes"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "InventoryCounts"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.InventoryCounts"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Purchases"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Purchases"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "ShoppingLists"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.ShoppingLists"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Transfers"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Transfers"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Locations"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Locations"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Products"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Products"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Recipes"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Recipes"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Stores"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Stores"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dataProcessor": {
+                "const": "CompanySettings"
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "run": {
+                "enum": [
+                  "once",
+                  "always"
+                ]
+              },
+              "optional": {
+                "type": "boolean"
+              },
+              "input": {
+                "$ref": "#/$defs/input.CompanySettings"
+              }
+            },
+            "required": [
+              "dataProcessor",
+              "$id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "constant": {
+                "enum": [
+                  "CompanyLogo",
+                  "CompanyName",
+                  "Currency",
+                  "ExpiringLookAheadDays"
+                ]
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {},
+              "effectiveFrom": {
+                "type": "string",
+                "description": "The date the value applies from (ISO, UTC when it has no offset). Omitted: from the moment of the import."
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "constant",
+              "$id",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "createFrom": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "enum": [
+                      "Consumes",
+                      "CookRecipes",
+                      "InventoryCounts",
+                      "Purchases",
+                      "ShoppingLists",
+                      "Transfers"
+                    ]
+                  }
+                },
+                "required": [
+                  "source",
+                  "target"
+                ],
+                "additionalProperties": false
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "submit": {
+                "type": "boolean"
+              },
+              "set": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "createFrom",
+              "$id"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "format",
+    "package",
+    "version",
+    "origin",
+    "configuration",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "reference": {
+      "description": "A reference to an object defined earlier in this package ($ref) or to an existing row looked up by Code ($code).",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$ref"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$code": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$code"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "guidOrReference": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "$ref": "#/$defs/reference"
+        }
+      ]
+    },
+    "dateTimeValue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "$ref": "#/$defs/dateToken"
+        }
+      ]
+    },
+    "dateValue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "$ref": "#/$defs/dateToken"
+        }
+      ]
+    },
+    "dateToken": {
+      "type": "string",
+      "description": "$now, $today, $today-23d, $today+14d, $monthStart (the 1st of this month), $monthStart-1m, $monthStart+4d, $monthStart-1m+9d - resolved in the importing user's time zone when the package is applied.",
+      "pattern": "^\\$(now|today([+-]\\d{1,5}d)?|monthStart([+-]\\d{1,4}m)?([+-]\\d{1,5}d)?)$"
+    },
+    "onChange": {
+      "enum": [
+        "update",
+        "skip",
+        "error"
+      ]
+    },
+    "onUserModified": {
+      "enum": [
+        "skip",
+        "overwrite",
+        "error"
+      ]
+    },
+    "onDeleted": {
+      "enum": [
+        "skip",
+        "restore",
+        "error"
+      ]
+    },
+    "document.Consumes.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "productId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "locationId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "quantity": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Consumes": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "description": "Reason for consuming or discarding items (eaten, spoiled, used up, other)."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.Consumes.lines.line"
+          },
+          "description": "Items consumed from specified storage locations."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.CookRecipes.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "productId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "quantity": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.CookRecipes": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recipeId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The recipe being cooked."
+        },
+        "servings": {
+          "type": "number",
+          "description": "Number of servings to prepare, scaling the ingredient quantities."
+        },
+        "locationId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The kitchen or pantry location from which the ingredients are taken."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.CookRecipes.lines.line"
+          },
+          "description": "Scaled recipe ingredient lines to consume."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.InventoryCounts.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "productId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "countedQuantity": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.InventoryCounts": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locationId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The location where items were counted."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.InventoryCounts.lines.line"
+          },
+          "description": "Products counted with their actual physically verified quantities."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Purchases.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "productId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "price": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "locationId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "bestBeforeDate": {
+          "$ref": "#/$defs/dateTimeValue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Purchases": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storeId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The store where the items were bought."
+        },
+        "shoppingListId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The source shopping list this purchase was created from (optional)."
+        },
+        "total": {
+          "type": "number",
+          "description": "The total monetary amount of the purchase."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.Purchases.lines.line"
+          },
+          "description": "Items purchased with their quantity, price, location and best-before date."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.ShoppingLists.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "productId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "bought": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.ShoppingLists": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storeId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The store to shop at (optional)."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.ShoppingLists.lines.line"
+          },
+          "description": "Items to buy with their quantity and bought status."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Transfers.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "productId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "fromLocationId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "toLocationId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "quantity": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Transfers": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.Transfers.lines.line"
+          },
+          "description": "Items moved with source and destination locations and quantity."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Locations": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The parent folder's id, or null for a root-level row. This dictionary is a folder/leaf tree - see IsFolder."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        },
+        "isFreezer": {
+          "type": "boolean",
+          "description": "Whether this storage location is a freezer."
+        },
+        "isFolder": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Products": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The parent folder's id, or null for a root-level row. This dictionary is a folder/leaf tree - see IsFolder."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        },
+        "unit": {
+          "description": "The measurement unit of this product (e.g. pcs, g, kg, ml, l, pack)."
+        },
+        "barcode": {
+          "type": "string",
+          "description": "The barcode of this product, used for barcode scanner lookup."
+        },
+        "minimumStock": {
+          "type": "number",
+          "description": "The minimum stock threshold below which this product should be reordered."
+        },
+        "defaultLocationId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The default storage location where this product is kept."
+        },
+        "defaultShelfLifeDays": {
+          "type": "integer",
+          "description": "The default shelf life in days from purchase; 0 if the product does not spoil."
+        },
+        "isFolder": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Recipes.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "productId": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "quantity": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Recipes": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "servings": {
+          "type": "integer",
+          "description": "Number of servings produced by this recipe."
+        },
+        "instructions": {
+          "type": "string",
+          "description": "Cooking instructions and preparation notes."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/dictionary.Recipes.lines.line"
+          },
+          "description": "Ingredients and required quantities for the stated servings."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Stores": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "input.CompanySettings": {
+      "type": "object",
+      "properties": {
+        "effectiveFrom": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The date the changed values apply from: today, or a later date to schedule a change. A date in the past also corrects documents dated since then (constants are read as of the document's date). Defaulted to today by New."
+        },
+        "name": {
+          "type": "string",
+          "description": "CompanyName constant: the company's name, printed in the letterhead. An empty name prints no letterhead."
+        },
+        "logo": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "CompanyLogo constant: blob reference id of the logo printed in the letterhead. A PNG or JPEG image of at most 1 MB. Earlier logos stay attached, so older documents keep printing theirs. Emptying the field removes the logo from the effective date (deletes none)."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
