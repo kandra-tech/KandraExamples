@@ -6,25 +6,24 @@
 
 # Kandra Examples
 
-Small, complete business applications built on the [Kandra](https://kandra.tech) engine by **coding agents**, each from a
-single written brief. Every example holds the brief itself and one or more real runs by different agent harnesses
-(Google Antigravity, Claude Code, Cursor, ...), published as the agent delivered them.
+Small, complete applications built on the [Kandra](https://kandra.tech) engine, one per domain. Each one is a reference
+implementation you can study and build on, and a home application you can actually use.
 
 Use them to:
 
 - **study** how a domain is modelled in Kandra's terms: catalogs (dictionaries), documents that post to registers,
   balance, turnover and periodic information registers, reports and dashboards;
-- **compare** what different agents build from the same brief;
-- **try it yourself**: give your agent an empty folder and a brief, and see how far it gets in an hour.
+- **run** them at home with their demo data, or with your own;
+- **start from** them: copy one and change it, or give your own coding agent the example's brief.
 
 ## Examples
 
-| Example | What it shows | Brief |
+| Example | What it shows | Status |
 |---|---|---|
-| [Personal Accounting & Budgets](personal-accounting/) | balance register, turnover register in two currencies, exchange rates as a periodic register, a budget register bound to its document, statements, home dashboard | [PROMPT.md](personal-accounting/prompt/PROMPT.md) |
-| [Family Garage](family-garage/) | service history with intervals by km or months, detailed or summary service invoices, purchase on a loan or leasing, total cost of ownership, reminders, home dashboard | [PROMPT.md](family-garage/prompt/PROMPT.md) |
-| [Home Pantry](home-pantry/) (Grocy-inspired) | stock in batches with best-before dates, first-expired-first-out consumption, recipes scaled into a document, shopping lists; part B extends an existing configuration with chores, batteries and a meal plan | [part A](home-pantry/prompt/PROMPT-A-stock.md), [part B](home-pantry/prompt/PROMPT-B-household.md) |
-| [Home Utilities & Meters](home-utilities/) | meter readings and tariffs valid from a date, invoices calculated from them, debt and prepayment per provider, year-over-year consumption, home dashboard | [PROMPT.md](home-utilities/prompt/PROMPT.md) |
+| [Personal Accounting & Budgets](personal-accounting/) | balance register, turnover register in two currencies, exchange rates as a periodic register, a budget register bound to its document, statements, home dashboard | [app](personal-accounting/app/) |
+| [Family Garage](family-garage/) | service history with intervals by km or months, detailed or summary service invoices, purchase on a loan or leasing, total cost of ownership, reminders, home dashboard | [app](family-garage/app/) |
+| [Home Pantry](home-pantry/) (Grocy-inspired) | stock in batches with best-before dates, first-expired-first-out consumption, recipes scaled into a document, shopping lists; part B extends an existing configuration with chores, batteries and a meal plan | brief only |
+| [Home Utilities & Meters](home-utilities/) | meter readings and tariffs valid from a date, invoices calculated from them, debt and prepayment per provider, year-over-year consumption, home dashboard | brief only |
 
 More ideas, not built yet: [IDEAS.md](IDEAS.md).
 
@@ -32,16 +31,28 @@ More ideas, not built yet: [IDEAS.md](IDEAS.md).
 
 ```
 <example>/
-  README.md        the domain, what it shows, the table of runs
+  README.md        the domain, what it shows, how it was built
   prompt/          the brief (more than one file when the example is built in steps)
-  runs/
-    <harness>/     one run per agent harness: the solution as delivered, plus RESULTS.md
+  app/             the application: a standalone .NET solution with its own README
+  BUILD-NOTES.md   how the application was built and reviewed, what was fixed, what is still weak
 ```
 
-A run folder is named after the harness only (`antigravity`, `claude-code`, `cursor`, ...). Its `RESULTS.md` records the
-model, the template and Kandra Core versions, the date, the time taken, the test result, the review notes and anything
-fixed after the run. A newer run with the same harness replaces the folder; the previous one stays in git history under a
-tag (`<example>/<harness>/template-<version>`).
+An example without `app/` has a brief and is not built yet.
+
+## How they are built
+
+Every application starts from its brief: a coding agent creates the project from the configuration template and builds
+the first version. That version is then reviewed and polished, by people and by a second agent, until it meets the
+quality bar below. Each example's `BUILD-NOTES.md` names the tools and models, the time the first version took and every
+fix the review made, so you can see what came from the brief and what came from the review.
+
+## Running an application
+
+1. Install the .NET 10 SDK.
+2. Open the example's `app/` folder and follow its `README.md`: it says how to build, start with the demo data and sign in.
+
+Each application is pinned to the template and Kandra Core versions it was built with. The packages come from the public
+Kandra NuGet feed.
 
 ## Running a brief yourself
 
@@ -53,16 +64,11 @@ tag (`<example>/<harness>/template-<version>`).
 The briefs ask for a home **dashboard**, which needs a configuration template built on a Kandra Core release that
 contains dashboards (after 0.5.21).
 
-## Running a published run
-
-Each run is a standalone .NET solution pinned to the template and Kandra Core versions it was built with; its
-`README.md` says how to build, run and sign in. The packages come from the public Kandra NuGet feed.
-
 ## Quality bar
 
-A run is published only when it works (builds, its tests pass, it starts with its demo data, every form and report
-opens) and its code has no red flags. The checklist is in [CONTRIBUTING.md](CONTRIBUTING.md), which also says how to
-submit a run of your own.
+An application is published only when it works (builds, its tests pass, it starts with its demo data, every form and
+report opens) and its code has no red flags. The checklist is in [CONTRIBUTING.md](CONTRIBUTING.md), which also says how
+to propose a fix or an improvement.
 
 ## License
 

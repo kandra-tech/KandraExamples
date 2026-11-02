@@ -1,7 +1,8 @@
 # Personal Accounting & Budgets
 
-A single-user personal accounting application on the [Kandra](https://kandra.tech) engine, built by Google Antigravity
-from [the brief](../../prompt/PROMPT.md). What the run is and how it was reviewed: [RESULTS.md](RESULTS.md).
+A single-user personal accounting application on the [Kandra](https://kandra.tech) engine, built from
+[the brief](../prompt/PROMPT.md): first version by Google Antigravity, then reviewed and polished with Claude Code. How
+it was built and what the review fixed: [BUILD-NOTES.md](../BUILD-NOTES.md).
 
 ![Dashboard](screenshots/dashboard.en.jpg)
 

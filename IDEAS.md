@@ -15,7 +15,8 @@ Domains considered and kept for later. Most of what they would show is already c
 ## Adding an example
 
 1. Make a folder named after the example (kebab-case) with a `README.md`, the brief in `prompt/PROMPT.md` (or several,
-   ordered, when the example is built in steps) and an empty `runs/`.
+   ordered, when the example is built in steps). The application goes in `app/` once it is built (see
+   [CONTRIBUTING.md](CONTRIBUTING.md)).
 2. Keep the shape of the existing briefs: *First*, *What to build*, *How the application should be modelled* (with the
    domain's key modelling decisions, so the agent does not have to guess them), reference data, documents, registers and
    posting, screens, non-functional, seed data, acceptance checks (each an automated test), *How to work*, *Deliver*.

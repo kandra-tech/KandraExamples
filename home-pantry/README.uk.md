@@ -24,9 +24,6 @@
 [prompt/PROMPT-A-stock.md](prompt/PROMPT-A-stock.md) (v1), потім [prompt/PROMPT-B-household.md](prompt/PROMPT-B-household.md)
 (v1) у тому самому проєкті; англійською.
 
-## Запуски
+## Стан
 
-Опублікованих запусків ще немає. Як додати свій — див. [CONTRIBUTING.md](../CONTRIBUTING.md) (англійською).
-
-| Середовище | Модель | Бриф | Шаблон / Core | Час | Тести |
-|---|---|---|---|---|---|
+Ще не побудований: опубліковано лише бриф. Як будується приклад — див. [CONTRIBUTING.md](../CONTRIBUTING.md) (англійською).

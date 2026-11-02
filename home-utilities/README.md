@@ -16,9 +16,6 @@ The household's utility bills: meter readings, tariffs that change over time, mo
 
 [prompt/PROMPT.md](prompt/PROMPT.md) (v2)
 
-## Runs
+## Status
 
-No published runs yet. See [CONTRIBUTING.md](../CONTRIBUTING.md) to add one.
-
-| Harness | Model | Brief | Template / Core | Time | Tests |
-|---|---|---|---|---|---|
+Not built yet: only the brief is published. See [CONTRIBUTING.md](../CONTRIBUTING.md) for how an example is built.

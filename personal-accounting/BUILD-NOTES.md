@@ -1,38 +1,40 @@
-# Personal Accounting & Budgets - Google Antigravity
+# Personal Accounting & Budgets - build notes
+
+The application in [app/](app/) started as one coding agent's build from the brief and was then reviewed and polished
+with a second one. This file says what each step did, so you can tell what came from the brief and what from the review.
 
 | | |
 |---|---|
-| Harness / model | Google Antigravity / Gemini 3.8 Flash (medium) |
-| Brief | [PROMPT.md](../../prompt/PROMPT.md) v4 |
-| Template / Kandra Core | 1.3.5 / 0.5.25 |
+| First version | Google Antigravity / Gemini 3.8 Flash (medium), about 65 min from scaffolding to the agent's report |
+| Review and polish | Claude Code / Claude Opus |
+| Brief | [PROMPT.md](prompt/PROMPT.md) v4 |
+| Template / Kandra Core | 1.3.5 / 0.5.25 (first version) |
 | Date | 2026-10-24 |
-| Time to first delivery | about 65 min, from scaffolding to the final report |
-| Tests | 18 delivered (the six acceptance checks plus the template's own tests: localization keys, text in repositories, demo package, service resolution, migrations, letterhead); 21 after the fixes below |
+| Tests | 18 in the first version (the six acceptance checks plus the template's own tests: localization keys, text in repositories, demo package, service resolution, migrations, letterhead); 21 after the review |
 
-## Verdict
+## The first version
 
 The model is right. Balances, turnovers, rates and the budget plan are registers that only documents write. Rates and
 opening balances are documents, not catalog rows. Categories are a catalog hierarchy, and the dashboard is a real
 dashboard, not a report. The code is small and conventional: no hand-written pages or controllers, English and Ukrainian
-resources complete, and demo data dated relative to today. The review found seven bugs, all fixed by hand
-(see below). The most serious, un-posted documents still counted in the reports, comes from the reports querying the
-register tables directly. That approach is the main thing left to improve.
+resources complete, and demo data dated relative to today. The review found the bugs below and fixed them. The most serious, un-posted documents still counted in the reports, comes from the reports querying the
+register tables directly. That approach is the main thing left to improve (see *Known limitations*).
 
 ## Deviations from the brief
 
 - The brief asks for one document besides the code, a short `README.md`. The agent also wrote a handoff guide and a long
   implementation report. They are not published: their useful content is in this file, and parts of them were wrong (they
-  name .NET 9 and Kandra Core 0.5.21; the solution is on .NET 10 and 0.5.25). The run's `README.md` was rewritten so its
+  name .NET 9 and Kandra Core 0.5.21; the solution is on .NET 10 and 0.5.25). The application's `README.md` was rewritten so its
   run and sign-in steps actually work (the agent's said the password comes from "default framework credentials").
 - The launch ports were moved from the template's 7220/5220 to 7225/5225 because something else held 7220 on the build
   machine.
 
-## Review notes
+## Known limitations
 
 - **The reports read the register tables directly** (`db.Reg_AccountBalances`, `db.Reg_CategoryTurnover`, ...) through
   EF LINQ, instead of the engine's register readers (`Balances`, `Movements`, `SliceOfLast`). That is how bug 1 below got
   in. Even with the fix, the account balance is re-summed from every movement instead of read from the balance table, and
-  the reports depend on how the engine stores registers. The next run should use the readers.
+  the reports depend on how the engine stores registers. Moving the reports to the readers is the main improvement left.
 - The dashboard's six-month chart groups turnovers by the UTC month; an operation in the first hours of a month (local
   time) can land in the previous bar. With the demo data (documents at local midnight) it does not show.
 - The transaction journal's Inflow and Outflow totals add amounts in different currencies (the USD leg of a transfer
@@ -40,7 +42,7 @@ register tables directly. That approach is the main thing left to improve.
 - Not this configuration's doing: report grids show yes/no columns as `True`/`False` in every language, and the start
   page shows the engine's default description, which mentions a warehouse.
 
-## Fixed after the run
+## Fixed in review
 
 1. **Un-posted documents still counted in every report and on the dashboard.** Un-posting a document keeps its register
    movements but marks them inactive. The readers skip inactive movements, but the reports' own queries did not filter
@@ -76,6 +78,6 @@ Bugs 1 to 4 came out of the first review, 5 to 7 out of a second one. The tests 
 agent's 18 (one with an added assertion, see bug 1) and three new ones in `Acceptance/MonthAndCategoryRulesTests.cs`,
 which run as a user in Kyiv. Each new test was checked to fail with its fix taken out.
 
-## Previous run
+## Since then
 
-None.
+- Moved to Kandra Core 0.5.27 and template 1.3.7 (regenerated migrations, the template's skills and tests).

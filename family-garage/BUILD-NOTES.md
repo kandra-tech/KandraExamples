@@ -1,15 +1,18 @@
-# Family Garage - Google Antigravity
+# Family Garage - build notes
+
+The application in [app/](app/) started as one coding agent's build from the brief and was then reviewed and polished
+with a second one. This file says what each step did, so you can tell what came from the brief and what from the review.
 
 | | |
 |---|---|
-| Harness / model | Google Antigravity / Gemini 3.8 Flash (medium) |
-| Brief | [PROMPT.md](../../prompt/PROMPT.md) v4 |
-| Template / Kandra Core | 1.3.6 / 0.5.25 |
+| First version | Google Antigravity / Gemini 3.8 Flash (medium), about 2 h 50 min from scaffolding to the agent's report |
+| Review and polish | Claude Code / Claude Opus |
+| Brief | [PROMPT.md](prompt/PROMPT.md) v4 |
+| Template / Kandra Core | 1.3.6 / 0.5.25 (first version) |
 | Date | 2026-10-24 |
-| Time to first delivery | about 2 h 50 min, from scaffolding to the final report |
-| Tests | 23 delivered (eleven acceptance tests of the agent's own list plus the template's tests); 36 after the fixes below |
+| Tests | 23 in the first version (eleven acceptance tests of the agent's own list plus the template's tests); 36 after the review |
 
-## Verdict
+## The first version
 
 The model follows the brief. The car stores no mileage: the odometer is a periodic information register. Jobs such as
 "Oil change" are work items with their interval in kilometres and months. The debt is a balance register, and the price
@@ -17,14 +20,14 @@ is counted once on purchase, so principal is not a cost. Every screen is generat
 are complete. The code did not hold up under review, though. A service with two work items could not be posted. A posted
 leasing buyout could not be saved again. Reminders never came back for the next oil change. For a user east of UTC, the
 dashboard and the reports disagreed about the month. Five of the brief's eleven acceptance checks had no test, although
-the agent's report said all eleven did. All of this was fixed by hand (see below).
+the agent's report said all eleven did. The review fixed all of it (see below).
 
 ## Deviations from the brief
 
 - **The acceptance tests follow the agent's own list, not the brief's.** The brief's checks 3 (changing, un-posting and
   deleting a Service), 4 (km or months, whichever comes first), 7 (total cost of ownership), 9 (every document posts on
   an empty database) and 11 (the dashboard equals the reports) had no test. They are added in
-  `Acceptance/BriefChecksTests.cs`. Checks 3, 4, 7 and 9 pass on the delivered code; check 11 failed (bug 8).
+  `Acceptance/BriefChecksTests.cs`. Checks 3, 4, 7 and 9 pass on the first version; check 11 failed (bug 8).
 - **The demo data did not match the brief.** It had one bank-loan contract instead of a leasing contract and a loan,
   five payments instead of monthly payments up to last month, 8 items instead of about 25, and about 20 documents instead
   of about 30. Nothing was overdue on the day it was loaded. The package was rebuilt to the brief (generated with
@@ -33,17 +36,17 @@ the agent's report said all eleven did. All of this was fixed by hand (see below
 - **No README.** The brief asks for a short `README.md` (build, run, sign in) and the brief and the template's skills ask
   for instructions on scheduling the reminders; the agent left the template's README unchanged and wrote a handoff guide
   and an implementation report instead. Those two are not published (their useful content is in this file, and they name
-  Kandra Core 0.5.21; the solution is on 0.5.25). The README was written by hand.
+  Kandra Core 0.5.21; the solution is on 0.5.25). The README was written in review.
 - **Some reports read documents instead of registers:** Financing (the financed amount and the principal paid; now from
   the debt register), Fuel consumption (litres from the Refuel documents) and the next payment date in Upcoming (the last
   posted payment). Interest and fees per contract are in no register, so Financing still sums them from the payments.
 - The launch ports were moved from the template's 7220/5220 to 7226/5226: the trial's own instance held 7220 on the build
   machine, and the examples now use one port each.
 
-## Review notes
+## Known limitations
 
 - **The reports query the register tables directly** (`dbContext.Set<OdometerRecord>()`, `Set<VehicleCostsMovement>()`,
-  `Set<FinanceDebtBalance>()`) through EF LINQ instead of the engine's register readers. Unlike the previous run, every
+  `Set<FinanceDebtBalance>()`) through EF LINQ instead of the engine's register readers. Unlike the first version of Personal Accounting, every
   query filters out un-posted movements, so the numbers are right, but the reports depend on how the engine stores
   registers. Upcoming also runs a few queries per vehicle and work item, which is fine for a household.
 - A sold car still gets service and policy reminders. The brief does not say otherwise.
@@ -53,7 +56,7 @@ the agent's report said all eleven did. All of this was fixed by hand (see below
   document-bound register's balance guard reaches the user as the engine's English message with the row's ids (the
   configuration now checks the rule a user can hit first, see bug 4).
 
-## Fixed after the run
+## Fixed in review
 
 1. **A detailed Service with two or more work items could not be posted** (`UNIQUE constraint failed:
    Reg_LastDone.DocumentId, Reg_LastDone.LineId`). Each record of the service lines and "last done" registers now carries
@@ -96,8 +99,8 @@ the agent's report said all eleven did. All of this was fixed by hand (see below
     Found while recording a video on 1 November; the demo package tests pass.
 
 The tests pass after the fixes: 36 of 36, the agent's 23 and 13 new ones, run as a user in Kyiv (`BriefChecksTests`,
-`DemoDataTests`). The tests for bugs 1 to 8 were run against the delivered code: each fails there and passes with the fix.
+`DemoDataTests`). The tests for bugs 1 to 8 were run against the first version: each fails there and passes with the fix.
 
-## Previous run
+## Since then
 
-None.
+- Moved to Kandra Core 0.5.27 and template 1.3.7 (regenerated migrations, the template's skills and tests).

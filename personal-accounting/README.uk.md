@@ -19,12 +19,16 @@
 
 [prompt/PROMPT.md](prompt/PROMPT.md) (v4), англійською.
 
-## Запуски
+## Як його побудовано
 
-| Середовище | Модель | Бриф | Шаблон / Core | Час | Тести |
-|---|---|---|---|---|---|
-| [Google Antigravity](runs/antigravity/) ([результати](runs/antigravity/RESULTS.md), англійською) | Gemini 3.8 Flash (medium) | v4 | 1.3.5 / 0.5.25 | ~65 хв | 18 від агента, 21 після виправлень рецензії |
+Першу версію за брифом побудував Google Antigravity (Gemini 3.8 Flash, medium) приблизно за 65 хвилин, потім її
+перевірили й довели до ладу в Claude Code (Claude Opus). Рецензія виправила вісім помилок і додала тести (18 у першій
+версії, 21 тепер). Що прийшло з брифу, що змінила рецензія і що ще слабке — у [BUILD-NOTES.md](BUILD-NOTES.md)
+(англійською).
 
-Як додати свій запуск — див. [CONTRIBUTING.md](../CONTRIBUTING.md) (англійською).
+## Запуск
 
-![Головний дашборд запуску Antigravity](runs/antigravity/screenshots/dashboard.uk.jpg)
+Застосунок — у [app/](app/); його [README](app/README.md) (англійською) пояснює, як зібрати, запустити з демоданими й
+увійти.
+
+![Головний дашборд](app/screenshots/dashboard.uk.jpg)

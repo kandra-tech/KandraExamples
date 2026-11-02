@@ -16,12 +16,15 @@ A single-user application to record personal money movements across accounts in 
 
 [prompt/PROMPT.md](prompt/PROMPT.md) (v4)
 
-## Runs
+## How it was built
 
-| Harness | Model | Brief | Template / Core | Time | Tests |
-|---|---|---|---|---|---|
-| [Google Antigravity](runs/antigravity/) ([results](runs/antigravity/RESULTS.md)) | Gemini 3.8 Flash (medium) | v4 | 1.3.5 / 0.5.25 | ~65 min | 18 delivered, 21 after review fixes |
+The first version was built from the brief by Google Antigravity (Gemini 3.8 Flash, medium) in about 65 minutes, then
+reviewed and polished with Claude Code (Claude Opus). The review fixed eight bugs and added tests (18 in the first
+version, 21 now). What came from the brief, what the review changed and what is still weak:
+[BUILD-NOTES.md](BUILD-NOTES.md).
 
-To add a run, see [CONTRIBUTING.md](../CONTRIBUTING.md).
+## Run it
 
-![The home dashboard of the Antigravity run](runs/antigravity/screenshots/dashboard.en.jpg)
+The application is in [app/](app/); its [README](app/README.md) says how to build, start with the demo data and sign in.
+
+![The home dashboard](app/screenshots/dashboard.en.jpg)

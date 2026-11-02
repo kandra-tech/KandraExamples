@@ -20,9 +20,6 @@ What food and household supplies are at home, where, when they spoil, what can b
 
 [prompt/PROMPT-A-stock.md](prompt/PROMPT-A-stock.md) (v1), then [prompt/PROMPT-B-household.md](prompt/PROMPT-B-household.md) (v1) on the same project.
 
-## Runs
+## Status
 
-No published runs yet. See [CONTRIBUTING.md](../CONTRIBUTING.md) to add one.
-
-| Harness | Model | Brief | Template / Core | Time | Tests |
-|---|---|---|---|---|---|
+Not built yet: only the brief is published. See [CONTRIBUTING.md](../CONTRIBUTING.md) for how an example is built.
