@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+**/.vs/
+**/Generated.Net/
+**/*.user
+.git/
+.github/
+# Local databases, uploads, keys and backups of a dev run
+src/HomeUtilities.WebApi/data/
+src/HomeUtilities.WebApi/db/*.db*
+src/HomeUtilities.WebApi/App_Data/
+src/HomeUtilities.WebApi/blobs/
+src/HomeUtilities.WebApi/keys/
+src/HomeUtilities.WebApi/backups/
+**/Migrations/**/*.sql
+compose*.yml
+.env*

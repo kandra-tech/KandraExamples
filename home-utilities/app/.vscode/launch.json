@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "HomeUtilities.WebApi",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build HomeUtilities.WebApi",
+      "program": "${workspaceFolder}/src/HomeUtilities.WebApi/bin/Debug/net10.0/HomeUtilities.WebApi.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/HomeUtilities.WebApi",
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "env": {
+        // Launching the built DLL (not the C# Dev Kit "dotnet" type) does not read launchSettings.json,
+        // so this mirrors its "HomeUtilities.WebApi" profile. The "dotnet" type was avoided on
+        // purpose: for a host that serves a Blazor WASM client it adds a browser-debugging attach step
+        // that fails with "Could not find any debuggable target" while Edge/Chrome is already running.
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://localhost:7227;http://localhost:5227"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https://\\S+)",
+        "uriFormat": "%s"
+      }
+    },
+    {
+      "name": "HomeUtilities.WebApi (Swagger)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build HomeUtilities.WebApi",
+      "program": "${workspaceFolder}/src/HomeUtilities.WebApi/bin/Debug/net10.0/HomeUtilities.WebApi.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/HomeUtilities.WebApi",
+      "stopAtEntry": false,
+      "console": "internalConsole",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://localhost:7227;http://localhost:5227"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https://\\S+)",
+        "uriFormat": "%s/swagger"
+      }
+    }
+  ]
+}

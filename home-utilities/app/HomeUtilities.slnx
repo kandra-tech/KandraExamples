@@ -1,0 +1,26 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="DebugLocalNuGet" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/Common/">
+    <Project Path="src/HomeUtilities.Enums/HomeUtilities.Enums.csproj" />
+    <Project Path="src/HomeUtilities.Forms/HomeUtilities.Forms.csproj" />
+    <Project Path="src/HomeUtilities.Localization/HomeUtilities.Localization.csproj" />
+  </Folder>
+  <Folder Name="/Backend/">
+    <Project Path="src/HomeUtilities.Application/HomeUtilities.Application.csproj" />
+    <Project Path="src/HomeUtilities.Domain/HomeUtilities.Domain.csproj" />
+    <Project Path="src/HomeUtilities.Persistence.Databases/HomeUtilities.Persistence.Databases.csproj" />
+    <Project Path="src/HomeUtilities.Persistence/HomeUtilities.Persistence.csproj" />
+    <Project Path="src/HomeUtilities.WebApi/HomeUtilities.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/">
+    <Project Path="src/HomeUtilities.Client.MudBlazor/HomeUtilities.Client.MudBlazor.csproj" />
+    <Project Path="src/HomeUtilities.ClientLib.Common/HomeUtilities.ClientLib.Common.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="src/HomeUtilities.Tests/HomeUtilities.Tests.csproj" />
+  </Folder>
+</Solution>

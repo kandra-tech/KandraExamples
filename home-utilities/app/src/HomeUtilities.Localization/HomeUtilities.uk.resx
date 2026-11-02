@@ -1,0 +1,907 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BrandName" xml:space="preserve">
+    <value>HomeUtilities</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Підприємство</value>
+  </data>
+  <data name="CompanyLogo" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="CompanySettings" xml:space="preserve">
+    <value>Налаштування компанії</value>
+  </data>
+  <data name="CompanySettings_Identity" xml:space="preserve">
+    <value>Реквізити</value>
+  </data>
+  <data name="CompanySettings_Printing" xml:space="preserve">
+    <value>Друк</value>
+  </data>
+  <data name="CompanySettings_EffectiveFrom" xml:space="preserve">
+    <value>Зміни діють з</value>
+  </data>
+  <data name="CompanySettings_Logo" xml:space="preserve">
+    <value>Логотип (PNG або JPEG, до 1 МБ)</value>
+  </data>
+  <data name="CompanySettings_Outcome" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="CompanySettings_NothingChanged" xml:space="preserve">
+    <value>Нічого не змінено.</value>
+  </data>
+  <data name="CompanySettings_Saved" xml:space="preserve">
+    <value>Збережено з {0}: {1}.</value>
+  </data>
+  <data name="CompanySettings_LogoNotAnImage" xml:space="preserve">
+    <value>Файл не є зображенням PNG або JPEG.</value>
+  </data>
+  <data name="CompanySettings_LogoTooLarge" xml:space="preserve">
+    <value>Логотип більший за 1 МБ.</value>
+  </data>
+  <data name="CompanySettings_LogoRejected" xml:space="preserve">
+    <value>Завантажений файл більше не можна використати. Завантажте його ще раз.</value>
+  </data>
+  <data name="CompanySettings_LogoLabel" xml:space="preserve">
+    <value>Логотип</value>
+  </data>
+  <data name="Nav_DataProcessors" xml:space="preserve">
+    <value>Обробки</value>
+  </data>
+  <data name="AddInvoice" xml:space="preserve">
+    <value>Створити рахунок</value>
+  </data>
+  <data name="AddMeter" xml:space="preserve">
+    <value>Додати лічильник</value>
+  </data>
+  <data name="AddMeterReading" xml:space="preserve">
+    <value>Внести покази</value>
+  </data>
+  <data name="AddPayment" xml:space="preserve">
+    <value>Внести оплату</value>
+  </data>
+  <data name="AddProperty" xml:space="preserve">
+    <value>Додати нерухомість</value>
+  </data>
+  <data name="AddProvider" xml:space="preserve">
+    <value>Додати постачальника</value>
+  </data>
+  <data name="AddService" xml:space="preserve">
+    <value>Додати послугу</value>
+  </data>
+  <data name="AddServiceFolder" xml:space="preserve">
+    <value>Додати групу послуг</value>
+  </data>
+  <data name="AddSetTariffs" xml:space="preserve">
+    <value>Створити встановлення тарифів</value>
+  </data>
+  <data name="ConsumptionReport" xml:space="preserve">
+    <value>Звіт зі споживання послуг</value>
+  </data>
+  <data name="Consumption_ChangePercent" xml:space="preserve">
+    <value>Зміна, %</value>
+  </data>
+  <data name="Consumption_PreviousYearTotal" xml:space="preserve">
+    <value>Разом за минулий рік</value>
+  </data>
+  <data name="Consumption_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="Consumption_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="Consumption_Total" xml:space="preserve">
+    <value>Разом</value>
+  </data>
+  <data name="Consumption_Year" xml:space="preserve">
+    <value>Рік</value>
+  </data>
+  <data name="CostsReport" xml:space="preserve">
+    <value>Звіт про витрати</value>
+  </data>
+  <data name="Costs_Amount" xml:space="preserve">
+    <value>Сума витрат</value>
+  </data>
+  <data name="Costs_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="Costs_ServiceGroup" xml:space="preserve">
+    <value>Група послуг</value>
+  </data>
+  <data name="CreateInvoice" xml:space="preserve">
+    <value>Новий рахунок</value>
+  </data>
+  <data name="CreateMeter" xml:space="preserve">
+    <value>Новий лічильник</value>
+  </data>
+  <data name="CreateMeterReading" xml:space="preserve">
+    <value>Внесення показів</value>
+  </data>
+  <data name="CreatePayment" xml:space="preserve">
+    <value>Нова оплата</value>
+  </data>
+  <data name="CreateProperty" xml:space="preserve">
+    <value>Новий об'єкт нерухомості</value>
+  </data>
+  <data name="CreateProvider" xml:space="preserve">
+    <value>Новий постачальник</value>
+  </data>
+  <data name="CreateService" xml:space="preserve">
+    <value>Нова послуга</value>
+  </data>
+  <data name="CreateServiceFolder" xml:space="preserve">
+    <value>Нова група послуг</value>
+  </data>
+  <data name="CreateSetTariffs" xml:space="preserve">
+    <value>Нове встановлення тарифів</value>
+  </data>
+  <data name="EditInvoice" xml:space="preserve">
+    <value>Редагування рахунку</value>
+  </data>
+  <data name="EditMeter" xml:space="preserve">
+    <value>Редагування лічильника</value>
+  </data>
+  <data name="EditMeterReading" xml:space="preserve">
+    <value>Редагування показів</value>
+  </data>
+  <data name="EditPayment" xml:space="preserve">
+    <value>Редагування оплати</value>
+  </data>
+  <data name="EditProperty" xml:space="preserve">
+    <value>Редагування нерухомості</value>
+  </data>
+  <data name="EditProvider" xml:space="preserve">
+    <value>Редагування постачальника</value>
+  </data>
+  <data name="EditService" xml:space="preserve">
+    <value>Редагування послуги</value>
+  </data>
+  <data name="EditServiceFolder" xml:space="preserve">
+    <value>Редагування групи послуг</value>
+  </data>
+  <data name="EditSetTariffs" xml:space="preserve">
+    <value>Редагування встановлення тарифів</value>
+  </data>
+  <data name="HomeDashboard" xml:space="preserve">
+    <value>Головна панель</value>
+  </data>
+  <data name="HomeDashboard_CostsByServiceGroup" xml:space="preserve">
+    <value>Витрати за групами послуг</value>
+  </data>
+  <data name="HomeDashboard_Debt" xml:space="preserve">
+    <value>Борг</value>
+  </data>
+  <data name="HomeDashboard_DueDate" xml:space="preserve">
+    <value>Граничний термін</value>
+  </data>
+  <data name="HomeDashboard_Issue" xml:space="preserve">
+    <value>Причина</value>
+  </data>
+  <data name="HomeDashboard_LastMonthInvoices" xml:space="preserve">
+    <value>Рахунки за минулий місяць</value>
+  </data>
+  <data name="HomeDashboard_Meter" xml:space="preserve">
+    <value>Лічильник</value>
+  </data>
+  <data name="HomeDashboard_MeterAlerts" xml:space="preserve">
+    <value>Попередження по лічильниках</value>
+  </data>
+  <data name="HomeDashboard_MissingReadings" xml:space="preserve">
+    <value>Лічильників без показів</value>
+  </data>
+  <data name="HomeDashboard_Prepayment" xml:space="preserve">
+    <value>Переплата</value>
+  </data>
+  <data name="HomeDashboard_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="HomeDashboard_Provider" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="HomeDashboard_ProviderDebts" xml:space="preserve">
+    <value>Заборгованість постачальникам</value>
+  </data>
+  <data name="HomeDashboard_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="HomeDashboard_ServiceConsumption" xml:space="preserve">
+    <value>Споживання обраної послуги</value>
+  </data>
+  <data name="HomeDashboard_TotalDebt" xml:space="preserve">
+    <value>Загальний борг</value>
+  </data>
+  <data name="InvoiceAddedSuccessfully" xml:space="preserve">
+    <value>Рахунок успішно збережено</value>
+  </data>
+  <data name="InvoiceUpdatedSuccessfully" xml:space="preserve">
+    <value>Рахунок успішно оновлено</value>
+  </data>
+  <data name="Invoice_Amount" xml:space="preserve">
+    <value>Сума</value>
+  </data>
+  <data name="Invoice_Calculate" xml:space="preserve">
+    <value>Розрахувати</value>
+  </data>
+  <data name="Invoice_Calculate_Tooltip" xml:space="preserve">
+    <value>Розрахувати споживання та суми за місяць</value>
+  </data>
+  <data name="Invoice_Meter" xml:space="preserve">
+    <value>Лічильник</value>
+  </data>
+  <data name="Invoice_Month" xml:space="preserve">
+    <value>Розрахунковий місяць</value>
+  </data>
+  <data name="Invoice_Price" xml:space="preserve">
+    <value>Ціна</value>
+  </data>
+  <data name="Invoice_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="Invoice_Provider" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="Invoice_Quantity" xml:space="preserve">
+    <value>Кількість</value>
+  </data>
+  <data name="Invoice_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="Invoice_TotalAmount" xml:space="preserve">
+    <value>Загальна сума</value>
+  </data>
+  <data name="Invoice_Zone" xml:space="preserve">
+    <value>Тарифна зона</value>
+  </data>
+  <data name="Invoices" xml:space="preserve">
+    <value>Рахунки</value>
+  </data>
+  <data name="MeterAddedSuccessfully" xml:space="preserve">
+    <value>Лічильник успішно додано</value>
+  </data>
+  <data name="MeterReadingAddedSuccessfully" xml:space="preserve">
+    <value>Покази успішно збережено</value>
+  </data>
+  <data name="MeterReadingUpdatedSuccessfully" xml:space="preserve">
+    <value>Покази успішно оновлено</value>
+  </data>
+  <data name="MeterReading_Fill" xml:space="preserve">
+    <value>Заповнити</value>
+  </data>
+  <data name="MeterReading_Fill_Tooltip" xml:space="preserve">
+    <value>Заповнити лічильники та попередні покази</value>
+  </data>
+  <data name="MeterReading_Meter" xml:space="preserve">
+    <value>Лічильник</value>
+  </data>
+  <data name="MeterReading_PreviousReading" xml:space="preserve">
+    <value>Попередній показ</value>
+  </data>
+  <data name="MeterReading_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="MeterReading_Reading" xml:space="preserve">
+    <value>Поточний показ</value>
+  </data>
+  <data name="MeterReading_Zone" xml:space="preserve">
+    <value>Зона</value>
+  </data>
+  <data name="MeterReadings" xml:space="preserve">
+    <value>Покази лічильників</value>
+  </data>
+  <data name="MeterUpdatedSuccessfully" xml:space="preserve">
+    <value>Лічильник успішно оновлено</value>
+  </data>
+  <data name="Meter_NextVerificationDate" xml:space="preserve">
+    <value>Дата наступної повірки</value>
+  </data>
+  <data name="Meter_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="Meter_SerialNumber" xml:space="preserve">
+    <value>Серійний номер</value>
+  </data>
+  <data name="Meter_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="Meter_Zones" xml:space="preserve">
+    <value>Кількість зон</value>
+  </data>
+  <data name="Meters" xml:space="preserve">
+    <value>Лічильники</value>
+  </data>
+  <data name="Month_01" xml:space="preserve">
+    <value>Січ</value>
+  </data>
+  <data name="Month_02" xml:space="preserve">
+    <value>Лют</value>
+  </data>
+  <data name="Month_03" xml:space="preserve">
+    <value>Бер</value>
+  </data>
+  <data name="Month_04" xml:space="preserve">
+    <value>Кві</value>
+  </data>
+  <data name="Month_05" xml:space="preserve">
+    <value>Тра</value>
+  </data>
+  <data name="Month_06" xml:space="preserve">
+    <value>Чер</value>
+  </data>
+  <data name="Month_07" xml:space="preserve">
+    <value>Лип</value>
+  </data>
+  <data name="Month_08" xml:space="preserve">
+    <value>Сер</value>
+  </data>
+  <data name="Month_09" xml:space="preserve">
+    <value>Вер</value>
+  </data>
+  <data name="Month_10" xml:space="preserve">
+    <value>Жов</value>
+  </data>
+  <data name="Month_11" xml:space="preserve">
+    <value>Лис</value>
+  </data>
+  <data name="Month_12" xml:space="preserve">
+    <value>Гру</value>
+  </data>
+  <data name="PaymentAddedSuccessfully" xml:space="preserve">
+    <value>Оплату успішно збережено</value>
+  </data>
+  <data name="PaymentUpdatedSuccessfully" xml:space="preserve">
+    <value>Оплату успішно оновлено</value>
+  </data>
+  <data name="Payment_Amount" xml:space="preserve">
+    <value>Сума оплати</value>
+  </data>
+  <data name="Payment_Comment" xml:space="preserve">
+    <value>Коментар / Призначення</value>
+  </data>
+  <data name="Payment_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="Payment_Provider" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>Оплати</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="PropertyAddedSuccessfully" xml:space="preserve">
+    <value>Нерухомість успішно додано</value>
+  </data>
+  <data name="PropertyUpdatedSuccessfully" xml:space="preserve">
+    <value>Нерухомість успішно оновлено</value>
+  </data>
+  <data name="Property_Address" xml:space="preserve">
+    <value>Адреса</value>
+  </data>
+  <data name="Property_Area" xml:space="preserve">
+    <value>Площа (м²)</value>
+  </data>
+  <data name="ProviderAddedSuccessfully" xml:space="preserve">
+    <value>Постачальника успішно додано</value>
+  </data>
+  <data name="ProviderStatementReport" xml:space="preserve">
+    <value>Акт звірки з постачальником</value>
+  </data>
+  <data name="ProviderStatement_Balance" xml:space="preserve">
+    <value>Залишок боргу</value>
+  </data>
+  <data name="ProviderStatement_Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="ProviderStatement_Description" xml:space="preserve">
+    <value>Призначення / Опис</value>
+  </data>
+  <data name="ProviderStatement_Document" xml:space="preserve">
+    <value>Документ</value>
+  </data>
+  <data name="ProviderStatement_Invoiced" xml:space="preserve">
+    <value>Нараховано</value>
+  </data>
+  <data name="ProviderStatement_Paid" xml:space="preserve">
+    <value>Оплачено</value>
+  </data>
+  <data name="ProviderStatement_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="ProviderStatement_Provider" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="ProviderUpdatedSuccessfully" xml:space="preserve">
+    <value>Постачальника успішно оновлено</value>
+  </data>
+  <data name="Provider_Kind" xml:space="preserve">
+    <value>Вид послуги</value>
+  </data>
+  <data name="Provider_PersonalAccountNumber" xml:space="preserve">
+    <value>Особовий рахунок</value>
+  </data>
+  <data name="Provider_Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Providers" xml:space="preserve">
+    <value>Постачальники</value>
+  </data>
+  <data name="Reminders" xml:space="preserve">
+    <value>Нагадування про лічильники</value>
+  </data>
+  <data name="Reminders_AsOfDate" xml:space="preserve">
+    <value>Дата перевірки</value>
+  </data>
+  <data name="Reminders_MissingReadingsMeters" xml:space="preserve">
+    <value>Лічильників без показів</value>
+  </data>
+  <data name="Reminders_SentCount" xml:space="preserve">
+    <value>Надіслано сповіщень</value>
+  </data>
+  <data name="Reminders_VerificationDueMeters" xml:space="preserve">
+    <value>Лічильників на повірку</value>
+  </data>
+  <data name="ServiceAddedSuccessfully" xml:space="preserve">
+    <value>Послугу успішно додано</value>
+  </data>
+  <data name="ServiceFolderAddedSuccessfully" xml:space="preserve">
+    <value>Групу послуг успішно додано</value>
+  </data>
+  <data name="ServiceUpdatedSuccessfully" xml:space="preserve">
+    <value>Послугу успішно оновлено</value>
+  </data>
+  <data name="Service_Billing" xml:space="preserve">
+    <value>Спосіб нарахування</value>
+  </data>
+  <data name="Service_Provider" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="Service_Unit" xml:space="preserve">
+    <value>Одиниця виміру</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Послуги</value>
+  </data>
+  <data name="SetTariffs" xml:space="preserve">
+    <value>Встановлення тарифів</value>
+  </data>
+  <data name="SetTariffsAddedSuccessfully" xml:space="preserve">
+    <value>Тарифи успішно встановлено</value>
+  </data>
+  <data name="SetTariffsUpdatedSuccessfully" xml:space="preserve">
+    <value>Встановлення тарифів успішно оновлено</value>
+  </data>
+  <data name="SetTariffs_Price" xml:space="preserve">
+    <value>Ціна за одиницю</value>
+  </data>
+  <data name="SetTariffs_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="SetTariffs_Zone" xml:space="preserve">
+    <value>Тарифна зона</value>
+  </data>
+  <data name="TariffHistoryReport" xml:space="preserve">
+    <value>Історія тарифів</value>
+  </data>
+  <data name="TariffHistory_ChangePercent" xml:space="preserve">
+    <value>Зміна ціни, %</value>
+  </data>
+  <data name="TariffHistory_Date" xml:space="preserve">
+    <value>Діє з дати</value>
+  </data>
+  <data name="TariffHistory_Price" xml:space="preserve">
+    <value>Ціна / Тариф</value>
+  </data>
+  <data name="TariffHistory_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="TariffHistory_Zone" xml:space="preserve">
+    <value>Зона</value>
+  </data>
+  <data name="ViewInvoice" xml:space="preserve">
+    <value>Перегляд рахунку</value>
+  </data>
+  <data name="ViewMeter" xml:space="preserve">
+    <value>Перегляд лічильника</value>
+  </data>
+  <data name="ViewMeterReading" xml:space="preserve">
+    <value>Перегляд показів</value>
+  </data>
+  <data name="ViewPayment" xml:space="preserve">
+    <value>Перегляд оплати</value>
+  </data>
+  <data name="ViewProperty" xml:space="preserve">
+    <value>Перегляд нерухомості</value>
+  </data>
+  <data name="ViewProvider" xml:space="preserve">
+    <value>Перегляд постачальника</value>
+  </data>
+  <data name="ViewService" xml:space="preserve">
+    <value>Перегляд послуги</value>
+  </data>
+  <data name="ViewServiceFolder" xml:space="preserve">
+    <value>Перегляд групи послуг</value>
+  </data>
+  <data name="ViewSetTariffs" xml:space="preserve">
+    <value>Перегляд встановлення тарифів</value>
+  </data>
+  <data name="Alert_MissingReading" xml:space="preserve">
+    <value>Відсутні покази за поточний місяць</value>
+  </data>
+  <data name="Alert_VerificationDue" xml:space="preserve">
+    <value>Потрібна повірка</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Період</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>Різниця</value>
+  </data>
+  <data name="DuplicateInvoiceForMonth" xml:space="preserve">
+    <value>Рахунок для цього постачальника, об'єкта та місяця вже проведено</value>
+  </data>
+  <data name="Enum_BillingType_FixedPerMonth" xml:space="preserve">
+    <value>Фіксовано на місяць</value>
+  </data>
+  <data name="Enum_BillingType_Metered" xml:space="preserve">
+    <value>За лічильником</value>
+  </data>
+  <data name="Enum_BillingType_PerSquareMetre" xml:space="preserve">
+    <value>За кв. метр площі</value>
+  </data>
+  <data name="Enum_MeterZones_DayNight" xml:space="preserve">
+    <value>Двозонний (день / ніч)</value>
+  </data>
+  <data name="Enum_MeterZones_Single" xml:space="preserve">
+    <value>Однозонний (звичайний)</value>
+  </data>
+  <data name="Enum_ProviderKind_Electricity" xml:space="preserve">
+    <value>Електроенергія</value>
+  </data>
+  <data name="Enum_ProviderKind_Gas" xml:space="preserve">
+    <value>Газопостачання</value>
+  </data>
+  <data name="Enum_ProviderKind_Heating" xml:space="preserve">
+    <value>Опалення</value>
+  </data>
+  <data name="Enum_ProviderKind_HousingManagement" xml:space="preserve">
+    <value>Утримання будинку (ЖЕК/ОСББ)</value>
+  </data>
+  <data name="Enum_ProviderKind_Internet" xml:space="preserve">
+    <value>Інтернет та ТБ</value>
+  </data>
+  <data name="Enum_ProviderKind_Other" xml:space="preserve">
+    <value>Інше</value>
+  </data>
+  <data name="Enum_ProviderKind_Water" xml:space="preserve">
+    <value>Водопостачання та водовідведення</value>
+  </data>
+  <data name="Enum_TariffZone_Day" xml:space="preserve">
+    <value>День (07:00 - 23:00)</value>
+  </data>
+  <data name="Enum_TariffZone_Night" xml:space="preserve">
+    <value>Ніч (23:00 - 07:00)</value>
+  </data>
+  <data name="Enum_TariffZone_Single" xml:space="preserve">
+    <value>Загальна зона</value>
+  </data>
+  <data name="Meter" xml:space="preserve">
+    <value>Лічильник</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Місяць</value>
+  </data>
+  <data name="Nav_Administration" xml:space="preserve">
+    <value>Адміністрування</value>
+  </data>
+  <data name="Nav_Invoices" xml:space="preserve">
+    <value>Рахунки</value>
+  </data>
+  <data name="Nav_MeterReadings" xml:space="preserve">
+    <value>Покази лічильників</value>
+  </data>
+  <data name="Nav_Meters" xml:space="preserve">
+    <value>Лічильники</value>
+  </data>
+  <data name="Nav_Payments" xml:space="preserve">
+    <value>Оплати</value>
+  </data>
+  <data name="Nav_Properties" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="Nav_Providers" xml:space="preserve">
+    <value>Постачальники</value>
+  </data>
+  <data name="Nav_ReferenceData" xml:space="preserve">
+    <value>Довідники</value>
+  </data>
+  <data name="Nav_Services" xml:space="preserve">
+    <value>Послуги</value>
+  </data>
+  <data name="Nav_SetTariffs" xml:space="preserve">
+    <value>Встановлення тарифів</value>
+  </data>
+  <data name="PreviousReading" xml:space="preserve">
+    <value>Попередній показ</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Ціна</value>
+  </data>
+  <data name="Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Призначення</value>
+  </data>
+  <data name="Reading" xml:space="preserve">
+    <value>Показ</value>
+  </data>
+  <data name="ReadingLowerThanPrevious" xml:space="preserve">
+    <value>Поточний показ лічильника ({0}) не може бути меншим за попередній ({1})</value>
+  </data>
+  <data name="Report_ClosingBalance" xml:space="preserve">
+    <value>Кінцеве сальдо</value>
+  </data>
+  <data name="Report_Invoice" xml:space="preserve">
+    <value>Рахунок</value>
+  </data>
+  <data name="Report_OpeningBalance" xml:space="preserve">
+    <value>Початкове сальдо</value>
+  </data>
+  <data name="Report_Payment" xml:space="preserve">
+    <value>Оплата</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="Settlement_Amount" xml:space="preserve">
+    <value>Сума боргу</value>
+  </data>
+  <data name="Settlement_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="Settlement_Provider" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="Settlements" xml:space="preserve">
+    <value>Взаєморозрахунки з постачальниками</value>
+  </data>
+  <data name="Sum" xml:space="preserve">
+    <value>Сума</value>
+  </data>
+  <data name="Tariff_Price" xml:space="preserve">
+    <value>Ціна</value>
+  </data>
+  <data name="Tariff_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="Tariff_Zone" xml:space="preserve">
+    <value>Зона</value>
+  </data>
+  <data name="Tariffs" xml:space="preserve">
+    <value>Тарифи на послуги</value>
+  </data>
+  <data name="UtilityCost_Amount" xml:space="preserve">
+    <value>Сума витрат</value>
+  </data>
+  <data name="UtilityCost_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="UtilityCost_Quantity" xml:space="preserve">
+    <value>Кількість</value>
+  </data>
+  <data name="UtilityCost_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="UtilityCosts" xml:space="preserve">
+    <value>Витрати на комунальні послуги</value>
+  </data>
+  <data name="Zone" xml:space="preserve">
+    <value>Зона</value>
+  </data>
+  <data name="Nav_QuickAdd_MeterReading" xml:space="preserve">
+    <value>Внести покази</value>
+  </data>
+  <data name="Nav_QuickAdd_Payment" xml:space="preserve">
+    <value>Внести оплату</value>
+  </data>
+  <data name="Nav_Documents" xml:space="preserve">
+    <value>Документи</value>
+  </data>
+  <data name="Nav_Reports" xml:space="preserve">
+    <value>Звіти</value>
+  </data>
+  <data name="ServiceGroup_Other" xml:space="preserve">
+    <value>Інше</value>
+  </data>
+  <data name="Property_RegisteredPersonsCount" xml:space="preserve">
+    <value>Кількість зареєстрованих осіб</value>
+  </data>
+  <data name="Enum_BillingType_PerPerson" xml:space="preserve">
+    <value>За зареєстровану особу</value>
+  </data>
+  <data name="InvoicePrintTitle" xml:space="preserve">
+    <value>Рахунок за комунальні послуги</value>
+  </data>
+  <data name="MeterReadingPrintTitle" xml:space="preserve">
+    <value>Акт фіксації показів лічильників</value>
+  </data>
+  <data name="PaymentPrintTitle" xml:space="preserve">
+    <value>Квитанція про оплату</value>
+  </data>
+  <data name="SetTariffsPrintTitle" xml:space="preserve">
+    <value>Розпорядження про встановлення тарифів</value>
+  </data>
+  <data name="Costs_Service" xml:space="preserve">
+    <value>Послуга</value>
+  </data>
+  <data name="MeterConsumptionReport" xml:space="preserve">
+    <value>Звіт зі споживання за лічильниками</value>
+  </data>
+  <data name="MeterConsumption_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="MeterConsumption_Year" xml:space="preserve">
+    <value>Рік</value>
+  </data>
+  <data name="MeterConsumption_Meter" xml:space="preserve">
+    <value>Лічильник</value>
+  </data>
+  <data name="MeterConsumption_Zone" xml:space="preserve">
+    <value>Тарифна зона</value>
+  </data>
+  <data name="MeterConsumption_Unit" xml:space="preserve">
+    <value>Од. вим.</value>
+  </data>
+  <data name="MeterReadingsHistoryReport" xml:space="preserve">
+    <value>Історія показів лічильників</value>
+  </data>
+  <data name="MeterReadingsHistory_Property" xml:space="preserve">
+    <value>Нерухомість</value>
+  </data>
+  <data name="MeterReadingsHistory_Meter" xml:space="preserve">
+    <value>Лічильник</value>
+  </data>
+  <data name="MeterReadingsHistory_Date" xml:space="preserve">
+    <value>Дата фіксації</value>
+  </data>
+  <data name="MeterReadingsHistory_Zone" xml:space="preserve">
+    <value>Тарифна зона</value>
+  </data>
+  <data name="MeterReadingsHistory_Reading" xml:space="preserve">
+    <value>Показ</value>
+  </data>
+  <data name="MeterReadingsHistory_Unit" xml:space="preserve">
+    <value>Од. вим.</value>
+  </data>
+  <data name="Property_Owner" xml:space="preserve">
+    <value>Власник / Отримувач</value>
+  </data>
+  <data name="Provider_Iban" xml:space="preserve">
+    <value>Рахунок IBAN</value>
+  </data>
+  <data name="Provider_Edrpou" xml:space="preserve">
+    <value>Код ЄДРПОУ</value>
+  </data>
+  <data name="Provider_BankName" xml:space="preserve">
+    <value>Найменування банку</value>
+  </data>
+  <data name="Provider_Address" xml:space="preserve">
+    <value>Юридична адреса</value>
+  </data>
+  <data name="Provider_PaymentDescriptionTemplate" xml:space="preserve">
+    <value>Шаблон призначення платежу</value>
+  </data>
+  <data name="Invoice_PaymentDescription" xml:space="preserve">
+    <value>Призначення платежу</value>
+  </data>
+  <data name="Invoice_ProviderIban" xml:space="preserve">
+    <value>Рахунок IBAN постачальника</value>
+  </data>
+  <data name="Invoice_ProviderEdrpou" xml:space="preserve">
+    <value>Код ЄДРПОУ постачальника</value>
+  </data>
+  <data name="Invoice_ProviderBankName" xml:space="preserve">
+    <value>Банк постачальника</value>
+  </data>
+  <data name="Payment_PaymentDescription" xml:space="preserve">
+    <value>Призначення платежу</value>
+  </data>
+  <data name="UtilityCost_Zone" xml:space="preserve">
+    <value>Тарифна зона</value>
+  </data>
+  <data name="Reminder_MissingReadings_Title" xml:space="preserve">
+    <value>Відсутні покази лічильників ({0})</value>
+  </data>
+  <data name="Reminder_MissingReadings_Body" xml:space="preserve">
+    <value>Для {0} лічильників не внесено покази за поточний місяць.</value>
+  </data>
+  <data name="Reminder_VerificationDue_Title" xml:space="preserve">
+    <value>Час повірки лічильника: {0}</value>
+  </data>
+  <data name="Reminder_VerificationDue_Body" xml:space="preserve">
+    <value>Лічильник {0} потребує державної повірки до {1}.</value>
+  </data>
+  <data name="HomeDashboard_TotalDebt_Hint" xml:space="preserve">
+    <value>Загальна сума заборгованості перед усіма постачальниками комунальних послуг.</value>
+  </data>
+  <data name="HomeDashboard_LastMonthInvoices_Hint" xml:space="preserve">
+    <value>Сума нарахувань за минулий місяць у порівнянні з аналогічним місяцем минулого року.</value>
+  </data>
+  <data name="HomeDashboard_MissingReadings_Hint" xml:space="preserve">
+    <value>Кількість лічильників без зафіксованих показів у поточному місяці.</value>
+  </data>
+  <data name="HomeDashboard_CostsByServiceGroup_Hint" xml:space="preserve">
+    <value>Щомісячні витрати за останні 12 місяців у розрізі груп послуг.</value>
+  </data>
+  <data name="HomeDashboard_ServiceConsumption_Hint" xml:space="preserve">
+    <value>Щомісячне споживання обраної послуги за поточний та попередній роки.</value>
+  </data>
+  <data name="HomeDashboard_ProviderDebts_Hint" xml:space="preserve">
+    <value>Поточна заборгованість та переплата за кожним постачальником.</value>
+  </data>
+  <data name="HomeDashboard_MeterAlerts_Hint" xml:space="preserve">
+    <value>Лічильники без показів за поточний місяць або з наближенням дати повірки.</value>
+  </data>
+</root>

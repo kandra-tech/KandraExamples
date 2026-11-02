@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:48190",
+      "sslPort": 44373
+    }
+  },
+  "profiles": {
+    "HomeUtilities.UI": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "/",
+      "applicationUrl": "https://localhost:7227;http://localhost:5227",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ACCEPT_EULA": "Y",
+        "Kandra__Setup__Mode": "Demo",
+        "Kandra__AdminPassword": "Admin!1"
+      }
+    },
+    "HomeUtilities.WebApi": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7227;http://localhost:5227",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ACCEPT_EULA": "Y",
+        "Kandra__Setup__Mode": "Demo",
+        "Kandra__AdminPassword": "Admin!1"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ACCEPT_EULA": "Y",
+        "Kandra__Setup__Mode": "Demo",
+        "Kandra__AdminPassword": "Admin!1"
+      }
+    }
+  }
+}

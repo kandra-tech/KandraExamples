@@ -1,0 +1,1145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:kandra:import:1:HomeUtilities",
+  "title": "Kandra import package (kandra-import/1) for HomeUtilities",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "format": {
+      "const": "kandra-import/1"
+    },
+    "package": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,199}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "origin": {
+      "enum": [
+        "demoSeed",
+        "import"
+      ]
+    },
+    "configuration": {
+      "const": "HomeUtilities"
+    },
+    "title": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Invoices"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Invoices"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "MeterReadings"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.MeterReadings"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "Payments"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.Payments"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "document": {
+                "const": "SetTariffs"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/document.SetTariffs"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              },
+              "submit": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "document",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Meters"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Meters"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Properties"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Properties"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Providers"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Providers"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dictionary": {
+                "const": "Services"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/dictionary.Services"
+                }
+              },
+              "match": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "dictionary",
+              "items"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dataProcessor": {
+                "const": "CompanySettings"
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "run": {
+                "enum": [
+                  "once",
+                  "always"
+                ]
+              },
+              "optional": {
+                "type": "boolean"
+              },
+              "input": {
+                "$ref": "#/$defs/input.CompanySettings"
+              }
+            },
+            "required": [
+              "dataProcessor",
+              "$id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dataProcessor": {
+                "const": "Reminders"
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "run": {
+                "enum": [
+                  "once",
+                  "always"
+                ]
+              },
+              "optional": {
+                "type": "boolean"
+              },
+              "input": {
+                "$ref": "#/$defs/input.Reminders"
+              }
+            },
+            "required": [
+              "dataProcessor",
+              "$id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "constant": {
+                "enum": [
+                  "CompanyLogo",
+                  "CompanyName",
+                  "CurrencyCode",
+                  "ExpectedReadingsDay"
+                ]
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {},
+              "effectiveFrom": {
+                "type": "string",
+                "description": "The date the value applies from (ISO, UTC when it has no offset). Omitted: from the moment of the import."
+              },
+              "onChange": {
+                "$ref": "#/$defs/onChange"
+              },
+              "onUserModified": {
+                "$ref": "#/$defs/onUserModified"
+              },
+              "onDeleted": {
+                "$ref": "#/$defs/onDeleted"
+              }
+            },
+            "required": [
+              "constant",
+              "$id",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "createFrom": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "enum": [
+                      "Invoices",
+                      "MeterReadings",
+                      "Payments",
+                      "SetTariffs"
+                    ]
+                  }
+                },
+                "required": [
+                  "source",
+                  "target"
+                ],
+                "additionalProperties": false
+              },
+              "$id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "submit": {
+                "type": "boolean"
+              },
+              "set": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "createFrom",
+              "$id"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "format",
+    "package",
+    "version",
+    "origin",
+    "configuration",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "reference": {
+      "description": "A reference to an object defined earlier in this package ($ref) or to an existing row looked up by Code ($code).",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "$ref": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$ref"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$code": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "$code"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "guidOrReference": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "$ref": "#/$defs/reference"
+        }
+      ]
+    },
+    "dateTimeValue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "$ref": "#/$defs/dateToken"
+        }
+      ]
+    },
+    "dateValue": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "$ref": "#/$defs/dateToken"
+        }
+      ]
+    },
+    "dateToken": {
+      "type": "string",
+      "description": "$now, $today, $today-23d, $today+14d, $monthStart (the 1st of this month), $monthStart-1m, $monthStart+4d, $monthStart-1m+9d - resolved in the importing user's time zone when the package is applied.",
+      "pattern": "^\\$(now|today([+-]\\d{1,5}d)?|monthStart([+-]\\d{1,4}m)?([+-]\\d{1,5}d)?)$"
+    },
+    "onChange": {
+      "enum": [
+        "update",
+        "skip",
+        "error"
+      ]
+    },
+    "onUserModified": {
+      "enum": [
+        "skip",
+        "overwrite",
+        "error"
+      ]
+    },
+    "onDeleted": {
+      "enum": [
+        "skip",
+        "restore",
+        "error"
+      ]
+    },
+    "document.Invoices.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "serviceId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The utility service charged."
+        },
+        "meterId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The meter measuring this service, if metered."
+        },
+        "zone": {
+          "description": "Tariff zone: Single, Day, or Night."
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Consumption quantity or area."
+        },
+        "price": {
+          "type": "number",
+          "description": "Applicable tariff price per unit in UAH."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Calculated line total in UAH."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Invoices": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "providerId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "Utility provider issuing the invoice."
+        },
+        "propertyId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "Household property billed."
+        },
+        "month": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The billing month (first day of the month)."
+        },
+        "calculateTrigger": {
+          "type": "string",
+          "description": "Calculate lines based on meter readings, area, and valid tariffs."
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "Total invoice amount owed in UAH."
+        },
+        "paymentDescription": {
+          "type": "string",
+          "description": "Payment purpose / description for banking transfer."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional comment or note."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.Invoices.lines.line"
+          }
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.MeterReadings.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "meterId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The meter being read."
+        },
+        "zone": {
+          "description": "Tariff zone: Single, Day, or Night."
+        },
+        "previousReading": {
+          "type": "number",
+          "description": "Previous recorded reading."
+        },
+        "reading": {
+          "type": "number",
+          "description": "Current meter reading."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.MeterReadings": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "propertyId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The property whose meter readings are recorded."
+        },
+        "fillTrigger": {
+          "type": "string",
+          "description": "Action trigger to fill lines with meters of the selected property and their previous readings."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional note or comment for this reading event."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.MeterReadings.lines.line"
+          }
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.Payments": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "providerId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The utility provider paid."
+        },
+        "propertyId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The property this utility payment applies to."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Payment amount in UAH."
+        },
+        "paymentDescription": {
+          "type": "string",
+          "description": "Payment purpose / description for banking transfer."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional payment purpose or comment."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.SetTariffs.lines.line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidOrReference"
+        },
+        "serviceId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The utility service to price."
+        },
+        "zone": {
+          "description": "Tariff zone: Single, Day, or Night."
+        },
+        "price": {
+          "type": "number",
+          "description": "Price per unit in UAH."
+        }
+      },
+      "additionalProperties": false
+    },
+    "document.SetTariffs": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description or note for the tariff schedule."
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/document.SetTariffs.lines.line"
+          }
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The document's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The business date/time this document is dated as of - independent of when it was actually entered or submitted."
+        },
+        "code": {
+          "type": "string",
+          "description": "The document's human-readable number, usually assigned by a numbering system when the document is created via the New operation - a hand-built Create payload should normally reuse New's Code rather than inventing one."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether this document is posted/submitted - true after Submit, false after Unsubmit or while still a draft. Only a submitted document has moved registers or posted to the ledger."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Meters": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "propertyId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The property where this meter is installed."
+        },
+        "serviceId": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The metered service (electricity, gas, water)."
+        },
+        "serialNumber": {
+          "type": "string",
+          "description": "Serial number stamped on the meter casing."
+        },
+        "zones": {
+          "description": "Tariff zones supported by this meter (single or day-night)."
+        },
+        "nextVerificationDate": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "Date by which the meter must undergo state technical verification."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Properties": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "address": {
+          "type": "string",
+          "description": "Street address or location of the property."
+        },
+        "area": {
+          "type": "number",
+          "description": "Total area of the property in square metres."
+        },
+        "registeredPersonsCount": {
+          "type": "integer",
+          "description": "Number of persons registered at this property."
+        },
+        "owner": {
+          "type": "string",
+          "description": "Person to whom invoices for this property are addressed."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Providers": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "description": "Kind of utility supplied by this provider."
+        },
+        "personalAccountNumber": {
+          "type": "string",
+          "description": "Personal customer account number at the provider."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Support or contact phone number."
+        },
+        "iban": {
+          "type": "string",
+          "description": "International Bank Account Number (IBAN)."
+        },
+        "edrpou": {
+          "type": "string",
+          "description": "National enterprise code (EDRPOU / Tax ID)."
+        },
+        "bankName": {
+          "type": "string",
+          "description": "Name of the bank servicing this account."
+        },
+        "address": {
+          "type": "string",
+          "description": "Legal or postal address of the provider."
+        },
+        "paymentDescriptionTemplate": {
+          "type": "string",
+          "description": "Template for payment purpose / description. Supported placeholders: {Month}, {Year}, {MonthName}, {Owner}, {PersonalAccountNumber}, {Account}, {PropertyAddress}, {PropertyName}, {ProviderName}, {MeterReadings}, {InvoiceNumber}"
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        }
+      },
+      "additionalProperties": false
+    },
+    "dictionary.Services": {
+      "type": "object",
+      "properties": {
+        "$id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The parent folder's id, or null for a root-level row. This dictionary is a folder/leaf tree - see IsFolder."
+        },
+        "id": {
+          "$ref": "#/$defs/guidOrReference",
+          "description": "The row's unique identifier. Set by the server on Create; ignored on input otherwise."
+        },
+        "code": {
+          "type": "string",
+          "description": "A short, usually user-entered natural-key identifier for this row (not auto-numbered the way a Document's Code typically is) - conventionally unique within the dictionary, though uniqueness isn't always enforced."
+        },
+        "name": {
+          "type": "string",
+          "description": "The row's human-readable display name."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optimistic-concurrency token. Include the value last read back when calling Update, so a stale edit is rejected instead of silently overwriting a newer change."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Measurement unit (kWh, m³, Gcal, month, m²)."
+        },
+        "billing": {
+          "description": "Billing mode: metered, fixed per month, or per square metre."
+        },
+        "providerId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The provider furnishing this service."
+        },
+        "isFolder": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "input.CompanySettings": {
+      "type": "object",
+      "properties": {
+        "effectiveFrom": {
+          "$ref": "#/$defs/dateTimeValue",
+          "description": "The date the changed values apply from: today, or a later date to schedule a change. A date in the past also corrects documents dated since then (constants are read as of the document's date). Defaulted to today by New."
+        },
+        "name": {
+          "type": "string",
+          "description": "CompanyName constant: the company's name, printed in the letterhead. An empty name prints no letterhead."
+        },
+        "logo": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/guidOrReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "CompanyLogo constant: blob reference id of the logo printed in the letterhead. A PNG or JPEG image of at most 1 MB. Earlier logos stay attached, so older documents keep printing theirs. Emptying the field removes the logo from the effective date (deletes none)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "input.Reminders": {
+      "type": "object",
+      "properties": {
+        "asOfDate": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/dateTimeValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optional date to run reminders for; defaults to today."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

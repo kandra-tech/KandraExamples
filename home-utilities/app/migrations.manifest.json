@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "project": "src/HomeUtilities.Persistence.Databases/HomeUtilities.Persistence.Databases.csproj",
+  "startupProject": "src/HomeUtilities.WebApi/HomeUtilities.WebApi.csproj",
+  "providersPropertyName": "Providers",
+  "providers": [
+    { "name": "Sqlite", "context": "HomeUtilitiesDbContextSqlite", "outputDir": "Migrations/Sqlite" },
+    { "name": "SqlServer", "context": "HomeUtilitiesDbContextSqlServer", "outputDir": "Migrations/SqlServer" },
+    { "name": "PostgreSql", "context": "HomeUtilitiesDbContextPostgreSql", "outputDir": "Migrations/PostgreSql" }
+  ]
+}

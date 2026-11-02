@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "restore",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["restore", " HomeUtilities.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build solution",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["build", "HomeUtilities.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["test", "HomeUtilities.slnx"],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "watch HomeUtilities.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "src/HomeUtilities.WebApi",
+        "--launch-profile",
+        "HomeUtilities.WebApi"
+      ],
+      "problemMatcher": "$msCompile",
+      "isBackground": true,
+      "group": "build"
+    },
+    {
+      "label": "build HomeUtilities.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/HomeUtilities.WebApi/HomeUtilities.WebApi.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build HomeUtilities.Client.MudBlazor",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/HomeUtilities.Client.MudBlazor/HomeUtilities.Client.MudBlazor.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build HomeUtilities",
+      "dependsOn": [
+        "build HomeUtilities.WebApi",
+        "build HomeUtilities.Client.MudBlazor"
+      ],
+      "dependsOrder": "parallel",
+      "group": "build"
+    },
+    {
+      "label": "Run Dotnet HomeUtilities.WebApi",
+      "dependsOn": "build HomeUtilities.WebApi",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["run",
+        "--project",
+        "src/HomeUtilities.WebApi",
+        "--launch-profile",
+        "HomeUtilities.WebApi"]
+    }
+  ]
+}

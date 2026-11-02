@@ -1,0 +1,2685 @@
+{
+  "$schema": "./homeutilities.import.schema.json",
+  "format": "kandra-import/1",
+  "package": "homeutilities-demo-en",
+  "version": 1,
+  "origin": "demoSeed",
+  "configuration": "HomeUtilities",
+  "title": "HomeUtilities demo data (English)",
+  "steps": [
+    {
+      "constant": "CurrencyCode",
+      "$id": "const-curr",
+      "value": "UAH",
+      "effectiveFrom": "2020-01-01"
+    },
+    {
+      "constant": "ExpectedReadingsDay",
+      "$id": "const-exp-day",
+      "value": 25,
+      "effectiveFrom": "2020-01-01"
+    },
+    {
+      "dictionary": "Properties",
+      "items": [
+        {
+          "$id": "prop-flat",
+          "code": "PROP-01",
+          "name": "Flat 42",
+          "address": "1 Khreshchatyk St, Apt 42",
+          "area": 75.0,
+          "registeredPersonsCount": 2,
+          "owner": "Alexander Shevchenko"
+        }
+      ]
+    },
+    {
+      "dictionary": "Providers",
+      "items": [
+        {
+          "$id": "prov-elec",
+          "code": "PRV-01",
+          "name": "Kyiv Energy",
+          "kind": "electricity",
+          "personalAccountNumber": "111222333",
+          "phone": "+380441112233",
+          "iban": "UA113223130000026001112223331",
+          "edrpou": "12345678",
+          "bankName": "JSC Oschadbank",
+          "address": "10 Khreshchatyk St, Kyiv, 01001",
+          "paymentDescriptionTemplate": "Electricity for {Month}.{Year}; Acc: {PersonalAccountNumber}; {Owner}; {PropertyAddress}; Meters: {MeterReadings}"
+        },
+        {
+          "$id": "prov-gas",
+          "code": "PRV-02",
+          "name": "KyivGas",
+          "kind": "gas",
+          "personalAccountNumber": "222333444",
+          "phone": "+380442223344",
+          "iban": "UA223223130000026002223334442",
+          "edrpou": "23456789",
+          "bankName": "JSC CB PrivatBank",
+          "address": "15 Bohdan Khmelnytsky St, Kyiv, 01030",
+          "paymentDescriptionTemplate": "Gas supply for {Month}.{Year}; Acc: {PersonalAccountNumber}; {Owner}; {PropertyAddress}; Meters: {MeterReadings}"
+        },
+        {
+          "$id": "prov-water",
+          "code": "PRV-03",
+          "name": "KyivVodokanal",
+          "kind": "water",
+          "personalAccountNumber": "333444555",
+          "phone": "+380443334455",
+          "iban": "UA333223130000026003334445553",
+          "edrpou": "34567890",
+          "bankName": "JSC Ukreximbank",
+          "address": "1a Leiptsyzka St, Kyiv, 01015",
+          "paymentDescriptionTemplate": "Water supply for {Month}.{Year}; Acc: {PersonalAccountNumber}; {Owner}; {PropertyAddress}; Meters: {MeterReadings}"
+        },
+        {
+          "$id": "prov-heat",
+          "code": "PRV-04",
+          "name": "KyivTeplo",
+          "kind": "heating",
+          "personalAccountNumber": "444555666",
+          "phone": "+380444445566",
+          "iban": "UA443223130000026004445556664",
+          "edrpou": "45678901",
+          "bankName": "JSC Oschadbank",
+          "address": "3 Sportyvna Sq, Kyiv, 01601",
+          "paymentDescriptionTemplate": "Heating and hot water for {Month}.{Year}; Acc: {PersonalAccountNumber}; {Owner}; {PropertyAddress}"
+        },
+        {
+          "$id": "prov-bld",
+          "code": "PRV-05",
+          "name": "Building Maintenance Co",
+          "kind": "housingManagement",
+          "personalAccountNumber": "555666777",
+          "phone": "+380445556677",
+          "iban": "UA553223130000026005556667775",
+          "edrpou": "56789012",
+          "bankName": "JSC CB PrivatBank",
+          "address": "22 Instytutska St, Kyiv, 01021",
+          "paymentDescriptionTemplate": "Building maintenance for {Month}.{Year}; Acc: {PersonalAccountNumber}; {Owner}; {PropertyAddress}"
+        },
+        {
+          "$id": "prov-garbage",
+          "code": "PRV-06",
+          "name": "EcoTrans Garbage Collection",
+          "kind": "other",
+          "personalAccountNumber": "666777888",
+          "phone": "+380446667788",
+          "iban": "UA663223130000026006667778886",
+          "edrpou": "67890123",
+          "bankName": "JSC Raiffeisen Bank",
+          "address": "5 Naberezhno-Khreshchatytska St, Kyiv, 04070",
+          "paymentDescriptionTemplate": "Waste collection for {Month}.{Year}; Acc: {PersonalAccountNumber}; {Owner}; {PropertyAddress}"
+        },
+        {
+          "$id": "prov-elevator",
+          "code": "PRV-07",
+          "name": "Otis Elevator Service",
+          "kind": "other",
+          "personalAccountNumber": "777888999",
+          "phone": "+380447778899",
+          "iban": "UA773223130000026007778889997",
+          "edrpou": "78901234",
+          "bankName": "JSC Ukrsibbank",
+          "address": "40 Velyka Vasylkivska St, Kyiv, 03150",
+          "paymentDescriptionTemplate": "Elevator service for {Month}.{Year}; Acc: {PersonalAccountNumber}; {Owner}; {PropertyAddress}"
+        },
+        {
+          "$id": "prov-domophone",
+          "code": "PRV-08",
+          "name": "Cyfral Domophone Service",
+          "kind": "other",
+          "personalAccountNumber": "888999000",
+          "phone": "+380448889900",
+          "iban": "UA883223130000026008889990008",
+          "edrpou": "89012345",
+          "bankName": "FUIB Bank",
+          "address": "12 Sichovykh Striltsiv St, Kyiv, 04053",
+          "paymentDescriptionTemplate": "Domophone service for {Month}.{Year}; Acc: {PersonalAccountNumber}; {Owner}; {PropertyAddress}"
+        }
+      ]
+    },
+    {
+      "dictionary": "Services",
+      "items": [
+        {
+          "$id": "srv-grp-energy",
+          "code": "GRP-01",
+          "name": "Energy",
+          "isFolder": true
+        },
+        {
+          "$id": "srv-grp-water",
+          "code": "GRP-02",
+          "name": "Water",
+          "isFolder": true
+        },
+        {
+          "$id": "srv-grp-fees",
+          "code": "GRP-03",
+          "name": "Fees",
+          "isFolder": true
+        },
+        {
+          "$id": "srv-elec",
+          "code": "SRV-01",
+          "name": "Electricity",
+          "parentId": {
+            "$ref": "srv-grp-energy"
+          },
+          "unit": "kWh",
+          "billing": "metered",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "srv-gas",
+          "code": "SRV-02",
+          "name": "Gas",
+          "parentId": {
+            "$ref": "srv-grp-energy"
+          },
+          "unit": "m³",
+          "billing": "metered",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "srv-coldwater",
+          "code": "SRV-03",
+          "name": "Cold Water",
+          "parentId": {
+            "$ref": "srv-grp-water"
+          },
+          "unit": "m³",
+          "billing": "metered",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "srv-hotwater",
+          "code": "SRV-04",
+          "name": "Hot Water",
+          "parentId": {
+            "$ref": "srv-grp-water"
+          },
+          "unit": "m³",
+          "billing": "metered",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "srv-heating",
+          "code": "SRV-05",
+          "name": "Heating",
+          "parentId": {
+            "$ref": "srv-grp-fees"
+          },
+          "unit": "m²",
+          "billing": "perSquareMetre",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "srv-bld",
+          "code": "SRV-06",
+          "name": "Building Maintenance",
+          "parentId": {
+            "$ref": "srv-grp-fees"
+          },
+          "unit": "m²",
+          "billing": "perSquareMetre",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "srv-garbage",
+          "code": "SRV-07",
+          "name": "Garbage Collection",
+          "parentId": {
+            "$ref": "srv-grp-fees"
+          },
+          "unit": "person",
+          "billing": "perPerson",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "srv-elevator",
+          "code": "SRV-08",
+          "name": "Elevator Service",
+          "parentId": {
+            "$ref": "srv-grp-fees"
+          },
+          "unit": "month",
+          "billing": "fixedPerMonth",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "isFolder": false
+        },
+        {
+          "$id": "srv-domophone",
+          "code": "SRV-09",
+          "name": "Domophone Service",
+          "parentId": {
+            "$ref": "srv-grp-fees"
+          },
+          "unit": "month",
+          "billing": "fixedPerMonth",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "isFolder": false
+        }
+      ]
+    },
+    {
+      "dictionary": "Meters",
+      "items": [
+        {
+          "$id": "mtr-elec",
+          "code": "MTR-01",
+          "name": "Electricity Meter",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "serviceId": {
+            "$ref": "srv-elec"
+          },
+          "serialNumber": "EL-98765",
+          "zones": "dayNight",
+          "nextVerificationDate": "$today+365d"
+        },
+        {
+          "$id": "mtr-gas",
+          "code": "MTR-02",
+          "name": "Gas Meter",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "serviceId": {
+            "$ref": "srv-gas"
+          },
+          "serialNumber": "GAS-54321",
+          "zones": "single",
+          "nextVerificationDate": "$today+365d"
+        },
+        {
+          "$id": "mtr-coldwater",
+          "code": "MTR-03",
+          "name": "Cold Water Meter",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "serviceId": {
+            "$ref": "srv-coldwater"
+          },
+          "serialNumber": "CW-12345",
+          "zones": "single",
+          "nextVerificationDate": "$today+365d"
+        },
+        {
+          "$id": "mtr-hotwater",
+          "code": "MTR-04",
+          "name": "Hot Water Meter",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "serviceId": {
+            "$ref": "srv-hotwater"
+          },
+          "serialNumber": "HW-67890",
+          "zones": "single",
+          "nextVerificationDate": "$today+20d"
+        }
+      ]
+    },
+    {
+      "document": "SetTariffs",
+      "submit": true,
+      "items": [
+        {
+          "$id": "tariffs-1",
+          "date": "$today-185d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "day",
+              "price": 2.64
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "night",
+              "price": 1.32
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-gas"
+              },
+              "zone": "single",
+              "price": 7.96
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-coldwater"
+              },
+              "zone": "single",
+              "price": 30.38
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-hotwater"
+              },
+              "zone": "single",
+              "price": 97.89
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-heating"
+              },
+              "zone": "single",
+              "price": 35.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-bld"
+              },
+              "zone": "single",
+              "price": 7.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-garbage"
+              },
+              "zone": "single",
+              "price": 20.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elevator"
+              },
+              "zone": "single",
+              "price": 65.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-domophone"
+              },
+              "zone": "single",
+              "price": 30.0
+            }
+          ]
+        },
+        {
+          "$id": "tariffs-2",
+          "date": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "day",
+              "price": 4.32
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "night",
+              "price": 2.16
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-gas"
+              },
+              "zone": "single",
+              "price": 8.5
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-coldwater"
+              },
+              "zone": "single",
+              "price": 35.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-hotwater"
+              },
+              "zone": "single",
+              "price": 105.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-heating"
+              },
+              "zone": "single",
+              "price": 38.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-bld"
+              },
+              "zone": "single",
+              "price": 8.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-garbage"
+              },
+              "zone": "single",
+              "price": 22.5
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elevator"
+              },
+              "zone": "single",
+              "price": 75.0
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-domophone"
+              },
+              "zone": "single",
+              "price": 35.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "MeterReadings",
+      "submit": true,
+      "items": [
+        {
+          "$id": "readings-0",
+          "date": "$today-180d",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "lines": [
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "day",
+              "previousReading": 0.0,
+              "reading": 1000.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "night",
+              "previousReading": 0.0,
+              "reading": 500.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-gas"
+              },
+              "zone": "single",
+              "previousReading": 0.0,
+              "reading": 200.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              },
+              "zone": "single",
+              "previousReading": 0.0,
+              "reading": 100.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              },
+              "zone": "single",
+              "previousReading": 0.0,
+              "reading": 50.0
+            }
+          ]
+        },
+        {
+          "$id": "readings-1",
+          "date": "$today-150d",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "lines": [
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "day",
+              "previousReading": 1000.0,
+              "reading": 1120.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "night",
+              "previousReading": 500.0,
+              "reading": 560.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-gas"
+              },
+              "zone": "single",
+              "previousReading": 200.0,
+              "reading": 225.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              },
+              "zone": "single",
+              "previousReading": 100.0,
+              "reading": 108.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              },
+              "zone": "single",
+              "previousReading": 50.0,
+              "reading": 54.0
+            }
+          ]
+        },
+        {
+          "$id": "readings-2",
+          "date": "$today-120d",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "lines": [
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "day",
+              "previousReading": 1120.0,
+              "reading": 1250.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "night",
+              "previousReading": 560.0,
+              "reading": 625.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-gas"
+              },
+              "zone": "single",
+              "previousReading": 225.0,
+              "reading": 255.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              },
+              "zone": "single",
+              "previousReading": 108.0,
+              "reading": 117.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              },
+              "zone": "single",
+              "previousReading": 54.0,
+              "reading": 58.0
+            }
+          ]
+        },
+        {
+          "$id": "readings-3",
+          "date": "$today-90d",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "lines": [
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "day",
+              "previousReading": 1250.0,
+              "reading": 1390.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "night",
+              "previousReading": 625.0,
+              "reading": 700.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-gas"
+              },
+              "zone": "single",
+              "previousReading": 255.0,
+              "reading": 280.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              },
+              "zone": "single",
+              "previousReading": 117.0,
+              "reading": 125.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              },
+              "zone": "single",
+              "previousReading": 58.0,
+              "reading": 63.0
+            }
+          ]
+        },
+        {
+          "$id": "readings-4",
+          "date": "$today-60d",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "lines": [
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "day",
+              "previousReading": 1390.0,
+              "reading": 1530.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "night",
+              "previousReading": 700.0,
+              "reading": 770.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-gas"
+              },
+              "zone": "single",
+              "previousReading": 280.0,
+              "reading": 302.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              },
+              "zone": "single",
+              "previousReading": 125.0,
+              "reading": 134.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              },
+              "zone": "single",
+              "previousReading": 63.0,
+              "reading": 68.0
+            }
+          ]
+        },
+        {
+          "$id": "readings-5",
+          "date": "$today-30d",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "lines": [
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "day",
+              "previousReading": 1530.0,
+              "reading": 1680.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "night",
+              "previousReading": 770.0,
+              "reading": 850.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-gas"
+              },
+              "zone": "single",
+              "previousReading": 302.0,
+              "reading": 324.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              },
+              "zone": "single",
+              "previousReading": 134.0,
+              "reading": 142.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              },
+              "zone": "single",
+              "previousReading": 68.0,
+              "reading": 72.0
+            }
+          ]
+        },
+        {
+          "$id": "readings-6",
+          "date": "$today",
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "lines": [
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "day",
+              "previousReading": 1680.0,
+              "reading": 1820.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-elec"
+              },
+              "zone": "night",
+              "previousReading": 850.0,
+              "reading": 920.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              },
+              "zone": "single",
+              "previousReading": 142.0,
+              "reading": 150.0
+            },
+            {
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              },
+              "zone": "single",
+              "previousReading": 72.0,
+              "reading": 76.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Invoices",
+      "submit": true,
+      "items": [
+        {
+          "$id": "inv-m1-elec",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-180d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "day",
+              "quantity": 120.0,
+              "price": 2.64,
+              "amount": 316.8,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "night",
+              "quantity": 60.0,
+              "price": 1.32,
+              "amount": 79.2,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m1-gas",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-180d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-gas"
+              },
+              "zone": "single",
+              "quantity": 25.0,
+              "price": 7.96,
+              "amount": 199.0,
+              "meterId": {
+                "$ref": "mtr-gas"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m1-water",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-180d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-coldwater"
+              },
+              "zone": "single",
+              "quantity": 8.0,
+              "price": 30.38,
+              "amount": 243.04,
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-hotwater"
+              },
+              "zone": "single",
+              "quantity": 4.0,
+              "price": 97.89,
+              "amount": 391.56,
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m1-heat",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-180d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-heating"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 35.0,
+              "amount": 2625.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m2-elec",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-150d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "day",
+              "quantity": 130.0,
+              "price": 2.64,
+              "amount": 343.2,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "night",
+              "quantity": 65.0,
+              "price": 1.32,
+              "amount": 85.8,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m2-gas",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-150d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-gas"
+              },
+              "zone": "single",
+              "quantity": 30.0,
+              "price": 7.96,
+              "amount": 238.8,
+              "meterId": {
+                "$ref": "mtr-gas"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m2-water",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-150d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-coldwater"
+              },
+              "zone": "single",
+              "quantity": 9.0,
+              "price": 30.38,
+              "amount": 273.42,
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-hotwater"
+              },
+              "zone": "single",
+              "quantity": 4.0,
+              "price": 97.89,
+              "amount": 391.56,
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m2-heat",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-150d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-heating"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 35.0,
+              "amount": 2625.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m3-elec",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-120d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "day",
+              "quantity": 140.0,
+              "price": 2.64,
+              "amount": 369.6,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "night",
+              "quantity": 75.0,
+              "price": 1.32,
+              "amount": 99.0,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m3-gas",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-120d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-gas"
+              },
+              "zone": "single",
+              "quantity": 25.0,
+              "price": 7.96,
+              "amount": 199.0,
+              "meterId": {
+                "$ref": "mtr-gas"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m3-water",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-120d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-coldwater"
+              },
+              "zone": "single",
+              "quantity": 8.0,
+              "price": 30.38,
+              "amount": 243.04,
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-hotwater"
+              },
+              "zone": "single",
+              "quantity": 5.0,
+              "price": 97.89,
+              "amount": 489.45,
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m3-heat",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-120d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-heating"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 35.0,
+              "amount": 2625.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m4-elec",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "day",
+              "quantity": 140.0,
+              "price": 4.32,
+              "amount": 604.8,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "night",
+              "quantity": 70.0,
+              "price": 2.16,
+              "amount": 151.2,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m4-gas",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-gas"
+              },
+              "zone": "single",
+              "quantity": 22.0,
+              "price": 8.5,
+              "amount": 187.0,
+              "meterId": {
+                "$ref": "mtr-gas"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m4-water",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-coldwater"
+              },
+              "zone": "single",
+              "quantity": 9.0,
+              "price": 35.0,
+              "amount": 315.0,
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-hotwater"
+              },
+              "zone": "single",
+              "quantity": 5.0,
+              "price": 105.0,
+              "amount": 525.0,
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m4-heat",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-heating"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 38.0,
+              "amount": 2850.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m5-elec",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-60d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "day",
+              "quantity": 150.0,
+              "price": 4.32,
+              "amount": 648.0,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "night",
+              "quantity": 80.0,
+              "price": 2.16,
+              "amount": 172.8,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m5-gas",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-60d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-gas"
+              },
+              "zone": "single",
+              "quantity": 22.0,
+              "price": 8.5,
+              "amount": 187.0,
+              "meterId": {
+                "$ref": "mtr-gas"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m5-water",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-60d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-coldwater"
+              },
+              "zone": "single",
+              "quantity": 8.0,
+              "price": 35.0,
+              "amount": 280.0,
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-hotwater"
+              },
+              "zone": "single",
+              "quantity": 4.0,
+              "price": 105.0,
+              "amount": 420.0,
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m5-heat",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-60d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-heating"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 38.0,
+              "amount": 2850.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m6-elec",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-30d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "day",
+              "quantity": 140.0,
+              "price": 4.32,
+              "amount": 604.8,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-elec"
+              },
+              "zone": "night",
+              "quantity": 70.0,
+              "price": 2.16,
+              "amount": 151.2,
+              "meterId": {
+                "$ref": "mtr-elec"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m6-gas",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-30d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-gas"
+              },
+              "zone": "single",
+              "quantity": 20.0,
+              "price": 8.5,
+              "amount": 170.0,
+              "meterId": {
+                "$ref": "mtr-gas"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m6-water",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-30d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-coldwater"
+              },
+              "zone": "single",
+              "quantity": 8.0,
+              "price": 35.0,
+              "amount": 280.0,
+              "meterId": {
+                "$ref": "mtr-coldwater"
+              }
+            },
+            {
+              "serviceId": {
+                "$ref": "srv-hotwater"
+              },
+              "zone": "single",
+              "quantity": 4.0,
+              "price": 105.0,
+              "amount": 420.0,
+              "meterId": {
+                "$ref": "mtr-hotwater"
+              }
+            }
+          ]
+        },
+        {
+          "$id": "inv-m6-heat",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-30d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-heating"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 38.0,
+              "amount": 2850.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m1-bld",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-180d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-bld"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 7.0,
+              "amount": 525.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m1-garbage",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-180d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-garbage"
+              },
+              "zone": "single",
+              "quantity": 2.0,
+              "price": 20.0,
+              "amount": 40.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m1-elevator",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-180d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elevator"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 65.0,
+              "amount": 65.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m1-domophone",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-180d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-domophone"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 30.0,
+              "amount": 30.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m2-bld",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-150d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-bld"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 7.0,
+              "amount": 525.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m2-garbage",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-150d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-garbage"
+              },
+              "zone": "single",
+              "quantity": 2.0,
+              "price": 20.0,
+              "amount": 40.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m2-elevator",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-150d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elevator"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 65.0,
+              "amount": 65.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m2-domophone",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-150d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-domophone"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 30.0,
+              "amount": 30.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m3-bld",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-120d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-bld"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 7.0,
+              "amount": 525.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m3-garbage",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-120d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-garbage"
+              },
+              "zone": "single",
+              "quantity": 2.0,
+              "price": 20.0,
+              "amount": 40.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m3-elevator",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-120d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elevator"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 65.0,
+              "amount": 65.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m3-domophone",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-120d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-domophone"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 30.0,
+              "amount": 30.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m4-bld",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-bld"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 8.0,
+              "amount": 600.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m4-garbage",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-garbage"
+              },
+              "zone": "single",
+              "quantity": 2.0,
+              "price": 22.5,
+              "amount": 45.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m4-elevator",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elevator"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 75.0,
+              "amount": 75.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m4-domophone",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-90d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-domophone"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 35.0,
+              "amount": 35.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m5-bld",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-60d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-bld"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 8.0,
+              "amount": 600.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m5-garbage",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-60d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-garbage"
+              },
+              "zone": "single",
+              "quantity": 2.0,
+              "price": 22.5,
+              "amount": 45.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m5-elevator",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-60d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elevator"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 75.0,
+              "amount": 75.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m5-domophone",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-60d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-domophone"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 35.0,
+              "amount": 35.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m6-bld",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-30d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-bld"
+              },
+              "zone": "single",
+              "quantity": 75.0,
+              "price": 8.0,
+              "amount": 600.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m6-garbage",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-30d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-garbage"
+              },
+              "zone": "single",
+              "quantity": 2.0,
+              "price": 22.5,
+              "amount": 45.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m6-elevator",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-30d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-elevator"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 75.0,
+              "amount": 75.0
+            }
+          ]
+        },
+        {
+          "$id": "inv-m6-domophone",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "month": "$today-30d",
+          "lines": [
+            {
+              "serviceId": {
+                "$ref": "srv-domophone"
+              },
+              "zone": "single",
+              "quantity": 1.0,
+              "price": 35.0,
+              "amount": 35.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Payments",
+      "submit": true,
+      "items": [
+        {
+          "$id": "pay-m1-elec",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 396.0,
+          "comment": "Payment for inv-m1-elec"
+        },
+        {
+          "$id": "pay-m1-gas",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 199.0,
+          "comment": "Payment for inv-m1-gas"
+        },
+        {
+          "$id": "pay-m1-water",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 634.6,
+          "comment": "Payment for inv-m1-water"
+        },
+        {
+          "$id": "pay-m1-heat",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 2625.0,
+          "comment": "Payment for inv-m1-heat"
+        },
+        {
+          "$id": "pay-m2-elec",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 429.0,
+          "comment": "Payment for inv-m2-elec"
+        },
+        {
+          "$id": "pay-m2-gas",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 238.8,
+          "comment": "Payment for inv-m2-gas"
+        },
+        {
+          "$id": "pay-m2-water",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 664.98,
+          "comment": "Payment for inv-m2-water"
+        },
+        {
+          "$id": "pay-m2-heat",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 2625.0,
+          "comment": "Payment for inv-m2-heat"
+        },
+        {
+          "$id": "pay-m3-elec",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 468.6,
+          "comment": "Payment for inv-m3-elec"
+        },
+        {
+          "$id": "pay-m3-gas",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 199.0,
+          "comment": "Payment for inv-m3-gas"
+        },
+        {
+          "$id": "pay-m3-water",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 732.49,
+          "comment": "Payment for inv-m3-water"
+        },
+        {
+          "$id": "pay-m3-heat",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 2625.0,
+          "comment": "Payment for inv-m3-heat"
+        },
+        {
+          "$id": "pay-m4-elec",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 756.0,
+          "comment": "Payment for inv-m4-elec"
+        },
+        {
+          "$id": "pay-m4-gas",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 187.0,
+          "comment": "Payment for inv-m4-gas"
+        },
+        {
+          "$id": "pay-m4-water",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 840.0,
+          "comment": "Payment for inv-m4-water"
+        },
+        {
+          "$id": "pay-m4-heat",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 2850.0,
+          "comment": "Payment for inv-m4-heat"
+        },
+        {
+          "$id": "pay-m5-elec",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 820.8,
+          "comment": "Payment for inv-m5-elec"
+        },
+        {
+          "$id": "pay-m5-gas",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-gas"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 187.0,
+          "comment": "Payment for inv-m5-gas"
+        },
+        {
+          "$id": "pay-m5-water",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 700.0,
+          "comment": "Payment for inv-m5-water"
+        },
+        {
+          "$id": "pay-m5-heat",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 2850.0,
+          "comment": "Payment for inv-m5-heat"
+        },
+        {
+          "$id": "pay-m6-elec",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-elec"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 756.0,
+          "comment": "Payment for inv-m6-elec"
+        },
+        {
+          "$id": "pay-m6-water",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-water"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 700.0,
+          "comment": "Payment for inv-m6-water"
+        },
+        {
+          "$id": "pay-m6-heat",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-heat"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 4850.0,
+          "comment": "Payment with advance prepayment for heat"
+        },
+        {
+          "$id": "pay-m1-bld",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 525.0,
+          "comment": "Payment for inv-m1-bld"
+        },
+        {
+          "$id": "pay-m1-garbage",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 40.0,
+          "comment": "Payment for inv-m1-garbage"
+        },
+        {
+          "$id": "pay-m1-elevator",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 65.0,
+          "comment": "Payment for inv-m1-elevator"
+        },
+        {
+          "$id": "pay-m1-domophone",
+          "date": "$today-150d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 30.0,
+          "comment": "Payment for inv-m1-domophone"
+        },
+        {
+          "$id": "pay-m2-bld",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 525.0,
+          "comment": "Payment for inv-m2-bld"
+        },
+        {
+          "$id": "pay-m2-garbage",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 40.0,
+          "comment": "Payment for inv-m2-garbage"
+        },
+        {
+          "$id": "pay-m2-elevator",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 65.0,
+          "comment": "Payment for inv-m2-elevator"
+        },
+        {
+          "$id": "pay-m2-domophone",
+          "date": "$today-120d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 30.0,
+          "comment": "Payment for inv-m2-domophone"
+        },
+        {
+          "$id": "pay-m3-bld",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 525.0,
+          "comment": "Payment for inv-m3-bld"
+        },
+        {
+          "$id": "pay-m3-garbage",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 40.0,
+          "comment": "Payment for inv-m3-garbage"
+        },
+        {
+          "$id": "pay-m3-elevator",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 65.0,
+          "comment": "Payment for inv-m3-elevator"
+        },
+        {
+          "$id": "pay-m3-domophone",
+          "date": "$today-90d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 30.0,
+          "comment": "Payment for inv-m3-domophone"
+        },
+        {
+          "$id": "pay-m4-bld",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 600.0,
+          "comment": "Payment for inv-m4-bld"
+        },
+        {
+          "$id": "pay-m4-garbage",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 45.0,
+          "comment": "Payment for inv-m4-garbage"
+        },
+        {
+          "$id": "pay-m4-elevator",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 75.0,
+          "comment": "Payment for inv-m4-elevator"
+        },
+        {
+          "$id": "pay-m4-domophone",
+          "date": "$today-60d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 35.0,
+          "comment": "Payment for inv-m4-domophone"
+        },
+        {
+          "$id": "pay-m5-bld",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 600.0,
+          "comment": "Payment for inv-m5-bld"
+        },
+        {
+          "$id": "pay-m5-garbage",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 45.0,
+          "comment": "Payment for inv-m5-garbage"
+        },
+        {
+          "$id": "pay-m5-elevator",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 75.0,
+          "comment": "Payment for inv-m5-elevator"
+        },
+        {
+          "$id": "pay-m5-domophone",
+          "date": "$today-30d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 35.0,
+          "comment": "Payment for inv-m5-domophone"
+        },
+        {
+          "$id": "pay-m6-bld",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-bld"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 600.0,
+          "comment": "Payment for inv-m6-bld"
+        },
+        {
+          "$id": "pay-m6-garbage",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-garbage"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 45.0,
+          "comment": "Payment for inv-m6-garbage"
+        },
+        {
+          "$id": "pay-m6-elevator",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-elevator"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 75.0,
+          "comment": "Payment for inv-m6-elevator"
+        },
+        {
+          "$id": "pay-m6-domophone",
+          "date": "$today-1d",
+          "providerId": {
+            "$ref": "prov-domophone"
+          },
+          "propertyId": {
+            "$ref": "prop-flat"
+          },
+          "amount": 35.0,
+          "comment": "Payment for inv-m6-domophone"
+        }
+      ]
+    }
+  ]
+}

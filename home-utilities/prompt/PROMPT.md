@@ -1,4 +1,4 @@
-# Home Utilities & Meters - build brief (v2)
+# Home Utilities & Meters - build brief (v3)
 
 ## First
 
@@ -40,11 +40,15 @@ a balance register: invoices increase it, payments decrease it; neither the prov
 
 ## Reference data (catalogs)
 
-- **Property**: name, address, area in square metres. (A household may have a flat and a country house.)
+- **Property**: name, address, area in square metres, number of registered residents, owner (the person invoices and
+  payments are made out to). (A household may have a flat and a country house.)
 - **Provider**: name, kind (enumeration: electricity / gas / water / heating / internet / housing management / other),
-  personal account number, phone.
-- **Service** (hierarchical, groups such as Energy, Water, Fees): name, unit (kWh, m³, Gcal, month, m²), billing
-  (enumeration: metered / fixed per month / per square metre), provider.
+  personal account number, phone, and the Ukrainian payment details: IBAN, EDRPOU code, bank name, legal address
+  (multiline), and a payment purpose template (multiline) with placeholders for the month, the year, the month's name,
+  the owner, the personal account number, the property's name and address, the provider's name, the meter readings and
+  the invoice number.
+- **Service** (hierarchical, groups such as Energy, Water, Fees): name, unit (kWh, m³, Gcal, month, m², person), billing
+  (enumeration: metered / fixed per month / per square metre / per person), provider.
 - **Meter**: property, service, serial number, zones (enumeration: single / day-night), next verification date.
 
 Constants: the currency code shown on forms (UAH) and the day of the month by which readings are expected (default 25).
@@ -56,13 +60,18 @@ All documents have a printable PDF form with the household letterhead, document 
 - **Set tariffs**: date; lines of (service, zone: single / day / night, price per unit).
 - **Meter reading**: date, property; lines of (meter, zone, reading). A "Fill" button adds a line per meter and zone of
   the property, showing the previous reading next to each. A reading lower than the previous one refuses the post.
-- **Invoice**: date, provider, property, month; lines of (service, meter, zone, quantity, price, amount). A "Calculate"
+- **Invoice**: date, provider, property, month, payment purpose (multiline); lines of (service, meter, zone, quantity, price, amount). A "Calculate"
   button fills the lines: for a metered service the quantity is the consumption in the month (last reading in the month
   minus the last reading before it) and the price is the tariff valid on the last day of the month; for "fixed per
-  month" the quantity is 1; for "per square metre" the quantity is the property's area. The user may edit any line
-  before posting (a provider's invoice is what counts).
-- **Payment**: date, provider, property, amount, comment. From an Invoice the user can create a Payment for its total,
-  linked to it.
+  month" the quantity is 1; for "per square metre" the quantity is the property's area; for "per person" it is the number of
+  registered residents. Calculate also fills the payment purpose from the provider's template. The user may edit any
+  line before posting (a provider's invoice is what counts). An invoice saved with an empty payment purpose gets it from
+  the template. Its print form shows the provider's payment details, the property's address and owner, the month, the
+  lines, the total and the payment purpose (not the raw template).
+- **Payment**: date, provider, property, amount, payment purpose (multiline), comment. From an Invoice the user can
+  create a Payment for its total, linked to it, with the invoice's payment purpose. A payment saved with an empty payment
+  purpose gets it from the provider's template. Its print form shows the provider's payment details, the owner, the
+  amount, the date and the payment purpose.
 
 ## Registers and posting
 
@@ -91,9 +100,12 @@ Invoice per provider, property and month.
    in the cells, with totals and the change against the same month of the previous year.
 4. **Costs** (a report): choose a period; amount per property and service group, with totals.
 5. **Tariff history** (a report): choose a service; each price with the date it became valid and the change in percent.
-6. Forms for the catalogs and documents above; quick-add entries for Meter reading and Payment in the navigation.
+6. **Meter readings history** (a report): choose a property, optionally some meters, and a period; each reading with
+   its date, meter, serial number, zone, value and unit.
+7. Forms for the catalogs and documents above; quick-add entries for Meter reading and Payment in the navigation.
 
-Reports are tables (no charts; charts belong on the dashboard) and export to CSV, Excel, and PDF.
+Reports are tables (no charts; charts belong on the dashboard) and export to CSV, Excel, and PDF. A report with a
+property parameter opens with it filled in when there is only one property.
 
 ## Reminders
 
@@ -107,9 +119,11 @@ resource strings in both English and Ukrainian resource files). Login: the frame
 
 ## Seed data (the demo data of the project)
 
-One flat with electricity (day-night meter), gas, cold and hot water meters and heating by area; five providers; tariffs
-with one price change in the period; readings, invoices and payments for the last six months, all posted. One provider
-is in debt, one has a prepayment, and this month's readings are missing for one meter.
+One flat with electricity (day-night meter), gas, cold and hot water meters, heating by area, and building maintenance,
+garbage removal (per person), elevator and intercom fees; a provider per service with real-looking Ukrainian payment
+details; tariffs with one price change in the period; readings, invoices and payments for the last six months, all
+posted. One provider is in debt, one has a prepayment, and this month's readings are missing for one meter. The demo
+data comes in Ukrainian (the default) and in English.
 
 ## Acceptance checks (write each as an automated test)
 
@@ -122,6 +136,10 @@ is in debt, one has a prepayment, and this month's readings are missing for one 
 6. A provider statement's closing balance equals the provider's debt on that date.
 7. The dashboard's figures equal the reports: the total debt as the sum of the provider statements' closing balances,
    the chosen service's consumption as in Consumption for the same months.
+8. An Invoice's and a Payment's payment purpose is filled from the provider's template, and their print forms show the
+   provider's payment details and the filled payment purpose.
+9. With a single property, a new report opens with that property filled in.
+10. The demo data applies cleanly to an empty database, in both languages.
 
 ## How to work
 
