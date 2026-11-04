@@ -2,6 +2,8 @@
 
 A single-household utility billing and meter tracking application built on the Kandra ERP platform (.NET 10, SQLite).
 
+![Dashboard](screenshots/dashboard.en.jpg)
+
 ## Features
 - **Reference Data**: Properties, Providers, Hierarchical Services, Meters.
 - **Documents**: Set Tariffs, Meter Reading (with automatic fill), Invoice (with consumption & tariff calculation, PDF print form), Payment.
@@ -47,9 +49,8 @@ The demo data comes in two languages with the same content and different names: 
 
 | | |
 |---|---|
-| ![Dashboard](screenshots/dashboard.en.jpg) | ![Invoice](screenshots/invoice.en.jpg) |
-| ![Meter reading](screenshots/meter-reading.en.jpg) | ![Costs](screenshots/costs.en.jpg) |
-| ![Consumption](screenshots/consumption.en.jpg) | ![Dashboard in Ukrainian](screenshots/dashboard.uk.jpg) |
+| ![Invoice](screenshots/invoice.en.jpg) | ![Meter reading](screenshots/meter-reading.en.jpg) |
+| ![Costs](screenshots/costs.en.jpg) | ![Consumption](screenshots/consumption.en.jpg) |
 
 Ukrainian versions of every screenshot are in [screenshots/](screenshots/) (`*.uk.jpg`).
 

@@ -2,6 +2,8 @@
 
 Single-household pantry, stock, and household routine management application built on the Kandra platform. How it was built and reviewed: [BUILD-NOTES.md](../BUILD-NOTES.md).
 
+![Dashboard](screenshots/dashboard.en.jpg)
+
 ## Build
 
 ```bash
@@ -37,9 +39,8 @@ The demo data comes in two languages with the same content and different names: 
 
 | | |
 |---|---|
-| ![Dashboard](screenshots/dashboard.en.jpg) | ![Stock overview](screenshots/stock-overview.en.jpg) |
+| ![Purchase](screenshots/purchase.en.jpg) | ![Stock overview](screenshots/stock-overview.en.jpg) |
 | ![Expiring](screenshots/expiring.en.jpg) | ![Can I cook it?](screenshots/can-i-cook-it.en.jpg) |
-| ![Purchase](screenshots/purchase.en.jpg) | ![Dashboard in Ukrainian](screenshots/dashboard.uk.jpg) |
 
 Ukrainian versions of every screenshot are in [screenshots/](screenshots/) (`*.uk.jpg`).
 

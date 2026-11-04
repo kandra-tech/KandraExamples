@@ -35,6 +35,6 @@ database. The SQLite file is in `src/PersonalAccounting.WebApi/db/`; delete it t
 | | |
 |---|---|
 | ![Transfer between currencies](screenshots/transfer.en.jpg) | ![Budget vs. actual](screenshots/budget-vs-actual.en.jpg) |
-| ![Transaction journal](screenshots/transaction-journal.en.jpg) | ![Dashboard in Ukrainian](screenshots/dashboard.uk.jpg) |
+| ![Transaction journal](screenshots/transaction-journal.en.jpg) | ![Spending by category](screenshots/spending-by-category.en.jpg) |
 
 Ukrainian versions of every screenshot are in [screenshots/](screenshots/) (`*.uk.jpg`).
