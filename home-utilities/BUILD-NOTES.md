@@ -32,7 +32,7 @@ requirements back into the brief (v3):
 - print forms of Invoice and Payment with those details and the filled payment purpose;
 - the property's owner and number of registered residents, and billing per person (garbage removal);
 - a Meter readings history report, and reports that fill in the property when there is only one;
-- demo data in Ukrainian (the default) and in English, with a provider per service (building maintenance, garbage,
+- demo data in English and in Ukrainian (a package each, English loaded by default), with a provider per service (building maintenance, garbage,
   elevator and intercom fees included).
 
 ## Deviations from the brief
@@ -79,3 +79,4 @@ The adoption review (Claude Code) found six more, all fixed. The five testable o
 ## Since then
 
 - 2026-11-02: adopted into Kandra Examples (ports 7227/5227) and the adoption review's fixes above.
+- 2026-11-04: demo data now ships as an English and a Ukrainian package with the same content (`-demo-en`, `-demo-uk`; English is the default), and the README screenshots were retaken in the dark theme, in both languages.

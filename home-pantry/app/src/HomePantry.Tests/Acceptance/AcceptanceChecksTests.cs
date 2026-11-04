@@ -453,7 +453,7 @@ public sealed class AcceptanceChecksTests : IDisposable
         // 1. Seed the host with demo data
         await _host.InScopeAsync(async sp =>
         {
-            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open("homepantry-demo")!;
+            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open("homepantry-demo-en")!;
             var report = await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), Ct);
             Assert.False(report.HasErrors);
         });

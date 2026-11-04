@@ -25,11 +25,23 @@ $env:ACCEPT_EULA="Y"
 dotnet run --project src/HomePantry.WebApi --launch-profile HomePantry.UI
 ```
 
+The demo data comes in two languages with the same content and different names: English (`homepantry-demo-en`, the default) and Ukrainian (`homepantry-demo-uk`). To load the Ukrainian one add `$env:Kandra__Setup__DemoPackage="homepantry-demo-uk"` (environment variable `Kandra__Setup__DemoPackage`).
+
 ## Sign In
 
 - **URL:** `http://localhost:5228` or `https://localhost:7228`
 - **Username:** `admin`
 - **Password:** `Admin!1` (for demo mode) or the password configured during the first-run setup wizard.
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Dashboard](screenshots/dashboard.en.jpg) | ![Stock overview](screenshots/stock-overview.en.jpg) |
+| ![Expiring](screenshots/expiring.en.jpg) | ![Can I cook it?](screenshots/can-i-cook-it.en.jpg) |
+| ![Purchase](screenshots/purchase.en.jpg) | ![Dashboard in Ukrainian](screenshots/dashboard.uk.jpg) |
+
+Ukrainian versions of every screenshot are in [screenshots/](screenshots/) (`*.uk.jpg`).
 
 ## Run Tests
 

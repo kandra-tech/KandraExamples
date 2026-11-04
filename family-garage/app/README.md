@@ -27,6 +27,8 @@ monthly payments, about 25 parts and works, six providers, and about 30 refuels,
 its repair, dated relative to today. On any day it is loaded, one job is overdue, a policy ends within the look-ahead and
 a payment is due.
 
+The demo data comes in two languages with the same content and different names: English (`familygarage-demo-en`, the default) and Ukrainian (`familygarage-demo-uk`). To load the Ukrainian one add `--Kandra:Setup:DemoPackage=familygarage-demo-uk` (environment variable `Kandra__Setup__DemoPackage`).
+
 Without `--Kandra:Setup:Mode=Demo` the first start opens the setup wizard, which creates the administrator and an empty
 database. The SQLite file is in `src/FamilyGarage.WebApi/db/`; delete it to start again.
 

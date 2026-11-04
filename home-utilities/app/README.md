@@ -41,6 +41,18 @@ dotnet run --project src/HomeUtilities.WebApi --launch-profile HomeUtilities.UI
 ACCEPT_EULA="Y" Kandra__Setup__Mode="Demo" Kandra__AdminPassword="Admin!1" dotnet run --project src/HomeUtilities.WebApi --launch-profile HomeUtilities.UI
 ```
 
+The demo data comes in two languages with the same content and different names: English (`homeutilities-demo-en`, the default) and Ukrainian (`homeutilities-demo-uk`). To load the Ukrainian one add `Kandra__Setup__DemoPackage=homeutilities-demo-uk` (environment variable `Kandra__Setup__DemoPackage`).
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Dashboard](screenshots/dashboard.en.jpg) | ![Invoice](screenshots/invoice.en.jpg) |
+| ![Meter reading](screenshots/meter-reading.en.jpg) | ![Costs](screenshots/costs.en.jpg) |
+| ![Consumption](screenshots/consumption.en.jpg) | ![Dashboard in Ukrainian](screenshots/dashboard.uk.jpg) |
+
+Ukrainian versions of every screenshot are in [screenshots/](screenshots/) (`*.uk.jpg`).
+
 ## How to Sign In
 
 - **URL**: [https://localhost:7227](https://localhost:7227) (or [http://localhost:5227](http://localhost:5227))

@@ -10,38 +10,22 @@ namespace HomeUtilities.Tests.ImportPackages;
 [Collection("DataImport")]
 public sealed class DemoPackageTests : IDisposable
 {
-    private const string DemoPackage = "homeutilities-demo";
-    private const string DemoPackageUk = "homeutilities-demo-uk";
-
     private readonly HomeUtilitiesTestHost _host = new();
 
     public void Dispose() => _host.Dispose();
 
-    [Fact]
-    public void DemoPackage_IsRegistered_AndValidates()
+    [Theory]
+    [InlineData("homeutilities-demo-en")]
+    [InlineData("homeutilities-demo-uk")]
+    public void DemoPackage_IsRegistered_AndValidates(string demoPackage)
     {
         using var scope = _host.CreateScope();
         var registry = scope.ServiceProvider.GetRequiredService<IImportPackageRegistry>();
 
-        var info = Assert.Single(registry.List(), p => p.Id == DemoPackage);
+        var info = Assert.Single(registry.List(), p => p.Id == demoPackage);
         Assert.Equal(ImportOrigin.DemoSeed, info.Origin);
 
-        using var stream = registry.Open(DemoPackage)!;
-        var read = ImportPackageReader.Read(new StreamReader(stream).ReadToEnd());
-        Assert.False(read.HasErrors, string.Join("; ", read.Diagnostics.Select(d => d.Message)));
-        Assert.Empty(scope.ServiceProvider.GetRequiredService<ImportPackageValidator>().Validate(read.Package!));
-    }
-
-    [Fact]
-    public void DemoPackageUk_IsRegistered_AndValidates()
-    {
-        using var scope = _host.CreateScope();
-        var registry = scope.ServiceProvider.GetRequiredService<IImportPackageRegistry>();
-
-        var info = Assert.Single(registry.List(), p => p.Id == DemoPackageUk);
-        Assert.Equal(ImportOrigin.DemoSeed, info.Origin);
-
-        using var stream = registry.Open(DemoPackageUk)!;
+        using var stream = registry.Open(demoPackage)!;
         var read = ImportPackageReader.Read(new StreamReader(stream).ReadToEnd());
         Assert.False(read.HasErrors, string.Join("; ", read.Diagnostics.Select(d => d.Message)));
         Assert.Empty(scope.ServiceProvider.GetRequiredService<ImportPackageValidator>().Validate(read.Package!));
@@ -49,12 +33,14 @@ public sealed class DemoPackageTests : IDisposable
 
     // Validating checks the shape; only applying it runs the posting rules, so a document the demo data cannot post (a
     // rule it breaks, a crash with two lines of the same kind) fails here instead of on the first demo installation.
-    [Fact]
-    public async Task DemoPackage_Applies_OnAnEmptyDatabase()
+    [Theory]
+    [InlineData("homeutilities-demo-en")]
+    [InlineData("homeutilities-demo-uk")]
+    public async Task DemoPackage_Applies_OnAnEmptyDatabase(string demoPackage)
     {
         var report = await _host.InScopeAsync(async sp =>
         {
-            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open(DemoPackage)!;
+            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open(demoPackage)!;
             return await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), CancellationToken.None);
         });
 
@@ -63,32 +49,19 @@ public sealed class DemoPackageTests : IDisposable
         Assert.False(report.HasErrors, "The demo package does not apply: " + string.Join("; ", failures));
     }
 
-    [Fact]
-    public async Task DemoPackageUk_Applies_OnAnEmptyDatabase()
-    {
-        using var freshHost = new HomeUtilitiesTestHost();
-        var report = await freshHost.InScopeAsync(async sp =>
-        {
-            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open(DemoPackageUk)!;
-            return await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), CancellationToken.None);
-        });
-
-        var failures = report.Diagnostics.Where(d => d.Severity == ImportDiagnosticSeverity.Error).Select(d => $"{d.Path}: {d.Message}")
-            .Concat(report.Items.Where(i => i.Outcome == ImportItemOutcome.Failed).Select(i => $"{i.Key}: {i.Message}"));
-        Assert.False(report.HasErrors, "The UK demo package does not apply: " + string.Join("; ", failures));
-    }
-
     // Demo data written with fixed dates ages: in a month the "overdue" item is no longer overdue, the policy no longer
     // expires soon, and the documents drop out of the lists' default "recent" filter. Date tokens resolve when the package
     // is applied: "$today-30d", "$today+14d", "$now". A constant's "effectiveFrom" is the one fixed date that belongs here.
     private static readonly System.Text.RegularExpressions.Regex FixedDate =
         new("""(?<property>"[A-Za-z0-9_]+")\s*:\s*"(?<value>\d{4}-\d{2}-\d{2}[^"]*)""");
 
-    [Fact]
-    public void DemoPackage_UsesDateTokens_NotFixedDates()
+    [Theory]
+    [InlineData("homeutilities-demo-en")]
+    [InlineData("homeutilities-demo-uk")]
+    public void DemoPackage_UsesDateTokens_NotFixedDates(string demoPackage)
     {
         using var scope = _host.CreateScope();
-        using var stream = scope.ServiceProvider.GetRequiredService<IImportPackageRegistry>().Open(DemoPackage)!;
+        using var stream = scope.ServiceProvider.GetRequiredService<IImportPackageRegistry>().Open(demoPackage)!;
         var fixedDates = FixedDate.Matches(new StreamReader(stream).ReadToEnd())
             .Where(m => m.Groups["property"].Value != "\"effectiveFrom\"")
             .Select(m => $"{m.Groups["property"].Value}: \"{m.Groups["value"].Value}\"")
@@ -96,21 +69,6 @@ public sealed class DemoPackageTests : IDisposable
 
         Assert.True(fixedDates.Count == 0,
             $"The demo package has {fixedDates.Count} fixed date(s); use date tokens ($today-30d, see author-import-package): "
-            + string.Join(", ", fixedDates.Take(10)));
-    }
-
-    [Fact]
-    public void DemoPackageUk_UsesDateTokens_NotFixedDates()
-    {
-        using var scope = _host.CreateScope();
-        using var stream = scope.ServiceProvider.GetRequiredService<IImportPackageRegistry>().Open(DemoPackageUk)!;
-        var fixedDates = FixedDate.Matches(new StreamReader(stream).ReadToEnd())
-            .Where(m => m.Groups["property"].Value != "\"effectiveFrom\"")
-            .Select(m => $"{m.Groups["property"].Value}: \"{m.Groups["value"].Value}\"")
-            .ToList();
-
-        Assert.True(fixedDates.Count == 0,
-            $"The UK demo package has {fixedDates.Count} fixed date(s); use date tokens ($today-30d, see author-import-package): "
             + string.Join(", ", fixedDates.Take(10)));
     }
 

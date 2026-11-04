@@ -155,3 +155,4 @@ The review by Gemini Argon 4 listed its fixes; in short:
 ## Since then
 
 - 2026-11-02: adopted into Kandra Examples (ports 7228/5228), and the review above.
+- 2026-11-04: demo data now ships as an English and a Ukrainian package with the same content (`-demo-en`, `-demo-uk`; English is the default), and the README screenshots were retaken in the dark theme, in both languages.

@@ -16,22 +16,22 @@ namespace HomePantry.Tests.ImportPackages;
 [Collection("DataImport")]
 public sealed class DemoPackageTests : IDisposable
 {
-    private const string DemoPackage = "homepantry-demo";
-
     private readonly HomePantryTestHost _host = new();
 
     public void Dispose() => _host.Dispose();
 
-    [Fact]
-    public void DemoPackage_IsRegistered_AndValidates()
+    [Theory]
+    [InlineData("homepantry-demo-en")]
+    [InlineData("homepantry-demo-uk")]
+    public void DemoPackage_IsRegistered_AndValidates(string demoPackage)
     {
         using var scope = _host.CreateScope();
         var registry = scope.ServiceProvider.GetRequiredService<IImportPackageRegistry>();
 
-        var info = Assert.Single(registry.List(), p => p.Id == DemoPackage);
+        var info = Assert.Single(registry.List(), p => p.Id == demoPackage);
         Assert.Equal(ImportOrigin.DemoSeed, info.Origin);
 
-        using var stream = registry.Open(DemoPackage)!;
+        using var stream = registry.Open(demoPackage)!;
         var read = ImportPackageReader.Read(new StreamReader(stream).ReadToEnd());
         Assert.False(read.HasErrors, string.Join("; ", read.Diagnostics.Select(d => d.Message)));
         Assert.Empty(scope.ServiceProvider.GetRequiredService<ImportPackageValidator>().Validate(read.Package!));
@@ -39,12 +39,14 @@ public sealed class DemoPackageTests : IDisposable
 
     // Validating checks the shape; only applying it runs the posting rules, so a document the demo data cannot post (a
     // rule it breaks, a crash with two lines of the same kind) fails here instead of on the first demo installation.
-    [Fact]
-    public async Task DemoPackage_Applies_OnAnEmptyDatabase()
+    [Theory]
+    [InlineData("homepantry-demo-en")]
+    [InlineData("homepantry-demo-uk")]
+    public async Task DemoPackage_Applies_OnAnEmptyDatabase(string demoPackage)
     {
         var report = await _host.InScopeAsync(async sp =>
         {
-            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open(DemoPackage)!;
+            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open(demoPackage)!;
             return await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), CancellationToken.None);
         });
 
@@ -59,11 +61,13 @@ public sealed class DemoPackageTests : IDisposable
     private static readonly System.Text.RegularExpressions.Regex FixedDate =
         new("""(?<property>"[A-Za-z0-9_]+")\s*:\s*"(?<value>\d{4}-\d{2}-\d{2}[^"]*)""");
 
-    [Fact]
-    public void DemoPackage_UsesDateTokens_NotFixedDates()
+    [Theory]
+    [InlineData("homepantry-demo-en")]
+    [InlineData("homepantry-demo-uk")]
+    public void DemoPackage_UsesDateTokens_NotFixedDates(string demoPackage)
     {
         using var scope = _host.CreateScope();
-        using var stream = scope.ServiceProvider.GetRequiredService<IImportPackageRegistry>().Open(DemoPackage)!;
+        using var stream = scope.ServiceProvider.GetRequiredService<IImportPackageRegistry>().Open(demoPackage)!;
         var fixedDates = FixedDate.Matches(new StreamReader(stream).ReadToEnd())
             .Where(m => m.Groups["property"].Value != "\"effectiveFrom\"")
             .Select(m => $"{m.Groups["property"].Value}: \"{m.Groups["value"].Value}\"")

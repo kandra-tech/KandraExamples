@@ -279,7 +279,7 @@ public sealed class HouseholdAcceptanceChecksTests : IDisposable
         // Apply demo package to populate all household chores and records
         await _host.InScopeAsync(async sp =>
         {
-            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open("homepantry-demo")!;
+            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open("homepantry-demo-en")!;
             var report = await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), Ct);
             Assert.False(report.HasErrors);
         });

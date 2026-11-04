@@ -28,7 +28,7 @@ public sealed class DemoDataTests : IDisposable
         var report = await _host.InScopeAsync(async sp =>
         {
             var registry = sp.GetRequiredService<IImportPackageRegistry>();
-            using var stream = registry.Open("familygarage-demo")!;
+            using var stream = registry.Open("familygarage-demo-en")!;
             return await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), Ct);
         });
         var failures = report.Diagnostics.Where(d => d.Severity == ImportDiagnosticSeverity.Error).Select(d => $"{d.Path}: {d.Message}")

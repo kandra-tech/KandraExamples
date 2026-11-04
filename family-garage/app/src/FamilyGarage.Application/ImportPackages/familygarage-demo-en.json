@@ -1,11 +1,11 @@
 {
   "$schema": "./familygarage.import.schema.json",
   "format": "kandra-import/1",
-  "package": "familygarage-demo",
+  "package": "familygarage-demo-en",
   "version": 2,
   "origin": "demoSeed",
   "configuration": "FamilyGarage",
-  "title": "FamilyGarage demo data",
+  "title": "FamilyGarage demo data (English)",
   "steps": [
     {
       "dictionary": "Vehicles",

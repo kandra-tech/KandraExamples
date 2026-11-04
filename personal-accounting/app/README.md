@@ -25,6 +25,8 @@ Open `https://localhost:7225` (accept the development certificate) and sign in a
 installation loads accounts in UAH and USD, a category tree, exchange rates, opening balances, this month's budget and
 about thirty posted incomes, expenses and transfers dated relative to today.
 
+The demo data comes in two languages with the same content and different names: English (`personalaccounting-demo-en`, the default) and Ukrainian (`personalaccounting-demo-uk`). To load the Ukrainian one add `--Kandra:Setup:DemoPackage=personalaccounting-demo-uk` (environment variable `Kandra__Setup__DemoPackage`).
+
 Without `--Kandra:Setup:Mode=Demo` the first start opens the setup wizard, which creates the administrator and an empty
 database. The SQLite file is in `src/PersonalAccounting.WebApi/db/`; delete it to start again.
 

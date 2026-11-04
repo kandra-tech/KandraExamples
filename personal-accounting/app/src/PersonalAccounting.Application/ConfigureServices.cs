@@ -53,7 +53,7 @@ public static class ConfigureServices
         services.AddKandraDataImport("PersonalAccounting");
 
         // Import packages embedded under ImportPackages/ (this configuration's demo data lives in
-        // personalaccounting-demo.json, a package with no steps yet) - listed and run from the Data import admin page.
+        // personalaccounting-demo-en.json and personalaccounting-demo-uk.json, a package with no steps yet) - listed and run from the Data import admin page.
         services.AddImportPackages(typeof(ConfigureServices).Assembly);
 
         // Demo installations: applies the embedded demo package, creates the demo users, keeps demo content current

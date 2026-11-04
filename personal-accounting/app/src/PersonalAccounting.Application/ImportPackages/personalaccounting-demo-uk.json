@@ -1,0 +1,751 @@
+{
+  "$schema": "./personalaccounting.import.schema.json",
+  "format": "kandra-import/1",
+  "package": "personalaccounting-demo-uk",
+  "version": 1,
+  "origin": "demoSeed",
+  "configuration": "PersonalAccounting",
+  "title": "PersonalAccounting demo data (Ukrainian)",
+  "steps": [
+    {
+      "dictionary": "Currencies",
+      "items": [
+        {
+          "$id": "curr-uah",
+          "code": "UAH",
+          "name": "Українська гривня"
+        },
+        {
+          "$id": "curr-usd",
+          "code": "USD",
+          "name": "Долар США"
+        },
+        {
+          "$id": "curr-eur",
+          "code": "EUR",
+          "name": "Євро"
+        },
+        {
+          "$id": "curr-pln",
+          "code": "PLN",
+          "name": "Польський злотий"
+        }
+      ]
+    },
+    {
+      "constant": "BaseCurrency",
+      "$id": "const-base-curr",
+      "effectiveFrom": "2000-01-01",
+      "value": "UAH"
+    },
+    {
+      "dictionary": "Accounts",
+      "items": [
+        {
+          "$id": "acc-cash",
+          "code": "CASH",
+          "name": "Готівка",
+          "type": "cash",
+          "currencyId": {
+            "$ref": "curr-uah"
+          }
+        },
+        {
+          "$id": "acc-card",
+          "code": "CARD",
+          "name": "Банківська картка",
+          "type": "card",
+          "currencyId": {
+            "$ref": "curr-uah"
+          }
+        },
+        {
+          "$id": "acc-savings",
+          "code": "SAVINGS",
+          "name": "Заощадження (USD)",
+          "type": "savings",
+          "currencyId": {
+            "$ref": "curr-usd"
+          }
+        }
+      ]
+    },
+    {
+      "dictionary": "Categories",
+      "items": [
+        {
+          "$id": "cat-income-group",
+          "code": "INC",
+          "name": "Доходи",
+          "kind": "income",
+          "isFolder": true
+        },
+        {
+          "$id": "cat-salary",
+          "code": "SALARY",
+          "name": "Зарплата",
+          "kind": "income",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-income-group"
+          }
+        },
+        {
+          "$id": "cat-freelance",
+          "code": "FREELANCE",
+          "name": "Фріланс",
+          "kind": "income",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-income-group"
+          }
+        },
+        {
+          "$id": "cat-investments",
+          "code": "INVEST",
+          "name": "Інвестиції",
+          "kind": "income",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-income-group"
+          }
+        },
+        {
+          "$id": "cat-living",
+          "code": "LIVING",
+          "name": "Проживання",
+          "kind": "expense",
+          "isFolder": true
+        },
+        {
+          "$id": "cat-rent",
+          "code": "RENT",
+          "name": "Оренда",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-living"
+          }
+        },
+        {
+          "$id": "cat-utilities",
+          "code": "UTIL",
+          "name": "Комунальні послуги",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-living"
+          }
+        },
+        {
+          "$id": "cat-groceries",
+          "code": "GROC",
+          "name": "Продукти",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-living"
+          }
+        },
+        {
+          "$id": "cat-lifestyle",
+          "code": "LIFE",
+          "name": "Спосіб життя",
+          "kind": "expense",
+          "isFolder": true
+        },
+        {
+          "$id": "cat-transport",
+          "code": "TRANS",
+          "name": "Транспорт",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-lifestyle"
+          }
+        },
+        {
+          "$id": "cat-health",
+          "code": "HEALTH",
+          "name": "Здоров'я та аптека",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-lifestyle"
+          }
+        },
+        {
+          "$id": "cat-entertainment",
+          "code": "ENTERTAIN",
+          "name": "Розваги",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-lifestyle"
+          }
+        },
+        {
+          "$id": "cat-restaurants",
+          "code": "CAFE",
+          "name": "Кафе та ресторани",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-lifestyle"
+          }
+        },
+        {
+          "$id": "cat-clothing",
+          "code": "CLOTH",
+          "name": "Одяг і взуття",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-lifestyle"
+          }
+        },
+        {
+          "$id": "cat-education",
+          "code": "EDU",
+          "name": "Освіта і книжки",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-lifestyle"
+          }
+        },
+        {
+          "$id": "cat-subscriptions",
+          "code": "SUB",
+          "name": "Підписки та послуги",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-lifestyle"
+          }
+        },
+        {
+          "$id": "cat-other",
+          "code": "OTHER",
+          "name": "Інші витрати",
+          "kind": "expense",
+          "isFolder": false,
+          "parentId": {
+            "$ref": "cat-lifestyle"
+          }
+        }
+      ]
+    },
+    {
+      "document": "SetExchangeRates",
+      "submit": true,
+      "items": [
+        {
+          "$id": "rates-01",
+          "date": "$monthStart-2m",
+          "description": "Початкові курси валют",
+          "lines": [
+            {
+              "currencyId": {
+                "$ref": "curr-usd"
+              },
+              "rate": 41.5
+            },
+            {
+              "currencyId": {
+                "$ref": "curr-eur"
+              },
+              "rate": 44.8
+            },
+            {
+              "currencyId": {
+                "$ref": "curr-pln"
+              },
+              "rate": 10.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "OpeningBalances",
+      "submit": true,
+      "items": [
+        {
+          "$id": "opbal-01",
+          "date": "$monthStart-2m",
+          "description": "Початкові залишки на особистих рахунках",
+          "lines": [
+            {
+              "accountId": {
+                "$ref": "acc-cash"
+              },
+              "amount": 5000.0
+            },
+            {
+              "accountId": {
+                "$ref": "acc-card"
+              },
+              "amount": 25000.0
+            },
+            {
+              "accountId": {
+                "$ref": "acc-savings"
+              },
+              "amount": 1500.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Budgets",
+      "submit": true,
+      "items": [
+        {
+          "$id": "budget-01",
+          "date": "$monthStart",
+          "description": "Бюджет поточного місяця",
+          "lines": [
+            {
+              "categoryId": {
+                "$ref": "cat-rent"
+              },
+              "plannedAmount": 15000.0
+            },
+            {
+              "categoryId": {
+                "$ref": "cat-groceries"
+              },
+              "plannedAmount": 8000.0
+            },
+            {
+              "categoryId": {
+                "$ref": "cat-utilities"
+              },
+              "plannedAmount": 3000.0
+            },
+            {
+              "categoryId": {
+                "$ref": "cat-transport"
+              },
+              "plannedAmount": 2000.0
+            },
+            {
+              "categoryId": {
+                "$ref": "cat-restaurants"
+              },
+              "plannedAmount": 2500.0
+            },
+            {
+              "categoryId": {
+                "$ref": "cat-entertainment"
+              },
+              "plannedAmount": 1500.0
+            },
+            {
+              "categoryId": {
+                "$ref": "cat-subscriptions"
+              },
+              "plannedAmount": 600.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "document": "Income",
+      "submit": true,
+      "items": [
+        {
+          "$id": "inc-01",
+          "date": "$monthStart-1m+1d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-salary"
+          },
+          "amount": 45000.0,
+          "comment": "Зарплата за минулий місяць"
+        },
+        {
+          "$id": "inc-02",
+          "date": "$monthStart-1m+8d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-freelance"
+          },
+          "amount": 12000.0,
+          "comment": "Фріланс: веб-дизайн"
+        },
+        {
+          "$id": "inc-03",
+          "date": "$monthStart-1m+14d",
+          "accountId": {
+            "$ref": "acc-cash"
+          },
+          "categoryId": {
+            "$ref": "cat-investments"
+          },
+          "amount": 2500.0,
+          "comment": "Виплата дивідендів"
+        },
+        {
+          "$id": "inc-04",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-salary"
+          },
+          "amount": 47000.0,
+          "comment": "Зарплата за поточний місяць"
+        },
+        {
+          "$id": "inc-05",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-freelance"
+          },
+          "amount": 8500.0,
+          "comment": "Гонорар за консультацію"
+        }
+      ]
+    },
+    {
+      "document": "Transfers",
+      "submit": true,
+      "items": [
+        {
+          "$id": "tr-01",
+          "date": "$monthStart-1m+3d",
+          "fromAccountId": {
+            "$ref": "acc-card"
+          },
+          "toAccountId": {
+            "$ref": "acc-cash"
+          },
+          "amountOut": 5000.0,
+          "amountIn": 5000.0,
+          "comment": "Зняття готівки в банкоматі"
+        },
+        {
+          "$id": "tr-02",
+          "date": "$monthStart-1m+6d",
+          "fromAccountId": {
+            "$ref": "acc-card"
+          },
+          "toAccountId": {
+            "$ref": "acc-savings"
+          },
+          "amountOut": 8300.0,
+          "amountIn": 200.0,
+          "comment": "Купівля $200 для заощаджень"
+        },
+        {
+          "$id": "tr-03",
+          "date": "$monthStart",
+          "fromAccountId": {
+            "$ref": "acc-card"
+          },
+          "toAccountId": {
+            "$ref": "acc-cash"
+          },
+          "amountOut": 4000.0,
+          "amountIn": 4000.0,
+          "comment": "Зняття готівки в банкоматі"
+        },
+        {
+          "$id": "tr-04",
+          "date": "$monthStart",
+          "fromAccountId": {
+            "$ref": "acc-card"
+          },
+          "toAccountId": {
+            "$ref": "acc-savings"
+          },
+          "amountOut": 12450.0,
+          "amountIn": 300.0,
+          "comment": "Купівля $300 для заощаджень"
+        }
+      ]
+    },
+    {
+      "document": "Expenses",
+      "submit": true,
+      "items": [
+        {
+          "$id": "exp-01",
+          "date": "$monthStart-1m",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-rent"
+          },
+          "amount": 15000.0,
+          "comment": "Оренда квартири"
+        },
+        {
+          "$id": "exp-02",
+          "date": "$monthStart-1m+1d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-utilities"
+          },
+          "amount": 2850.0,
+          "comment": "Електрика та опалення"
+        },
+        {
+          "$id": "exp-03",
+          "date": "$monthStart-1m+3d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-groceries"
+          },
+          "amount": 1650.0,
+          "comment": "Супермаркет «Сільпо»"
+        },
+        {
+          "$id": "exp-04",
+          "date": "$monthStart-1m+5d",
+          "accountId": {
+            "$ref": "acc-cash"
+          },
+          "categoryId": {
+            "$ref": "cat-transport"
+          },
+          "amount": 350.0,
+          "comment": "Проїзний на метро й автобус"
+        },
+        {
+          "$id": "exp-05",
+          "date": "$monthStart-1m+6d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-restaurants"
+          },
+          "amount": 620.0,
+          "comment": "Вечеря з друзями"
+        },
+        {
+          "$id": "exp-06",
+          "date": "$monthStart-1m+8d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-groceries"
+          },
+          "amount": 2100.0,
+          "comment": "Продукти на тиждень"
+        },
+        {
+          "$id": "exp-07",
+          "date": "$monthStart-1m+10d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-health"
+          },
+          "amount": 890.0,
+          "comment": "Покупка в аптеці"
+        },
+        {
+          "$id": "exp-08",
+          "date": "$monthStart-1m+12d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-subscriptions"
+          },
+          "amount": 300.0,
+          "comment": "YouTube і Spotify"
+        },
+        {
+          "$id": "exp-09",
+          "date": "$monthStart-1m+14d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-groceries"
+          },
+          "amount": 1800.0,
+          "comment": "Продукти"
+        },
+        {
+          "$id": "exp-10",
+          "date": "$monthStart-1m+16d",
+          "accountId": {
+            "$ref": "acc-cash"
+          },
+          "categoryId": {
+            "$ref": "cat-entertainment"
+          },
+          "amount": 750.0,
+          "comment": "Квитки в кіно"
+        },
+        {
+          "$id": "exp-11",
+          "date": "$monthStart-1m+23d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-rent"
+          },
+          "amount": 15000.0,
+          "comment": "Оренда квартири"
+        },
+        {
+          "$id": "exp-12",
+          "date": "$monthStart-1m+25d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-utilities"
+          },
+          "amount": 3100.0,
+          "comment": "Комунальні платежі"
+        },
+        {
+          "$id": "exp-13",
+          "date": "$monthStart-1m+27d",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-groceries"
+          },
+          "amount": 2350.0,
+          "comment": "Продукти"
+        },
+        {
+          "$id": "exp-14",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-transport"
+          },
+          "amount": 800.0,
+          "comment": "Пальне / таксі"
+        },
+        {
+          "$id": "exp-15",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-restaurants"
+          },
+          "amount": 950.0,
+          "comment": "Обід і кава"
+        },
+        {
+          "$id": "exp-16",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-groceries"
+          },
+          "amount": 1980.0,
+          "comment": "Супермаркет"
+        },
+        {
+          "$id": "exp-17",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-clothing"
+          },
+          "amount": 3200.0,
+          "comment": "Зимова куртка"
+        },
+        {
+          "$id": "exp-18",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-subscriptions"
+          },
+          "amount": 450.0,
+          "comment": "Хмарне сховище та музика"
+        },
+        {
+          "$id": "exp-19",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-education"
+          },
+          "amount": 1200.0,
+          "comment": "Книжка з програмування"
+        },
+        {
+          "$id": "exp-20",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-card"
+          },
+          "categoryId": {
+            "$ref": "cat-groceries"
+          },
+          "amount": 1720.0,
+          "comment": "Продукти"
+        },
+        {
+          "$id": "exp-21",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-cash"
+          },
+          "categoryId": {
+            "$ref": "cat-restaurants"
+          },
+          "amount": 480.0,
+          "comment": "Кава з випічкою"
+        },
+        {
+          "$id": "exp-22",
+          "date": "$monthStart",
+          "accountId": {
+            "$ref": "acc-cash"
+          },
+          "categoryId": {
+            "$ref": "cat-other"
+          },
+          "amount": 300.0,
+          "comment": "Канцтовари"
+        }
+      ]
+    }
+  ]
+}

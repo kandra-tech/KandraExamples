@@ -417,7 +417,7 @@ public sealed class AcceptanceTests : IDisposable
         // Apply the demo package with 6 months of historical data
         await _host.InScopeAsync(async sp =>
         {
-            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open("homeutilities-demo")!;
+            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open("homeutilities-demo-en")!;
             await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), ct);
         });
 
@@ -465,7 +465,7 @@ public sealed class AcceptanceTests : IDisposable
         // Apply the demo package
         await _host.InScopeAsync(async sp =>
         {
-            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open("homeutilities-demo")!;
+            using var stream = sp.GetRequiredService<IImportPackageRegistry>().Open("homeutilities-demo-en")!;
             await sp.GetRequiredService<IDataImportService>().ImportAsync(stream, new ImportOptions(), ct);
         });
 

@@ -81,3 +81,4 @@ which run as a user in Kyiv. Each new test was checked to fail with its fix take
 ## Since then
 
 - Moved to Kandra Core 0.5.27 and template 1.3.7 (regenerated migrations, the template's skills and tests).
+- 2026-11-04: demo data now ships as an English and a Ukrainian package with the same content (`-demo-en`, `-demo-uk`; English is the default), and the README screenshots were retaken in the dark theme, in both languages.

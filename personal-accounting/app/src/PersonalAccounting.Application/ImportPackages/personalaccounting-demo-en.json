@@ -1,11 +1,11 @@
 {
   "$schema": "./personalaccounting.import.schema.json",
   "format": "kandra-import/1",
-  "package": "personalaccounting-demo",
+  "package": "personalaccounting-demo-en",
   "version": 1,
   "origin": "demoSeed",
   "configuration": "PersonalAccounting",
-  "title": "PersonalAccounting demo data",
+  "title": "PersonalAccounting demo data (English)",
   "steps": [
     {
       "dictionary": "Currencies",

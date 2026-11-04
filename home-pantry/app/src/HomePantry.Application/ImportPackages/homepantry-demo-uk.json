@@ -1,11 +1,11 @@
 {
   "$schema": "./homepantry.import.schema.json",
   "format": "kandra-import/1",
-  "package": "homepantry-demo",
+  "package": "homepantry-demo-uk",
   "version": 2,
   "origin": "demoSeed",
   "configuration": "HomePantry",
-  "title": "HomePantry demo data",
+  "title": "HomePantry demo data (Ukrainian)",
   "steps": [
     {
       "constant": "Currency",
@@ -45,14 +45,14 @@
         {
           "$id": "loc-kitchen",
           "code": "KITCHEN",
-          "name": "Kitchen",
+          "name": "Кухня",
           "isFolder": true,
           "isFreezer": false
         },
         {
           "$id": "loc-fridge",
           "code": "FRIDGE",
-          "name": "Fridge",
+          "name": "Холодильник",
           "parentId": {
             "$ref": "loc-kitchen"
           },
@@ -62,7 +62,7 @@
         {
           "$id": "loc-freezer",
           "code": "FREEZER",
-          "name": "Freezer",
+          "name": "Морозильна камера",
           "parentId": {
             "$ref": "loc-kitchen"
           },
@@ -72,7 +72,7 @@
         {
           "$id": "loc-shelf",
           "code": "SHELF",
-          "name": "Shelf",
+          "name": "Полиця",
           "parentId": {
             "$ref": "loc-kitchen"
           },
@@ -82,14 +82,14 @@
         {
           "$id": "loc-bathroom",
           "code": "BATHROOM",
-          "name": "Bathroom",
+          "name": "Ванна кімната",
           "isFolder": false,
           "isFreezer": false
         },
         {
           "$id": "loc-storage",
           "code": "STORAGE",
-          "name": "Storage room",
+          "name": "Комора",
           "isFolder": false,
           "isFreezer": false
         }
@@ -101,37 +101,37 @@
         {
           "$id": "grp-dairy",
           "code": "G-DAIRY",
-          "name": "Dairy",
+          "name": "Молочні продукти",
           "isFolder": true
         },
         {
           "$id": "grp-produce",
           "code": "G-PRODUCE",
-          "name": "Vegetables & Fruits",
+          "name": "Овочі та фрукти",
           "isFolder": true
         },
         {
           "$id": "grp-meat",
           "code": "G-MEAT",
-          "name": "Meat & Fish",
+          "name": "М'ясо та риба",
           "isFolder": true
         },
         {
           "$id": "grp-bakery",
           "code": "G-BAKERY",
-          "name": "Bakery & Grains",
+          "name": "Випічка та крупи",
           "isFolder": true
         },
         {
           "$id": "grp-pantry",
           "code": "G-PANTRY",
-          "name": "Pantry & Beverages",
+          "name": "Бакалія та напої",
           "isFolder": true
         },
         {
           "$id": "grp-cleaning",
           "code": "G-CLEAN",
-          "name": "Cleaning & Household",
+          "name": "Побутова хімія та господарство",
           "isFolder": true
         },
         {
@@ -140,7 +140,7 @@
           "parentId": {
             "$ref": "grp-dairy"
           },
-          "name": "Whole Milk 2.5%",
+          "name": "Молоко 2,5%",
           "unit": "l",
           "barcode": "482000000001",
           "minimumStock": 2,
@@ -156,7 +156,7 @@
           "parentId": {
             "$ref": "grp-dairy"
           },
-          "name": "Butter 82%",
+          "name": "Масло 82%",
           "unit": "g",
           "barcode": "482000000002",
           "minimumStock": 200,
@@ -172,7 +172,7 @@
           "parentId": {
             "$ref": "grp-dairy"
           },
-          "name": "Hard Cheese",
+          "name": "Твердий сир",
           "unit": "g",
           "barcode": "482000000003",
           "minimumStock": 300,
@@ -188,7 +188,7 @@
           "parentId": {
             "$ref": "grp-dairy"
           },
-          "name": "Greek Yogurt",
+          "name": "Грецький йогурт",
           "unit": "pcs",
           "barcode": "482000000004",
           "minimumStock": 4,
@@ -204,7 +204,7 @@
           "parentId": {
             "$ref": "grp-dairy"
           },
-          "name": "Sour Cream 20%",
+          "name": "Сметана 20%",
           "unit": "g",
           "barcode": "482000000005",
           "minimumStock": 350,
@@ -220,7 +220,7 @@
           "parentId": {
             "$ref": "grp-dairy"
           },
-          "name": "Cottage Cheese",
+          "name": "Сир кисломолочний",
           "unit": "g",
           "barcode": "482000000006",
           "minimumStock": 400,
@@ -236,7 +236,7 @@
           "parentId": {
             "$ref": "grp-dairy"
           },
-          "name": "Eggs",
+          "name": "Яйця",
           "unit": "pcs",
           "barcode": "482000000007",
           "minimumStock": 10,
@@ -252,7 +252,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Potatoes",
+          "name": "Картопля",
           "unit": "kg",
           "barcode": "482000000008",
           "minimumStock": 3,
@@ -268,7 +268,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Carrots",
+          "name": "Морква",
           "unit": "kg",
           "barcode": "482000000009",
           "minimumStock": 1,
@@ -284,7 +284,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Yellow Onions",
+          "name": "Цибуля ріпчаста",
           "unit": "kg",
           "barcode": "482000000010",
           "minimumStock": 1,
@@ -300,7 +300,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Garlic",
+          "name": "Часник",
           "unit": "pcs",
           "barcode": "482000000011",
           "minimumStock": 3,
@@ -316,7 +316,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "White Cabbage",
+          "name": "Капуста білокачанна",
           "unit": "kg",
           "barcode": "482000000012",
           "minimumStock": 1,
@@ -332,7 +332,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Red Beets",
+          "name": "Буряк",
           "unit": "kg",
           "barcode": "482000000013",
           "minimumStock": 1,
@@ -348,7 +348,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Tomatoes",
+          "name": "Помідори",
           "unit": "kg",
           "barcode": "482000000014",
           "minimumStock": 1,
@@ -364,7 +364,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Cucumbers",
+          "name": "Огірки",
           "unit": "kg",
           "barcode": "482000000015",
           "minimumStock": 1,
@@ -380,7 +380,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Apples",
+          "name": "Яблука",
           "unit": "kg",
           "barcode": "482000000016",
           "minimumStock": 2,
@@ -396,7 +396,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Bananas",
+          "name": "Банани",
           "unit": "kg",
           "barcode": "482000000017",
           "minimumStock": 1,
@@ -412,7 +412,7 @@
           "parentId": {
             "$ref": "grp-produce"
           },
-          "name": "Lemons",
+          "name": "Лимони",
           "unit": "pcs",
           "barcode": "482000000018",
           "minimumStock": 2,
@@ -428,7 +428,7 @@
           "parentId": {
             "$ref": "grp-meat"
           },
-          "name": "Chicken Fillet",
+          "name": "Куряче філе",
           "unit": "kg",
           "barcode": "482000000019",
           "minimumStock": 1,
@@ -444,7 +444,7 @@
           "parentId": {
             "$ref": "grp-meat"
           },
-          "name": "Minced Meat",
+          "name": "М'ясний фарш",
           "unit": "kg",
           "barcode": "482000000020",
           "minimumStock": 1,
@@ -460,7 +460,7 @@
           "parentId": {
             "$ref": "grp-meat"
           },
-          "name": "Beef Chuck",
+          "name": "Яловичина (лопатка)",
           "unit": "kg",
           "barcode": "482000000021",
           "minimumStock": 1,
@@ -476,7 +476,7 @@
           "parentId": {
             "$ref": "grp-meat"
           },
-          "name": "Salmon Fillet",
+          "name": "Філе лосося",
           "unit": "kg",
           "barcode": "482000000022",
           "minimumStock": 0.5,
@@ -492,7 +492,7 @@
           "parentId": {
             "$ref": "grp-meat"
           },
-          "name": "Pork Sausages",
+          "name": "Свинячі сосиски",
           "unit": "kg",
           "barcode": "482000000023",
           "minimumStock": 0.5,
@@ -508,7 +508,7 @@
           "parentId": {
             "$ref": "grp-bakery"
           },
-          "name": "White Bread",
+          "name": "Білий хліб",
           "unit": "pcs",
           "barcode": "482000000024",
           "minimumStock": 1,
@@ -524,7 +524,7 @@
           "parentId": {
             "$ref": "grp-bakery"
           },
-          "name": "Wheat Flour",
+          "name": "Пшеничне борошно",
           "unit": "kg",
           "barcode": "482000000025",
           "minimumStock": 2,
@@ -540,7 +540,7 @@
           "parentId": {
             "$ref": "grp-bakery"
           },
-          "name": "Spaghetti Pasta",
+          "name": "Спагеті",
           "unit": "g",
           "barcode": "482000000026",
           "minimumStock": 500,
@@ -556,7 +556,7 @@
           "parentId": {
             "$ref": "grp-bakery"
           },
-          "name": "White Rice",
+          "name": "Рис білий",
           "unit": "kg",
           "barcode": "482000000027",
           "minimumStock": 1,
@@ -572,7 +572,7 @@
           "parentId": {
             "$ref": "grp-bakery"
           },
-          "name": "Buckwheat",
+          "name": "Гречка",
           "unit": "kg",
           "barcode": "482000000028",
           "minimumStock": 1,
@@ -588,7 +588,7 @@
           "parentId": {
             "$ref": "grp-bakery"
           },
-          "name": "Rolled Oats",
+          "name": "Вівсяні пластівці",
           "unit": "g",
           "barcode": "482000000029",
           "minimumStock": 500,
@@ -604,7 +604,7 @@
           "parentId": {
             "$ref": "grp-pantry"
           },
-          "name": "Sunflower Oil",
+          "name": "Соняшникова олія",
           "unit": "l",
           "barcode": "482000000030",
           "minimumStock": 1,
@@ -620,7 +620,7 @@
           "parentId": {
             "$ref": "grp-pantry"
           },
-          "name": "Olive Oil",
+          "name": "Оливкова олія",
           "unit": "ml",
           "barcode": "482000000031",
           "minimumStock": 500,
@@ -636,7 +636,7 @@
           "parentId": {
             "$ref": "grp-pantry"
           },
-          "name": "White Sugar",
+          "name": "Цукор",
           "unit": "kg",
           "barcode": "482000000032",
           "minimumStock": 1,
@@ -651,7 +651,7 @@
           "parentId": {
             "$ref": "grp-pantry"
           },
-          "name": "Table Salt",
+          "name": "Сіль",
           "unit": "kg",
           "barcode": "482000000033",
           "minimumStock": 1,
@@ -666,7 +666,7 @@
           "parentId": {
             "$ref": "grp-pantry"
           },
-          "name": "Black Pepper",
+          "name": "Чорний перець",
           "unit": "g",
           "barcode": "482000000034",
           "minimumStock": 50,
@@ -681,7 +681,7 @@
           "parentId": {
             "$ref": "grp-pantry"
           },
-          "name": "Black Tea",
+          "name": "Чорний чай",
           "unit": "pack",
           "barcode": "482000000035",
           "minimumStock": 1,
@@ -697,7 +697,7 @@
           "parentId": {
             "$ref": "grp-pantry"
           },
-          "name": "Coffee Beans",
+          "name": "Кава в зернах",
           "unit": "kg",
           "barcode": "482000000036",
           "minimumStock": 1,
@@ -713,7 +713,7 @@
           "parentId": {
             "$ref": "grp-pantry"
           },
-          "name": "Tomato Paste",
+          "name": "Томатна паста",
           "unit": "g",
           "barcode": "482000000037",
           "minimumStock": 200,
@@ -729,7 +729,7 @@
           "parentId": {
             "$ref": "grp-cleaning"
           },
-          "name": "Dish Soap",
+          "name": "Засіб для миття посуду",
           "unit": "ml",
           "barcode": "482000000038",
           "minimumStock": 500,
@@ -744,7 +744,7 @@
           "parentId": {
             "$ref": "grp-cleaning"
           },
-          "name": "Laundry Detergent",
+          "name": "Пральний порошок",
           "unit": "kg",
           "barcode": "482000000039",
           "minimumStock": 2,
@@ -759,7 +759,7 @@
           "parentId": {
             "$ref": "grp-cleaning"
           },
-          "name": "Paper Towels",
+          "name": "Паперові рушники",
           "unit": "pack",
           "barcode": "482000000040",
           "minimumStock": 2,
@@ -774,7 +774,7 @@
           "parentId": {
             "$ref": "grp-cleaning"
           },
-          "name": "Trash Bags",
+          "name": "Пакети для сміття",
           "unit": "pack",
           "barcode": "482000000041",
           "minimumStock": 2,
@@ -791,9 +791,9 @@
         {
           "$id": "rec-eggs",
           "code": "R-EGGS",
-          "name": "Scrambled Eggs",
+          "name": "Яєчня-болтанка",
           "servings": 2,
-          "instructions": "Beat eggs with milk and salt. Melt butter in pan and cook gently.",
+          "instructions": "Збийте яйця з молоком і сіллю. Розтопіть масло на пательні та підсмажте на повільному вогні.",
           "lines": [
             {
               "productId": {
@@ -824,9 +824,9 @@
         {
           "$id": "rec-pasta",
           "code": "R-PASTA",
-          "name": "Spaghetti with Cheese",
+          "name": "Спагеті з сиром",
           "servings": 2,
-          "instructions": "Boil spaghetti in salted water until al dente. Drain and toss with butter and grated cheese.",
+          "instructions": "Відваріть спагеті в підсоленій воді до стану аль денте. Злийте воду, змішайте з маслом і тертим сиром.",
           "lines": [
             {
               "productId": {
@@ -851,9 +851,9 @@
         {
           "$id": "rec-pancakes",
           "code": "R-PANCAKES",
-          "name": "Pancakes",
+          "name": "Налисники",
           "servings": 4,
-          "instructions": "Mix flour, milk, eggs, sugar and salt. Fry thin pancakes on a hot oiled pan.",
+          "instructions": "Змішайте борошно, молоко, яйця, цукор і сіль. Смажте тонкі налисники на розпеченій змащеній пательні.",
           "lines": [
             {
               "productId": {
@@ -890,9 +890,9 @@
         {
           "$id": "rec-salad",
           "code": "R-SALAD",
-          "name": "Fresh Salad",
+          "name": "Свіжий салат",
           "servings": 2,
-          "instructions": "Chop tomatoes and cucumbers, season with olive oil and salt.",
+          "instructions": "Наріжте помідори й огірки, заправте оливковою олією та сіллю.",
           "lines": [
             {
               "productId": {
@@ -923,9 +923,9 @@
         {
           "$id": "rec-borscht",
           "code": "R-BORSCHT",
-          "name": "Ukrainian Borscht",
+          "name": "Український борщ",
           "servings": 4,
-          "instructions": "Simmer beef broth. Add potatoes and cabbage. Sauté beets, carrots, onions with tomato paste and combine.",
+          "instructions": "Зваріть яловичий бульйон. Додайте картоплю та капусту. Обсмажте буряк, моркву й цибулю з томатною пастою та з'єднайте.",
           "lines": [
             {
               "productId": {
@@ -1888,17 +1888,17 @@
         {
           "$id": "member-alex",
           "code": "M-ALEX",
-          "name": "Alex Smith"
+          "name": "Олексій Коваленко"
         },
         {
           "$id": "member-maria",
           "code": "M-MARIA",
-          "name": "Maria Smith"
+          "name": "Марія Коваленко"
         },
         {
           "$id": "member-leo",
           "code": "M-LEO",
-          "name": "Leo Smith"
+          "name": "Лев Коваленко"
         }
       ]
     },
@@ -1908,7 +1908,7 @@
         {
           "$id": "bat-smoke",
           "code": "B-SMOKE",
-          "name": "Smoke detector AA",
+          "name": "Датчик диму AA",
           "usedIn": "Kitchen smoke detector",
           "chargeIntervalDays": 180,
           "batteryKind": "disposable"
@@ -1916,7 +1916,7 @@
         {
           "$id": "bat-mouse",
           "code": "B-MOUSE",
-          "name": "Office mouse AA",
+          "name": "Офісна миша AA",
           "usedIn": "Wireless mouse",
           "chargeIntervalDays": 30,
           "batteryKind": "rechargeable"
@@ -1924,7 +1924,7 @@
         {
           "$id": "bat-remote",
           "code": "B-REMOTE",
-          "name": "TV remote AAA",
+          "name": "Пульт від телевізора AAA",
           "usedIn": "Living room TV remote",
           "chargeIntervalDays": 90,
           "batteryKind": "rechargeable"
@@ -1932,7 +1932,7 @@
         {
           "$id": "bat-light",
           "code": "B-LIGHT",
-          "name": "Emergency flashlight 18650",
+          "name": "Аварійний ліхтарик 18650",
           "usedIn": "Hallway flashlight",
           "chargeIntervalDays": 60,
           "batteryKind": "rechargeable"
@@ -1945,90 +1945,90 @@
         {
           "$id": "chore-dishes",
           "code": "C-DISH",
-          "name": "Empty dishwasher",
+          "name": "Розвантажити посудомийку",
           "recurrence": "daily",
           "everyNDays": 1,
           "assignedToId": {
             "$ref": "member-leo"
           },
-          "description": "Unload clean dishes"
+          "description": "Розвантажити чистий посуд"
         },
         {
           "$id": "chore-trash",
           "code": "C-TRASH",
-          "name": "Take out trash",
+          "name": "Винести сміття",
           "recurrence": "daily",
           "everyNDays": 1,
           "assignedToId": {
             "$ref": "member-alex"
           },
-          "description": "Kitchen trash and recycling"
+          "description": "Кухонне сміття та вторсировина"
         },
         {
           "$id": "chore-vacuum",
           "code": "C-VAC",
-          "name": "Vacuum living room",
+          "name": "Пропилососити вітальню",
           "recurrence": "everyNDays",
           "everyNDays": 3,
           "assignedToId": {
             "$ref": "member-alex"
           },
-          "description": "Vacuum living room rugs and hallway"
+          "description": "Пропилососити килими у вітальні та коридор"
         },
         {
           "$id": "chore-mop",
           "code": "C-MOP",
-          "name": "Mop kitchen floor",
+          "name": "Помити підлогу на кухні",
           "recurrence": "weekly",
           "everyNDays": 7,
           "assignedToId": {
             "$ref": "member-maria"
           },
-          "description": "Wash kitchen floor with tile cleaner"
+          "description": "Помити кухонну підлогу засобом для плитки"
         },
         {
           "$id": "chore-bedding",
           "code": "C-BED",
-          "name": "Change bed sheets",
+          "name": "Змінити постільну білизну",
           "recurrence": "weekly",
           "everyNDays": 7,
           "assignedToId": {
             "$ref": "member-maria"
           },
-          "description": "Change sheets and pillowcases"
+          "description": "Змінити простирадла та наволочки"
         },
         {
           "$id": "chore-fridge",
           "code": "C-FRIDGE",
-          "name": "Clean refrigerator",
+          "name": "Почистити холодильник",
           "recurrence": "monthly",
           "everyNDays": 30,
           "assignedToId": {
             "$ref": "member-maria"
           },
-          "description": "Wipe down shelves and toss expired food"
+          "description": "Протерти полиці та викинути прострочені продукти"
         },
         {
           "$id": "chore-filters",
           "code": "C-FILTERS",
-          "name": "Clean AC & hood filters",
+          "name": "Почистити фільтри кондиціонера й витяжки",
           "recurrence": "monthly",
           "everyNDays": 30,
           "assignedToId": {
             "$ref": "member-alex"
           },
-          "description": "Wash grease and dust filters"
+          "description": "Промити жирові та пилові фільтри"
         },
         {
           "$id": "chore-plants",
           "code": "C-PLANTS",
-          "name": "Water balcony plants",
+          "name": "Полити рослини на балконі",
           "recurrence": "everyNDays",
           "everyNDays": 4,
           "assignedToId": {
             "$ref": "member-leo"
           },
-          "description": "Water potted herbs and flowers"
+          "description": "Полити зелень і квіти в горщиках"
         }
       ]
     },
@@ -2038,7 +2038,7 @@
         {
           "$id": "eq-fridge",
           "code": "EQ-FRIDGE",
-          "name": "Bosch Refrigerator",
+          "name": "Холодильник Bosch",
           "locationId": {
             "$ref": "loc-kitchen"
           },
@@ -2048,7 +2048,7 @@
         {
           "$id": "eq-robot",
           "code": "EQ-ROBOT",
-          "name": "Roborock Vacuum",
+          "name": "Пилосос Roborock",
           "locationId": {
             "$ref": "loc-kitchen"
           },
@@ -2058,7 +2058,7 @@
         {
           "$id": "eq-washer",
           "code": "EQ-WASHER",
-          "name": "LG Washing Machine",
+          "name": "Пральна машина LG",
           "locationId": {
             "$ref": "loc-bathroom"
           },
@@ -2081,7 +2081,7 @@
           "doneById": {
             "$ref": "member-alex"
           },
-          "comment": "Filters rinsed"
+          "comment": "Фільтри промито"
         },
         {
           "$id": "cd-fridge",
@@ -2093,7 +2093,7 @@
           "doneById": {
             "$ref": "member-maria"
           },
-          "comment": "Deep clean shelves"
+          "comment": "Генеральне прибирання полиць"
         },
         {
           "$id": "cd-plants",
@@ -2105,7 +2105,7 @@
           "doneById": {
             "$ref": "member-leo"
           },
-          "comment": "Watered plants"
+          "comment": "Рослини політо"
         },
         {
           "$id": "cd-bedding",
@@ -2117,7 +2117,7 @@
           "doneById": {
             "$ref": "member-maria"
           },
-          "comment": "Fresh linens"
+          "comment": "Свіжа білизна"
         },
         {
           "$id": "cd-mop",
@@ -2129,7 +2129,7 @@
           "doneById": {
             "$ref": "member-maria"
           },
-          "comment": "Tiles washed"
+          "comment": "Плитку помито"
         },
         {
           "$id": "cd-vacuum",
@@ -2141,7 +2141,7 @@
           "doneById": {
             "$ref": "member-alex"
           },
-          "comment": "Cleaned living room"
+          "comment": "Вітальню прибрано"
         },
         {
           "$id": "cd-trash",
@@ -2153,7 +2153,7 @@
           "doneById": {
             "$ref": "member-alex"
           },
-          "comment": "Bins emptied"
+          "comment": "Відра спорожнено"
         },
         {
           "$id": "cd-dishes",
@@ -2165,7 +2165,7 @@
           "doneById": {
             "$ref": "member-leo"
           },
-          "comment": "Done this morning"
+          "comment": "Зроблено сьогодні вранці"
         }
       ]
     },
