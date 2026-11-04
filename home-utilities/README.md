@@ -28,3 +28,5 @@ fixes). What each step did: [BUILD-NOTES.md](BUILD-NOTES.md).
 ## Run it
 
 The application is in [app/](app/); its [README](app/README.md) says how to build, start with the demo data and sign in.
+
+![The home dashboard](app/screenshots/dashboard.en.jpg)
