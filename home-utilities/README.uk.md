@@ -30,4 +30,6 @@ Gemini Argon 4 (high), а під час перенесення сюди — ще
 Застосунок — у [app/](app/); його [README](app/README.md) (англійською) пояснює, як зібрати, запустити з демоданими й
 увійти.
 
+Застосунок також працює як десктопний (спершу Windows): `dotnet run --project src/HomeUtilities.Desktop` з папки `app/` відкриває його в окремому вікні, дані лежать у `%LOCALAPPDATA%\HomeUtilities`.
+
 ![Головний дашборд](app/screenshots/dashboard.uk.jpg)

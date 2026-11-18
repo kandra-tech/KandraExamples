@@ -15,6 +15,7 @@
     <Project Path="src/PersonalAccounting.Persistence.Databases/PersonalAccounting.Persistence.Databases.csproj" />
     <Project Path="src/PersonalAccounting.Persistence/PersonalAccounting.Persistence.csproj" />
     <Project Path="src/PersonalAccounting.WebApi/PersonalAccounting.WebApi.csproj" />
+    <Project Path="src/PersonalAccounting.Desktop/PersonalAccounting.Desktop.csproj" />
   </Folder>
   <Folder Name="/Frontend/">
     <Project Path="src/PersonalAccounting.Client.MudBlazor/PersonalAccounting.Client.MudBlazor.csproj" />

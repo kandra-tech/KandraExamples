@@ -34,6 +34,8 @@ dotnet test                                                      # applies the m
 dotnet run --project src/PersonalAccounting.WebApi --launch-profile PersonalAccounting.UI   # https://localhost:7220
 ```
 
+The desktop host (`src/PersonalAccounting.Desktop`, Photino window on loopback Kestrel, Windows first) shares the web host's registrations through `src/PersonalAccounting.WebApi/PersonalAccountingHost.cs` (linked into the Desktop project): add registrations there, not in `Program.cs`. Run it with `dotnet run --project src/PersonalAccounting.Desktop`; its data lives in `%LOCALAPPDATA%\PersonalAccounting`.
+
 The app redirects `http://localhost:5220` to `https://localhost:7220`; call it over https (accept the development
 certificate), since many HTTP clients drop the `Authorization` header on a redirect. The first start opens the first-run
 wizard (it sets the admin password); to skip it set `Kandra__AdminPassword`, or start a demo installation with

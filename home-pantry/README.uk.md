@@ -35,4 +35,6 @@
 Застосунок (частини A і B) — у [app/](app/); його [README](app/README.md) (англійською) пояснює, як зібрати,
 запустити з демоданими й увійти.
 
+Застосунок також працює як десктопний (спершу Windows): `dotnet run --project src/HomePantry.Desktop` з папки `app/` відкриває його в окремому вікні, дані лежать у `%LOCALAPPDATA%\HomePantry`.
+
 ![Головний дашборд](app/screenshots/dashboard.uk.jpg)

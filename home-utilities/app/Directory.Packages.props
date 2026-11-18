@@ -45,6 +45,7 @@
     <PackageVersion Include="Kandra.ClientLib.Common" Version="$(KandraCoreVersion)" />
     <PackageVersion Include="Kandra.ClientLib.MudBlazor" Version="$(KandraCoreVersion)" />
     <PackageVersion Include="Kandra.DataImport" Version="$(KandraCoreVersion)" />
+    <PackageVersion Include="Kandra.Desktop.Photino" Version="$(KandraCoreVersion)" />
     <PackageVersion Include="Kandra.Domain" Version="$(KandraCoreVersion)" />
     <PackageVersion Include="Kandra.EntityOperations" Version="$(KandraCoreVersion)" />
     <PackageVersion Include="Kandra.Generators.Api" Version="$(KandraCoreVersion)" />

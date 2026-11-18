@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Desktop app: the same host as FamilyGarage.WebApi (API + hosted WASM client) on loopback Kestrel, in a
+       Photino window (Kandra.Desktop.Photino). SQLite in the per-user app-data folder. Windows first: WebView2 is part
+       of Windows 10/11; the system-menu commands are Windows-only; Linux/macOS are untested. -->
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!-- The Web SDK emits [assembly: ApplicationPart(...)] for referenced MVC libraries (Kandra.Api.Lib's own controllers,
+         Identity UI, Swagger) only when OutputType is Exe; without it a WinExe serves the generated controllers but no
+         Login/Setup endpoints (405 on sign-in). -->
+    <GenerateMvcApplicationPartsAssemblyAttributes>true</GenerateMvcApplicationPartsAssemblyAttributes>
+    <ApplicationIcon>familygarage.ico</ApplicationIcon>
+    <AssemblyTitle>FamilyGarage</AssemblyTitle>
+    <Product>FamilyGarage</Product>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- One registration for both hosts. The controllers are generated per host assembly (Kandra.Generators.Api below),
+         and the shared file passes its own assembly to AddKandra, so each host registers its own copy. -->
+    <Compile Include="..\FamilyGarage.WebApi\FamilyGarageHost.cs" Link="FamilyGarageHost.cs" />
+    <!-- One appsettings.json for both hosts. -->
+    <Content Include="..\FamilyGarage.WebApi\appsettings.json" Link="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <!-- .ico for Windows; GTK (Linux) reads the .png of the same name instead, see KandraDesktopOptions.IconFile. -->
+    <None Update="familygarage.ico;familygarage.png" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FamilyGarage.Application\FamilyGarage.Application.csproj" />
+    <ProjectReference Include="..\FamilyGarage.Persistence.Databases\FamilyGarage.Persistence.Databases.csproj" />
+    <ProjectReference Include="..\FamilyGarage.Client.MudBlazor\FamilyGarage.Client.MudBlazor.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Kandra.Api.Lib" />
+    <PackageReference Include="Kandra.Desktop.Photino" />
+    <PackageReference Include="Kandra.Generators.Api" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

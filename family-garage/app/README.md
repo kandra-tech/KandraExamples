@@ -40,6 +40,16 @@ It does not run by itself until an administrator schedules it: **Admin > Schedul
 look-ahead (30 days, 1 000 km by default) is set on the job's input; the defaults come from the constants of the same
 name.
 
+## Run as a desktop app
+
+The same application also runs in its own window (Photino, Windows first; Linux and macOS are untested):
+
+```bash
+dotnet run --project src/FamilyGarage.Desktop
+```
+
+The data (SQLite file, blobs, keys, backups) lives in `%LOCALAPPDATA%\FamilyGarage`; the first start opens the same first-run wizard. `Kandra:DataPath` overrides the folder. The window's system menu has Open data folder, Back up database and Reset to first run.
+
 ## Screenshots
 
 | | |

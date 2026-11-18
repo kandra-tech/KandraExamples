@@ -31,4 +31,6 @@ which fixed the handling of calendar days in the user's time zone among other th
 The application (parts A and B) is in [app/](app/); its [README](app/README.md) says how to build, start it with the
 demo data and sign in.
 
+It also runs as a desktop app (Windows first): `dotnet run --project src/HomePantry.Desktop` from `app/` opens it in its own window, with the data in `%LOCALAPPDATA%\HomePantry`.
+
 ![The home dashboard](app/screenshots/dashboard.en.jpg)

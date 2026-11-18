@@ -45,6 +45,16 @@ ACCEPT_EULA="Y" Kandra__Setup__Mode="Demo" Kandra__AdminPassword="Admin!1" dotne
 
 The demo data comes in two languages with the same content and different names: English (`homeutilities-demo-en`, the default) and Ukrainian (`homeutilities-demo-uk`). To load the Ukrainian one add `Kandra__Setup__DemoPackage=homeutilities-demo-uk` (environment variable `Kandra__Setup__DemoPackage`).
 
+## Run as a desktop app
+
+The same application also runs in its own window (Photino, Windows first; Linux and macOS are untested):
+
+```bash
+dotnet run --project src/HomeUtilities.Desktop
+```
+
+The data (SQLite file, blobs, keys, backups) lives in `%LOCALAPPDATA%\HomeUtilities`; the first start opens the same first-run wizard. `Kandra:DataPath` overrides the folder. The window's system menu has Open data folder, Back up database and Reset to first run.
+
 ## Screenshots
 
 | | |

@@ -15,6 +15,7 @@
     <Project Path="src/HomeUtilities.Persistence.Databases/HomeUtilities.Persistence.Databases.csproj" />
     <Project Path="src/HomeUtilities.Persistence/HomeUtilities.Persistence.csproj" />
     <Project Path="src/HomeUtilities.WebApi/HomeUtilities.WebApi.csproj" />
+    <Project Path="src/HomeUtilities.Desktop/HomeUtilities.Desktop.csproj" />
   </Folder>
   <Folder Name="/Frontend/">
     <Project Path="src/HomeUtilities.Client.MudBlazor/HomeUtilities.Client.MudBlazor.csproj" />

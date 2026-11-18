@@ -80,3 +80,4 @@ The adoption review (Claude Code) found six more, all fixed. The five testable o
 
 - 2026-11-02: adopted into Kandra Examples (ports 7227/5227) and the adoption review's fixes above.
 - 2026-11-04: demo data now ships as an English and a Ukrainian package with the same content (`-demo-en`, `-demo-uk`; English is the default), and the README screenshots were retaken in the dark theme, in both languages.
+- 2026-11-18: a desktop host (`Desktop` project, Photino window, per-user SQLite) was added next to the web host; the registrations moved into a shared host file.

@@ -30,6 +30,16 @@ The demo data comes in two languages with the same content and different names: 
 Without `--Kandra:Setup:Mode=Demo` the first start opens the setup wizard, which creates the administrator and an empty
 database. The SQLite file is in `src/PersonalAccounting.WebApi/db/`; delete it to start again.
 
+## Run as a desktop app
+
+The same application also runs in its own window (Photino, Windows first; Linux and macOS are untested):
+
+```bash
+dotnet run --project src/PersonalAccounting.Desktop
+```
+
+The data (SQLite file, blobs, keys, backups) lives in `%LOCALAPPDATA%\PersonalAccounting`; the first start opens the same first-run wizard. `Kandra:DataPath` overrides the folder. The window's system menu has Open data folder, Back up database and Reset to first run.
+
 ## Screenshots
 
 | | |

@@ -34,6 +34,8 @@ dotnet test                                                      # applies the m
 dotnet run --project src/HomeUtilities.WebApi --launch-profile HomeUtilities.UI   # https://localhost:7227
 ```
 
+The desktop host (`src/HomeUtilities.Desktop`, Photino window on loopback Kestrel, Windows first) shares the web host's registrations through `src/HomeUtilities.WebApi/HomeUtilitiesHost.cs` (linked into the Desktop project): add registrations there, not in `Program.cs`. Run it with `dotnet run --project src/HomeUtilities.Desktop`; its data lives in `%LOCALAPPDATA%\HomeUtilities`.
+
 The app redirects `http://localhost:5227` to `https://localhost:7227`; call it over https (accept the development
 certificate), since many HTTP clients drop the `Authorization` header on a redirect. The first start opens the first-run
 wizard (it sets the admin password); to skip it set `Kandra__AdminPassword`, or start a demo installation with

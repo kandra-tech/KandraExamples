@@ -15,6 +15,7 @@
     <Project Path="src/HomePantry.Persistence.Databases/HomePantry.Persistence.Databases.csproj" />
     <Project Path="src/HomePantry.Persistence/HomePantry.Persistence.csproj" />
     <Project Path="src/HomePantry.WebApi/HomePantry.WebApi.csproj" />
+    <Project Path="src/HomePantry.Desktop/HomePantry.Desktop.csproj" />
   </Folder>
   <Folder Name="/Frontend/">
     <Project Path="src/HomePantry.Client.MudBlazor/HomePantry.Client.MudBlazor.csproj" />

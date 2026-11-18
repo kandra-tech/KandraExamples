@@ -31,4 +31,6 @@
 Застосунок — у [app/](app/); його [README](app/README.md) (англійською) пояснює, як зібрати, запустити з демоданими й
 увійти.
 
+Застосунок також працює як десктопний (спершу Windows): `dotnet run --project src/PersonalAccounting.Desktop` з папки `app/` відкриває його в окремому вікні, дані лежать у `%LOCALAPPDATA%\PersonalAccounting`.
+
 ![Головний дашборд](app/screenshots/dashboard.uk.jpg)

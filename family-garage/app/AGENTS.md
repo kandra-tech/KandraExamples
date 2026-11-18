@@ -34,6 +34,8 @@ dotnet test                                                      # applies the m
 dotnet run --project src/FamilyGarage.WebApi --launch-profile FamilyGarage.UI   # https://localhost:7226
 ```
 
+The desktop host (`src/FamilyGarage.Desktop`, Photino window on loopback Kestrel, Windows first) shares the web host's registrations through `src/FamilyGarage.WebApi/FamilyGarageHost.cs` (linked into the Desktop project): add registrations there, not in `Program.cs`. Run it with `dotnet run --project src/FamilyGarage.Desktop`; its data lives in `%LOCALAPPDATA%\FamilyGarage`.
+
 The app redirects `http://localhost:5226` to `https://localhost:7226`; call it over https (accept the development
 certificate), since many HTTP clients drop the `Authorization` header on a redirect. The first start opens the first-run
 wizard (it sets the admin password); to skip it set `Kandra__AdminPassword`, or start a demo installation with

@@ -15,6 +15,7 @@
     <Project Path="src/FamilyGarage.Persistence.Databases/FamilyGarage.Persistence.Databases.csproj" />
     <Project Path="src/FamilyGarage.Persistence/FamilyGarage.Persistence.csproj" />
     <Project Path="src/FamilyGarage.WebApi/FamilyGarage.WebApi.csproj" />
+    <Project Path="src/FamilyGarage.Desktop/FamilyGarage.Desktop.csproj" />
   </Folder>
   <Folder Name="/Frontend/">
     <Project Path="src/FamilyGarage.Client.MudBlazor/FamilyGarage.Client.MudBlazor.csproj" />

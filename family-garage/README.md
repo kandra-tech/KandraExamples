@@ -29,4 +29,6 @@ changed and what is still weak: [BUILD-NOTES.md](BUILD-NOTES.md).
 The application is in [app/](app/); its [README](app/README.md) says how to build, start with the demo data, sign in and
 schedule the reminders.
 
+It also runs as a desktop app (Windows first): `dotnet run --project src/FamilyGarage.Desktop` from `app/` opens it in its own window, with the data in `%LOCALAPPDATA%\FamilyGarage`.
+
 ![The home dashboard](app/screenshots/dashboard.en.jpg)

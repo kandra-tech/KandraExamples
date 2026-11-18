@@ -34,4 +34,6 @@
 Застосунок — у [app/](app/); його [README](app/README.md) (англійською) пояснює, як зібрати, запустити з демоданими,
 увійти й запланувати нагадування.
 
+Застосунок також працює як десктопний (спершу Windows): `dotnet run --project src/FamilyGarage.Desktop` з папки `app/` відкриває його в окремому вікні, дані лежать у `%LOCALAPPDATA%\FamilyGarage`.
+
 ![Головний дашборд](app/screenshots/dashboard.uk.jpg)

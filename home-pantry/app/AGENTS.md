@@ -34,6 +34,8 @@ dotnet test                                                      # applies the m
 dotnet run --project src/HomePantry.WebApi --launch-profile HomePantry.UI   # https://localhost:7228
 ```
 
+The desktop host (`src/HomePantry.Desktop`, Photino window on loopback Kestrel, Windows first) shares the web host's registrations through `src/HomePantry.WebApi/HomePantryHost.cs` (linked into the Desktop project): add registrations there, not in `Program.cs`. Run it with `dotnet run --project src/HomePantry.Desktop`; its data lives in `%LOCALAPPDATA%\HomePantry`.
+
 The app redirects `http://localhost:5228` to `https://localhost:7228`; call it over https (accept the development
 certificate), since many HTTP clients drop the `Authorization` header on a redirect. The first start opens the first-run
 wizard (it sets the admin password); to skip it set `Kandra__AdminPassword`, or start a demo installation with
