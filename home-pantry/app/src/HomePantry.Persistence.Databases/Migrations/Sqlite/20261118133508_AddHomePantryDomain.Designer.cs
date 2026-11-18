@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomePantry.Persistence.Databases.Migrations.Sqlite
 {
     [DbContext(typeof(HomePantryDbContextSqlite))]
-    [Migration("20261102180002_AddHouseholdPartB")]
-    partial class AddHouseholdPartB
+    [Migration("20261118133508_AddHomePantryDomain")]
+    partial class AddHomePantryDomain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1991,6 +1991,83 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                         .IsUnique();
 
                     b.ToTable("Sys_GaplessIssued", (string)null);
+                });
+
+            modelBuilder.Entity("Kandra.Domain.Numbering.NumberingAdminEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("AdminId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("At")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Bucket")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Family")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("NewValue")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("OldValue")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Bucket", "At");
+
+                    b.ToTable("Sys_NumberingAdminEvents", (string)null);
+                });
+
+            modelBuilder.Entity("Kandra.Domain.Numbering.NumberingException", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("AdminId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Bucket")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Kind")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Number")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("RawValue")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTimeOffset>("RecordedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Bucket", "RawValue");
+
+                    b.ToTable("Sys_NumberingExceptions", (string)null);
                 });
 
             modelBuilder.Entity("Kandra.Domain.Numbering.SimpleCounter", b =>

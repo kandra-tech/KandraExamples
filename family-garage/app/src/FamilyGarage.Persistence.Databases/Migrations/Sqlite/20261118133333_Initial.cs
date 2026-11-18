@@ -355,6 +355,42 @@ namespace FamilyGarage.Persistence.Databases.Migrations.Sqlite
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sys_NumberingAdminEvents",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Bucket = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
+                    Family = table.Column<int>(type: "INTEGER", nullable: false),
+                    OldValue = table.Column<long>(type: "INTEGER", nullable: false),
+                    NewValue = table.Column<long>(type: "INTEGER", nullable: false),
+                    AdminId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Reason = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: false),
+                    At = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sys_NumberingAdminEvents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sys_NumberingExceptions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Bucket = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
+                    Kind = table.Column<int>(type: "INTEGER", nullable: false),
+                    RawValue = table.Column<long>(type: "INTEGER", nullable: true),
+                    Number = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    AdminId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    Reason = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: false),
+                    RecordedAt = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sys_NumberingExceptions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sys_SchedulerLease",
                 columns: table => new
                 {
@@ -890,6 +926,16 @@ namespace FamilyGarage.Persistence.Databases.Migrations.Sqlite
                 columns: new[] { "RecipientUserId", "ReadAt" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sys_NumberingAdminEvents_Bucket_At",
+                table: "Sys_NumberingAdminEvents",
+                columns: new[] { "Bucket", "At" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sys_NumberingExceptions_Bucket_RawValue",
+                table: "Sys_NumberingExceptions",
+                columns: new[] { "Bucket", "RawValue" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sys_SimplePools_Bucket_PoolName_RawValue",
                 table: "Sys_SimplePools",
                 columns: new[] { "Bucket", "PoolName", "RawValue" });
@@ -1038,6 +1084,12 @@ namespace FamilyGarage.Persistence.Databases.Migrations.Sqlite
 
             migrationBuilder.DropTable(
                 name: "Sys_NotificationLinks");
+
+            migrationBuilder.DropTable(
+                name: "Sys_NumberingAdminEvents");
+
+            migrationBuilder.DropTable(
+                name: "Sys_NumberingExceptions");
 
             migrationBuilder.DropTable(
                 name: "Sys_SchedulerLease");
