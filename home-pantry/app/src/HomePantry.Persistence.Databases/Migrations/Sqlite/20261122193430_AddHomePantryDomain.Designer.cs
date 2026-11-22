@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomePantry.Persistence.Databases.Migrations.Sqlite
 {
     [DbContext(typeof(HomePantryDbContextSqlite))]
-    [Migration("20261118133508_AddHomePantryDomain")]
+    [Migration("20261122193430_AddHomePantryDomain")]
     partial class AddHomePantryDomain
     {
         /// <inheritdoc />
@@ -2277,6 +2277,42 @@ namespace HomePantry.Persistence.Databases.Migrations.Sqlite
                     b.HasKey("Id");
 
                     b.ToTable("Sys_SchedulerLease", (string)null);
+                });
+
+            modelBuilder.Entity("Kandra.Domain.Security.KeyRecord", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Algorithm")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Material")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("Purpose")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Purpose")
+                        .IsUnique()
+                        .HasFilter("\"Status\" = 1");
+
+                    b.ToTable("Sys_Keys", (string)null);
                 });
 
             modelBuilder.Entity("HomePantry.Domain.Entities.Dictionaries.Location", b =>

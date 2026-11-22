@@ -1305,6 +1305,42 @@ namespace PersonalAccounting.Persistence.Databases.Migrations.Sqlite
                     b.ToTable("Sys_SchedulerLease", (string)null);
                 });
 
+            modelBuilder.Entity("Kandra.Domain.Security.KeyRecord", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Algorithm")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Material")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("Purpose")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Purpose")
+                        .IsUnique()
+                        .HasFilter("\"Status\" = 1");
+
+                    b.ToTable("Sys_Keys", (string)null);
+                });
+
             modelBuilder.Entity("PersonalAccounting.Domain.Entities.Dictionaries.Account", b =>
                 {
                     b.Property<Guid>("Id")

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace HomeUtilities.Persistence.Databases.Migrations.Sqlite
+namespace FamilyGarage.Persistence.Databases.Migrations.Sqlite
 {
     /// <inheritdoc />
     public partial class Initial : Migration
@@ -328,6 +328,22 @@ namespace HomeUtilities.Persistence.Databases.Migrations.Sqlite
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sys_Installation", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sys_Keys",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
+                    Purpose = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
+                    Algorithm = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false),
+                    Material = table.Column<byte[]>(type: "BLOB", maxLength: 1024, nullable: false),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sys_Keys", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -909,6 +925,13 @@ namespace HomeUtilities.Persistence.Databases.Migrations.Sqlite
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sys_Keys_Purpose",
+                table: "Sys_Keys",
+                column: "Purpose",
+                unique: true,
+                filter: "\"Status\" = 1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sys_NotificationLinks_NotificationId",
                 table: "Sys_NotificationLinks",
                 column: "NotificationId");
@@ -1081,6 +1104,9 @@ namespace HomeUtilities.Persistence.Databases.Migrations.Sqlite
 
             migrationBuilder.DropTable(
                 name: "Sys_Installation");
+
+            migrationBuilder.DropTable(
+                name: "Sys_Keys");
 
             migrationBuilder.DropTable(
                 name: "Sys_NotificationLinks");
