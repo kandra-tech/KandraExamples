@@ -6,12 +6,25 @@ using FamilyGarage.Domain.Entities.ReportingModels;
 using FamilyGarage.Domain.Reporting;
 using FamilyGarage.Persistence.Contexts;
 using FamilyGarage.Enums;
+using Kandra.Persistence.Abstractions.Registers;
 using Microsoft.EntityFrameworkCore;
 
 namespace FamilyGarage.Persistence.Repositories;
 
-internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : IReportsRepository
+internal class FamilyGarageReportsRepository(
+    FamilyGarageDbContext dbContext,
+    IInfoRegisterReader<OdometerRecord> odometerReader,
+    IInfoRegisterReader<LastDoneRecord> lastDoneReader,
+    IInfoRegisterReader<PolicyValidityRecord> policyReader,
+    IBalanceReader<FinanceDebtMovement, FinanceDebtBalance> debtReader,
+    ITurnoverReader<VehicleCostsMovement> costsReader,
+    ITurnoverReader<ServiceLinesMovement> serviceLinesReader) : IReportsRepository
 {
+    // The registers are read through their readers (the table also keeps the rows of un-posted and deleted documents);
+    // a reader takes a period, so "no bound" is the widest one.
+    private static readonly DateTime Earliest = new(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+    private static readonly DateTime Latest = new(9000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
     public Task<FinanceContract?> GetFinanceContractAsync(Guid id, CancellationToken ct = default)
     {
         return dbContext.Set<FinanceContract>().AsNoTracking().FirstOrDefaultAsync(c => c.Id == id, ct);
@@ -51,10 +64,9 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
 
         foreach (var v in vehicles)
         {
-            var lastOdoRecord = await dbContext.Set<OdometerRecord>().AsNoTracking()
-                .Where(o => o.Active && o.Dimensions.VehicleId == v.Id)
-                .OrderByDescending(o => o.Period).ThenByDescending(o => o.Id)
-                .FirstOrDefaultAsync(ct);
+            var lastOdoRecord = (await odometerReader.Records(Earliest, Latest,
+                q => q.Where(o => o.Dimensions.VehicleId == v.Id)
+                    .OrderByDescending(o => o.Period).ThenByDescending(o => o.Id).Take(1), ct)).FirstOrDefault();
             int currentOdo = lastOdoRecord?.Details.Kilometres ?? 0;
 
             var purchases = await dbContext.Set<VehiclePurchase>().AsNoTracking()
@@ -67,10 +79,9 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
 
             foreach (var item in workItems)
             {
-                var lastDone = await dbContext.Set<LastDoneRecord>().AsNoTracking()
-                    .Where(l => l.Active && l.Dimensions.VehicleId == v.Id && l.Dimensions.ItemId == item.Id)
-                    .OrderByDescending(l => l.Period)
-                    .FirstOrDefaultAsync(ct);
+                var lastDone = (await lastDoneReader.Records(Earliest, Latest,
+                    q => q.Where(l => l.Dimensions.VehicleId == v.Id && l.Dimensions.ItemId == item.Id)
+                        .OrderByDescending(l => l.Period).Take(1), ct)).FirstOrDefault();
 
                 var itemBaseDate = lastDone is not null ? LocalCalendar.LocalDate(lastDone.Details.Date, zone) : baseDate;
                 var itemBaseKm = lastDone?.Details.Odometer ?? baseKm;
@@ -104,9 +115,8 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
                 }
             }
 
-            var policyRecords = await dbContext.Set<PolicyValidityRecord>().AsNoTracking()
-                .Where(p => p.Active && p.Dimensions.VehicleId == v.Id)
-                .ToListAsync(ct);
+            var policyRecords = await policyReader.Records(Earliest, Latest,
+                q => q.Where(p => p.Dimensions.VehicleId == v.Id), ct);
 
             var latestPolicies = policyRecords
                 .GroupBy(p => p.Dimensions.PolicyKind)
@@ -144,8 +154,7 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
 
             foreach (var contract in contracts)
             {
-                var debtBal = await dbContext.Set<FinanceDebtBalance>().AsNoTracking()
-                    .FirstOrDefaultAsync(d => d.Dimensions.ContractId == contract.Id, ct);
+                var debtBal = (await debtReader.Balances(q => q.Where(d => d.Dimensions.ContractId == contract.Id), ct)).FirstOrDefault();
                 var debt = debtBal?.Resources.Amount ?? 0m;
                 if (debt > 0)
                 {
@@ -202,22 +211,18 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
         var vehicles = await vehicleQuery.ToListAsync(ct);
         DateTime? toEnd = to.HasValue ? LocalCalendar.EndOfLocalDayUtc(to.Value, zone) : null;
 
-        var costsQuery = dbContext.Set<VehicleCostsMovement>().AsNoTracking().Where(c => c.Active);
-        if (from.HasValue) costsQuery = costsQuery.Where(c => c.Period >= from.Value);
-        if (toEnd.HasValue) costsQuery = costsQuery.Where(c => c.Period < toEnd.Value);
-        var costs = await costsQuery.ToListAsync(ct);
+        var costs = await costsReader.Movements(from ?? Earliest, Latest,
+            q => toEnd.HasValue ? q.Where(c => c.Period < toEnd.Value) : q, ct);
 
         // Every reading up to the end of the period: the kilometres driven run from the last reading before the period
         // (or the first one inside it) to the last one inside it.
-        var odoQuery = dbContext.Set<OdometerRecord>().AsNoTracking().Where(o => o.Active);
-        if (toEnd.HasValue) odoQuery = odoQuery.Where(o => o.Period < toEnd.Value);
-        var odometers = await odoQuery.ToListAsync(ct);
+        var odometers = await odometerReader.Records(Earliest, Latest,
+            q => toEnd.HasValue ? q.Where(o => o.Period < toEnd.Value) : q, ct);
 
         // The debt still owed at the end of the period, not today.
         var contracts = await dbContext.Set<FinanceContract>().AsNoTracking().ToListAsync(ct);
-        var debtQuery = dbContext.Set<FinanceDebtMovement>().AsNoTracking().Where(d => d.Active);
-        if (toEnd.HasValue) debtQuery = debtQuery.Where(d => d.Period < toEnd.Value);
-        var debtMovements = await debtQuery.ToListAsync(ct);
+        var debtMovements = await debtReader.Movements(Earliest, Latest,
+            q => toEnd.HasValue ? q.Where(d => d.Period < toEnd.Value) : q, ct);
 
         var today = LocalCalendar.LocalDate(DateTime.UtcNow, zone);
         var startDate = from.HasValue
@@ -285,14 +290,9 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
 
     public async Task<List<CostsPivotLine>> GetCostsPivotAsync(DateTime? from, DateTime? to, TimeZoneInfo? zone, CancellationToken ct = default)
     {
-        var costsQuery = dbContext.Set<VehicleCostsMovement>().AsNoTracking().Where(c => c.Active);
-        if (from.HasValue) costsQuery = costsQuery.Where(c => c.Period >= from.Value);
-        if (to.HasValue)
-        {
-            var toEnd = LocalCalendar.EndOfLocalDayUtc(to.Value, zone);
-            costsQuery = costsQuery.Where(c => c.Period < toEnd);
-        }
-        var costs = await costsQuery.ToListAsync(ct);
+        DateTime? toEnd = to.HasValue ? LocalCalendar.EndOfLocalDayUtc(to.Value, zone) : null;
+        var costs = await costsReader.Movements(from ?? Earliest, Latest,
+            q => toEnd.HasValue ? q.Where(c => c.Period < toEnd.Value) : q, ct);
 
         var vehicles = await dbContext.Set<Vehicle>().AsNoTracking().ToDictionaryAsync(v => v.Id, ct);
 
@@ -322,9 +322,7 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
 
         // The financed amount, the principal paid and the debt come from the debt register as of the date. Interest, fees
         // and the payment count are in no register by contract, so they come from the posted payments.
-        var debtMovements = await dbContext.Set<FinanceDebtMovement>().AsNoTracking()
-            .Where(d => d.Active && d.Period < asOfEnd)
-            .ToListAsync(ct);
+        var debtMovements = await debtReader.Movements(Earliest, Latest, q => q.Where(d => d.Period < asOfEnd), ct);
         var payments = await dbContext.Set<FinancePayment>().AsNoTracking()
             .Where(p => p.IsActive && p.Date < asOfEnd)
             .ToListAsync(ct);
@@ -362,16 +360,14 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
 
     public async Task<List<VehicleHistoryReportLine>> GetVehicleHistoryAsync(Guid vehicleId, DateTime? from, DateTime? to, TimeZoneInfo? zone, CancellationToken ct = default)
     {
-        var query = dbContext.Set<ServiceLinesMovement>().AsNoTracking()
-            .Where(s => s.Active && s.Dimensions.VehicleId == vehicleId);
-        if (from.HasValue) query = query.Where(s => s.Period >= from.Value);
-        if (to.HasValue)
-        {
-            var toEnd = LocalCalendar.EndOfLocalDayUtc(to.Value, zone);
-            query = query.Where(s => s.Period < toEnd);
-        }
-
-        var movements = await query.OrderByDescending(s => s.Period).ThenByDescending(s => s.Id).ToListAsync(ct);
+        DateTime? toEnd = to.HasValue ? LocalCalendar.EndOfLocalDayUtc(to.Value, zone) : null;
+        var movements = await serviceLinesReader.Movements(from ?? Earliest, Latest,
+            q =>
+            {
+                var query = q.Where(s => s.Dimensions.VehicleId == vehicleId);
+                if (toEnd.HasValue) query = query.Where(s => s.Period < toEnd.Value);
+                return query.OrderByDescending(s => s.Period).ThenByDescending(s => s.Id);
+            }, ct);
         var itemIds = movements.Select(m => m.Dimensions.ItemId).Distinct().ToList();
         var items = await dbContext.Set<ItemNode>().AsNoTracking()
             .Where(i => itemIds.Contains(i.Id))
@@ -418,16 +414,14 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
 
     public async Task<decimal> GetCostsForPeriodAsync(DateTime fromUtc, DateTime toUtc, CancellationToken ct = default)
     {
-        var costs = await dbContext.Set<VehicleCostsMovement>().AsNoTracking()
-            .Where(c => c.Active && c.Period >= fromUtc && c.Period < toUtc)
-            .ToListAsync(ct);
+        var costs = await costsReader.Movements(fromUtc, Latest, q => q.Where(c => c.Period < toUtc), ct);
 
         return costs.Sum(c => c.IsExpense ? -c.Resources.Amount : c.Resources.Amount);
     }
 
     public async Task<decimal> GetTotalDebtAsync(CancellationToken ct = default)
     {
-        return await dbContext.Set<FinanceDebtBalance>().AsNoTracking().SumAsync(d => d.Resources.Amount, ct);
+        return (await debtReader.Balances(q => q.Select(d => d.Resources.Amount), ct)).Sum();
     }
 
     public async Task<decimal> GetAverageFuelConsumptionAsync(DateTime fromUtc, DateTime toUtc, CancellationToken ct = default)
@@ -445,9 +439,7 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
 
     public async Task<Dictionary<string, Dictionary<CostCategory, decimal>>> GetMonthlyCostsByCategoryAsync(DateTime fromUtc, DateTime toUtc, TimeZoneInfo? zone, CancellationToken ct = default)
     {
-        var costs = await dbContext.Set<VehicleCostsMovement>().AsNoTracking()
-            .Where(c => c.Active && c.Period >= fromUtc && c.Period < toUtc)
-            .ToListAsync(ct);
+        var costs = await costsReader.Movements(fromUtc, Latest, q => q.Where(c => c.Period < toUtc), ct);
 
         var result = new Dictionary<string, Dictionary<CostCategory, decimal>>();
         foreach (var group in costs.GroupBy(c => LocalCalendar.MonthKey(c.Period, zone)))
@@ -476,10 +468,9 @@ internal class FamilyGarageReportsRepository(FamilyGarageDbContext dbContext) : 
         var result = new List<VehicleDashboardStatus>();
         foreach (var v in vehicles)
         {
-            var lastOdo = await dbContext.Set<OdometerRecord>().AsNoTracking()
-                .Where(o => o.Active && o.Dimensions.VehicleId == v.Id)
-                .OrderByDescending(o => o.Period).ThenByDescending(o => o.Id)
-                .FirstOrDefaultAsync(ct);
+            var lastOdo = (await odometerReader.Records(Earliest, Latest,
+                q => q.Where(o => o.Dimensions.VehicleId == v.Id)
+                    .OrderByDescending(o => o.Period).ThenByDescending(o => o.Id).Take(1), ct)).FirstOrDefault();
             int odo = lastOdo?.Details.Kilometres ?? 0;
 
             var vTco = tcoDict.GetValueOrDefault(v.Id);

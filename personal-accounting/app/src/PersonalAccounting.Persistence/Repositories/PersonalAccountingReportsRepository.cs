@@ -6,11 +6,45 @@ using PersonalAccounting.Domain.Reporting;
 using PersonalAccounting.Enums;
 using PersonalAccounting.Persistence.Contexts;
 using Kandra.Domain.Entities.Documents;
+using Kandra.Persistence.Abstractions.Registers;
 
 namespace PersonalAccounting.Persistence.Repositories;
 
-internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext db) : IReportsRepository
+internal class PersonalAccountingReportsRepository(
+    PersonalAccountingDbContext db,
+    IBalanceReader<AccountBalanceMovement, AccountBalancesBalance> accountReader,
+    ITurnoverReader<CategoryTurnoverMovement> turnoverReader,
+    IInfoRegisterReader<BudgetPlanRecord> budgetReader,
+    IInfoRegisterReader<ExchangeRatesRecord> rateReader) : IReportsRepository
 {
+    // The registers are read through their readers (the table also keeps the rows of un-posted and deleted documents);
+    // a reader takes a period, so "no bound" is the widest one.
+    private static readonly DateTime Earliest = new(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+    private static readonly DateTime Latest = new(9000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+    private sealed record TurnoverRow(Guid CategoryId, Guid AccountId, DateTime Period, decimal Amount, decimal AmountInBase);
+
+    private sealed record AccountAmount(Guid AccountId, decimal Amount);
+
+    private Task<List<TurnoverRow>> TurnoverRowsAsync(
+        DateTime from,
+        DateTime to,
+        Func<IQueryable<CategoryTurnoverMovement>, IQueryable<CategoryTurnoverMovement>> adjust,
+        CancellationToken ct)
+    {
+        return turnoverReader.Movements(from, to, q => adjust(q).Select(t => new TurnoverRow(
+            t.Dimensions.CategoryId,
+            t.Dimensions.AccountId,
+            t.Period,
+            t.Resources.AmountInAccountCurrency,
+            t.Resources.AmountInBaseCurrency)), ct);
+    }
+
+    private Task<Dictionary<Guid, (CategoryKind Kind, string Name)>> CategoriesAsync(CancellationToken ct)
+    {
+        return db.Dict_Categories.AsNoTracking().ToDictionaryAsync(c => c.Id, c => (c.Kind, c.Name), ct);
+    }
+
     public async Task<IReadOnlyList<TransactionJournalRow>> GetTransactionJournalAsync(
         DateTime? fromDate,
         DateTime? toDate,
@@ -18,21 +52,15 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
         IReadOnlyList<Guid>? categoryIds,
         CancellationToken cancellationToken)
     {
-        var movementsQuery = db.Reg_AccountBalances.AsNoTracking().Where(r => r.Active);
-
-        if (fromDate.HasValue)
-            movementsQuery = movementsQuery.Where(m => m.Period >= fromDate.Value);
-        if (toDate.HasValue)
-            movementsQuery = movementsQuery.Where(m => m.Period <= toDate.Value);
-        if (accountIds != null && accountIds.Count > 0)
-            movementsQuery = movementsQuery.Where(m => accountIds.Contains(m.Dimensions.AccountId));
-        if (categoryIds != null && categoryIds.Count > 0)
-            movementsQuery = movementsQuery.Where(m => m.Details.CategoryId.HasValue && categoryIds.Contains(m.Details.CategoryId.Value));
-
-        var movements = await movementsQuery
-            .OrderBy(m => m.Period)
-            .ThenBy(m => m.Id)
-            .ToListAsync(cancellationToken);
+        var movements = await accountReader.Movements(fromDate ?? Earliest, toDate ?? Latest,
+            q =>
+            {
+                if (accountIds != null && accountIds.Count > 0)
+                    q = q.Where(m => accountIds.Contains(m.Dimensions.AccountId));
+                if (categoryIds != null && categoryIds.Count > 0)
+                    q = q.Where(m => m.Details.CategoryId.HasValue && categoryIds.Contains(m.Details.CategoryId.Value));
+                return q.OrderBy(m => m.Period).ThenBy(m => m.Id);
+            }, cancellationToken);
 
         if (movements.Count == 0)
             return [];
@@ -85,20 +113,18 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
         var start = month.FromUtc;
         var end = month.ToUtc;
 
-        var plans = await db.Reg_BudgetPlan.AsNoTracking().Where(r => r.Active)
-            .Where(b => b.Period == planPeriod)
+        var plans = (await budgetReader.Records(planPeriod, planPeriod, q => q, cancellationToken))
             .GroupBy(b => b.Dimensions.CategoryId)
             .Select(g => new { CategoryId = g.Key, Planned = g.Sum(x => x.Details.PlannedAmount) })
-            .ToListAsync(cancellationToken);
+            .ToList();
 
         // Turnovers in that month for expenses
-        var turnovers = await (
-            from t in db.Reg_CategoryTurnover.AsNoTracking().Where(r => r.Active)
-            join c in db.Dict_Categories.AsNoTracking() on t.Dimensions.CategoryId equals c.Id
-            where t.Period >= start && t.Period < end && c.Kind == CategoryKind.Expense
-            group t by t.Dimensions.CategoryId into g
-            select new { CategoryId = g.Key, Actual = g.Sum(x => x.Resources.AmountInBaseCurrency) }
-        ).ToListAsync(cancellationToken);
+        var kinds = await CategoriesAsync(cancellationToken);
+        var turnovers = (await TurnoverRowsAsync(start, Latest, q => q.Where(t => t.Period < end), cancellationToken))
+            .Where(t => kinds.TryGetValue(t.CategoryId, out var k) && k.Kind == CategoryKind.Expense)
+            .GroupBy(t => t.CategoryId)
+            .Select(g => new { CategoryId = g.Key, Actual = g.Sum(x => x.AmountInBase) })
+            .ToList();
 
         var planDict = plans.ToDictionary(p => p.CategoryId, p => p.Planned);
         var turnoverDict = turnovers.ToDictionary(t => t.CategoryId, t => t.Actual);
@@ -141,40 +167,36 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
         IReadOnlyList<Guid>? categoryIds,
         CancellationToken cancellationToken)
     {
-        var query = from t in db.Reg_CategoryTurnover.AsNoTracking().Where(r => r.Active)
-                    join c in db.Dict_Categories.AsNoTracking() on t.Dimensions.CategoryId equals c.Id
-                    join a in db.Dict_Accounts.AsNoTracking() on t.Dimensions.AccountId equals a.Id
-                    join cur in db.Dict_Currencies.AsNoTracking() on a.CurrencyId equals cur.Id
-                    where c.Kind == CategoryKind.Expense
-                    select new { t, c, a, cur };
+        var rows = await TurnoverRowsAsync(fromDate ?? Earliest, toDate ?? Latest,
+            q => categoryIds != null && categoryIds.Count > 0
+                ? q.Where(t => categoryIds.Contains(t.Dimensions.CategoryId))
+                : q, cancellationToken);
 
-        if (fromDate.HasValue)
-            query = query.Where(x => x.t.Period >= fromDate.Value);
-        if (toDate.HasValue)
-            query = query.Where(x => x.t.Period <= toDate.Value);
-        if (categoryIds != null && categoryIds.Count > 0)
-            query = query.Where(x => categoryIds.Contains(x.t.Dimensions.CategoryId));
+        var categories = await CategoriesAsync(cancellationToken);
+        var accounts = await (
+            from a in db.Dict_Accounts.AsNoTracking()
+            join cur in db.Dict_Currencies.AsNoTracking() on a.CurrencyId equals cur.Id
+            select new { a.Id, a.Name, CurrencyCode = cur.Code }
+        ).ToDictionaryAsync(a => a.Id, cancellationToken);
 
-        var grouped = await query
-            .GroupBy(x => new
+        var grouped = rows
+            .Where(t => categories.TryGetValue(t.CategoryId, out var c) && c.Kind == CategoryKind.Expense && accounts.ContainsKey(t.AccountId))
+            .GroupBy(t => new { t.CategoryId, t.AccountId })
+            .Select(g =>
             {
-                CategoryId = x.c.Id,
-                CategoryName = x.c.Name,
-                AccountId = x.a.Id,
-                AccountName = x.a.Name,
-                CurrencyCode = x.cur.Code
+                var a = accounts[g.Key.AccountId];
+                return new
+                {
+                    g.Key.CategoryId,
+                    CategoryName = categories[g.Key.CategoryId].Name,
+                    AccountId = g.Key.AccountId,
+                    AccountName = a.Name,
+                    a.CurrencyCode,
+                    Amount = g.Sum(x => x.Amount),
+                    AmountInBaseCurrency = g.Sum(x => x.AmountInBase)
+                };
             })
-            .Select(g => new
-            {
-                g.Key.CategoryId,
-                g.Key.CategoryName,
-                g.Key.AccountId,
-                g.Key.AccountName,
-                g.Key.CurrencyCode,
-                Amount = g.Sum(x => x.t.Resources.AmountInAccountCurrency),
-                AmountInBaseCurrency = g.Sum(x => x.t.Resources.AmountInBaseCurrency)
-            })
-            .ToListAsync(cancellationToken);
+            .ToList();
 
         return grouped.Select(g => new SpendingByCategoryRow
         {
@@ -200,17 +222,13 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
         var fromUtc = fromDate ?? DateTime.MinValue;
         var toUtc = toDate ?? DateTime.MaxValue;
 
-        var openingMovements = await db.Reg_AccountBalances.AsNoTracking().Where(r => r.Active)
-            .Where(m => m.Dimensions.AccountId == accountId && m.Period < fromUtc)
-            .ToListAsync(cancellationToken);
+        var openingMovements = await accountReader.Movements(Earliest, Latest,
+            q => q.Where(m => m.Dimensions.AccountId == accountId && m.Period < fromUtc), cancellationToken);
 
         var openingBalance = openingMovements.Sum(m => !m.IsExpense ? m.Resources.Amount : -m.Resources.Amount);
 
-        var periodMovements = await db.Reg_AccountBalances.AsNoTracking().Where(r => r.Active)
-            .Where(m => m.Dimensions.AccountId == accountId && m.Period >= fromUtc && m.Period <= toUtc)
-            .OrderBy(m => m.Period)
-            .ThenBy(m => m.Id)
-            .ToListAsync(cancellationToken);
+        var periodMovements = await accountReader.Movements(fromDate ?? Earliest, toDate ?? Latest,
+            q => q.Where(m => m.Dimensions.AccountId == accountId).OrderBy(m => m.Period).ThenBy(m => m.Id), cancellationToken);
 
         var docIds = periodMovements.Select(m => m.DocumentId).Distinct().ToList();
         var documents = await db.Set<DocumentBase>().AsNoTracking()
@@ -268,10 +286,9 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
         CancellationToken cancellationToken)
     {
         var currencies = await db.Dict_Currencies.AsNoTracking().ToListAsync(cancellationToken);
-        var rates = await db.Reg_ExchangeRates.AsNoTracking().Where(r => r.Active)
-            .Where(r => r.Period <= dateAsOf)
+        var rates = (await rateReader.Records(Earliest, dateAsOf, q => q, cancellationToken))
             .OrderByDescending(r => r.Period)
-            .ToListAsync(cancellationToken);
+            .ToList();
 
         var result = new List<ExchangeRateRow>();
         foreach (var cur in currencies)
@@ -305,20 +322,15 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
             select new { a.Id, a.Name, a.Type, a.CurrencyId, CurrencyCode = c.Code }
         ).ToListAsync(cancellationToken);
 
-        var movements = await db.Reg_AccountBalances.AsNoTracking().Where(r => r.Active)
-            .Where(m => m.Period <= asOf)
-            .GroupBy(m => m.Dimensions.AccountId)
-            .Select(g => new
-            {
-                AccountId = g.Key,
-                Balance = g.Sum(m => !m.IsExpense ? m.Resources.Amount : -m.Resources.Amount)
-            })
-            .ToDictionaryAsync(x => x.AccountId, x => x.Balance, cancellationToken);
+        var movements = (await accountReader.Movements(Earliest, asOf,
+                q => q.Select(m => new AccountAmount(m.Dimensions.AccountId, !m.IsExpense ? m.Resources.Amount : -m.Resources.Amount)),
+                cancellationToken))
+            .GroupBy(m => m.AccountId)
+            .ToDictionary(g => g.Key, g => g.Sum(x => x.Amount));
 
-        var rates = await db.Reg_ExchangeRates.AsNoTracking().Where(r => r.Active)
-            .Where(r => r.Period <= asOf)
+        var rates = (await rateReader.Records(Earliest, asOf, q => q, cancellationToken))
             .OrderByDescending(r => r.Period)
-            .ToListAsync(cancellationToken);
+            .ToList();
 
         var summaries = new List<AccountBalanceSummary>();
         foreach (var acc in accounts)
@@ -355,12 +367,11 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
         DateTime toDate,
         CancellationToken cancellationToken)
     {
-        var turnovers = await (
-            from t in db.Reg_CategoryTurnover.AsNoTracking().Where(r => r.Active)
-            join c in db.Dict_Categories.AsNoTracking() on t.Dimensions.CategoryId equals c.Id
-            where t.Period >= fromDate && t.Period <= toDate
-            select new { t.Period, c.Kind, t.Resources.AmountInBaseCurrency }
-        ).ToListAsync(cancellationToken);
+        var categories = await CategoriesAsync(cancellationToken);
+        var turnovers = (await TurnoverRowsAsync(fromDate, toDate, q => q, cancellationToken))
+            .Where(t => categories.ContainsKey(t.CategoryId))
+            .Select(t => new { t.Period, categories[t.CategoryId].Kind, AmountInBaseCurrency = t.AmountInBase })
+            .ToList();
 
         var grouped = turnovers
             .GroupBy(x => new { x.Period.Year, x.Period.Month })
@@ -383,18 +394,18 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
         DateTime toDate,
         CancellationToken cancellationToken)
     {
-        var expenses = await (
-            from t in db.Reg_CategoryTurnover.AsNoTracking().Where(r => r.Active)
-            join c in db.Dict_Categories.AsNoTracking() on t.Dimensions.CategoryId equals c.Id
-            where t.Period >= fromDate && t.Period <= toDate && c.Kind == CategoryKind.Expense
-            group t by new { c.Id, c.Name } into g
-            select new CategoryExpenseSummary
+        var categories = await CategoriesAsync(cancellationToken);
+        var expenses = (await TurnoverRowsAsync(fromDate, toDate, q => q, cancellationToken))
+            .Where(t => categories.TryGetValue(t.CategoryId, out var c) && c.Kind == CategoryKind.Expense)
+            .GroupBy(t => t.CategoryId)
+            .Select(g => new CategoryExpenseSummary
             {
-                CategoryId = g.Key.Id,
-                CategoryName = g.Key.Name,
-                AmountInBase = g.Sum(x => x.Resources.AmountInBaseCurrency)
-            }
-        ).OrderByDescending(x => x.AmountInBase).ToListAsync(cancellationToken);
+                CategoryId = g.Key,
+                CategoryName = categories[g.Key].Name,
+                AmountInBase = g.Sum(x => x.AmountInBase)
+            })
+            .OrderByDescending(x => x.AmountInBase)
+            .ToList();
 
         return expenses;
     }
@@ -407,16 +418,13 @@ internal class PersonalAccountingReportsRepository(PersonalAccountingDbContext d
         var start = month.FromUtc;
         var end = month.ToUtc;
 
-        var planned = await db.Reg_BudgetPlan.AsNoTracking().Where(r => r.Active)
-            .Where(b => b.Period == planPeriod)
-            .SumAsync(b => (decimal?)b.Details.PlannedAmount, cancellationToken) ?? 0m;
+        var planned = (await budgetReader.Records(planPeriod, planPeriod, q => q, cancellationToken))
+            .Sum(b => b.Details.PlannedAmount);
 
-        var actual = await (
-            from t in db.Reg_CategoryTurnover.AsNoTracking().Where(r => r.Active)
-            join c in db.Dict_Categories.AsNoTracking() on t.Dimensions.CategoryId equals c.Id
-            where t.Period >= start && t.Period < end && c.Kind == CategoryKind.Expense
-            select (decimal?)t.Resources.AmountInBaseCurrency
-        ).SumAsync(cancellationToken) ?? 0m;
+        var categories = await CategoriesAsync(cancellationToken);
+        var actual = (await TurnoverRowsAsync(start, Latest, q => q.Where(t => t.Period < end), cancellationToken))
+            .Where(t => categories.TryGetValue(t.CategoryId, out var c) && c.Kind == CategoryKind.Expense)
+            .Sum(t => t.AmountInBase);
 
         return (planned, actual);
     }
